@@ -6,6 +6,8 @@ import { cvProjects, projects } from './data/projects';
 import { experience } from './data/experience';
 import { education } from './data/education';
 import { skillGroups, skillsAsLines } from './data/skills';
+import { tables } from './data/schema';
+import { ui } from './i18n/ui';
 
 const PDFS = [
   { path: 'public/Veljko_Knezevic_CV_EN.pdf', school: 'university of belgrade' },
@@ -96,6 +98,26 @@ describe('data integrity', () => {
     for (const tool of banned) {
       expect(claimed.toLowerCase()).not.toContain(tool.toLowerCase());
     }
+  });
+
+  it('states the same table count in the data and in the copy', () => {
+    // The count drifted once already: the prose said nine while the real schema
+    // had eleven. Whatever the diagram models, the sentence has to agree.
+    const words: Record<number, { en: string; sr: string }> = {
+      9: { en: 'Nine', sr: 'Devet' },
+      10: { en: 'Ten', sr: 'Deset' },
+      11: { en: 'Eleven', sr: 'Jedanaest' },
+      12: { en: 'Twelve', sr: 'Dvanaest' },
+    };
+    const word = words[tables.length];
+    expect(word, `no spelling on file for ${tables.length} tables`).toBeDefined();
+    expect(ui['schema.lead'].en.startsWith(word.en)).toBe(true);
+    expect(ui['schema.lead'].sr.startsWith(word.sr)).toBe(true);
+
+    // Every table the diagram draws has to be reachable from a relation or stand
+    // alone deliberately; a typo in an id would otherwise silently drop an edge.
+    const ids = new Set(tables.map((tb) => tb.id));
+    expect(ids.size).toBe(tables.length);
   });
 
   it('keeps education dates and institution filled in', () => {

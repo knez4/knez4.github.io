@@ -46,8 +46,8 @@ export const ui = {
   'schema.eyebrow': { en: 'Data model', sr: 'Model podataka' },
   'schema.title': { en: 'The booking schema, up close', sr: 'Šema zakazivanja, izbliza' },
   'schema.lead': {
-    en: 'Nine tables, and one function that is allowed to write an appointment. Select a table to see what it holds and who is allowed to read it.',
-    sr: 'Devet tabela i jedna funkcija koja sme da upiše termin. Izaberi tabelu da vidiš šta sadrži i ko sme da je čita.',
+    en: 'Eleven tables, and one function that is allowed to write an appointment. Select a table to see what it holds and who is allowed to read it.',
+    sr: 'Jedanaest tabela i jedna funkcija koja sme da upiše termin. Izaberi tabelu da vidiš šta sadrži i ko sme da je čita.',
   },
   'schema.columns': { en: 'Columns', sr: 'Kolone' },
   'schema.rls': { en: 'Row Level Security', sr: 'Row Level Security' },

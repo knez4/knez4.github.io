@@ -73,6 +73,28 @@ export const tables: Table[] = [
     },
   },
   {
+    id: 'salon_invites',
+    name: 'salon_invites',
+    col: 0,
+    row: 2,
+    group: 'tenant',
+    purpose: {
+      en: 'Pending invitations. An owner invites a manager or a staff member by email before they have an account.',
+      sr: 'Poslate pozivnice. Vlasnik poziva menadžera ili zaposlenog mejlom pre nego što imaju nalog.',
+    },
+    columns: [
+      { name: 'id', type: 'uuid', pk: true },
+      { name: 'salon_id', type: 'uuid', fk: 'salons' },
+      { name: 'email', type: 'text' },
+      { name: 'role', type: 'text' },
+      { name: 'accepted_at', type: 'timestamptz' },
+    ],
+    rls: {
+      en: 'Only the salon owner can create or revoke an invite.',
+      sr: 'Samo vlasnik salona može da napravi ili povuče pozivnicu.',
+    },
+  },
+  {
     id: 'services',
     name: 'services',
     col: 1,
@@ -116,8 +138,8 @@ export const tables: Table[] = [
   {
     id: 'staff_services',
     name: 'staff_services',
-    col: 2,
-    row: 0,
+    col: 1,
+    row: 2,
     group: 'catalog',
     purpose: {
       en: 'Join table: which staff member can perform which service.',
@@ -132,7 +154,7 @@ export const tables: Table[] = [
     id: 'working_hours',
     name: 'working_hours',
     col: 2,
-    row: 1,
+    row: 0,
     group: 'schedule',
     purpose: {
       en: 'Opening hours per weekday, set for the salon and optionally overridden per staff member.',
@@ -150,7 +172,7 @@ export const tables: Table[] = [
   {
     id: 'time_off',
     name: 'time_off',
-    col: 3,
+    col: 2,
     row: 1,
     group: 'schedule',
     purpose: {
@@ -168,7 +190,7 @@ export const tables: Table[] = [
     id: 'clients',
     name: 'clients',
     col: 3,
-    row: 0,
+    row: 1,
     group: 'booking',
     purpose: {
       en: 'Who booked. Also the basis for the repeat-visit and revenue view.',
@@ -189,7 +211,7 @@ export const tables: Table[] = [
   {
     id: 'appointments',
     name: 'appointments',
-    col: 4,
+    col: 3,
     row: 0,
     group: 'booking',
     purpose: {
@@ -214,8 +236,8 @@ export const tables: Table[] = [
   {
     id: 'notification_outbox',
     name: 'notification_outbox',
-    col: 4,
-    row: 1,
+    col: 3,
+    row: 2,
     group: 'booking',
     purpose: {
       en: 'Queue of emails to send. An edge function drains it in batches so a failing address cannot block the rest.',
@@ -235,6 +257,7 @@ export type Relation = { from: string; to: string; label?: string };
 
 export const relations: Relation[] = [
   { from: 'profiles', to: 'salons' },
+  { from: 'salon_invites', to: 'salons' },
   { from: 'services', to: 'salons' },
   { from: 'staff', to: 'salons' },
   { from: 'staff', to: 'profiles' },

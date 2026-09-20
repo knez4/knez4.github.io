@@ -32,13 +32,13 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Designed a nine-table PostgreSQL schema for multi-tenant booking, shipped as 17 versioned migrations.',
+        'Designed an eleven-table PostgreSQL schema for multi-tenant booking, shipped as 17 versioned migrations.',
         'Moved slot lookup and booking into database functions; create_appointment locks the row and rechecks availability, which prevents double bookings.',
         'Wrote Row Level Security policies for owner, manager and staff so each role reads only its own data.',
         'Queued confirmation emails in an outbox table drained in batches by a Deno edge function through Resend.',
       ],
       sr: [
-        'Projektovao PostgreSQL šemu od devet tabela za multi-tenant zakazivanje, kroz 17 verzionisanih migracija.',
+        'Projektovao PostgreSQL šemu od jedanaest tabela za multi-tenant zakazivanje, kroz 17 verzionisanih migracija.',
         'Pretragu slobodnih termina i zakazivanje prebacio u funkcije baze; create_appointment zaključava red i ponovo proverava dostupnost, čime sprečava duple termine.',
         'Napisao Row Level Security politike za vlasnika, menadžera i zaposlenog, tako da svaka uloga čita samo svoje podatke.',
         'Potvrde mejlom stavio u outbox tabelu koju u grupama prazni Deno edge funkcija preko Resend-a.',
@@ -61,8 +61,8 @@ export const projects: Project[] = [
       {
         src: '/screenshots/booking-schema.svg',
         alt: {
-          en: 'Entity relationship diagram of the nine booking tables',
-          sr: 'Dijagram veza između devet tabela sistema za zakazivanje',
+          en: 'Entity relationship diagram of the eleven booking tables',
+          sr: 'Dijagram veza između jedanaest tabela sistema za zakazivanje',
         },
         caption: {
           en: 'The data model: salons own staff, services and working hours; appointments reference all three.',

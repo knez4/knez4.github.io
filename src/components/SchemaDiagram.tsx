@@ -149,7 +149,7 @@ export function SchemaDiagram() {
         ) : null}
 
         <ul
-          className="relative z-10 grid grid-cols-2 gap-2.5 sm:grid-cols-3 xl:grid-cols-5 xl:gap-x-5 xl:gap-y-10"
+          className="relative z-10 grid grid-cols-2 gap-2.5 sm:grid-cols-3 xl:grid-cols-4 xl:gap-x-6 xl:gap-y-10"
           role="list"
         >
           {tables.map((tb) => {
