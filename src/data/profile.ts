@@ -1,9 +1,13 @@
 import type { L } from './types';
 
 /**
- * TODO(veljko): still to confirm before publishing.
- *  - email: taken from the machine's global git config
- *  - index: 2022/0390 comes from the title page of the Software Design assignment
+ * Contact details and where each one came from:
+ *  - phone: given by Veljko directly
+ *  - email: the machine's global git config, and the author of every commit on
+ *    his three repos. TODO(veljko): confirm this is the address for applications.
+ *  - index: 2022/0390, from the document metadata of the Software Design title
+ *    page. The 2022/0337 in the chatbot repo name is a teammate's.
+ *  - linkedin: given by Veljko directly (see the note on the field).
  */
 export const profile = {
   name: 'Veljko Knežević',
@@ -15,7 +19,13 @@ export const profile = {
   phone: '+381 6X XXX XXXX',
   github: 'https://github.com/knez4',
   githubHandle: 'github.com/knez4',
-  /** Percent-encoded: a bare Unicode slug breaks some ATS parsers and PDF link extractors. */
+  /**
+   * Percent-encoded: a bare Unicode slug breaks some ATS parsers and PDF link extractors.
+   *
+   * Source: Veljko pasted this URL himself. It appears nowhere else on the machine,
+   * so an automated sweep of the disk will flag it as unsourced — it is not. Leave
+   * this note here rather than re-investigating it.
+   */
   linkedin: 'https://www.linkedin.com/in/veljkokne%C5%BEevi%C4%87/',
   linkedinHandle: 'linkedin.com/in/veljkoknežević',
   siteUrl: 'https://knez4.github.io',
