@@ -1,12 +1,30 @@
 import { Download, Printer } from '../components/icons';
 import { cvProjects } from '../data/projects';
 import { education } from '../data/education';
-import { experience } from '../data/experience';
+import { experience, type Role } from '../data/experience';
 import { languages, profile } from '../data/profile';
 import { skillsAsLines } from '../data/skills';
 import { useHead } from '../lib/useHead';
 import { useLang } from '../lib/useLang';
 import { privateContact } from '../lib/privateContact';
+
+/**
+ * Consecutive roles that share an org (FD Organization's two roles) print under
+ * one header instead of repeating the org name once per role, which is what a
+ * recruiter expects from "two roles, one employer" rather than two employers.
+ */
+function groupByOrg(roles: Role[]) {
+  const groups: { org: Role['org']; location: Role['location']; roles: Role[] }[] = [];
+  for (const role of roles) {
+    const last = groups[groups.length - 1];
+    if (last && last.org.en === role.org.en) {
+      last.roles.push(role);
+    } else {
+      groups.push({ org: role.org, location: role.location, roles: [role] });
+    }
+  }
+  return groups;
+}
 
 /**
  * One page, one column, no tables, no icons, no text boxes.
@@ -87,7 +105,7 @@ export default function CvPage() {
             privateContact().phone,
             profile.email,
             pick(profile.location),
-            profile.linkedin.replace('https://www.', ''),
+            profile.linkedinHandle,
             'github.com/knez4',
           ]
             .filter(Boolean)
@@ -126,7 +144,7 @@ export default function CvPage() {
         </Section>
 
         <Section title={t('cv.projects')}>
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             {cvProjects.map((p, i) => (
               <div key={p.id} className="cv-entry">
                 <p className="text-cv-base font-semibold leading-tight">
@@ -141,19 +159,37 @@ export default function CvPage() {
         </Section>
 
         <Section title={t('cv.experience')}>
-          <div className="space-y-1.5">
-            {experience.map((role, i) => (
-              <div key={`${role.title.en}-${i}`} className="cv-entry">
-                <p className="text-cv-base font-semibold leading-tight">
-                  {pick(role.title)}
-                  <span className="font-normal text-muted">
-                    {' '}
-                    | {pick(role.org)} | {pick(role.location)} | {pick(role.period)}
-                  </span>
-                </p>
-                <Bullets items={pick(role.points).slice(0, BULLETS_PER_ROLE)} />
-              </div>
-            ))}
+          <div className="space-y-1">
+            {groupByOrg(experience).map((group, gi) =>
+              group.roles.length > 1 ? (
+                <div key={gi} className="cv-entry">
+                  <p className="text-cv-base font-semibold leading-tight">
+                    {pick(group.org)}
+                    <span className="font-normal text-muted"> | {pick(group.location)}</span>
+                  </p>
+                  {group.roles.map((role, i) => (
+                    <div key={i} className="mt-0.5">
+                      <p className="text-cv-sm font-semibold leading-tight">
+                        {pick(role.title)}
+                        <span className="font-normal text-muted"> | {pick(role.period)}</span>
+                      </p>
+                      <Bullets items={pick(role.points).slice(0, BULLETS_PER_ROLE)} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div key={gi} className="cv-entry">
+                  <p className="text-cv-base font-semibold leading-tight">
+                    {pick(group.roles[0].title)}
+                    <span className="font-normal text-muted">
+                      {' '}
+                      | {pick(group.roles[0].org)} | {pick(group.roles[0].location)} | {pick(group.roles[0].period)}
+                    </span>
+                  </p>
+                  <Bullets items={pick(group.roles[0].points).slice(0, BULLETS_PER_ROLE)} />
+                </div>
+              ),
+            )}
           </div>
         </Section>
 

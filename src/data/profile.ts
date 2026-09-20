@@ -32,8 +32,8 @@ export const profile = {
   siteUrl: 'https://knez4.github.io',
 
   role: {
-    en: 'Backend developer — databases & APIs',
-    sr: 'Backend developer — baze podataka i API',
+    en: 'Final-Year IS&T Student — Backend & Databases',
+    sr: 'Student završne godine ISiT — Backend i baze podataka',
   } as L,
 
   tagline: {
@@ -83,8 +83,8 @@ export const languages: { name: L; level: L }[] = [
   {
     name: { en: 'English', sr: 'Engleski' },
     level: {
-      en: 'Working level in reading and writing, conversational speaking',
-      sr: 'Radni nivo u čitanju i pisanju, govor konverzacijski',
+      en: 'Solid reading and writing, speaking still developing',
+      sr: 'Čitanje i pisanje na solidnom nivou, govor u razvoju',
     },
   },
 ];

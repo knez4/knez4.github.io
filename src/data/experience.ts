@@ -34,7 +34,7 @@ export const experience: Role[] = [
   },
   {
     title: { en: 'IT Team Lead, DigiCon', sr: 'Vođa IT tima, DigiCon' },
-    org: { en: 'FD Organization', sr: 'FD Organization' },
+    org: { en: 'FD Organization (student organization)', sr: 'FD Organization (studentska organizacija)' },
     location: { en: 'Belgrade', sr: 'Beograd' },
     period: { en: 'May 2023 – May 2025', sr: 'maj 2023 – maj 2025' }, // TODO(veljko): exact DigiCon dates
     points: {
@@ -44,7 +44,7 @@ export const experience: Role[] = [
       ],
       sr: [
         'Vodio IT tim tokom dvogodišnjeg mandata, raspoređujući i pregledajući zadatke izrade vizuala, sertifikata i video sadržaja.',
-        'Držao tim u rokovima koje je postavljao širi plan projekta, u svakom ciklusu DigiCon-a.',
+        'Držao tim u rokovima koje je postavljao širi plan projekta.',
       ],
     },
   },
@@ -56,13 +56,13 @@ export const experience: Role[] = [
     points: {
       en: [
         'Turn monthly Excel scorecards into per-manager HTML and JSON reports with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',
-        'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
         'Build and optimize marketing sites for paying clients, with responsive WebP images and LCP-preload tuning, from written change lists and fixed deadlines.',
+        'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
         'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje po menadžeru pomoću Python pipeline-a (pandas, openpyxl), čime je zamenjen ručni prepis.',
-        'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
         'Pravim i optimizujem sajtove za klijente koji plaćaju, uključujući responzivnu WebP isporuku slika i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
+        'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
     },
   },
