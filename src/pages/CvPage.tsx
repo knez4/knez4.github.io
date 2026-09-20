@@ -101,15 +101,28 @@ export default function CvPage() {
         <h1 className="text-[19px] font-bold leading-tight tracking-tight">{profile.name}</h1>
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
         <p className="mt-1 text-cv-xs leading-relaxed">
-          {[
-            privateContact().phone,
-            profile.email,
-            pick(profile.location),
-            profile.linkedinHandle,
-            'github.com/knez4',
-          ]
-            .filter(Boolean)
-            .join(' | ')}
+          {(() => {
+            const phone = privateContact().phone;
+            const items: { text: string; href?: string }[] = [
+              ...(phone ? [{ text: phone, href: `tel:${phone.replace(/[^\d+]/g, '')}` }] : []),
+              { text: profile.email, href: `mailto:${profile.email}` },
+              { text: pick(profile.location) },
+              { text: profile.linkedinHandle, href: profile.linkedin },
+              { text: 'github.com/knez4', href: profile.github },
+            ];
+            return items.map((item, i) => (
+              <span key={item.text}>
+                {i > 0 && ' | '}
+                {item.href ? (
+                  <a href={item.href} className="underline decoration-dotted underline-offset-2">
+                    {item.text}
+                  </a>
+                ) : (
+                  item.text
+                )}
+              </span>
+            ));
+          })()}
         </p>
 
         <Section title={t('cv.summary')}>

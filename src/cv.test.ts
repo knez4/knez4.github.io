@@ -198,4 +198,25 @@ describe('generated CV PDFs', () => {
     // from two different font files, a parser read this as "Kne z evi c".
     expect(flat).toContain(profile.name);
   }, 30_000);
+
+  it.each(PDFS)('$path has working links for email, LinkedIn and GitHub', async ({ path }) => {
+    const full = resolve(process.cwd(), path);
+    if (!(await exists(full))) {
+      throw new Error(`${path} is missing. Run \`npm run build && npm run cv\` first.`);
+    }
+
+    const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
+    const data = new Uint8Array(await readFile(full));
+    const doc = await pdfjs.getDocument({ data, useSystemFonts: true }).promise;
+    const page = await doc.getPage(1);
+    const annotations = await page.getAnnotations();
+    const urls = annotations.filter((a) => a.subtype === 'Link').map((a) => a.url as string);
+
+    expect(urls).toContain(`mailto:${profile.email}`);
+    expect(urls).toContain(profile.linkedin);
+    expect(urls).toContain(profile.github);
+
+    // The published copy carries no phone number, so no tel: link either.
+    expect(urls.some((u) => u.startsWith('tel:'))).toBe(false);
+  }, 30_000);
 });
