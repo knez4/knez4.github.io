@@ -1,8 +1,7 @@
 import type { L } from './types';
 
 /**
- * TODO(veljko): confirm before publishing.
- *  - phone: placeholder below, replace with the real number
+ * TODO(veljko): still to confirm before publishing.
  *  - email: taken from the machine's global git config
  *  - index: 2022/0390 comes from the title page of the Software Design assignment
  */
@@ -13,7 +12,7 @@ export const profile = {
   initials: 'VK',
   location: { en: 'Belgrade, Serbia', sr: 'Beograd, Srbija' } as L,
   email: 'veljkoknez11@gmail.com',
-  phone: '+381 6X XXX XXXX', // TODO(veljko): replace
+  phone: '+381 6X XXX XXXX',
   github: 'https://github.com/knez4',
   githubHandle: 'github.com/knez4',
   /** Percent-encoded: a bare Unicode slug breaks some ATS parsers and PDF link extractors. */

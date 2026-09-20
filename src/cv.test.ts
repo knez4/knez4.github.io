@@ -124,8 +124,12 @@ describe('generated CV PDFs', () => {
     // The details a parser scores the document on.
     const flat = text.replace(/\s+/g, ' ');
     expect(flat).toContain(profile.email);
+    expect(flat).toContain(profile.phone);
     expect(flat).toContain('github.com/knez4');
     expect(flat.toLowerCase()).toContain(school);
+
+    // Nothing half-filled ever goes out the door.
+    expect(flat).not.toMatch(/XXX|TODO|Lorem|placeholder/i);
 
     // The name has to come out as one run. When latin and latin-ext glyphs came
     // from two different font files, a parser read this as "Kne z evi c".
