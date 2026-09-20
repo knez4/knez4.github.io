@@ -46,16 +46,4 @@ export const education = {
       'Projektovanje informacionih sistema',
     ],
   } as LL,
-
-  /** Self-directed work worth its own line: it shows initiative and is checkable. */
-  selfDirected: {
-    en: [
-      'Wrote a 30-problem Oracle SQL workbook over two schemas, drilling self joins, correlated subqueries, EXISTS/ANY/ALL and conditional aggregation with SUM(CASE WHEN ...).',
-      'Keep a set of written study notes on the relational model, relational algebra and normalization.',
-    ],
-    sr: [
-      'Napisao zbirku od 30 Oracle SQL zadataka nad dve šeme: self join, korelisani podupiti, EXISTS/ANY/ALL i uslovna agregacija kroz SUM(CASE WHEN ...).',
-      'Vodim pisane beleške o relacionom modelu, relacionoj algebri i normalizaciji.',
-    ],
-  } as LL,
 };

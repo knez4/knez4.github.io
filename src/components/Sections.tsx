@@ -104,18 +104,6 @@ export function Education() {
             </li>
           ))}
         </ul>
-
-        <h4 className="mt-5 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-          {t('education.selfDirected')}
-        </h4>
-        <ul className="mt-2 space-y-1.5">
-          {pick(education.selfDirected).map((s) => (
-            <li key={s} className="flex gap-2 text-sm leading-relaxed text-muted">
-              <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-subtle" aria-hidden="true" />
-              {s}
-            </li>
-          ))}
-        </ul>
       </div>
 
       <div className="card h-fit p-5">

@@ -70,7 +70,6 @@ export const ui = {
   'education.eyebrow': { en: 'Education', sr: 'Obrazovanje' },
   'education.title': { en: 'Studies', sr: 'Studije' },
   'education.coursework': { en: 'Relevant coursework', sr: 'Relevantni predmeti' },
-  'education.selfDirected': { en: 'On my own', sr: 'Samostalno' },
   'education.languages': { en: 'Languages', sr: 'Jezici' },
 
   'contact.eyebrow': { en: 'Contact', sr: 'Kontakt' },

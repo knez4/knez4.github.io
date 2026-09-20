@@ -154,7 +154,6 @@ export default function CvPage() {
               <span className="font-semibold">{t('cv.coursework')}:</span>{' '}
               {pick(education.coursework).slice(0, 6).join(', ')}
             </p>
-            <Bullets items={pick(education.selfDirected).slice(0, 1)} />
           </div>
         </Section>
 
