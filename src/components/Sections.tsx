@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { education } from '../data/education';
 import { experience } from '../data/experience';
 import { languages, profile } from '../data/profile';
-import { skillGroups } from '../data/skills';
+import { pickItem, skillGroups } from '../data/skills';
 import { useLang } from '../lib/useLang';
 import { Check, GitHub, LinkedIn, Mail } from './icons';
 import { Reveal } from './Reveal';
 
 export function Skills() {
-  const { t, pick } = useLang();
+  const { t, pick, lang } = useLang();
   const applied = skillGroups.filter((g) => g.kind === 'applied');
   const academic = skillGroups.filter((g) => g.kind === 'academic');
 
@@ -23,8 +23,8 @@ export function Skills() {
               </h3>
               <ul className="mt-3 flex flex-wrap gap-1.5">
                 {g.items.map((item) => (
-                  <li key={item} className="chip">
-                    {item}
+                  <li key={pickItem(item, 'en')} className="chip">
+                    {pickItem(item, lang)}
                   </li>
                 ))}
               </ul>
@@ -42,8 +42,8 @@ export function Skills() {
             </h3>
             <ul className="mt-3 flex flex-wrap gap-1.5">
               {g.items.map((item) => (
-                <li key={item} className="chip opacity-80">
-                  {item}
+                <li key={pickItem(item, 'en')} className="chip opacity-80">
+                  {pickItem(item, lang)}
                 </li>
               ))}
             </ul>

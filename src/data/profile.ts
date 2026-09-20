@@ -32,7 +32,7 @@ export const profile = {
   siteUrl: 'https://knez4.github.io',
 
   role: {
-    en: 'Final-Year IS&T Student — Backend & Databases',
+    en: 'Final-Year Student — Backend & Databases',
     sr: 'Student završne godine ISiT — Backend i baze podataka',
   } as L,
 
@@ -46,18 +46,22 @@ export const profile = {
     sr: 'Tražim stručnu praksu ili junior poziciju u Beogradu',
   } as L,
 
-  /** The CV summary. Three lines, concrete, no adjectives that cannot be checked. */
+  /**
+   * The CV summary. Deliberately does not restate the headline ("final-year
+   * student, backend & databases focus" already sits right above it) — it
+   * exists to add evidence, not repeat identity.
+   */
   summary: {
     en:
-      'Backend-focused fourth-year Information Systems and Technologies student at the University of ' +
-      'Belgrade, E-Business Technologies module. Built a multi-tenant PostgreSQL schema with row-level ' +
-      'security and server-side scheduling functions, a Laravel REST API with two teammates, and a layered ' +
-      'Java application over JDBC. Available full time in Belgrade.',
+      'Built a multi-tenant PostgreSQL schema with row-level security and server-side scheduling functions, ' +
+      'a Laravel REST API with two teammates, and a layered Java application over JDBC. Studying Information ' +
+      'Systems and Technologies (E-Business Technologies module) at the University of Belgrade. Available ' +
+      'full time in Belgrade.',
     sr:
-      'Student četvrte godine Informacionih sistema i tehnologija na Univerzitetu u Beogradu, modul ' +
-      'Tehnologije elektronskog poslovanja, fokusiran na backend i baze podataka. Napravio multi-tenant ' +
-      'PostgreSQL šemu sa row-level security politikama i funkcijama za zakazivanje, Laravel REST API sa ' +
-      'dvoje kolega, i slojevitu Java aplikaciju nad JDBC-om. Dostupan puno radno vreme u Beogradu.',
+      'Napravio multi-tenant PostgreSQL šemu sa row-level security politikama i funkcijama za zakazivanje, ' +
+      'Laravel REST API sa dvoje kolega, i slojevitu Java aplikaciju nad JDBC-om. Studira Informacione ' +
+      'sisteme i tehnologije (modul Tehnologije elektronskog poslovanja) na Univerzitetu u Beogradu. ' +
+      'Dostupan puno radno vreme u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */

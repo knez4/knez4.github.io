@@ -1,8 +1,16 @@
 import type { L } from './types';
 
+/** A skill entry: a bare string for product/technology names kept the same in
+ * both languages (SQL, PostgreSQL, React...), or an {en, sr} pair for a
+ * descriptive phrase that has a standard Serbian term (Normalization, Code
+ * review, ...). Mixing untranslated product names into an otherwise Serbian
+ * CV is normal in the local job market; leaving process/concept phrases in
+ * English is not, and reads as an unfinished translation. */
+export type SkillItem = string | L;
+
 export type SkillGroup = {
   label: L;
-  items: string[];
+  items: SkillItem[];
   /**
    * 'applied'  = used to build something that exists on disk
    * 'academic' = studied in a course, no artifact to show
@@ -22,8 +30,8 @@ export const skillGroups: SkillGroup[] = [
       'Oracle SQL',
       'MySQL',
       'Microsoft SQL Server',
-      'Data modelling',
-      'Normalization',
+      { en: 'Data modelling', sr: 'Modelovanje podataka' },
+      { en: 'Normalization', sr: 'Normalizacija' },
       'JDBC',
       'Row Level Security',
     ],
@@ -34,7 +42,7 @@ export const skillGroups: SkillGroup[] = [
     items: ['Java', 'SQL', 'PHP', 'TypeScript', 'JavaScript', 'Python'],
   },
   {
-    label: { en: 'Backend and web', sr: 'Backend i veb' },
+    label: { en: 'Backend & APIs', sr: 'Backend i API' },
     kind: 'applied',
     items: [
       'Laravel',
@@ -45,7 +53,7 @@ export const skillGroups: SkillGroup[] = [
       'HTML',
       'CSS',
       'Eloquent ORM',
-      'Token authentication',
+      'Laravel Sanctum',
     ],
   },
   {
@@ -57,29 +65,32 @@ export const skillGroups: SkillGroup[] = [
     label: { en: 'Practices', sr: 'Metode rada' },
     kind: 'applied',
     items: [
-      'Object-oriented programming',
-      'Three-tier architecture',
-      'Database migrations',
-      'Code review',
+      { en: 'Object-oriented programming', sr: 'Objektno orijentisano programiranje' },
+      { en: 'Three-tier architecture', sr: 'Troslojna arhitektura' },
+      { en: 'Database migrations', sr: 'Migracije baze podataka' },
       'UML',
-      'Technical documentation',
+      { en: 'Technical documentation', sr: 'Tehnička dokumentacija' },
     ],
   },
   {
     label: { en: 'Studied in coursework', sr: 'Sa fakulteta' },
     kind: 'academic',
     items: [
-      'Computer networks (TCP/IP, HTTP, DNS, Ethernet, 802.11)',
-      'Operating systems and computer architecture',
-      'Data structures and algorithms',
-      'Artificial intelligence',
-      'C# language semantics',
+      { en: 'Computer networks (TCP/IP, HTTP, DNS, Ethernet, 802.11)', sr: 'Računarske mreže (TCP/IP, HTTP, DNS, Ethernet, 802.11)' },
+      { en: 'Operating systems and computer architecture', sr: 'Operativni sistemi i arhitektura računara' },
+      { en: 'Data structures and algorithms', sr: 'Strukture podataka i algoritmi' },
+      { en: 'Artificial intelligence', sr: 'Veštačka inteligencija' },
+      { en: 'C# language semantics', sr: 'Osnove C# jezika' },
       'NoSQL (MongoDB, Neo4j)',
-      'SOAP and web services',
-      'Cloud infrastructure',
+      { en: 'SOAP and web services', sr: 'SOAP i veb servisi' },
+      { en: 'Cloud infrastructure', sr: 'Cloud infrastruktura' },
     ],
   },
 ];
+
+export function pickItem(item: SkillItem, lang: 'en' | 'sr'): string {
+  return typeof item === 'string' ? item : item[lang];
+}
 
 /**
  * Flattened, comma-joined form for the ATS CV. Tables break parsers; a plain line does not.
@@ -89,5 +100,5 @@ export const skillGroups: SkillGroup[] = [
 export function skillsAsLines(lang: 'en' | 'sr'): { label: string; value: string }[] {
   return skillGroups
     .filter((g) => g.kind === 'applied')
-    .map((g) => ({ label: g.label[lang], value: g.items.join(', ') }));
+    .map((g) => ({ label: g.label[lang], value: g.items.map((item) => pickItem(item, lang)).join(', ') }));
 }
