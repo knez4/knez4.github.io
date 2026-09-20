@@ -128,6 +128,21 @@ describe('data integrity', () => {
 });
 
 describe('generated CV PDFs', () => {
+  it('keeps the phone number out of the repository', async () => {
+    // It lives in private.local.json, which is gitignored, and reaches only the
+    // copy rendered by `npm run cv:private`.
+    const { readdir } = await import('node:fs/promises');
+    const dirs = ['src/data', 'src/pages', 'src/components', 'src/i18n'];
+    for (const dir of dirs) {
+      const files = await readdir(resolve(process.cwd(), dir), { recursive: true });
+      for (const f of files) {
+        if (!/\.(ts|tsx)$/.test(String(f))) continue;
+        const body = await readFile(resolve(process.cwd(), dir, String(f)), 'utf8');
+        expect(body, `${dir}/${f} contains a phone number`).not.toMatch(/\+381\s?\d/);
+      }
+    }
+  });
+
   it.each(PDFS)('$path is one page and machine readable', async ({ path, school }) => {
     const full = resolve(process.cwd(), path);
     if (!(await exists(full))) {
@@ -146,8 +161,11 @@ describe('generated CV PDFs', () => {
     // The details a parser scores the document on.
     const flat = text.replace(/\s+/g, ' ');
     expect(flat).toContain(profile.email);
-    expect(flat).toContain(profile.phone);
     expect(flat).toContain('github.com/knez4');
+
+    // The published copy must not carry a phone number. This is the guard that
+    // catches it leaking back in through a data file or a stray edit.
+    expect(flat).not.toMatch(/\+381|06[0-9]\s?\d{3}/);
     expect(flat.toLowerCase()).toContain(school);
 
     // Nothing half-filled ever goes out the door.

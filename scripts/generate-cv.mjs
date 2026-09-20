@@ -6,7 +6,7 @@
  * language and theme are both read from there before first paint.
  */
 import { createServer } from 'node:http';
-import { readFile, writeFile, access } from 'node:fs/promises';
+import { readFile, writeFile, access, mkdir } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
 import puppeteer from 'puppeteer';
 import { PDFDocument } from 'pdf-lib';
@@ -17,7 +17,16 @@ const mmToPx = (mm) => Math.round((mm / 25.4) * 96);
 // A4 at 96dpi, minus the @page margins declared in src/styles/index.css.
 const PRINT_WIDTH_PX = mmToPx(210 - 14 - 14);
 const PRINT_HEIGHT_PX = mmToPx(297 - 12 - 14);
-const OUT_DIR = resolve(process.cwd(), 'public');
+/**
+ * Two renderings from the same page.
+ *
+ * The default is public: no phone number, written to public/ and dist/, and it is
+ * what the deployed site serves. `--private` injects the details from
+ * private.local.json and writes to private/, which is gitignored. That copy is the
+ * one to attach to an application.
+ */
+const PRIVATE = process.argv.includes('--private');
+const OUT_DIR = resolve(process.cwd(), PRIVATE ? 'private' : 'public');
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -62,6 +71,22 @@ const server = createServer(async (req, res) => {
   }
 });
 
+let privateDetails = {};
+if (PRIVATE) {
+  const file = resolve(process.cwd(), 'private.local.json');
+  if (!(await exists(file))) {
+    console.error(
+      'private.local.json is missing. Create it with a phone field, for example:',
+      '{ "phone": "+381 ..." }',
+      'It is gitignored and never leaves this machine.',
+    );
+    process.exit(1);
+  }
+  privateDetails = JSON.parse(await readFile(file, 'utf8'));
+}
+
+await mkdir(OUT_DIR, { recursive: true });
+
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const { port } = server.address();
 const origin = `http://127.0.0.1:${port}`;
@@ -96,14 +121,19 @@ try {
     // Force the light rendering two ways: the media feature for anything that
     // reads prefers-color-scheme, and the stored keys the app reads on boot.
     await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
-    await page.evaluateOnNewDocument((l) => {
-      try {
-        localStorage.setItem('theme', 'light');
-        localStorage.setItem('lang', l);
-      } catch {
-        /* nothing to do */
-      }
-    }, lang);
+    await page.evaluateOnNewDocument(
+      (l, priv) => {
+        try {
+          localStorage.setItem('theme', 'light');
+          localStorage.setItem('lang', l);
+        } catch {
+          /* nothing to do */
+        }
+        if (priv) window.__CV_PRIVATE__ = priv;
+      },
+      lang,
+      PRIVATE ? privateDetails : null,
+    );
 
     await page.goto(`${origin}/cv`, { waitUntil: 'networkidle0' });
     await page.waitForSelector('.cv-sheet');
@@ -132,10 +162,10 @@ try {
     // the sheet size and its margins. Passing margins here as well would stack on
     // top of the CSS ones (and omitting them falls back to Chrome's 1cm default).
     const buffer = await page.pdf({ printBackground: true, preferCSSPageSize: true });
-    // Written to public/ for the next dev run and to dist/ so the deploy that
-    // just built the site actually serves the freshly rendered file.
     await writeFile(file, buffer);
-    await writeFile(join(DIST, name), buffer);
+    // The public copy also goes to dist/, so the deploy that just built the site
+    // serves the freshly rendered file. The private one never touches dist/.
+    if (!PRIVATE) await writeFile(join(DIST, name), buffer);
 
     // Chrome writes compressed object streams, so the page count has to be read
     // from a parsed document rather than grepped out of the raw bytes.
@@ -149,6 +179,7 @@ try {
   server.close();
 }
 
+console.log(PRIVATE ? 'Private copy (with phone):' : 'Public copy (no phone):');
 for (const r of results) {
   const flag = r.pages === 1 ? 'OK ' : '>>>';
   const BUDGET = PRINT_HEIGHT_PX;

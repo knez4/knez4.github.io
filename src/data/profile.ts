@@ -2,7 +2,9 @@ import type { L } from './types';
 
 /**
  * Contact details and where each one came from:
- *  - phone: given by Veljko directly
+ *  - phone: deliberately NOT here. It lives in private.local.json, which is
+ *    gitignored, and only reaches the copy rendered by `npm run cv:private`.
+ *    See src/lib/privateContact.ts.
  *  - email: the machine's global git config, and the author of every commit on
  *    his three repos. TODO(veljko): confirm this is the address for applications.
  *  - index: 2022/0390, from the document metadata of the Software Design title
@@ -16,7 +18,6 @@ export const profile = {
   initials: 'VK',
   location: { en: 'Belgrade, Serbia', sr: 'Beograd, Srbija' } as L,
   email: 'veljkoknez11@gmail.com',
-  phone: '+381 6X XXX XXXX',
   github: 'https://github.com/knez4',
   githubHandle: 'github.com/knez4',
   /**

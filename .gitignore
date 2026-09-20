@@ -13,3 +13,7 @@ public/Veljko_Knezevic_CV_*.pdf
 
 # Local editor/agent tooling, not part of the project
 .claude/
+
+# Contact details kept out of the public repo, and the CV copies that carry them
+private.local.json
+private/

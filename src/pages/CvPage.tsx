@@ -6,6 +6,7 @@ import { languages, profile } from '../data/profile';
 import { skillsAsLines } from '../data/skills';
 import { useHead } from '../lib/useHead';
 import { useLang } from '../lib/useLang';
+import { privateContact } from '../lib/privateContact';
 
 /**
  * One page, one column, no tables, no icons, no text boxes.
@@ -82,8 +83,15 @@ export default function CvPage() {
         <h1 className="text-[19px] font-bold leading-tight tracking-tight">{profile.name}</h1>
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
         <p className="mt-1 text-cv-xs leading-relaxed">
-          {pick(profile.location)} | {profile.phone} | {profile.email} |{' '}
-          {profile.linkedin.replace('https://www.', '')} | github.com/knez4
+          {[
+            pick(profile.location),
+            privateContact().phone,
+            profile.email,
+            profile.linkedin.replace('https://www.', ''),
+            'github.com/knez4',
+          ]
+            .filter(Boolean)
+            .join(' | ')}
         </p>
 
         <Section title={t('cv.summary')}>
