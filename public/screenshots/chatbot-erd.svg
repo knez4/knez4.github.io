@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Entity relationship diagram of the chatbot knowledge base tables">
+  <title>Chatbot knowledge base model</title>
+  <defs>
+    <style>
+      .bgc { fill: #f1f5f9; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .box-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; }
+      .hdr { fill: #e2e8f0; }
+      .hdr-key { fill: #cffafe; }
+      .tname { font: 600 14px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
+      .col { font: 400 12px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
+      .pk { font: 600 12px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
+      .rel { stroke: #94a3b8; stroke-width: 1.5; fill: none; }
+      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #64748b; }
+      .note { font: 400 12px Inter, system-ui, sans-serif; fill: #0e7490; }
+    </style>
+  </defs>
+  <rect class="bgc" width="1200" height="675" rx="12"/>
+
+  <path class="rel" d="M 320 200 C 370 200, 370 200, 420 200"/>
+  <path class="rel" d="M 660 200 C 710 200, 710 200, 760 200"/>
+  <path class="rel" d="M 250 280 C 250 360, 250 360, 250 430"/>
+  <path class="rel" d="M 520 280 C 520 380, 560 430, 560 430"/>
+
+  <g>
+    <rect class="box" x="80" y="120" width="240" height="160" rx="10"/>
+    <path class="hdr" d="M80 130a10 10 0 0 1 10-10h220a10 10 0 0 1 10 10v24H80z"/>
+    <text class="tname" x="96" y="146">categories</text>
+    <text class="pk" x="96" y="178">id  PK</text>
+    <text class="col" x="96" y="200">name</text>
+    <text class="col" x="96" y="222">slug</text>
+    <text class="col" x="96" y="244">description</text>
+    <text class="col" x="96" y="266">created_at</text>
+  </g>
+
+  <g>
+    <rect class="box-key" x="420" y="100" width="240" height="200" rx="10"/>
+    <path class="hdr-key" d="M420 110a10 10 0 0 1 10-10h220a10 10 0 0 1 10 10v24H420z"/>
+    <text class="tname" x="436" y="126">knowledge_items</text>
+    <text class="pk" x="436" y="158">id  PK</text>
+    <text class="col" x="436" y="180">category_id  FK</text>
+    <text class="col" x="436" y="202">question</text>
+    <text class="col" x="436" y="224">answer</text>
+    <text class="col" x="436" y="246">source_url</text>
+    <text class="col" x="436" y="268">views</text>
+  </g>
+
+  <g>
+    <rect class="box" x="760" y="140" width="240" height="120" rx="10"/>
+    <path class="hdr" d="M760 150a10 10 0 0 1 10-10h220a10 10 0 0 1 10 10v24H760z"/>
+    <text class="tname" x="776" y="166">keywords</text>
+    <text class="pk" x="776" y="198">id  PK</text>
+    <text class="col" x="776" y="220">knowledge_item_id  FK</text>
+    <text class="col" x="776" y="242">term</text>
+  </g>
+
+  <g>
+    <rect class="box" x="130" y="430" width="240" height="140" rx="10"/>
+    <path class="hdr" d="M130 440a10 10 0 0 1 10-10h220a10 10 0 0 1 10 10v24H130z"/>
+    <text class="tname" x="146" y="456">users</text>
+    <text class="pk" x="146" y="488">id  PK</text>
+    <text class="col" x="146" y="510">name</text>
+    <text class="col" x="146" y="532">role</text>
+    <text class="col" x="146" y="554">profile_image</text>
+  </g>
+
+  <g>
+    <rect class="box" x="440" y="430" width="240" height="140" rx="10"/>
+    <path class="hdr" d="M440 440a10 10 0 0 1 10-10h220a10 10 0 0 1 10 10v24H440z"/>
+    <text class="tname" x="456" y="456">chat_messages</text>
+    <text class="pk" x="456" y="488">id  PK</text>
+    <text class="col" x="456" y="510">user_id  FK</text>
+    <text class="col" x="456" y="532">question</text>
+    <text class="col" x="456" y="554">matched_item_id  FK</text>
+  </g>
+
+  <g>
+    <rect x="760" y="380" width="340" height="190" rx="10" fill="#ffffff" stroke="#0e7490" stroke-dasharray="4 3"/>
+    <text class="tname" x="780" y="410">statistics endpoints</text>
+    <text class="note" x="780" y="440">JOIN chat_messages to knowledge_items</text>
+    <text class="note" x="780" y="462">GROUP BY category</text>
+    <text class="note" x="780" y="484">COUNT and AVG over the period</text>
+    <text class="note" x="780" y="512">admin and moderator roles only</text>
+    <text class="note" x="780" y="540">cached, plus CSV export</text>
+  </g>
+
+  <text class="cap" x="80" y="640">Keywords link a question to a knowledge item; chat messages keep the history per user.</text>
+</svg>

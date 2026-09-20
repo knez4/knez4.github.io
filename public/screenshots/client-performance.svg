@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Diagram of the image delivery pipeline and the scroll redraw fix">
+  <title>Load-time work on the client site</title>
+  <defs>
+    <style>
+      .bgc { fill: #f1f5f9; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .box-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; }
+      .h { font: 600 15px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
+      .t { font: 400 12px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
+      .lbl { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #0e7490; }
+      .bad { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
+      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #64748b; }
+      .sec { font: 600 12px Inter, system-ui, sans-serif; fill: #0f172a; letter-spacing: .1em; }
+      .arr { stroke: #0e7490; stroke-width: 2; fill: none; marker-end: url(#a2); }
+      .arrg { stroke: #94a3b8; stroke-width: 1.6; fill: none; marker-end: url(#a3); }
+    </style>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0e7490"/>
+    </marker>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect class="bgc" width="1200" height="675" rx="12"/>
+
+  <text class="sec" x="70" y="62">IMAGE DELIVERY</text>
+  <line x1="70" y1="74" x2="1130" y2="74" stroke="#cbd5e1"/>
+
+  <g>
+    <rect class="box" x="70" y="100" width="190" height="90" rx="10"/>
+    <text class="h" x="88" y="132">source PNG</text>
+    <text class="t" x="88" y="158">one large file</text>
+    <text class="t" x="88" y="176">served to every device</text>
+  </g>
+
+  <path class="arr" d="M 270 145 L 330 145"/>
+
+  <g>
+    <rect class="box-key" x="340" y="90" width="240" height="180" rx="10"/>
+    <text class="h" x="358" y="122">WebP srcset</text>
+    <text class="t" x="358" y="150">logo320.webp   320w</text>
+    <text class="t" x="358" y="172">logo680.webp   680w</text>
+    <text class="t" x="358" y="194">logo960.webp   960w</text>
+    <text class="t" x="358" y="224">+ PNG fallback</text>
+    <text class="lbl" x="358" y="250">browser picks one</text>
+  </g>
+
+  <path class="arr" d="M 590 180 L 650 180"/>
+
+  <g>
+    <rect class="box" x="660" y="100" width="220" height="160" rx="10"/>
+    <text class="h" x="678" y="132">preload hint</text>
+    <text class="t" x="678" y="158">hero image fetched</text>
+    <text class="t" x="678" y="176">at high priority</text>
+    <text class="lbl" x="678" y="206">targets LCP</text>
+    <text class="t" x="678" y="236">decoding async below</text>
+  </g>
+
+  <path class="arr" d="M 890 180 L 950 180"/>
+
+  <g>
+    <rect class="box-key" x="960" y="100" width="170" height="160" rx="10"/>
+    <text class="h" x="978" y="132">.htaccess</text>
+    <text class="t" x="978" y="158">Brotli + Gzip</text>
+    <text class="t" x="978" y="180">images: 1 year</text>
+    <text class="t" x="978" y="202">immutable</text>
+    <text class="t" x="978" y="224">html: no-cache</text>
+  </g>
+
+  <text class="sec" x="70" y="360">SCROLL REDRAW</text>
+  <line x1="70" y1="372" x2="1130" y2="372" stroke="#cbd5e1"/>
+
+  <g>
+    <rect class="box" x="70" y="400" width="470" height="180" rx="10"/>
+    <text class="bad" x="90" y="432">BEFORE</text>
+    <text class="t" x="90" y="462">scroll event  &#8594;  measure  &#8594;  write style</text>
+    <text class="t" x="90" y="484">scroll event  &#8594;  measure  &#8594;  write style</text>
+    <text class="t" x="90" y="506">scroll event  &#8594;  measure  &#8594;  write style</text>
+    <text class="t" x="90" y="536">layout recalculated many times per frame</text>
+    <text class="bad" x="90" y="560">forced reflow, visible stutter</text>
+  </g>
+
+  <path class="arrg" d="M 555 490 L 615 490"/>
+
+  <g>
+    <rect class="box-key" x="630" y="400" width="500" height="180" rx="10"/>
+    <text class="lbl" x="650" y="432">AFTER</text>
+    <text class="t" x="650" y="462">scroll events  &#8594;  set a flag</text>
+    <text class="t" x="650" y="484">requestAnimationFrame  &#8594;  read, then write once</text>
+    <text class="t" x="650" y="514">one redraw per frame regardless of event count</text>
+    <text class="lbl" x="650" y="546">reflow removed</text>
+  </g>
+
+  <text class="cap" x="70" y="640">Three widths, one fallback, and a redraw that runs once per frame instead of once per event.</text>
+</svg>

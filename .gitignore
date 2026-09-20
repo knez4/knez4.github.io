@@ -1,0 +1,15 @@
+node_modules
+dist
+*.local
+.DS_Store
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Rendered from src/data by `npm run cv`; CI regenerates them on every deploy,
+# so a stale copy can never ship.
+public/Veljko_Knezevic_CV_*.pdf
+
+# Local editor/agent tooling, not part of the project
+.claude/

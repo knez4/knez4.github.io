@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Entity relationship diagram of the nine booking tables">
+  <title>Booking platform data model</title>
+  <defs>
+    <style>
+      .bgc { fill: #f1f5f9; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
+      .box-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; rx: 8; }
+      .hdr { fill: #e2e8f0; }
+      .hdr-key { fill: #cffafe; }
+      .tname { font: 600 13px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
+      .col { font: 400 11px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
+      .pk { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
+      .rel { stroke: #94a3b8; stroke-width: 1.4; fill: none; }
+      .rel-key { stroke: #0e7490; stroke-width: 2; fill: none; }
+      .cap { font: 500 12px Inter, system-ui, sans-serif; fill: #64748b; }
+      .badge { font: 600 10px "JetBrains Mono", ui-monospace, monospace; fill: #0e7490; }
+    </style>
+  </defs>
+
+  <rect class="bgc" width="1200" height="675" rx="12"/>
+
+  <!-- relations drawn first so boxes sit on top -->
+  <g>
+    <path class="rel" d="M 150 190 C 190 190, 190 300, 230 300"/>
+    <path class="rel" d="M 150 190 C 200 190, 200 120, 250 120"/>
+    <path class="rel" d="M 150 190 C 200 190, 200 240, 250 240"/>
+    <path class="rel" d="M 150 420 C 200 420, 200 300, 250 300"/>
+    <path class="rel" d="M 450 120 C 490 120, 490 170, 530 170"/>
+    <path class="rel" d="M 450 300 C 490 300, 490 210, 530 210"/>
+    <path class="rel" d="M 450 300 C 490 300, 490 430, 530 430"/>
+    <path class="rel" d="M 730 430 C 770 430, 770 470, 810 470"/>
+    <path class="rel-key" d="M 450 300 C 620 300, 650 160, 810 160"/>
+    <path class="rel-key" d="M 450 120 C 620 120, 650 140, 810 140"/>
+    <path class="rel-key" d="M 730 190 C 770 190, 770 190, 810 190"/>
+    <path class="rel-key" d="M 1030 230 C 1060 230, 1060 400, 1030 400"/>
+  </g>
+
+  <!-- salons -->
+  <g>
+    <rect class="box-key" x="30" y="90" width="120" height="120"/>
+    <path class="hdr-key" d="M30 98a8 8 0 0 1 8-8h104a8 8 0 0 1 8 8v20H30z"/>
+    <text class="tname" x="42" y="112">salons</text>
+    <text class="pk" x="42" y="136">id  PK</text>
+    <text class="col" x="42" y="154">slug</text>
+    <text class="col" x="42" y="172">name</text>
+    <text class="col" x="42" y="190">booking_enabled</text>
+  </g>
+
+  <!-- profiles -->
+  <g>
+    <rect class="box" x="30" y="350" width="120" height="105"/>
+    <path class="hdr" d="M30 358a8 8 0 0 1 8-8h104a8 8 0 0 1 8 8v20H30z"/>
+    <text class="tname" x="42" y="372">profiles</text>
+    <text class="pk" x="42" y="396">id  PK</text>
+    <text class="col" x="42" y="414">salon_id</text>
+    <text class="col" x="42" y="432">role</text>
+  </g>
+
+  <!-- services -->
+  <g>
+    <rect class="box" x="250" y="60" width="200" height="120"/>
+    <path class="hdr" d="M250 68a8 8 0 0 1 8-8h184a8 8 0 0 1 8 8v20H250z"/>
+    <text class="tname" x="262" y="82">services</text>
+    <text class="pk" x="262" y="106">id  PK</text>
+    <text class="col" x="262" y="124">salon_id  FK</text>
+    <text class="col" x="262" y="142">duration_min</text>
+    <text class="col" x="262" y="160">price</text>
+  </g>
+
+  <!-- staff -->
+  <g>
+    <rect class="box" x="250" y="240" width="200" height="120"/>
+    <path class="hdr" d="M250 248a8 8 0 0 1 8-8h184a8 8 0 0 1 8 8v20H250z"/>
+    <text class="tname" x="262" y="262">staff</text>
+    <text class="pk" x="262" y="286">id  PK</text>
+    <text class="col" x="262" y="304">salon_id  FK</text>
+    <text class="col" x="262" y="322">profile_id  FK</text>
+    <text class="col" x="262" y="340">active</text>
+  </g>
+
+  <!-- staff_services -->
+  <g>
+    <rect class="box" x="530" y="130" width="200" height="95"/>
+    <path class="hdr" d="M530 138a8 8 0 0 1 8-8h184a8 8 0 0 1 8 8v20H530z"/>
+    <text class="tname" x="542" y="152">staff_services</text>
+    <text class="pk" x="542" y="176">staff_id  PK FK</text>
+    <text class="pk" x="542" y="194">service_id  PK FK</text>
+  </g>
+
+  <!-- working_hours -->
+  <g>
+    <rect class="box" x="530" y="380" width="200" height="120"/>
+    <path class="hdr" d="M530 388a8 8 0 0 1 8-8h184a8 8 0 0 1 8 8v20H530z"/>
+    <text class="tname" x="542" y="402">working_hours</text>
+    <text class="col" x="542" y="426">staff_id  FK</text>
+    <text class="col" x="542" y="444">weekday</text>
+    <text class="col" x="542" y="462">opens_at</text>
+    <text class="col" x="542" y="480">closes_at</text>
+  </g>
+
+  <!-- time_off -->
+  <g>
+    <rect class="box" x="530" y="530" width="200" height="95"/>
+    <path class="hdr" d="M530 538a8 8 0 0 1 8-8h184a8 8 0 0 1 8 8v20H530z"/>
+    <text class="tname" x="542" y="552">time_off</text>
+    <text class="col" x="542" y="576">starts_at</text>
+    <text class="col" x="542" y="594">ends_at</text>
+  </g>
+
+  <!-- clients -->
+  <g>
+    <rect class="box" x="810" y="400" width="220" height="120"/>
+    <path class="hdr" d="M810 408a8 8 0 0 1 8-8h204a8 8 0 0 1 8 8v20H810z"/>
+    <text class="tname" x="822" y="422">clients</text>
+    <text class="pk" x="822" y="446">id  PK</text>
+    <text class="col" x="822" y="464">salon_id  FK</text>
+    <text class="col" x="822" y="482">name</text>
+    <text class="col" x="822" y="500">phone</text>
+  </g>
+
+  <!-- appointments -->
+  <g>
+    <rect class="box-key" x="810" y="90" width="220" height="175"/>
+    <path class="hdr-key" d="M810 98a8 8 0 0 1 8-8h204a8 8 0 0 1 8 8v20H810z"/>
+    <text class="tname" x="822" y="112">appointments</text>
+    <text class="pk" x="822" y="136">id  PK</text>
+    <text class="col" x="822" y="154">salon_id  FK</text>
+    <text class="col" x="822" y="172">staff_id  FK</text>
+    <text class="col" x="822" y="190">service_id  FK</text>
+    <text class="col" x="822" y="208">client_id  FK</text>
+    <text class="col" x="822" y="226">starts_at</text>
+    <text class="col" x="822" y="244">ends_at</text>
+  </g>
+
+  <!-- notification_outbox -->
+  <g>
+    <rect class="box" x="810" y="560" width="220" height="80"/>
+    <path class="hdr" d="M810 568a8 8 0 0 1 8-8h204a8 8 0 0 1 8 8v20H810z"/>
+    <text class="tname" x="822" y="582">notification_outbox</text>
+    <text class="col" x="822" y="606">appointment_id  FK</text>
+    <text class="col" x="822" y="624">attempts</text>
+  </g>
+
+  <!-- annotation -->
+  <g>
+    <rect x="1060" y="90" width="110" height="100" rx="8" fill="#ffffff" stroke="#0e7490" stroke-dasharray="4 3"/>
+    <text class="badge" x="1072" y="112">WRITTEN BY</text>
+    <text class="badge" x="1072" y="128">create_</text>
+    <text class="badge" x="1072" y="144">appointment()</text>
+    <text class="col" x="1072" y="166">row lock +</text>
+    <text class="col" x="1072" y="182">re-check</text>
+  </g>
+
+  <text class="cap" x="30" y="650">Nine tables, one tenant boundary (salon_id), and a single write path into appointments.</text>
+</svg>

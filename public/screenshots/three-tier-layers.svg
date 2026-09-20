@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Diagram of the four application layers and the direction of calls between them">
+  <title>Three-tier layering</title>
+  <defs>
+    <style>
+      .bgc { fill: #f1f5f9; }
+      .lay { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .lay-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; }
+      .name { font: 600 18px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
+      .cls { font: 400 13px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
+      .note { font: 400 13px Inter, system-ui, sans-serif; fill: #64748b; }
+      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #64748b; }
+      .arr { stroke: #0e7490; stroke-width: 2.5; fill: none; marker-end: url(#ah); }
+      .barrier { stroke: #b45309; stroke-width: 2; stroke-dasharray: 6 4; }
+      .btxt { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0e7490"/>
+    </marker>
+  </defs>
+  <rect class="bgc" width="1200" height="675" rx="12"/>
+
+  <rect class="lay" x="80" y="70" width="440" height="110" rx="10"/>
+  <text class="name" x="106" y="106">ui.form</text>
+  <text class="cls" x="106" y="132">FrmLogin, FrmMain, FormPerson, FormPersons</text>
+  <text class="cls" x="106" y="154">PersonTableModel</text>
+  <text class="note" x="560" y="130">Forms know nothing about SQL.</text>
+
+  <rect class="lay" x="80" y="230" width="440" height="90" rx="10"/>
+  <text class="name" x="106" y="266">logic.Controller</text>
+  <text class="cls" x="106" y="292">coordinates operations, opens and closes the session</text>
+  <text class="note" x="560" y="280">One place decides what an operation means.</text>
+
+  <rect class="lay-key" x="80" y="370" width="440" height="110" rx="10"/>
+  <text class="name" x="106" y="406">repository.db.DatabaseBroker</text>
+  <text class="cls" x="106" y="432">every statement, the connection, the mapping</text>
+  <text class="cls" x="106" y="454">translates SQLException into a usable message</text>
+  <text class="note" x="560" y="425">Swapping MySQL touches this class only.</text>
+
+  <rect class="lay" x="80" y="530" width="440" height="80" rx="10"/>
+  <text class="name" x="106" y="566">domain</text>
+  <text class="cls" x="106" y="592">City, Gender, Person, User — plain objects, no persistence</text>
+
+  <path class="arr" d="M 300 180 L 300 225"/>
+  <path class="arr" d="M 300 320 L 300 365"/>
+  <path class="arr" d="M 300 480 L 300 525"/>
+
+  <line class="barrier" x1="60" y1="350" x2="1140" y2="350"/>
+  <text class="btxt" x="1000" y="342">NO SQL ABOVE THIS LINE</text>
+
+  <text class="cap" x="80" y="645">Calls travel one way only: forms ask the controller, the controller asks the broker.</text>
+</svg>

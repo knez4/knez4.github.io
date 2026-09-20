@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0e7490" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#090b10" media="(prefers-color-scheme: dark)" />
+
+    <title>Veljko Knežević — Databases and backend web development</title>
+    <meta
+      name="description"
+      content="Veljko Knezevic (Veljko Knežević) is a final-year Information Systems and Technologies student at the Faculty of Organizational Sciences, University of Belgrade. Work in PostgreSQL, Oracle SQL, Laravel and Java, including a multi-tenant booking schema with row-level security."
+    />
+    <meta name="author" content="Veljko Knežević" />
+    <link rel="canonical" href="https://knez4.github.io/" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Veljko Knežević" />
+    <meta property="og:url" content="https://knez4.github.io/" />
+    <meta property="og:title" content="Veljko Knežević — Databases and backend web development" />
+    <meta
+      property="og:description"
+      content="Final-year FON student working with PostgreSQL, Oracle SQL, Laravel and Java. Looking for an internship in Belgrade."
+    />
+    <meta property="og:image" content="https://knez4.github.io/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Veljko Knežević — Databases and backend web development" />
+    <meta
+      name="twitter:description"
+      content="Final-year FON student working with PostgreSQL, Oracle SQL, Laravel and Java. Looking for an internship in Belgrade."
+    />
+    <meta name="twitter:image" content="https://knez4.github.io/og-image.png" />
+
+    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Veljko Knežević",
+        "alternateName": "Veljko Knezevic",
+        "jobTitle": "Information Systems and Technologies student",
+        "url": "https://knez4.github.io/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Belgrade",
+          "addressCountry": "RS"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Faculty of Organizational Sciences, University of Belgrade"
+        },
+        "sameAs": [
+          "https://github.com/knez4",
+          "https://www.linkedin.com/in/veljkokne%C5%BEevi%C4%87/"
+        ],
+        "knowsAbout": [
+          "SQL",
+          "PostgreSQL",
+          "Oracle Database",
+          "MySQL",
+          "Relational database design",
+          "Laravel",
+          "PHP",
+          "Java",
+          "JDBC",
+          "REST API",
+          "React",
+          "TypeScript"
+        ]
+      }
+    </script>
+
+    <script>
+      // Applies the stored theme before first paint so the page never flashes light then dark.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {
+          /* private mode: fall through to the light default */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
