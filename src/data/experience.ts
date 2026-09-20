@@ -39,12 +39,12 @@ export const experience: Role[] = [
     period: { en: 'May 2023 – May 2025', sr: 'maj 2023 – maj 2025' }, // TODO(veljko): exact DigiCon dates
     points: {
       en: [
-        'Assigned and reviewed work for the IT team producing event visuals, certificates and video content.',
+        'Led the IT team over a two-year term, assigning and reviewing work that produced event visuals, certificates and video content.',
         'Kept the team to the deadlines set by the wider project schedule.',
       ],
       sr: [
-        'Raspoređivao i pregledao zadatke IT tima koji je radio vizuale, sertifikate i video sadržaj.',
-        'Držao tim u rokovima koje je postavljao širi plan projekta.',
+        'Vodio IT tim tokom dvogodišnjeg mandata, raspoređujući i pregledajući zadatke izrade vizuala, sertifikata i video sadržaja.',
+        'Držao tim u rokovima koje je postavljao širi plan projekta, u svakom ciklusu DigiCon-a.',
       ],
     },
   },
@@ -55,14 +55,14 @@ export const experience: Role[] = [
     period: { en: '2023 – present', sr: '2023 – danas' }, // TODO(veljko): confirm start year
     points: {
       en: [
-        'Built and optimized marketing sites for paying clients, working from written change lists and fixed deadlines.',
-        'Produced monthly mystery-shopping reports in Adobe Illustrator for a betting-industry client, working through an agency.',
-        'Wrote a Python tool that turns the client Excel scorecards into per-manager HTML and JSON reports, replacing a manual copy-and-paste step.',
+        'Wrote a Python pipeline (pandas, openpyxl) turning monthly Excel scorecards into per-manager HTML and JSON reports, replacing a manual copy-and-paste step.',
+        'Produced monthly mystery-shopping reports in Adobe Illustrator over a three-year agency engagement with a betting-industry client.',
+        'Built and optimized marketing sites for paying clients, with responsive WebP images and LCP-preload tuning, from written change lists and fixed deadlines.',
       ],
       sr: [
-        'Pravio i optimizovao sajtove za klijente koji plaćaju, radeći po pisanim listama izmena i fiksnim rokovima.',
-        'Pripremao mesečne mystery shopping izveštaje u Adobe Illustrator-u za klijenta iz kladioničarske industrije, preko agencije.',
-        'Napisao Python alat koji klijentove Excel tabele pretvara u HTML i JSON izveštaje po menadžeru, čime je zamenjen ručni prepis.',
+        'Napisao Python pipeline (pandas, openpyxl) koji svakog meseca klijentove Excel tabele pretvara u HTML i JSON izveštaje po menadžeru, čime je zamenjen ručni prepis.',
+        'Pripremao mesečne mystery shopping izveštaje u Adobe Illustrator-u tokom trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
+        'Pravio i optimizovao sajtove za klijente koji plaćaju, uključujući responzivnu WebP isporuku slika i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
       ],
     },
   },

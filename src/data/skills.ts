@@ -51,15 +51,7 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Tools', sr: 'Alati' },
     kind: 'applied',
-    items: [
-      'Git',
-      'GitHub',
-      'Postman',
-      'Oracle SQL Developer',
-      'Excel',
-      'MATLAB',
-      'Adobe Illustrator',
-    ],
+    items: ['Git', 'GitHub', 'Postman', 'Oracle SQL Developer', 'Excel'],
   },
   {
     label: { en: 'Practices', sr: 'Metode rada' },

@@ -32,8 +32,8 @@ export const profile = {
   siteUrl: 'https://knez4.github.io',
 
   role: {
-    en: 'Databases and backend web development',
-    sr: 'Baze podataka i razvoj veb aplikacija',
+    en: 'Backend developer — databases & APIs',
+    sr: 'Backend developer — baze podataka i API',
   } as L,
 
   tagline: {
@@ -49,15 +49,15 @@ export const profile = {
   /** The CV summary. Three lines, concrete, no adjectives that cannot be checked. */
   summary: {
     en:
-      'Fourth-year Information Systems and Technologies student at the University of Belgrade, on the ' +
-      'E-Business Technologies module. Work sits close to the database: a multi-tenant PostgreSQL schema with ' +
-      'row-level security and server-side scheduling functions, a Laravel REST API built with two teammates, ' +
-      'and a layered Java application over JDBC. Available full time in Belgrade.',
+      'Backend-focused fourth-year Information Systems and Technologies student at the University of ' +
+      'Belgrade, E-Business Technologies module. Built a multi-tenant PostgreSQL schema with row-level ' +
+      'security and server-side scheduling functions, a Laravel REST API with two teammates, and a layered ' +
+      'Java application over JDBC. Available full time in Belgrade.',
     sr:
-      'Student četvrte godine Informacionih sistema i tehnologija na Univerzitetu u Beogradu, modul ' +
-      'Tehnologije elektronskog poslovanja. Rad mi je blizu baze: multi-tenant PostgreSQL šema sa row-level ' +
-      'security politikama i funkcijama za zakazivanje, Laravel REST API rađen sa dvoje kolega, i slojevita ' +
-      'Java aplikacija nad JDBC-om. Dostupan puno radno vreme u Beogradu.',
+      'Backend developer usmeren na baze podataka, student četvrte godine Informacionih sistema i ' +
+      'tehnologija na Univerzitetu u Beogradu, modul Tehnologije elektronskog poslovanja. Napravio ' +
+      'multi-tenant PostgreSQL šemu sa row-level security politikama i funkcijama za zakazivanje, Laravel ' +
+      'REST API sa dvoje kolega, i slojevitu Java aplikaciju nad JDBC-om. Dostupan puno radno vreme u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */
