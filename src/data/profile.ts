@@ -54,10 +54,10 @@ export const profile = {
       'security and server-side scheduling functions, a Laravel REST API with two teammates, and a layered ' +
       'Java application over JDBC. Available full time in Belgrade.',
     sr:
-      'Backend developer usmeren na baze podataka, student četvrte godine Informacionih sistema i ' +
-      'tehnologija na Univerzitetu u Beogradu, modul Tehnologije elektronskog poslovanja. Napravio ' +
-      'multi-tenant PostgreSQL šemu sa row-level security politikama i funkcijama za zakazivanje, Laravel ' +
-      'REST API sa dvoje kolega, i slojevitu Java aplikaciju nad JDBC-om. Dostupan puno radno vreme u Beogradu.',
+      'Student četvrte godine Informacionih sistema i tehnologija na Univerzitetu u Beogradu, modul ' +
+      'Tehnologije elektronskog poslovanja, fokusiran na backend i baze podataka. Napravio multi-tenant ' +
+      'PostgreSQL šemu sa row-level security politikama i funkcijama za zakazivanje, Laravel REST API sa ' +
+      'dvoje kolega, i slojevitu Java aplikaciju nad JDBC-om. Dostupan puno radno vreme u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */
