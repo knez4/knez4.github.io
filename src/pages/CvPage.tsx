@@ -84,9 +84,9 @@ export default function CvPage() {
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
         <p className="mt-1 text-cv-xs leading-relaxed">
           {[
-            pick(profile.location),
             privateContact().phone,
             profile.email,
+            pick(profile.location),
             profile.linkedin.replace('https://www.', ''),
             'github.com/knez4',
           ]
@@ -105,6 +105,23 @@ export default function CvPage() {
                 <span className="font-semibold">{line.label}:</span> {line.value}
               </p>
             ))}
+          </div>
+        </Section>
+
+        <Section title={t('cv.education')}>
+          <div className="cv-entry">
+            <p className="text-cv-base font-semibold leading-tight">
+              {pick(education.institution)}
+              <span className="font-normal text-muted">
+                {' '}
+                | {pick(education.location)} | {pick(education.period)}
+              </span>
+            </p>
+            <p className="text-cv-sm leading-[1.3]">{pick(education.degree)}</p>
+            <p className="mt-[3px] text-cv-sm leading-[1.3]">
+              <span className="font-semibold">{t('cv.coursework')}:</span>{' '}
+              {pick(education.coursework).slice(0, 6).join(', ')}
+            </p>
           </div>
         </Section>
 
@@ -137,23 +154,6 @@ export default function CvPage() {
                 <Bullets items={pick(role.points).slice(0, BULLETS_PER_ROLE)} />
               </div>
             ))}
-          </div>
-        </Section>
-
-        <Section title={t('cv.education')}>
-          <div className="cv-entry">
-            <p className="text-cv-base font-semibold leading-tight">
-              {pick(education.institution)}
-              <span className="font-normal text-muted">
-                {' '}
-                | {pick(education.location)} | {pick(education.period)}
-              </span>
-            </p>
-            <p className="text-cv-sm leading-[1.3]">{pick(education.degree)}</p>
-            <p className="mt-[3px] text-cv-sm leading-[1.3]">
-              <span className="font-semibold">{t('cv.coursework')}:</span>{' '}
-              {pick(education.coursework).slice(0, 6).join(', ')}
-            </p>
           </div>
         </Section>
 

@@ -55,14 +55,14 @@ export const experience: Role[] = [
     period: { en: '2023 – present', sr: '2023 – danas' }, // TODO(veljko): confirm start year
     points: {
       en: [
-        'Wrote a Python pipeline (pandas, openpyxl) turning monthly Excel scorecards into per-manager HTML and JSON reports, replacing a manual copy-and-paste step.',
-        'Produced monthly mystery-shopping reports in Adobe Illustrator over a three-year agency engagement with a betting-industry client.',
-        'Built and optimized marketing sites for paying clients, with responsive WebP images and LCP-preload tuning, from written change lists and fixed deadlines.',
+        'Turn monthly Excel scorecards into per-manager HTML and JSON reports with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',
+        'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
+        'Build and optimize marketing sites for paying clients, with responsive WebP images and LCP-preload tuning, from written change lists and fixed deadlines.',
       ],
       sr: [
-        'Napisao Python pipeline (pandas, openpyxl) koji svakog meseca klijentove Excel tabele pretvara u HTML i JSON izveštaje po menadžeru, čime je zamenjen ručni prepis.',
-        'Pripremao mesečne mystery shopping izveštaje u Adobe Illustrator-u tokom trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
-        'Pravio i optimizovao sajtove za klijente koji plaćaju, uključujući responzivnu WebP isporuku slika i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
+        'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje po menadžeru pomoću Python pipeline-a (pandas, openpyxl), čime je zamenjen ručni prepis.',
+        'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
+        'Pravim i optimizujem sajtove za klijente koji plaćaju, uključujući responzivnu WebP isporuku slika i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
       ],
     },
   },
