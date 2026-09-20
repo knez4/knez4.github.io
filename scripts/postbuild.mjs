@@ -16,7 +16,9 @@ const ids = projects
   ? projects.map((p) => p.id)
   : ['booking-platform', 'three-tier-java', 'chatbot-api', 'client-web'];
 
-const urls = ['/', '/cv', ...ids.map((id) => `/projekti/${id}`)];
+// Trailing slashes: GitHub Pages 301s the bare path to the directory, and a
+// sitemap should list the URL that answers 200 directly.
+const urls = ['/', '/cv/', ...ids.map((id) => `/projekti/${id}/`)];
 const today = new Date().toISOString().slice(0, 10);
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

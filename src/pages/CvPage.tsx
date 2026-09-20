@@ -50,7 +50,7 @@ export default function CvPage() {
   useHead({
     title: `${t('cv.title')} — ${profile.name}`,
     description: pick(profile.summary).slice(0, 300),
-    canonical: `${profile.siteUrl}/cv`,
+    canonical: `${profile.siteUrl}/cv/`,
   });
 
   return (

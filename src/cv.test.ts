@@ -140,7 +140,7 @@ describe('prerendered routes', () => {
     }
     const html = await readFile(file, 'utf8');
 
-    expect(html).toContain(`href="${profile.siteUrl}/${route}"`);
+    expect(html).toContain(`href="${profile.siteUrl}/${route}/"`);
     // Rendered content, not just the empty shell the bundle would fill in later.
     // An unrendered page measures near zero here; the shortest real one is ~800.
     const body = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? '';

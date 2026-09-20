@@ -21,7 +21,7 @@ export default function ProjectCase() {
   useHead({
     title: project ? `${pick(project.title)} — ${profile.name}` : `${t('notFound.title')} — ${profile.name}`,
     description: project ? pick(project.subtitle) : t('projects.notFound'),
-    canonical: `${profile.siteUrl}/projekti/${id}`,
+    canonical: `${profile.siteUrl}/projekti/${id}/`,
   });
 
   if (!project) return <NotFound />;
