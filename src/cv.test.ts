@@ -127,6 +127,29 @@ describe('data integrity', () => {
   });
 });
 
+describe('prerendered routes', () => {
+  // GitHub Pages answers an unknown path with 404.html and a 404 status. The page
+  // renders, but search engines drop it, which would have made every case study
+  // invisible. A real file per route is what makes them return 200.
+  const routes = ['cv', ...projects.map((p) => `projekti/${p.id}`)];
+
+  it.each(routes)('/%s is a real HTML file with its own metadata', async (route) => {
+    const file = resolve(process.cwd(), 'dist', route, 'index.html');
+    if (!(await exists(file))) {
+      throw new Error(`dist/${route}/index.html is missing. Run \`npm run build\`.`);
+    }
+    const html = await readFile(file, 'utf8');
+
+    expect(html).toContain(`href="${profile.siteUrl}/${route}"`);
+    // Rendered content, not just the empty shell the bundle would fill in later.
+    // An unrendered page measures near zero here; the shortest real one is ~800.
+    const body = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? '';
+    expect(body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().length).toBeGreaterThan(600);
+    // The published copies never carry a phone number.
+    expect(html).not.toMatch(/\+381\s?\d/);
+  });
+});
+
 describe('generated CV PDFs', () => {
   it('keeps the phone number out of the repository', async () => {
     // It lives in private.local.json, which is gitignored, and reaches only the
