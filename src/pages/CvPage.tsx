@@ -35,7 +35,7 @@ function groupByOrg(roles: Role[]) {
  *
  * How many bullets each entry gets is tuned so the sheet stays on one page.
  */
-const BULLETS_PER_PROJECT = [4, 3];
+const BULLETS_PER_PROJECT = [3, 3];
 const BULLETS_PER_ROLE = 2;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
