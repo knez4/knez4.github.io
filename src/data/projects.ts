@@ -212,23 +212,23 @@ export const projects: Project[] = [
     status: 'delivered',
     title: { en: 'Client websites', sr: 'Klijentski sajtovi' },
     subtitle: {
-      en: 'One site built from scratch, one rebuilt for load time, both for paying clients',
-      sr: 'Jedan sajt napravljen od nule, jedan ubrzan po pitanju učitavanja, oba za klijente koji plaćaju',
+      en: 'Two sites built from scratch for paying clients, one of them tuned hard for load time',
+      sr: 'Dva sajta napravljena od nule za klijente koji plaćaju, jedan dodatno optimizovan za brzinu učitavanja',
     },
     context: {
-      en: 'Freelance web work, one full build and one optimization pass, each from a written change list.',
-      sr: 'Frilens veb rad, jedna kompletna izrada i jedan prolaz kroz optimizaciju, oba po pisanoj listi izmena.',
+      en: 'Freelance web work: two full builds, each from a written change list and a fixed deadline.',
+      sr: 'Frilens veb rad: dve kompletne izrade, svaka po pisanoj listi izmena i fiksnom roku.',
     },
     highlights: {
       en: [
         'Built an interactive marketing site from scratch: a scroll-driven video-mask reveal and a service catalog navigated by section, tested down to a 320px screen with reduced-motion and no-JavaScript fallbacks.',
-        'Cut load time on another client site with responsive WebP images at three widths, an LCP preload hint, and Brotli plus cache headers.',
-        'Removed a forced reflow on that same site by coalescing a scroll-driven redraw into a single requestAnimationFrame.',
+        'Built a second client site from scratch and tuned its load time with responsive WebP images at three widths, an LCP preload hint, and Brotli plus cache headers.',
+        'Removed a forced reflow on that site by coalescing a scroll-driven redraw into a single requestAnimationFrame.',
       ],
       sr: [
         'Napravio interaktivni marketinški sajt od nule: otkrivanje kroz video masku vezano za skrol i katalog usluga po sekcijama, testiran do širine od 320px sa reduced-motion i no-JavaScript fallback-ovima.',
-        'Skratio vreme učitavanja drugog klijentskog sajta kroz responzivne WebP slike na tri širine, preload za LCP i Brotli sa cache header-ima.',
-        'Uklonio forced reflow na tom istom sajtu objedinjavanjem iscrtavanja na skrol u jedan requestAnimationFrame.',
+        'Napravio i drugi klijentski sajt od nule i skratio mu vreme učitavanja kroz responzivne WebP slike na tri širine, preload za LCP i Brotli sa cache header-ima.',
+        'Uklonio forced reflow na tom sajtu objedinjavanjem iscrtavanja na skrol u jedan requestAnimationFrame.',
       ],
     },
     tech: ['HTML', 'CSS', 'JavaScript', 'WebP', 'Apache'],
@@ -252,35 +252,35 @@ export const projects: Project[] = [
     caseStudy: {
       problem: {
         en:
-          'Two different client asks: one wanted a new interactive marketing site built from nothing, the ' +
-          'other had an existing site that was slow to load on mobile and needed fixing without a full rebuild.',
+          'Two paying clients, two sites built from nothing. The first was an interactive marketing site. ' +
+          'The second had to load fast on a phone, so the image pipeline and the scroll handling were part ' +
+          'of the build rather than something bolted on afterwards.',
         sr:
-          'Dva različita klijentska zahteva: jedan je hteo nov interaktivni marketinški sajt napravljen od ' +
-          'nule, drugi je imao postojeći sajt koji se sporo učitavao na mobilnom i trebalo ga je popraviti bez kompletne izrade.',
+          'Dva klijenta koji plaćaju, dva sajta napravljena od nule. Prvi je bio interaktivni marketinški ' +
+          'sajt. Drugi je morao brzo da se učitava na telefonu, pa su isporuka slika i rad sa skrolom bili ' +
+          'deo izrade, a ne nešto naknadno dodato.',
       },
       approach: {
         en: [
           'For the new build: a hero section reveals through a video mask tied to scroll position, and a service catalog lets a visitor pick a space and scroll through the matching services in a dark rail.',
           'Checked the new build on desktop, tablet, 390px and 320px, plus reduced-motion and no-JavaScript, so the layout and the reveal both still work without the animation.',
-          'For the existing site: profiled it, found oversized images were the main cost, and added a responsive WebP srcset at three widths with a PNG fallback plus an LCP preload hint on the hero image.',
-          'Traced a layout jank on the existing site to a scroll handler reading layout properties on every event; coalesced it into a single requestAnimationFrame callback, and added Brotli compression and cache-control headers via .htaccess.',
+          'On the second build, images were the main cost, so they ship as a responsive WebP srcset at three widths with a PNG fallback, and the hero image carries an LCP preload hint.',
+          'A scroll handler on that site was reading layout properties on every event and causing jank; coalesced it into a single requestAnimationFrame callback, and served the site with Brotli compression and cache-control headers via .htaccess.',
         ],
         sr: [
           'Za novu izradu: hero sekcija se otkriva kroz video masku vezanu za poziciju skrola, a katalog usluga omogućava posetiocu da izabere prostor i skroluje kroz odgovarajuće usluge u tamnoj traci.',
           'Proverio novu izradu na desktop, tablet, 390px i 320px ekranima, kao i reduced-motion i no-JavaScript, tako da raspored i otkrivanje sadržaja rade i bez animacije.',
-          'Za postojeći sajt: profilisao ga, utvrdio da su prevelike slike glavni trošak, i dodao responzivan WebP srcset na tri širine sa PNG fallback-om plus LCP preload za hero sliku.',
-          'Pratio uzrok trzaja na postojećem sajtu do scroll handler-a koji je čitao layout svojstva pri svakom događaju; objedinio ga u jedan requestAnimationFrame poziv, i dodao Brotli kompresiju i cache-control header-e preko .htaccess-a.',
+          'Na drugoj izradi slike su bile glavni trošak, pa se isporučuju kao responzivan WebP srcset na tri širine sa PNG fallback-om, a hero slika nosi LCP preload.',
+          'Scroll handler na tom sajtu je čitao layout svojstva pri svakom događaju i pravio trzaje; objedinio sam ga u jedan requestAnimationFrame poziv, a sajt se servira uz Brotli kompresiju i cache-control header-e preko .htaccess-a.',
         ],
       },
       limits: {
         en:
-          'The rebuild for the existing site was scoped to a change list, not a full redesign, so the freedom ' +
-          'to restructure anything beyond that list was limited. The new build’s services section (services.js) ' +
-          'is written but not yet wired into the live page.',
+          'Both are marketing sites: static pages, with no backend and no data layer behind them. The first ' +
+          'build’s services section (services.js) is written but not yet wired into the live page.',
         sr:
-          'Popravka postojećeg sajta bila je ograničena na listu izmena, ne kompletan redizajn, pa je sloboda ' +
-          'za restruktuiranje van te liste bila ograničena. Sekcija usluga nove izrade (services.js) je napisana ' +
-          'ali još nije uključena u živu stranicu.',
+          'Oba su marketinški sajtovi: statične stranice, bez backend-a i sloja podataka iza njih. Sekcija ' +
+          'usluga prve izrade (services.js) je napisana ali još nije uključena u živu stranicu.',
       },
     },
   },
