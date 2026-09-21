@@ -9,9 +9,15 @@ import { skillGroups, skillsAsLines } from './data/skills';
 import { tables } from './data/schema';
 import { ui } from './i18n/ui';
 
+/**
+ * `school` is matched against the Education entry, which always spells the
+ * university in the nominative. An earlier value here ('univerzitetu u
+ * beogradu') matched the locative in a summary sentence instead, so rewording
+ * the summary broke a test that is supposed to be about Education.
+ */
 const PDFS = [
   { path: 'public/Veljko_Knezevic_CV_EN.pdf', school: 'university of belgrade' },
-  { path: 'public/Veljko_Knezevic_CV_SR.pdf', school: 'univerzitetu u beogradu' },
+  { path: 'public/Veljko_Knezevic_CV_SR.pdf', school: 'univerzitet u beogradu' },
 ];
 
 async function exists(p: string) {
