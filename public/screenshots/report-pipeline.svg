@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Diagram of the Excel-to-report automation pipeline">
+  <title>Monthly report automation</title>
+  <defs>
+    <style>
+      .bgc { fill: #f1f5f9; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .box-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; }
+      .h { font: 600 15px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
+      .t { font: 400 12px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
+      .lbl { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #0e7490; }
+      .bad { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
+      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #64748b; }
+      .sec { font: 600 12px Inter, system-ui, sans-serif; fill: #0f172a; letter-spacing: .1em; }
+      .arr { stroke: #0e7490; stroke-width: 2; fill: none; marker-end: url(#a2); }
+      .arrg { stroke: #94a3b8; stroke-width: 1.6; fill: none; marker-end: url(#a3); }
+    </style>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0e7490"/>
+    </marker>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect class="bgc" width="1200" height="675" rx="12"/>
+
+  <text class="sec" x="70" y="62">BEFORE — EVERY MONTH, BY HAND</text>
+  <line x1="70" y1="74" x2="1130" y2="74" stroke="#cbd5e1"/>
+
+  <g>
+    <rect class="box" x="70" y="100" width="220" height="100" rx="10"/>
+    <text class="h" x="88" y="132">one workbook</text>
+    <text class="t" x="88" y="158">all managers, one sheet</text>
+    <text class="bad" x="88" y="182">copied by hand per manager</text>
+  </g>
+
+  <text class="sec" x="70" y="270">AFTER — report_pipeline.py</text>
+  <line x1="70" y1="282" x2="1130" y2="282" stroke="#cbd5e1"/>
+
+  <g>
+    <rect class="box" x="70" y="320" width="210" height="120" rx="10"/>
+    <text class="h" x="88" y="352">source workbook</text>
+    <text class="t" x="88" y="378">.xlsx, one sheet</text>
+    <text class="t" x="88" y="398">one row per manager</text>
+  </g>
+
+  <path class="arr" d="M 280 380 L 340 380"/>
+
+  <g>
+    <rect class="box-key" x="350" y="300" width="220" height="160" rx="10"/>
+    <text class="h" x="368" y="332">pandas</text>
+    <text class="t" x="368" y="358">read_excel()</text>
+    <text class="t" x="368" y="380">group rows by manager</text>
+    <text class="lbl" x="368" y="410">one DataFrame per manager</text>
+  </g>
+
+  <path class="arr" d="M 570 380 L 630 380"/>
+
+  <g>
+    <rect class="box-key" x="640" y="300" width="220" height="160" rx="10"/>
+    <text class="h" x="658" y="332">Jinja2 template</text>
+    <text class="t" x="658" y="358">renders each manager's</text>
+    <text class="t" x="658" y="378">rows into an HTML report</text>
+    <text class="lbl" x="658" y="410">same layout, new data</text>
+  </g>
+
+  <path class="arr" d="M 860 380 L 920 380"/>
+
+  <g>
+    <rect class="box" x="930" y="300" width="200" height="70" rx="10"/>
+    <text class="h" x="948" y="332">report.html</text>
+    <text class="t" x="948" y="352">one per manager</text>
+  </g>
+  <g>
+    <rect class="box" x="930" y="390" width="200" height="70" rx="10"/>
+    <text class="h" x="948" y="422">report.json</text>
+    <text class="t" x="948" y="442">machine-readable copy</text>
+  </g>
+  <path class="arrg" d="M 860 380 L 900 335 L 920 335"/>
+  <path class="arrg" d="M 860 380 L 900 425 L 920 425"/>
+
+  <text class="cap" x="70" y="620">One workbook in, one HTML report and one JSON file per manager out — the manual copy-and-paste step is gone.</text>
+</svg>

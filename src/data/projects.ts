@@ -277,32 +277,32 @@ export const projects: Project[] = [
   },
 
   {
-    id: 'client-web',
+    id: 'client-sites',
     rank: 4,
     year: '2025–2026',
     status: 'delivered',
-    title: { en: 'Client websites and reporting tooling', sr: 'Klijentski sajtovi i alat za izveštaje' },
+    title: { en: 'Client websites', sr: 'Klijentski sajtovi' },
     subtitle: {
-      en: 'Delivered work for paying clients, including a load-time rebuild and a Python report generator',
-      sr: 'Isporučen rad za klijente koji plaćaju, uključujući ubrzanje sajta i Python generator izveštaja',
+      en: 'One site built from scratch, one rebuilt for load time, both for paying clients',
+      sr: 'Jedan sajt napravljen od nule, jedan ubrzan po pitanju učitavanja, oba za klijente koji plaćaju',
     },
     context: {
-      en: 'Freelance work taken from written change lists, with fixed monthly deadlines.',
-      sr: 'Frilens rad po pisanim listama izmena, sa fiksnim mesečnim rokovima.',
+      en: 'Freelance web work, one full build and one optimization pass, each from a written change list.',
+      sr: 'Frilens veb rad, jedna kompletna izrada i jedan prolaz kroz optimizaciju, oba po pisanoj listi izmena.',
     },
     highlights: {
       en: [
-        'Cut load time on a client site with responsive WebP srcset at three widths, an LCP preload hint, and Brotli plus cache headers.',
-        'Removed a forced reflow by coalescing a scroll-driven redraw into a single requestAnimationFrame.',
-        'Wrote a Python tool with pandas and openpyxl that turns client Excel scorecards into per-manager HTML and JSON reports.',
+        'Built an interactive marketing site from scratch: a scroll-driven video-mask reveal and a service catalog navigated by section, tested down to a 320px screen with reduced-motion and no-JavaScript fallbacks.',
+        'Cut load time on another client site with responsive WebP images at three widths, an LCP preload hint, and Brotli plus cache headers.',
+        'Removed a forced reflow on that same site by coalescing a scroll-driven redraw into a single requestAnimationFrame.',
       ],
       sr: [
-        'Skratio vreme učitavanja klijentskog sajta kroz responsive WebP srcset na tri širine, preload za LCP i Brotli sa cache header-ima.',
-        'Uklonio forced reflow objedinjavanjem iscrtavanja na skrol u jedan requestAnimationFrame.',
-        'Napisao Python alat sa pandas i openpyxl koji klijentove Excel tabele pretvara u HTML i JSON izveštaje po menadžeru.',
+        'Napravio interaktivni marketinški sajt od nule: otkrivanje kroz video masku vezano za skrol i katalog usluga po sekcijama, testiran do širine od 320px sa reduced-motion i no-JavaScript fallback-ovima.',
+        'Skratio vreme učitavanja drugog klijentskog sajta kroz responzivne WebP slike na tri širine, preload za LCP i Brotli sa cache header-ima.',
+        'Uklonio forced reflow na tom istom sajtu objedinjavanjem iscrtavanja na skrol u jedan requestAnimationFrame.',
       ],
     },
-    tech: ['HTML', 'CSS', 'JavaScript', 'WebP', 'Apache', 'Python', 'pandas', 'openpyxl', 'Jinja2'],
+    tech: ['HTML', 'CSS', 'JavaScript', 'WebP', 'Apache'],
     repos: [
       { label: 'Flekout', url: 'https://github.com/knez4/flekout' },
       { label: 'Mystery M', url: 'https://github.com/knez4/Mystery-M' },
@@ -323,37 +323,107 @@ export const projects: Project[] = [
     caseStudy: {
       problem: {
         en:
-          'Two separate client asks, both worked from a written change list with a fixed monthly deadline: a ' +
-          'marketing site was slow to load on mobile, and a client’s monthly data arrived as one raw Excel ' +
-          'workbook that someone then copied by hand into a separate report for each manager.',
+          'Two different client asks: one wanted a new interactive marketing site built from nothing, the ' +
+          'other had an existing site that was slow to load on mobile and needed fixing without a full rebuild.',
         sr:
-          'Dva odvojena klijentska zahteva, oba rađena po pisanoj listi izmena sa fiksnim mesečnim rokom: ' +
-          'marketinški sajt se sporo učitavao na mobilnom, a klijentovi mesečni podaci su stizali kao jedna ' +
-          'sirova Excel radna sveska koju je neko ručno prepisivao u poseban izveštaj za svakog menadžera.',
+          'Dva različita klijentska zahteva: jedan je hteo nov interaktivni marketinški sajt napravljen od ' +
+          'nule, drugi je imao postojeći sajt koji se sporo učitavao na mobilnom i trebalo ga je popraviti bez kompletne izrade.',
       },
       approach: {
         en: [
-          'Profiled the site and found oversized images were the main cost; added a responsive WebP srcset at three widths with a PNG fallback, plus an LCP preload hint on the hero image.',
-          'Traced a layout jank to a scroll handler reading layout properties on every event; coalesced it into a single requestAnimationFrame callback so it reads and writes at most once per frame.',
-          'Added Brotli compression and cache-control headers via .htaccess so a repeat visit skips the download.',
-          'Wrote a Python script (pandas, openpyxl) that reads the monthly workbook, splits it by manager, and renders each one as an HTML report from a Jinja2 template plus a machine-readable JSON copy.',
+          'For the new build: a hero section reveals through a video mask tied to scroll position, and a service catalog lets a visitor pick a space and scroll through the matching services in a dark rail.',
+          'Checked the new build on desktop, tablet, 390px and 320px, plus reduced-motion and no-JavaScript, so the layout and the reveal both still work without the animation.',
+          'For the existing site: profiled it, found oversized images were the main cost, and added a responsive WebP srcset at three widths with a PNG fallback plus an LCP preload hint on the hero image.',
+          'Traced a layout jank on the existing site to a scroll handler reading layout properties on every event; coalesced it into a single requestAnimationFrame callback, and added Brotli compression and cache-control headers via .htaccess.',
         ],
         sr: [
-          'Profilisao sajt i utvrdio da su prevelike slike glavni trošak; dodao responsive WebP srcset na tri širine sa PNG fallback-om, i LCP preload za hero sliku.',
-          'Pratio uzrok trzaja do scroll handler-a koji je čitao layout svojstva pri svakom događaju; objedinio ga u jedan requestAnimationFrame poziv koji čita i piše najviše jednom po frejmu.',
-          'Dodao Brotli kompresiju i cache-control header-e preko .htaccess-a, tako da ponovna poseta preskače preuzimanje.',
-          'Napisao Python skriptu (pandas, openpyxl) koja čita mesečnu radnu svesku, deli je po menadžeru, i za svakog generiše HTML izveštaj iz Jinja2 template-a plus mašinski čitljivu JSON kopiju.',
+          'Za novu izradu: hero sekcija se otkriva kroz video masku vezanu za poziciju skrola, a katalog usluga omogućava posetiocu da izabere prostor i skroluje kroz odgovarajuće usluge u tamnoj traci.',
+          'Proverio novu izradu na desktop, tablet, 390px i 320px ekranima, kao i reduced-motion i no-JavaScript, tako da raspored i otkrivanje sadržaja rade i bez animacije.',
+          'Za postojeći sajt: profilisao ga, utvrdio da su prevelike slike glavni trošak, i dodao responzivan WebP srcset na tri širine sa PNG fallback-om plus LCP preload za hero sliku.',
+          'Pratio uzrok trzaja na postojećem sajtu do scroll handler-a koji je čitao layout svojstva pri svakom događaju; objedinio ga u jedan requestAnimationFrame poziv, i dodao Brotli kompresiju i cache-control header-e preko .htaccess-a.',
         ],
       },
       limits: {
         en:
-          'The site work was scoped to the client’s change list, not a full rebuild, so the freedom to ' +
-          'restructure anything beyond that list was limited. The reporting script assumes the source workbook ' +
-          'keeps the same layout every month; a structural change there would need a script update, not just new data.',
+          'The rebuild for the existing site was scoped to a change list, not a full redesign, so the freedom ' +
+          'to restructure anything beyond that list was limited. The new build’s services section (services.js) ' +
+          'is written but not yet wired into the live page.',
         sr:
-          'Rad na sajtu bio je ograničen na klijentovu listu izmena, ne kompletnu izradu, pa je sloboda za ' +
-          'restruktuiranje van te liste bila ograničena. Skripta za izveštaje pretpostavlja da izvorna radna ' +
-          'sveska svaki mesec zadržava isti raspored; strukturna izmena bi tražila izmenu skripte, ne samo nove podatke.',
+          'Popravka postojećeg sajta bila je ograničena na listu izmena, ne kompletan redizajn, pa je sloboda ' +
+          'za restruktuiranje van te liste bila ograničena. Sekcija usluga nove izrade (services.js) je napisana ' +
+          'ali još nije uključena u živu stranicu.',
+      },
+    },
+  },
+
+  {
+    id: 'report-automation',
+    rank: 5,
+    year: '2025–2026',
+    status: 'delivered',
+    title: { en: 'Client reporting automation', sr: 'Automatizacija klijentskih izveštaja' },
+    subtitle: {
+      en: 'A Python pipeline that replaced a manual monthly copy-and-paste job',
+      sr: 'Python pipeline koji je zamenio ručni mesečni posao prepisivanja',
+    },
+    context: {
+      en: 'A separate freelance engagement: a client’s monthly data arrived as one Excel workbook that someone copied by hand into a report per manager.',
+      sr: 'Zaseban frilens angažman: klijentovi mesečni podaci su stizali kao jedna Excel radna sveska koju je neko ručno prepisivao u izveštaj po menadžeru.',
+    },
+    highlights: {
+      en: [
+        'Wrote a Python pipeline (pandas, openpyxl) that reads the monthly workbook and groups it by manager.',
+        'Rendered each manager’s data as an HTML report from a Jinja2 template, plus a machine-readable JSON copy.',
+        'Replaced a manual copy-and-paste step done by hand every month.',
+      ],
+      sr: [
+        'Napisao Python pipeline (pandas, openpyxl) koji čita mesečnu radnu svesku i grupiše je po menadžeru.',
+        'Generisao podatke svakog menadžera kao HTML izveštaj iz Jinja2 template-a, plus mašinski čitljivu JSON kopiju.',
+        'Zamenio ručno prepisivanje koje se radilo svakog meseca.',
+      ],
+    },
+    tech: ['Python', 'pandas', 'openpyxl', 'Jinja2'],
+    media: [
+      {
+        src: '/screenshots/report-pipeline.svg',
+        alt: {
+          en: 'Diagram of the Excel-to-report automation pipeline',
+          sr: 'Dijagram automatizacije od Excel tabele do izveštaja',
+        },
+        caption: {
+          en: 'One workbook in, one HTML report and one JSON file per manager out.',
+          sr: 'Jedna radna sveska na ulazu, jedan HTML izveštaj i jedan JSON fajl po menadžeru na izlazu.',
+        },
+      },
+    ],
+    caseStudy: {
+      problem: {
+        en:
+          'A client’s monthly data arrived as one raw Excel workbook, all managers on one sheet, that ' +
+          'someone then copied by hand into a separate report for each manager every month.',
+        sr:
+          'Klijentovi mesečni podaci su stizali kao jedna sirova Excel radna sveska, svi menadžeri na jednom ' +
+          'listu, koju je neko svakog meseca ručno prepisivao u poseban izveštaj za svakog menadžera.',
+      },
+      approach: {
+        en: [
+          'Read the workbook with pandas and grouped the rows by manager, so each manager’s data becomes its own table.',
+          'Rendered each group through a Jinja2 template into a standalone HTML report with the same layout every month.',
+          'Wrote a JSON copy alongside each HTML report, so the same data can be read by another script later without re-parsing the workbook.',
+        ],
+        sr: [
+          'Učitao radnu svesku pomoću pandas-a i grupisao redove po menadžeru, tako da podaci svakog menadžera postaju sopstvena tabela.',
+          'Generisao svaku grupu kroz Jinja2 template u samostalan HTML izveštaj sa istim rasporedom svakog meseca.',
+          'Napisao JSON kopiju uz svaki HTML izveštaj, tako da isti podaci kasnije mogu da se čitaju drugom skriptom bez ponovnog parsiranja radne sveske.',
+        ],
+      },
+      limits: {
+        en:
+          'The script assumes the source workbook keeps the same layout every month; a structural change there ' +
+          'would need a script update, not just new data.',
+        sr:
+          'Skripta pretpostavlja da izvorna radna sveska svaki mesec zadržava isti raspored; strukturna izmena ' +
+          'bi tražila izmenu skripte, ne samo nove podatke.',
       },
     },
   },
@@ -363,15 +433,17 @@ export const projectsByRank = [...projects].sort((a, b) => a.rank - b.rank);
 
 /**
  * Projects that appear on the one-page CV. The site shows all four.
- * Two are left off the sheet on purpose:
- *  - client-web: the Freelance role in Experience already describes that work
- *    (the same site-optimization and Python-pipeline bullets), so repeating it
- *    here would just be the same claim twice.
+ * Three are left off the sheet on purpose:
+ *  - client-sites, report-automation: the Freelance role in Experience already
+ *    describes both (the same site-optimization and Python-pipeline bullets),
+ *    so repeating them here would just be the same claims twice.
  *  - three-tier-java: a short, self-contained coursework exercise rather than
  *    a built product. The freed space goes to a fourth booking-platform bullet
  *    instead.
  */
-export const cvProjects = projectsByRank.filter((p) => p.id !== 'client-web' && p.id !== 'three-tier-java');
+export const cvProjects = projectsByRank.filter(
+  (p) => p.id !== 'client-sites' && p.id !== 'report-automation' && p.id !== 'three-tier-java',
+);
 
 export function projectById(id: string): Project | undefined {
   return projects.find((p) => p.id === id);
