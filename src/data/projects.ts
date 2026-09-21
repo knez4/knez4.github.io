@@ -227,7 +227,7 @@ export const projects: Project[] = [
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],
     },
-    tech: ['PHP', 'Laravel 9', 'MySQL', 'Eloquent', 'Laravel Sanctum', 'REST', 'PHPUnit', 'Postman', 'Git'],
+    tech: ['PHP', 'Laravel 9', 'MySQL', 'Laravel Sanctum', 'REST', 'PHPUnit', 'Postman', 'Git'],
     media: [
       {
         src: '/screenshots/chatbot-erd.svg',
