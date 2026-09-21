@@ -34,6 +34,12 @@ export type Project = {
   repoUrl?: string;
   /** Multiple named repos, for a project bundling more than one codebase. */
   repos?: { label: string; url: string }[];
+  /**
+   * CV-only line standing in for a missing repo link. Without it the reader sees
+   * one project linked and the next not, and reads the gap as carelessness
+   * rather than as a team repo that is not his to publish.
+   */
+  repoNote?: L;
   liveUrl?: string;
   /** Required: a project without a screenshot does not ship. Enforced by tests. */
   media: MediaItem[];

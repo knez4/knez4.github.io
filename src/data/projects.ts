@@ -33,13 +33,13 @@ export const projects: Project[] = [
     highlights: {
       en: [
         'Built a full-stack appointment booking web app covering four areas end to end: public booking page, staff scheduling, client management and an admin dashboard.',
-        'Designed a multi-tenant PostgreSQL database and wrote the booking logic so two people can never book the same time slot.',
+        'Designed a multi-tenant PostgreSQL database of 11 tables and wrote the booking logic so two people can never book the same time slot.',
         'Added role-based access for owners, managers and staff, so everyone sees only what their role needs.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
         'Napravio kompletnu veb aplikaciju za zakazivanje termina u četiri oblasti: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
-        'Projektovao multi-tenant PostgreSQL bazu i napisao logiku zakazivanja tako da dvoje ljudi nikad ne mogu da zauzmu isti termin.',
+        'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao logiku zakazivanja tako da dvoje ljudi nikad ne mogu da zauzmu isti termin.',
         'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene, tako da svako vidi samo ono što mu je potrebno.',
         'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
       ],
@@ -119,81 +119,6 @@ export const projects: Project[] = [
   },
 
   {
-    id: 'three-tier-java',
-    rank: 2,
-    year: '2025',
-    status: 'coursework',
-    title: {
-      en: 'Three-tier business application',
-      sr: 'Poslovna aplikacija u troslojnoj arhitekturi',
-    },
-    subtitle: {
-      en: 'Java desktop client over JDBC, built to a layered specification',
-      sr: 'Java desktop klijent nad JDBC-om, po zadatoj slojevitoj specifikaciji',
-    },
-    context: {
-      en: 'Coursework for Software Design at FON, extended past the required scope.',
-      sr: 'Rad za predmet Projektovanje softvera na FON-u, proširen preko zadatog obima.',
-    },
-    highlights: {
-      en: [
-        'Separated domain, controller, database broker and forms so that no SQL reaches the user interface.',
-        'Implemented login against the database, CRUD over the Person entity, and a custom JTable model.',
-        'Translated JDBC exceptions into messages a user can act on instead of stack traces.',
-      ],
-      sr: [
-        'Razdvojio domen, kontroler, database broker i forme tako da SQL ne dolazi do korisničkog interfejsa.',
-        'Implementirao prijavu nad bazom, CRUD nad entitetom Person i sopstveni JTable model.',
-        'JDBC izuzetke preveo u poruke sa kojima korisnik može nešto da uradi umesto u stack trace.',
-      ],
-    },
-    tech: ['Java', 'Swing', 'JDBC', 'MySQL', 'NetBeans', 'UML', 'OCL'],
-    repoUrl: 'https://github.com/knez4/three-tier-java',
-    media: [
-      {
-        src: '/screenshots/three-tier-layers.svg',
-        alt: {
-          en: 'Diagram of the four application layers and the direction of calls between them',
-          sr: 'Dijagram četiri sloja aplikacije i smera poziva između njih',
-        },
-        caption: {
-          en: 'Calls travel one way only: forms ask the controller, the controller asks the broker.',
-          sr: 'Pozivi idu samo u jednom smeru: forme traže od kontrolera, kontroler od brokera.',
-        },
-      },
-    ],
-    caseStudy: {
-      problem: {
-        en:
-          'The assignment gives a skeleton and a set of use-case specification templates. The point is not to ' +
-          'make the window work, it is to keep database access out of the user interface so that either side ' +
-          'can change without touching the other.',
-        sr:
-          'Zadatak daje skelet i šablone za specifikaciju slučajeva korišćenja. Poenta nije da prozor radi, nego ' +
-          'da pristup bazi ostane van korisničkog interfejsa, tako da se svaka strana može menjati bez diranja druge.',
-      },
-      approach: {
-        en: [
-          'Domain classes hold no persistence logic; they are plain objects the broker maps to and from rows.',
-          'DatabaseBroker owns every statement and the connection itself. The controller coordinates operations and never builds SQL.',
-          'Forms talk only to the controller. Swapping MySQL for another database would touch one class.',
-          'A custom table model keeps display formatting out of the domain objects.',
-        ],
-        sr: [
-          'Domenske klase nemaju logiku perzistencije; to su obični objekti koje broker mapira iz i u redove.',
-          'DatabaseBroker drži sve upite i samu konekciju. Kontroler koordinira operacije i nikada ne sastavlja SQL.',
-          'Forme razgovaraju samo sa kontrolerom. Zamena MySQL-a drugom bazom dotakla bi jednu klasu.',
-          'Sopstveni table model drži formatiranje prikaza van domenskih objekata.',
-        ],
-      },
-      limits: {
-        en: 'A desktop coursework application, single user, no concurrency handling beyond what JDBC provides.',
-        sr: 'Desktop rad sa fakulteta, jedan korisnik, bez obrade konkurentnosti izvan onoga što JDBC daje.',
-      },
-    },
-  },
-
-  {
     id: 'chatbot-api',
     rank: 3,
     year: '2026',
@@ -229,6 +154,10 @@ export const projects: Project[] = [
       ],
     },
     tech: ['PHP', 'Laravel 9', 'MySQL', 'Laravel Sanctum', 'REST', 'PHPUnit', 'Postman', 'Git'],
+    repoNote: {
+      en: 'Private university team repository, available on request',
+      sr: 'Privatni timski fakultetski repozitorijum, dostupan na zahtev',
+    },
     media: [
       {
         src: '/screenshots/chatbot-erd.svg',
@@ -432,17 +361,20 @@ export const projects: Project[] = [
 export const projectsByRank = [...projects].sort((a, b) => a.rank - b.rank);
 
 /**
- * Projects that appear on the one-page CV. The site shows all four.
- * Three are left off the sheet on purpose:
- *  - client-sites, report-automation: the Freelance role in Experience already
- *    describes both (the same site-optimization and Python-pipeline bullets),
- *    so repeating them here would just be the same claims twice.
- *  - three-tier-java: a short, self-contained coursework exercise rather than
- *    a built product. The freed space goes to a fourth booking-platform bullet
- *    instead.
+ * Projects that appear on the one-page CV.
+ *
+ * client-sites and report-automation are left off the sheet on purpose: the
+ * Freelance role in Experience already describes both (the same
+ * site-optimization and Python-pipeline bullets), so repeating them here
+ * would just be the same claims twice.
+ *
+ * three-tier-java was removed from the site entirely in September 2026, not
+ * merely excluded here. Veljko confirmed the NetBeans project was downloaded
+ * coursework, not his own work, so it cannot be presented under his name
+ * anywhere. Do not reinstate it.
  */
 export const cvProjects = projectsByRank.filter(
-  (p) => p.id !== 'client-sites' && p.id !== 'report-automation' && p.id !== 'three-tier-java',
+  (p) => p.id !== 'client-sites' && p.id !== 'report-automation',
 );
 
 export function projectById(id: string): Project | undefined {

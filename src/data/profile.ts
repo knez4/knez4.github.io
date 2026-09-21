@@ -21,24 +21,29 @@ export const profile = {
   github: 'https://github.com/knez4',
   githubHandle: 'github.com/knez4',
   /**
-   * Percent-encoded: a bare Unicode slug breaks some ATS parsers and PDF link extractors.
-   *
-   * Source: Veljko pasted this URL himself. It appears nowhere else on the machine,
-   * so an automated sweep of the disk will flag it as unsourced — it is not. Leave
-   * this note here rather than re-investigating it.
+   * ASCII vanity URL, set by Veljko in September 2026. It replaced a Unicode slug
+   * (veljkokne%C5%BEevi%C4%87) that needed percent-encoding to survive PDF link
+   * extraction and still rendered as veljkoknežević in the visible text, which
+   * some ATS parsers split on the diacritics. The old URL no longer resolves.
    */
-  linkedin: 'https://www.linkedin.com/in/veljkokne%C5%BEevi%C4%87/',
-  linkedinHandle: 'linkedin.com/in/veljkoknežević',
+  linkedin: 'https://www.linkedin.com/in/knezevicveljko/',
+  linkedinHandle: 'linkedin.com/in/knezevicveljko',
   siteUrl: 'https://knez4.github.io',
 
+  /**
+   * Status, not a job title. The same CV goes to backend, database and general
+   * IT internship openings, so claiming one position would narrow it for no gain
+   * and invite "what experience?" on a CV with no IT employment yet.
+   */
   role: {
-    en: 'Final-Year IT Student',
-    sr: 'Student završne godine ISiT',
+    en: 'Final-year student, Faculty of Organizational Sciences',
+    sr: 'Apsolvent Fakulteta organizacionih nauka',
   } as L,
 
+  /** Site hero only. Names the field of work so it does not repeat `role`. */
   tagline: {
-    en: 'Final-year Information Systems and Technologies student at the University of Belgrade',
-    sr: 'Student završne godine Informacionih sistema i tehnologija, Univerzitet u Beogradu',
+    en: 'Databases and web application development',
+    sr: 'Baze podataka i razvoj veb aplikacija',
   } as L,
 
   status: {
@@ -47,36 +52,41 @@ export const profile = {
   } as L,
 
   /**
-   * The CV summary. General on purpose: applying to a range of IT internships
-   * rather than one specialization, so it names the breadth of what got built
-   * (full web app, team API, desktop app) instead of leading with one layer
-   * of the stack.
+   * The CV summary. Leads with the one thing that is deepest and hardest to
+   * fake (the booking schema) and carries its real counts, rather than a
+   * breadth claim like "comfortable across the stack", which is unfalsifiable
+   * and reads as filler to both recruiters and AI-content screens.
+   *
+   * The Java desktop app is deliberately absent: it is not in `cvProjects`, so
+   * naming it here sent the reader looking for a section that does not exist.
    */
   summary: {
     en:
-      'Fourth-year Information Systems and Technologies student at the University of Belgrade. Built a ' +
-      'full-stack web application end to end, from the database to the interface, a Laravel REST API with ' +
-      'two teammates, and a layered Java desktop application. Comfortable across the stack, from SQL to ' +
-      'React. Available full time in Belgrade.',
+      'Final-year Information Systems and Technologies student at the University of Belgrade. Built a ' +
+      'multi-tenant appointment booking platform on PostgreSQL across 17 migrations, with the booking ' +
+      'rules enforced inside the database rather than in application code. Wrote a Laravel REST API ' +
+      'with two teammates, and take on paid freelance web and reporting work alongside studies. ' +
+      'Available full time in Belgrade.',
     sr:
-      'Student četvrte godine Informacionih sistema i tehnologija na Univerzitetu u Beogradu. Napravio ' +
-      'kompletnu veb aplikaciju od baze do korisničkog interfejsa, Laravel REST API sa dvoje kolega, i ' +
-      'slojevitu Java desktop aplikaciju. Snalazim se kroz ceo stek, od SQL-a do React-a. Dostupan puno ' +
-      'radno vreme u Beogradu.',
+      'Student završne godine Informacionih sistema i tehnologija na Univerzitetu u Beogradu. Napravio ' +
+      'multi-tenant platformu za zakazivanje termina na PostgreSQL-u kroz 17 migracija, sa pravilima ' +
+      'zakazivanja u samoj bazi umesto u aplikaciji. Napisao Laravel REST API sa dve koleginice, a uz ' +
+      'studije radim plaćene frilens poslove izrade sajtova i izveštaja. Dostupan puno radno vreme ' +
+      'u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */
   pitch: {
     en:
-      'I am a final-year FON student who has built a full-stack booking web app (PostgreSQL, Laravel, ' +
-      'React), a REST API with a team, and a layered Java desktop application. Comfortable across the ' +
-      'stack — databases, backend APIs and frontend. Looking for an internship in Belgrade where I can ' +
-      'keep building and learning.',
+      'I am a final-year FON student. I built a multi-tenant booking platform on PostgreSQL where the ' +
+      'scheduling rules live in the database, wrote a Laravel REST API with a team, and do paid ' +
+      'freelance web and reporting work. Looking for an internship in Belgrade where I can keep ' +
+      'building and learning.',
     sr:
-      'Student sam završne godine FON-a i napravio sam kompletnu veb aplikaciju za zakazivanje ' +
-      '(PostgreSQL, Laravel, React), REST API sa timom, i slojevitu Java desktop aplikaciju. Snalazim se ' +
-      'kroz ceo stek — baze, backend API-je i frontend. Tražim praksu u Beogradu gde bih nastavio da ' +
-      'gradim i učim.',
+      'Student sam završne godine FON-a. Napravio sam multi-tenant platformu za zakazivanje na ' +
+      'PostgreSQL-u gde pravila zakazivanja žive u samoj bazi, napisao REST API sa timom, i radim ' +
+      'plaćene frilens poslove izrade sajtova i izveštaja. Tražim praksu u Beogradu gde bih nastavio ' +
+      'da gradim i učim.',
   } as L,
 } as const;
 

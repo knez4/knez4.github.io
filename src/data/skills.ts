@@ -24,16 +24,24 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Databases', sr: 'Baze podataka' },
     kind: 'applied',
+    /**
+     * Ordered by how deep the evidence goes, not alphabetically: PostgreSQL and
+     * Row Level Security are the parts no other student CV has, so they sit
+     * where a six-second scan lands instead of at the end of the line.
+     *
+     * Microsoft SQL Server is out. It was faculty exposure with nothing on disk,
+     * and listing five engines invited "which one do you actually know?" while
+     * diluting the one answer worth giving.
+     */
     items: [
       'SQL',
       'PostgreSQL',
-      'Oracle SQL',
-      'MySQL',
-      'Microsoft SQL Server',
+      'Row Level Security',
       { en: 'Data modelling', sr: 'Modelovanje podataka' },
       { en: 'Normalization', sr: 'Normalizacija' },
+      'Oracle SQL',
+      'MySQL',
       'JDBC',
-      'Row Level Security',
     ],
   },
   {
@@ -44,7 +52,13 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Backend & APIs', sr: 'Backend i API' },
     kind: 'applied',
-    items: ['Laravel', 'REST API', 'JSON', 'React', 'Node.js', 'HTML', 'CSS', 'Laravel Sanctum'],
+    /**
+     * No Node.js: it appeared in no project's stack. The Supabase edge function
+     * is Deno, the chatbot is PHP, the report pipeline is Python, and the client
+     * sites are static. Build tooling alone does not survive "have you written a
+     * Node backend?", so it comes off for the same reason Eloquent ORM did.
+     */
+    items: ['Laravel', 'REST API', 'JSON', 'React', 'HTML', 'CSS', 'Laravel Sanctum'],
   },
   {
     label: { en: 'Tools', sr: 'Alati' },
@@ -54,8 +68,20 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Practices', sr: 'Metode rada' },
     kind: 'applied',
+    /**
+     * 'Data structures and algorithms' sits here rather than under coursework
+     * because of ~/eclipse-workspace: 64 hand-written files implementing doubly
+     * linked lists, circular lists and binary trees against the faculty's LABIS
+     * abstract classes. The framework was provided; the method bodies are his.
+     *
+     * 'Three-tier architecture' now rests on the booking platform (React client,
+     * PostgreSQL functions as the logic tier, tables as the data tier), NOT on
+     * the Software Design NetBeans exercise, which was downloaded and has been
+     * removed from this site. Veljko needs to answer with the salon if asked.
+     */
     items: [
       { en: 'Object-oriented programming', sr: 'Objektno orijentisano programiranje' },
+      { en: 'Data structures and algorithms', sr: 'Strukture podataka i algoritmi' },
       { en: 'Three-tier architecture', sr: 'Troslojna arhitektura' },
       { en: 'Database migrations', sr: 'Migracije baze podataka' },
       'UML',
@@ -68,7 +94,6 @@ export const skillGroups: SkillGroup[] = [
     items: [
       { en: 'Computer networks (TCP/IP, HTTP, DNS, Ethernet, 802.11)', sr: 'Računarske mreže (TCP/IP, HTTP, DNS, Ethernet, 802.11)' },
       { en: 'Operating systems and computer architecture', sr: 'Operativni sistemi i arhitektura računara' },
-      { en: 'Data structures and algorithms', sr: 'Strukture podataka i algoritmi' },
       { en: 'Artificial intelligence', sr: 'Veštačka inteligencija' },
       'NoSQL (MongoDB, Neo4j)',
       { en: 'SOAP and web services', sr: 'SOAP i veb servisi' },

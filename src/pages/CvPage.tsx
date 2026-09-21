@@ -109,6 +109,7 @@ export default function CvPage() {
               { text: pick(profile.location) },
               { text: profile.linkedinHandle, href: profile.linkedin },
               { text: 'github.com/knez4', href: profile.github },
+              { text: 'knez4.github.io', href: profile.siteUrl },
             ];
             return items.map((item, i) => (
               <span key={item.text}>
@@ -167,6 +168,8 @@ export default function CvPage() {
                       {p.repoUrl.replace('https://', '')}
                     </a>
                   </p>
+                ) : p.repoNote ? (
+                  <p className="text-cv-xs text-muted">{pick(p.repoNote)}</p>
                 ) : null}
                 <Bullets items={pick(p.highlights).slice(0, BULLETS_PER_PROJECT[i] ?? 3)} />
               </div>

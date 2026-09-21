@@ -11,8 +11,12 @@ export type Role = {
 /**
  * Reverse-chronological, most current first: the freelance role is still
  * ongoing ("present"), so it leads; within FD Organization, Future Leader
- * (19 & 26 May 2024) comes before DigiCon (March 2024) since it's the later
- * of the two.
+ * (ending May 2024) comes before DigiCon (ending March 2024).
+ *
+ * The FD periods cover the work, not the event days. An earlier version dated
+ * Future Leader "19 & 26 May 2024" — the two days the programme ran — which read
+ * as a two-day role padded into an entry and undersold four months of partner
+ * outreach and planning. The event dates live in the bullets instead.
  *
  * The two FD Organization roles are still listed separately: they carried
  * different responsibilities and a single merged entry read like a four-year
@@ -26,12 +30,12 @@ export const experience: Role[] = [
     period: { en: '2023 – present', sr: '2023 – danas' }, // TODO(veljko): confirm start year
     points: {
       en: [
-        'Turn monthly Excel scorecards into per-manager HTML and JSON reports with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',
+        'Turn monthly Excel scorecards into HTML and JSON reports for nine managers with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',
         'Build and optimize marketing sites for paying clients, with responsive WebP images at three widths and LCP-preload tuning, from written change lists and fixed deadlines.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
-        'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje po menadžeru pomoću Python pipeline-a (pandas, openpyxl), čime je zamenjen ručni prepis.',
+        'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje za devet menadžera pomoću Python pipeline-a (pandas, openpyxl), čime je zamenjen ručni prepis.',
         'Pravim i optimizujem sajtove za klijente koji plaćaju, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
@@ -41,16 +45,16 @@ export const experience: Role[] = [
     title: { en: 'Project Coordinator, Future Leader', sr: 'Koordinator projekta, Future Leader' },
     org: { en: 'FD Organization (student organization)', sr: 'FD Organization (studentska organizacija)' },
     location: { en: 'Belgrade', sr: 'Beograd' },
-    period: { en: '19 & 26 May 2024', sr: '19. i 26. maj 2024.' },
+    period: { en: 'Feb – May 2024', sr: 'feb. – maj 2024.' },
     points: {
       en: [
         'Coordinated around 50 members across the corporate relations, HR, PR and IT teams.',
-        'Planned and delivered the project end to end, including partner outreach, workshops and closing presentations.',
+        'Planned and delivered the project end to end over four months, from partner outreach to the two programme days in May 2024.',
         'Ran the programme around a case study prepared with Tehnomedija, one of the general partners.',
       ],
       sr: [
-        'Koordinirao oko 50 članova kroz CR, HR, PR i IT timove.',
-        'Vodio projekat od početka do realizacije: traženje partnera, radionice i završne prezentacije.',
+        'Koordinirao oko 50 članova kroz timove korporativne saradnje, HR, PR i IT.',
+        'Vodio projekat od početka do realizacije kroz četiri meseca, od traženja partnera do dva dana programa u maju 2024.',
         'Program je bio organizovan oko studije slučaja sa kompanijom Tehnomedija, jednim od generalnih partnera.',
       ],
     },
@@ -59,15 +63,15 @@ export const experience: Role[] = [
     title: { en: 'IT Team Lead, DigiCon', sr: 'Vođa IT tima, DigiCon' },
     org: { en: 'FD Organization (student organization)', sr: 'FD Organization (studentska organizacija)' },
     location: { en: 'Belgrade', sr: 'Beograd' },
-    period: { en: 'March 2024', sr: 'mart 2024.' },
+    period: { en: 'Dec 2023 – Mar 2024', sr: 'dec. 2023 – mart 2024.' },
     points: {
       en: [
         'Led the IT team for DigiCon, assigning and reviewing work that produced event visuals, certificates and video content.',
-        'Kept the team to the deadlines set by the wider project schedule.',
+        'Kept the team to the deadlines set by the wider project schedule, through to the conference in March 2024.',
       ],
       sr: [
         'Vodio IT tim za DigiCon, raspoređujući i pregledajući zadatke izrade vizuala, sertifikata i video sadržaja.',
-        'Držao tim u rokovima koje je postavljao širi plan projekta.',
+        'Držao tim u rokovima koje je postavljao širi plan projekta, sve do konferencije u martu 2024.',
       ],
     },
   },
