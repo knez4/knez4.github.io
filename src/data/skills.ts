@@ -39,7 +39,7 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Languages', sr: 'Programski jezici' },
     kind: 'applied',
-    items: ['Java', 'SQL', 'PHP', 'TypeScript', 'JavaScript', 'Python'],
+    items: ['Java', 'C#', 'SQL', 'PHP', 'TypeScript', 'JavaScript', 'Python'],
   },
   {
     label: { en: 'Backend & APIs', sr: 'Backend i API' },
@@ -80,7 +80,6 @@ export const skillGroups: SkillGroup[] = [
       { en: 'Operating systems and computer architecture', sr: 'Operativni sistemi i arhitektura računara' },
       { en: 'Data structures and algorithms', sr: 'Strukture podataka i algoritmi' },
       { en: 'Artificial intelligence', sr: 'Veštačka inteligencija' },
-      { en: 'C# language semantics', sr: 'Osnove C# jezika' },
       'NoSQL (MongoDB, Neo4j)',
       { en: 'SOAP and web services', sr: 'SOAP i veb servisi' },
       { en: 'Cloud infrastructure', sr: 'Cloud infrastruktura' },
