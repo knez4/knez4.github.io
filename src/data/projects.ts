@@ -33,7 +33,7 @@ export const projects: Project[] = [
     highlights: {
       en: [
         'Designed an 11-table multi-tenant PostgreSQL database and wrote the booking logic so two clients cannot take the same staff member’s slot.',
-        'Set up role-based access for owners, managers and staff using PostgreSQL Row Level Security.',
+        'Set up role-based access for owners, managers and staff using Row Level Security policies.',
         'Built a full-stack booking app end to end: public booking page, staff scheduling, client management and an admin dashboard.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
@@ -99,7 +99,7 @@ export const projects: Project[] = [
       },
       decisions: {
         en: [
-          'Subscription plans are modelled in SQL but enforcement is switched off by a later migration. There is no payment provider connected, and the app does not bill anyone.',
+          'Subscription plans are modeled in SQL but enforcement is switched off by a later migration. There is no payment provider connected, and the app does not bill anyone.',
           'The two admin pages grew long and are not split into components yet. That is the first thing I would refactor.',
         ],
         sr: [
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Modelled the database and wrote the migrations across five tables, including the relationships between them.',
+        'Modeled the database and wrote the migrations across five tables, including the relationships between them.',
         'Wrote statistics endpoints for two dashboards, admin and moderator, aggregating usage data from the knowledge base.',
         'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
         'Wrote factories and seeders so the team could work against realistic data.',
