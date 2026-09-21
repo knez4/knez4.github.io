@@ -44,17 +44,7 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Backend & APIs', sr: 'Backend i API' },
     kind: 'applied',
-    items: [
-      'Laravel',
-      'REST API',
-      'JSON',
-      'React',
-      'Node.js',
-      'HTML',
-      'CSS',
-      'Eloquent ORM',
-      'Laravel Sanctum',
-    ],
+    items: ['Laravel', 'REST API', 'JSON', 'React', 'Node.js', 'HTML', 'CSS', 'Laravel Sanctum'],
   },
   {
     label: { en: 'Tools', sr: 'Alati' },

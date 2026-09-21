@@ -215,13 +215,13 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Modelled the database and wrote the migrations and Eloquent relations across five tables.',
+        'Modelled the database and wrote the migrations across five tables, including the relationships between them.',
         'Built statistics endpoints for the admin and moderator dashboards, aggregating usage data from the knowledge base.',
         'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
         'Wrote factories and seeders so the team could work against realistic data.',
       ],
       sr: [
-        'Modelovao bazu i napisao migracije i Eloquent veze za pet tabela.',
+        'Modelovao bazu i napisao migracije za pet tabela, uključujući veze između njih.',
         'Napravio statističke endpointe za admin i moderator panele, sa agregiranim podacima iz baze znanja.',
         'Dodao CSV izvoz baze znanja i keširanje najčešće traženih odgovora.',
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
