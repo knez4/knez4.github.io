@@ -123,7 +123,6 @@ describe('data integrity', () => {
   it('keeps education dates and institution filled in', () => {
     expect(education.institution.en).toContain('University of Belgrade');
     expect(education.period.en).toMatch(/\d{4}/);
-    expect(education.coursework.en.length).toBe(education.coursework.sr.length);
   });
 });
 

@@ -93,17 +93,6 @@ export function Education() {
         <p className="font-mono text-[11px] text-subtle">{pick(education.period)}</p>
         <h3 className="mt-1 text-base font-semibold">{pick(education.institution)}</h3>
         <p className="mt-1 text-sm text-muted">{pick(education.degree)}</p>
-
-        <h4 className="mt-5 font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-          {t('education.coursework')}
-        </h4>
-        <ul className="mt-3 flex flex-wrap gap-1.5">
-          {pick(education.coursework).map((c) => (
-            <li key={c} className="chip">
-              {c}
-            </li>
-          ))}
-        </ul>
       </div>
 
       <div className="card h-fit p-5">

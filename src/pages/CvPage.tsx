@@ -149,10 +149,6 @@ export default function CvPage() {
               </span>
             </p>
             <p className="text-cv-sm leading-[1.3]">{pick(education.degree)}</p>
-            <p className="mt-[3px] text-cv-sm leading-[1.3]">
-              <span className="font-semibold">{t('cv.coursework')}:</span>{' '}
-              {pick(education.coursework).slice(0, 6).join(', ')}
-            </p>
           </div>
         </Section>
 

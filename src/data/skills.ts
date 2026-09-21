@@ -94,8 +94,8 @@ export function pickItem(item: SkillItem, lang: 'en' | 'sr'): string {
 
 /**
  * Flattened, comma-joined form for the ATS CV. Tables break parsers; a plain line does not.
- * The coursework group is left out here because Education already lists those courses,
- * and repeating them costs a line the one-page sheet does not have.
+ * The coursework group is left out: it's studied, not built, so it stays under
+ * 'academic' on the site and out of the CV's skills block entirely.
  */
 export function skillsAsLines(lang: 'en' | 'sr'): { label: string; value: string }[] {
   return skillGroups

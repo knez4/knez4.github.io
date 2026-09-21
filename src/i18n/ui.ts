@@ -69,7 +69,6 @@ export const ui = {
 
   'education.eyebrow': { en: 'Education', sr: 'Obrazovanje' },
   'education.title': { en: 'Studies', sr: 'Studije' },
-  'education.coursework': { en: 'Relevant coursework', sr: 'Relevantni predmeti' },
   'education.languages': { en: 'Languages', sr: 'Jezici' },
 
   'contact.eyebrow': { en: 'Contact', sr: 'Kontakt' },
@@ -85,7 +84,6 @@ export const ui = {
   'cv.experience': { en: 'Experience', sr: 'Iskustvo' },
   'cv.education': { en: 'Education', sr: 'Obrazovanje' },
   'cv.languages': { en: 'Languages', sr: 'Jezici' },
-  'cv.coursework': { en: 'Relevant coursework', sr: 'Relevantni predmeti' },
 
   'footer.builtWith': {
     en: 'Built with React, TypeScript and Tailwind. Source on GitHub.',

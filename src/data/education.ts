@@ -1,4 +1,4 @@
-import type { L, LL } from './types';
+import type { L } from './types';
 
 export const education = {
   institution: {
@@ -12,38 +12,4 @@ export const education = {
   period: { en: 'Oct 2022 – expected 2027', sr: 'okt. 2022 – očekivano 2027' } as L,
   index: '2022/0390', // TODO(veljko): confirm
   location: { en: 'Belgrade', sr: 'Beograd' } as L,
-
-  /** Courses that a recruiter would actually look for. Ordered by relevance, not by year. */
-  coursework: {
-    en: [
-      'Databases (Oracle SQL, relational modelling, normalization)',
-      'Software Design (Java, layered architecture, UML and OCL)',
-      'Server-Side Web Technologies (PHP, Laravel, MySQL, REST)',
-      'Client-Side Web Technologies and Scripting Languages',
-      'Computer Networks and Telecommunications (TCP/IP, HTTP, DNS, Ethernet)',
-      'Data Structures and Algorithms (Java)',
-      'Computer Architecture and Operating Systems',
-      'Artificial Intelligence',
-      'Cloud Infrastructure and Services',
-      'Programming Languages (C#)',
-      'Systems Theory (MATLAB)',
-      'Probability and Statistics',
-      'Information Systems Design',
-    ],
-    sr: [
-      'Baze podataka (Oracle SQL, relaciono modelovanje, normalizacija)',
-      'Projektovanje softvera (Java, slojevita arhitektura, UML i OCL)',
-      'Serverske veb tehnologije (PHP, Laravel, MySQL, REST)',
-      'Klijentske veb tehnologije i skriptni jezici',
-      'Računarske mreže i telekomunikacije (TCP/IP, HTTP, DNS, Ethernet)',
-      'Strukture podataka i algoritmi (Java)',
-      'Arhitektura računara i operativni sistemi',
-      'Veštačka inteligencija',
-      'Cloud infrastruktura i servisi',
-      'Programski jezici (C#)',
-      'Teorija sistema (MATLAB)',
-      'Teorija verovatnoće i statistika',
-      'Projektovanje informacionih sistema',
-    ],
-  } as LL,
 };

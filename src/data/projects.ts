@@ -32,16 +32,16 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Designed an eleven-table PostgreSQL schema for multi-tenant booking, shipped as 17 versioned migrations.',
-        'Moved slot lookup and booking into database functions; create_appointment locks the row and rechecks availability, which prevents double bookings.',
-        'Wrote Row Level Security policies for owner, manager and staff so each role reads only its own data.',
-        'Queued confirmation emails in an outbox table drained in batches by a Deno edge function through Resend.',
+        'Built a full-stack appointment booking web app end to end: public booking page, staff scheduling, client management and an admin dashboard.',
+        'Designed a multi-tenant PostgreSQL database and wrote the booking logic so two people can never book the same time slot.',
+        'Added role-based access for owners, managers and staff, so everyone sees only what their role needs.',
+        'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
-        'Projektovao PostgreSQL šemu od jedanaest tabela za multi-tenant zakazivanje, kroz 17 verzionisanih migracija.',
-        'Pretragu slobodnih termina i zakazivanje prebacio u funkcije baze; create_appointment zaključava red i ponovo proverava dostupnost, čime sprečava duple termine.',
-        'Napisao Row Level Security politike za vlasnika, menadžera i zaposlenog, tako da svaka uloga čita samo svoje podatke.',
-        'Potvrde mejlom stavio u outbox tabelu koju u grupama prazni Deno edge funkcija preko Resend-a.',
+        'Napravio kompletnu veb aplikaciju za zakazivanje termina: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
+        'Projektovao multi-tenant PostgreSQL bazu i napisao logiku zakazivanja tako da dvoje ljudi nikad ne mogu da zauzmu isti termin.',
+        'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene, tako da svako vidi samo ono što mu je potrebno.',
+        'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
       ],
     },
     tech: [
@@ -216,13 +216,13 @@ export const projects: Project[] = [
     highlights: {
       en: [
         'Modelled the database and wrote the migrations and Eloquent relations across five tables.',
-        'Built admin and moderator statistics endpoints using joins, GROUP BY and aggregate functions.',
+        'Built statistics endpoints for the admin and moderator dashboards, aggregating usage data from the knowledge base.',
         'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
         'Wrote factories and seeders so the team could work against realistic data.',
       ],
       sr: [
         'Modelovao bazu i napisao migracije i Eloquent veze za pet tabela.',
-        'Napravio statističke endpointe za admin i moderator uloge sa join-ovima, GROUP BY i agregacijama.',
+        'Napravio statističke endpointe za admin i moderator panele, sa agregiranim podacima iz baze znanja.',
         'Dodao CSV izvoz baze znanja i keširanje najčešće traženih odgovora.',
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],

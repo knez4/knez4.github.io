@@ -32,8 +32,8 @@ export const profile = {
   siteUrl: 'https://knez4.github.io',
 
   role: {
-    en: 'Final-Year Student — Backend & Databases',
-    sr: 'Student završne godine ISiT — Backend i baze podataka',
+    en: 'Final-Year IT Student',
+    sr: 'Student završne godine ISiT',
   } as L,
 
   tagline: {
@@ -47,35 +47,36 @@ export const profile = {
   } as L,
 
   /**
-   * The CV summary. Deliberately does not restate the headline ("final-year
-   * student, backend & databases focus" already sits right above it) — it
-   * exists to add evidence, not repeat identity.
+   * The CV summary. General on purpose: applying to a range of IT internships
+   * rather than one specialization, so it names the breadth of what got built
+   * (full web app, team API, desktop app) instead of leading with one layer
+   * of the stack.
    */
   summary: {
     en:
-      'Built a multi-tenant PostgreSQL schema with row-level security and server-side scheduling functions, ' +
-      'a Laravel REST API with two teammates, and a layered Java application over JDBC. Studying Information ' +
-      'Systems and Technologies (E-Business Technologies module) at the University of Belgrade. Available ' +
-      'full time in Belgrade.',
+      'Fourth-year Information Systems and Technologies student at the University of Belgrade. Built a ' +
+      'full-stack web application end to end, from the database to the interface, a Laravel REST API with ' +
+      'two teammates, and a layered Java desktop application. Comfortable across the stack, from SQL to ' +
+      'React. Available full time in Belgrade.',
     sr:
-      'Napravio multi-tenant PostgreSQL šemu sa row-level security politikama i funkcijama za zakazivanje, ' +
-      'Laravel REST API sa dvoje kolega, i slojevitu Java aplikaciju nad JDBC-om. Studira Informacione ' +
-      'sisteme i tehnologije (modul Tehnologije elektronskog poslovanja) na Univerzitetu u Beogradu. ' +
-      'Dostupan puno radno vreme u Beogradu.',
+      'Student četvrte godine Informacionih sistema i tehnologija na Univerzitetu u Beogradu. Napravio ' +
+      'kompletnu veb aplikaciju od baze do korisničkog interfejsa, Laravel REST API sa dvoje kolega, i ' +
+      'slojevitu Java desktop aplikaciju. Snalazim se kroz ceo stek, od SQL-a do React-a. Dostupan puno ' +
+      'radno vreme u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */
   pitch: {
     en:
-      'I am a final-year FON student working mainly with relational databases and backend web development. ' +
-      'I designed a multi-tenant PostgreSQL schema with row-level security and booking functions that prevent ' +
-      'double bookings, and I built the data model and statistics endpoints for a Laravel REST API. ' +
-      'I am looking for an internship in Belgrade where I can keep working on data models and APIs.',
+      'I am a final-year FON student who has built a full-stack booking web app (PostgreSQL, Laravel, ' +
+      'React), a REST API with a team, and a layered Java desktop application. Comfortable across the ' +
+      'stack — databases, backend APIs and frontend. Looking for an internship in Belgrade where I can ' +
+      'keep building and learning.',
     sr:
-      'Student sam završne godine FON-a i radim uglavnom sa relacionim bazama i backend razvojem. ' +
-      'Projektovao sam multi-tenant PostgreSQL šemu sa row-level security politikama i funkcijama za ' +
-      'zakazivanje koje sprečavaju duple termine, a na Laravel REST API-ju sam radio model podataka i ' +
-      'statističke endpointe. Tražim praksu u Beogradu gde bih nastavio da radim na modelima podataka i API-jima.',
+      'Student sam završne godine FON-a i napravio sam kompletnu veb aplikaciju za zakazivanje ' +
+      '(PostgreSQL, Laravel, React), REST API sa timom, i slojevitu Java desktop aplikaciju. Snalazim se ' +
+      'kroz ceo stek — baze, backend API-je i frontend. Tražim praksu u Beogradu gde bih nastavio da ' +
+      'gradim i učim.',
   } as L,
 } as const;
 
