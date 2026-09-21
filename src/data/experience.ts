@@ -20,6 +20,13 @@ export type Role = {
    * instead of as the whole of his time at FD.
    */
   orgPeriod?: L;
+  /**
+   * Bullets for the one-page CV, when the site's wording does not belong there.
+   * The site is a portfolio and carries the delivery detail in full; the CV has
+   * to survive a recruiter asking about any word on it, so it drops terms
+   * Veljko cannot unpack yet. `points` stays the site's copy.
+   */
+  cvPoints?: LL;
 };
 
 /**
@@ -47,6 +54,18 @@ export const experience: Role[] = [
       { label: 'github.com/knez4/Mystery-M', url: 'https://github.com/knez4/Mystery-M' },
     ],
     points: {
+      en: [
+        'Turn monthly Excel scorecards into HTML and JSON reports for nine managers with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',
+        'Build and optimize marketing sites for paying clients, with responsive WebP images at three widths and LCP-preload tuning, from written change lists and fixed deadlines.',
+        'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
+      ],
+      sr: [
+        'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje za devet menadžera pomoću Python pipeline-a (pandas, openpyxl), čime je zamenjen ručni prepis.',
+        'Pravim i optimizujem sajtove za klijente koji plaćaju, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
+        'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
+      ],
+    },
+    cvPoints: {
       en: [
         'Turn monthly Excel scorecards into HTML and JSON reports for nine managers with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',
         'Build marketing sites from scratch for paying clients and speed up slow ones by converting their images to WebP, working from written change lists and fixed deadlines.',
