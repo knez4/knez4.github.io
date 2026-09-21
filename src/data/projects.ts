@@ -306,15 +306,19 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Wrote a Python pipeline (pandas, openpyxl) that reads the monthly workbook and groups it by manager.',
-        'Rendered each manager’s data as an HTML report from a Jinja2 template, plus a machine-readable JSON copy.',
-        'Never finished it or ran it against the real workbook, so the manual step it was meant to remove is still being done by hand.',
+        'Writing a Python pipeline (pandas, openpyxl, Jinja2) that splits a client’s monthly Excel workbook into an HTML and JSON report per manager.',
+        'Reads the workbook with pandas and groups the rows by manager, so each manager’s data becomes its own table.',
+        'Not finished or run against the real workbook yet, so the manual step it targets is still done by hand.',
       ],
       sr: [
-        'Napisao Python pipeline (pandas, openpyxl) koji čita mesečnu radnu svesku i grupiše je po menadžeru.',
-        'Generisao podatke svakog menadžera kao HTML izveštaj iz Jinja2 template-a, plus mašinski čitljivu JSON kopiju.',
-        'Nisam ga doveo do kraja niti pokrenuo nad stvarnom sveskom, pa se ručni korak koji je trebalo da zameni i dalje radi rukom.',
+        'Pišem Python pipeline (pandas, openpyxl, Jinja2) koji deli klijentovu mesečnu Excel svesku na HTML i JSON izveštaj po menadžeru.',
+        'Čita svesku pomoću pandas-a i grupiše redove po menadžeru, tako da podaci svakog menadžera postaju sopstvena tabela.',
+        'Još nije dovršen ni pokrenut nad stvarnom sveskom, pa se ručni korak koji cilja i dalje radi rukom.',
       ],
+    },
+    repoNote: {
+      en: 'Private repository, work in progress',
+      sr: 'Privatni repozitorijum, u izradi',
     },
     tech: ['Python', 'pandas', 'openpyxl', 'Jinja2'],
     media: [

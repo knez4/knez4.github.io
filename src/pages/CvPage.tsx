@@ -41,14 +41,20 @@ function groupByOrg(roles: Role[]) {
  *
  * How many bullets each entry gets is tuned so the sheet stays on one page.
  */
-const BULLETS_PER_PROJECT = [2, 2];
+const BULLETS_PER_PROJECT = [3, 2];
 /**
  * Per role, in the order of `experience`. Freelance keeps two: the reporting
  * pipeline and the client sites are the paid technical work and carry the page.
  * The two FD posts get one each, because student leadership earns its place on
  * the sheet but not four lines of it, and the space buys readable type.
  */
-const BULLETS_PER_ROLE = [2, 1, 1];
+/**
+ * Per role, in the order of `experience`. Freelance shows the client sites only.
+ * The Illustrator reporting engagement is real and paid, but it is design work on
+ * a technical CV, and the space buys the booking platform's scope bullet instead.
+ * It still appears on the site, where there is room for it.
+ */
+const BULLETS_PER_ROLE = [1, 1, 1];
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

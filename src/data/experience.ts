@@ -54,7 +54,7 @@ export const experience: Role[] = [
        * honest status instead. Experience is for work that was delivered.
        */
       en: [
-        'Build marketing sites from scratch for clients, with responsive WebP images at three widths and LCP-preload tuning, to fixed deadlines.',
+        'Build marketing sites from scratch for clients, with responsive WebP images at three widths and LCP preload tuning, to fixed deadlines.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
