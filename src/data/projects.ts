@@ -148,6 +148,7 @@ export const projects: Project[] = [
       ],
     },
     tech: ['Java', 'Swing', 'JDBC', 'MySQL', 'NetBeans', 'UML', 'OCL'],
+    repoUrl: 'https://github.com/knez4/three-tier-java',
     media: [
       {
         src: '/screenshots/three-tier-layers.svg',

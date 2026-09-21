@@ -161,6 +161,13 @@ export default function CvPage() {
                   <span className="font-normal text-muted"> | {p.year}</span>
                 </p>
                 <p className="text-cv-xs italic text-muted">{p.tech.join(', ')}</p>
+                {p.repoUrl ? (
+                  <p className="text-cv-xs">
+                    <a href={p.repoUrl} className="underline decoration-dotted underline-offset-2">
+                      {p.repoUrl.replace('https://', '')}
+                    </a>
+                  </p>
+                ) : null}
                 <Bullets items={pick(p.highlights).slice(0, BULLETS_PER_PROJECT[i] ?? 3)} />
               </div>
             ))}
