@@ -323,12 +323,16 @@ export const projects: Project[] = [
 export const projectsByRank = [...projects].sort((a, b) => a.rank - b.rank);
 
 /**
- * Projects that appear on the one-page CV. The site shows all of them.
- * The client-work entry is left off the sheet on purpose: the Freelance role in
- * the experience section already describes that work, and repeating it cost the
- * space that keeps the CV to one page.
+ * Projects that appear on the one-page CV. The site shows all four.
+ * Two are left off the sheet on purpose:
+ *  - client-web: the Freelance role in Experience already describes that work
+ *    (the same site-optimization and Python-pipeline bullets), so repeating it
+ *    here would just be the same claim twice.
+ *  - three-tier-java: a short, self-contained coursework exercise rather than
+ *    a built product. The freed space goes to a fourth booking-platform bullet
+ *    instead.
  */
-export const cvProjects = projectsByRank.filter((p) => p.id !== 'client-web');
+export const cvProjects = projectsByRank.filter((p) => p.id !== 'client-web' && p.id !== 'three-tier-java');
 
 export function projectById(id: string): Project | undefined {
   return projects.find((p) => p.id === id);
