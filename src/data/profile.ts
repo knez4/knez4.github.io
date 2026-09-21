@@ -99,9 +99,16 @@ export const languages: { name: L; level: L }[] = [
   },
   {
     name: { en: 'English', sr: 'Engleski' },
+    /**
+     * CEFR levels, not a narrative. The previous wording ("speaking still
+     * developing") was accurate but handed a screener a reason to stop before
+     * anyone had heard him speak. B1 for speaking is his own calibration: asked
+     * whether he would be comfortable running a 30-minute interview entirely in
+     * English, he said no. Do not raise either level without asking him again.
+     */
     level: {
-      en: 'Solid reading and writing, speaking still developing',
-      sr: 'Čitanje i pisanje na solidnom nivou, govor u razvoju',
+      en: 'B2 reading and writing, B1 speaking',
+      sr: 'B2 čitanje i pisanje, B1 govor',
     },
   },
 ];
