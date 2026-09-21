@@ -213,7 +213,7 @@ export const projects: Project[] = [
     title: { en: 'Client websites', sr: 'Klijentski sajtovi' },
     subtitle: {
       en: 'Two sites built from scratch for paying clients, one of them tuned hard for load time',
-      sr: 'Dva sajta napravljena od nule za klijente koji plaćaju, jedan dodatno optimizovan za brzinu učitavanja',
+      sr: 'Dva kompletno izrađena sajta za klijente koji plaćaju, jedan dodatno optimizovan za brzinu učitavanja',
     },
     context: {
       en: 'Freelance web work: two full builds, each from a written change list and a fixed deadline.',
@@ -226,8 +226,8 @@ export const projects: Project[] = [
         'Removed a forced reflow on that site by coalescing a scroll-driven redraw into a single requestAnimationFrame.',
       ],
       sr: [
-        'Napravio interaktivni marketinški sajt od nule: otkrivanje kroz video masku vezano za skrol i katalog usluga po sekcijama, testiran do širine od 320px sa reduced-motion i no-JavaScript fallback-ovima.',
-        'Napravio i drugi klijentski sajt od nule i skratio mu vreme učitavanja kroz responzivne WebP slike na tri širine, preload za LCP i Brotli sa cache header-ima.',
+        'Samostalno izradio interaktivni marketinški sajt: otkrivanje kroz video masku vezano za skrol i katalog usluga po sekcijama, testiran do širine od 320px sa reduced-motion i no-JavaScript fallback-ovima.',
+        'Izradio i drugi klijentski sajt u celosti i skratio mu vreme učitavanja kroz responzivne WebP slike na tri širine, preload za LCP i Brotli sa cache header-ima.',
         'Uklonio forced reflow na tom sajtu objedinjavanjem iscrtavanja na skrol u jedan requestAnimationFrame.',
       ],
     },
@@ -256,7 +256,7 @@ export const projects: Project[] = [
           'The second had to load fast on a phone, so the image pipeline and the scroll handling were part ' +
           'of the build rather than something bolted on afterwards.',
         sr:
-          'Dva klijenta koji plaćaju, dva sajta napravljena od nule. Prvi je bio interaktivni marketinški ' +
+          'Dva klijenta koji plaćaju, dva sajta izrađena u celosti. Prvi je bio interaktivni marketinški ' +
           'sajt. Drugi je morao brzo da se učitava na telefonu, pa su isporuka slika i rad sa skrolom bili ' +
           'deo izrade, a ne nešto naknadno dodato.',
       },

@@ -54,7 +54,7 @@ export const experience: Role[] = [
       ],
       sr: [
         'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje za devet menadžera pomoću Python pipeline-a (pandas, openpyxl), čime je zamenjen ručni prepis.',
-        'Pravim sajtove za klijente koji plaćaju od nule, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
+        'Kompletno izrađujem sajtove za klijente koji plaćaju, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, radeći po pisanim listama izmena i fiksnim rokovima.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
     },
