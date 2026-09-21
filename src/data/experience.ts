@@ -47,13 +47,17 @@ export const experience: Role[] = [
       { label: 'github.com/knez4/Mystery-M', url: 'https://github.com/knez4/Mystery-M' },
     ],
     points: {
+      /**
+       * The Python reporting pipeline is deliberately not here. It was written
+       * for a client but is unfinished and has never been run, so it has replaced
+       * nothing and saved no one any time. It lives under Projects with an
+       * honest status instead. Experience is for work that was delivered.
+       */
       en: [
-        'Turn monthly Excel scorecards into HTML and JSON reports for nine managers with a Python pipeline (pandas, openpyxl), cutting preparation from about an hour per report to five minutes.',
         'Build marketing sites from scratch for clients, with responsive WebP images at three widths and LCP-preload tuning, to fixed deadlines.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
-        'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje za devet menadžera pomoću Python pipeline-a (pandas, openpyxl), čime je izrada jednog izveštaja skraćena sa oko sat vremena na pet minuta.',
         'Kompletno izrađujem sajtove za klijente, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, u fiksnim rokovima.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],

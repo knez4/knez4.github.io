@@ -10,6 +10,7 @@ const statusKey = {
   delivered: 'status.delivered',
   coursework: 'status.coursework',
   maintained: 'status.maintained',
+  unfinished: 'status.unfinished',
 } as const;
 
 function ProjectCard({ project }: { project: Project }) {

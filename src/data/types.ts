@@ -7,7 +7,9 @@ export type ProjectStatus =
   | 'prototype'
   | 'delivered'
   | 'coursework'
-  | 'maintained';
+  | 'maintained'
+  /** Written, but never finished or run. Not a prototype: nothing has worked yet. */
+  | 'unfinished';
 
 export type MediaItem = {
   /** Path under /public, e.g. "/screenshots/salon-admin.png" */

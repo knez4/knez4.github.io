@@ -36,6 +36,7 @@ export const ui = {
   'status.delivered': { en: 'Delivered to client', sr: 'Isporučeno klijentu' },
   'status.coursework': { en: 'University coursework', sr: 'Fakultetski rad' },
   'status.maintained': { en: 'Maintained', sr: 'Održava se' },
+  'status.unfinished': { en: 'Unfinished, never run', sr: 'Nedovršeno, nikad pokrenuto' },
 
   'case.problem': { en: 'The problem', sr: 'Problem' },
   'case.approach': { en: 'How it works', sr: 'Kako radi' },

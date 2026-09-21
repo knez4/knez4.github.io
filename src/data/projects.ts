@@ -289,26 +289,26 @@ export const projects: Project[] = [
     id: 'report-automation',
     rank: 5,
     year: '2025–2026',
-    status: 'delivered',
+    status: 'unfinished',
     title: { en: 'Client reporting automation', sr: 'Automatizacija klijentskih izveštaja' },
     subtitle: {
-      en: 'A Python pipeline that replaced a manual monthly copy-and-paste job',
-      sr: 'Python pipeline koji je zamenio ručni mesečni posao prepisivanja',
+      en: 'An unfinished Python pipeline for splitting a monthly Excel workbook into per-manager reports',
+      sr: 'Nedovršen Python pipeline za deljenje mesečne Excel sveske na izveštaje po menadžeru',
     },
     context: {
-      en: 'A separate freelance engagement: a client’s monthly data arrived as one Excel workbook that someone copied by hand into a report per manager.',
-      sr: 'Zaseban frilens angažman: klijentovi mesečni podaci su stizali kao jedna Excel radna sveska koju je neko ručno prepisivao u izveštaj po menadžeru.',
+      en: 'A separate freelance engagement, and the one piece of work here that never shipped. The client’s monthly data arrives as one Excel workbook that someone still copies by hand into a report per manager.',
+      sr: 'Zaseban frilens angažman, i jedini rad ovde koji nikada nije isporučen. Klijentovi mesečni podaci stižu kao jedna Excel radna sveska koju neko i dalje ručno prepisuje u izveštaj po menadžeru.',
     },
     highlights: {
       en: [
         'Wrote a Python pipeline (pandas, openpyxl) that reads the monthly workbook and groups it by manager.',
         'Rendered each manager’s data as an HTML report from a Jinja2 template, plus a machine-readable JSON copy.',
-        'Cut preparation of each monthly report from about an hour to five minutes, across nine managers.',
+        'Never finished it or ran it against the real workbook, so the manual step it was meant to remove is still being done by hand.',
       ],
       sr: [
         'Napisao Python pipeline (pandas, openpyxl) koji čita mesečnu radnu svesku i grupiše je po menadžeru.',
         'Generisao podatke svakog menadžera kao HTML izveštaj iz Jinja2 template-a, plus mašinski čitljivu JSON kopiju.',
-        'Skratio izradu jednog mesečnog izveštaja sa oko sat vremena na pet minuta, za devet menadžera.',
+        'Nisam ga doveo do kraja niti pokrenuo nad stvarnom sveskom, pa se ručni korak koji je trebalo da zameni i dalje radi rukom.',
       ],
     },
     tech: ['Python', 'pandas', 'openpyxl', 'Jinja2'],
@@ -328,11 +328,11 @@ export const projects: Project[] = [
     caseStudy: {
       problem: {
         en:
-          'A client’s monthly data arrived as one raw Excel workbook, all managers on one sheet, that ' +
-          'someone then copied by hand into a separate report for each manager every month.',
+          'A client’s monthly data arrives as one raw Excel workbook, all managers on one sheet, which ' +
+          'someone copies by hand into a separate report for each manager every month.',
         sr:
-          'Klijentovi mesečni podaci su stizali kao jedna sirova Excel radna sveska, svi menadžeri na jednom ' +
-          'listu, koju je neko svakog meseca ručno prepisivao u poseban izveštaj za svakog menadžera.',
+          'Klijentovi mesečni podaci stižu kao jedna sirova Excel radna sveska, svi menadžeri na jednom ' +
+          'listu, koju neko svakog meseca ručno prepisuje u poseban izveštaj za svakog menadžera.',
       },
       approach: {
         en: [
@@ -348,11 +348,15 @@ export const projects: Project[] = [
       },
       limits: {
         en:
-          'The script assumes the source workbook keeps the same layout every month; a structural change there ' +
-          'would need a script update, not just new data.',
+          'This one is not finished and has never been run against the client’s real workbook, so nothing ' +
+          'here is proven to work end to end and the manual step it targets is still being done by hand. ' +
+          'The script also assumes the workbook keeps the same layout every month; a structural change there ' +
+          'would need a code change, not just new data.',
         sr:
-          'Skripta pretpostavlja da izvorna radna sveska svaki mesec zadržava isti raspored; strukturna izmena ' +
-          'bi tražila izmenu skripte, ne samo nove podatke.',
+          'Ovaj rad nije dovršen i nikada nije pokrenut nad stvarnom klijentovom sveskom, pa ništa ovde nije ' +
+          'dokazano da radi od početka do kraja, a ručni korak koji cilja i dalje se radi rukom. Skripta ' +
+          'takođe pretpostavlja da sveska svaki mesec zadržava isti raspored; strukturna izmena bi tražila ' +
+          'izmenu koda, ne samo nove podatke.',
       },
     },
   },
