@@ -48,12 +48,12 @@ export const experience: Role[] = [
     ],
     points: {
       en: [
-        'Turn monthly Excel scorecards into HTML and JSON reports for nine managers with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',
+        'Turn monthly Excel scorecards into HTML and JSON reports for nine managers with a Python pipeline (pandas, openpyxl), cutting preparation from about an hour per report to five minutes.',
         'Build marketing sites from scratch for clients, with responsive WebP images at three widths and LCP-preload tuning, to fixed deadlines.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
-        'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje za devet menadžera pomoću Python pipeline-a (pandas, openpyxl), čime je zamenjen ručni prepis.',
+        'Pretvaram klijentove Excel tabele u HTML i JSON izveštaje za devet menadžera pomoću Python pipeline-a (pandas, openpyxl), čime je izrada jednog izveštaja skraćena sa oko sat vremena na pet minuta.',
         'Kompletno izrađujem sajtove za klijente, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, u fiksnim rokovima.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],

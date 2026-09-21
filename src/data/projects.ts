@@ -303,12 +303,12 @@ export const projects: Project[] = [
       en: [
         'Wrote a Python pipeline (pandas, openpyxl) that reads the monthly workbook and groups it by manager.',
         'Rendered each manager’s data as an HTML report from a Jinja2 template, plus a machine-readable JSON copy.',
-        'Replaced a manual copy-and-paste step done by hand every month.',
+        'Cut preparation of each monthly report from about an hour to five minutes, across nine managers.',
       ],
       sr: [
         'Napisao Python pipeline (pandas, openpyxl) koji čita mesečnu radnu svesku i grupiše je po menadžeru.',
         'Generisao podatke svakog menadžera kao HTML izveštaj iz Jinja2 template-a, plus mašinski čitljivu JSON kopiju.',
-        'Zamenio ručno prepisivanje koje se radilo svakog meseca.',
+        'Skratio izradu jednog mesečnog izveštaja sa oko sat vremena na pet minuta, za devet menadžera.',
       ],
     },
     tech: ['Python', 'pandas', 'openpyxl', 'Jinja2'],
