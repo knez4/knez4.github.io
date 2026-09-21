@@ -30,7 +30,10 @@ export type Project = {
   /** Shown on the CV. Keep to four bullets or fewer. */
   highlights: LL;
   tech: string[];
+  /** A single repo (most projects: one codebase, one link). */
   repoUrl?: string;
+  /** Multiple named repos, for a project bundling more than one codebase. */
+  repos?: { label: string; url: string }[];
   liveUrl?: string;
   /** Required: a project without a screenshot does not ship. Enforced by tests. */
   media: MediaItem[];

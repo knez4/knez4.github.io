@@ -32,13 +32,13 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Built a full-stack appointment booking web app end to end: public booking page, staff scheduling, client management and an admin dashboard.',
+        'Built a full-stack appointment booking web app covering four areas end to end: public booking page, staff scheduling, client management and an admin dashboard.',
         'Designed a multi-tenant PostgreSQL database and wrote the booking logic so two people can never book the same time slot.',
         'Added role-based access for owners, managers and staff, so everyone sees only what their role needs.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
-        'Napravio kompletnu veb aplikaciju za zakazivanje termina: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
+        'Napravio kompletnu veb aplikaciju za zakazivanje termina u četiri oblasti: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
         'Projektovao multi-tenant PostgreSQL bazu i napisao logiku zakazivanja tako da dvoje ljudi nikad ne mogu da zauzmu isti termin.',
         'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene, tako da svako vidi samo ono što mu je potrebno.',
         'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
@@ -217,13 +217,13 @@ export const projects: Project[] = [
     highlights: {
       en: [
         'Modelled the database and wrote the migrations across five tables, including the relationships between them.',
-        'Built statistics endpoints for the admin and moderator dashboards, aggregating usage data from the knowledge base.',
+        'Built statistics endpoints for two dashboards, admin and moderator, aggregating usage data from the knowledge base.',
         'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
         'Wrote factories and seeders so the team could work against realistic data.',
       ],
       sr: [
         'Modelovao bazu i napisao migracije za pet tabela, uključujući veze između njih.',
-        'Napravio statističke endpointe za admin i moderator panele, sa agregiranim podacima iz baze znanja.',
+        'Napravio statističke endpointe za dva panela, admin i moderator, sa agregiranim podacima iz baze znanja.',
         'Dodao CSV izvoz baze znanja i keširanje najčešće traženih odgovora.',
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],
@@ -303,7 +303,10 @@ export const projects: Project[] = [
       ],
     },
     tech: ['HTML', 'CSS', 'JavaScript', 'WebP', 'Apache', 'Python', 'pandas', 'openpyxl', 'Jinja2'],
-    repoUrl: 'https://github.com/knez4/automatization',
+    repos: [
+      { label: 'Flekout', url: 'https://github.com/knez4/flekout' },
+      { label: 'Mystery M', url: 'https://github.com/knez4/Mystery-M' },
+    ],
     media: [
       {
         src: '/screenshots/client-performance.svg',

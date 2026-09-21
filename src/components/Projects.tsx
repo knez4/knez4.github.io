@@ -74,6 +74,18 @@ function ProjectCard({ project }: { project: Project }) {
               {t('projects.viewRepo')}
             </a>
           ) : null}
+          {project.repos?.map((repo) => (
+            <a
+              key={repo.url}
+              href={repo.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-1.5 text-muted hover:text-fg"
+            >
+              <GitHub className="h-3.5 w-3.5" />
+              {repo.label}
+            </a>
+          ))}
         </div>
       </div>
     </article>

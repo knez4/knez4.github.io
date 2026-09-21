@@ -52,6 +52,12 @@ export default function ProjectCase() {
               {t('projects.viewRepo')}
             </a>
           ) : null}
+          {project.repos?.map((repo) => (
+            <a key={repo.url} href={repo.url} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
+              <GitHub className="h-3.5 w-3.5" />
+              {repo.label}
+            </a>
+          ))}
           {project.liveUrl ? (
             <a href={project.liveUrl} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
               {t('projects.viewLive')}
