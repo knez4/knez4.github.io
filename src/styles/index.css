@@ -216,7 +216,7 @@
 
 @page {
   size: A4;
-  margin: 12mm 14mm 14mm 14mm;
+  margin: 12mm 14mm 11mm 14mm;
 }
 
 @media print {

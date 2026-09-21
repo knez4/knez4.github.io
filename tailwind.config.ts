@@ -26,12 +26,21 @@ export default {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
       },
       maxWidth: { content: '70rem' },
+      /**
+       * CV type scale. px here renders at px * 0.75 pt in the PDF (96dpi to 72pt),
+       * so these land at roughly 10.1, 10.5 and 11.25pt.
+       *
+       * They used to be 10.5/11.5/12.5px, which measured 7.9/8.6/9.4pt in the
+       * generated file. That passed every parser and was painful for a person to
+       * read: MIT puts the floor at 10pt. One page has to come from cutting
+       * content, not from shrinking the type below what a recruiter will read.
+       */
       fontSize: {
-        'cv-xs': ['10.5px', '1.45'],
-        'cv-sm': ['11.5px', '1.45'],
-        'cv-base': ['12.5px', '1.5'],
-        'cv-lg': ['13.5px', '1.4'],
-        'cv-xl': ['15px', '1.3'],
+        'cv-xs': ['12.5px', '1.3'],
+        'cv-sm': ['13.5px', '1.35'],
+        'cv-base': ['14.5px', '1.3'],
+        'cv-lg': ['16px', '1.35'],
+        'cv-xl': ['18px', '1.3'],
       },
       keyframes: {
         'fade-up': {

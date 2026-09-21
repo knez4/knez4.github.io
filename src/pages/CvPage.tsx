@@ -41,23 +41,29 @@ function groupByOrg(roles: Role[]) {
  *
  * How many bullets each entry gets is tuned so the sheet stays on one page.
  */
-const BULLETS_PER_PROJECT = [3, 3];
-const BULLETS_PER_ROLE = 2;
+const BULLETS_PER_PROJECT = [2, 2];
+/**
+ * Per role, in the order of `experience`. Freelance keeps two: the reporting
+ * pipeline and the client sites are the paid technical work and carry the page.
+ * The two FD posts get one each, because student leadership earns its place on
+ * the sheet but not four lines of it, and the space buys readable type.
+ */
+const BULLETS_PER_ROLE = [2, 1, 1];
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="cv-section mt-2">
+    <section className="cv-section mt-[7px]">
       <h2 className="border-b border-line pb-[2px] text-cv-base font-bold uppercase tracking-[0.08em]">
         {title}
       </h2>
-      <div className="mt-1.5">{children}</div>
+      <div className="mt-1">{children}</div>
     </section>
   );
 }
 
 function Bullets({ items }: { items: string[] }) {
   return (
-    <ul className="mt-[3px] space-y-[2px]">
+    <ul className="mt-[2px] space-y-[1px]">
       {items.map((item) => (
         <li key={item} className="flex gap-1.5 text-cv-sm leading-[1.3]">
           <span aria-hidden="true">&bull;</span>
@@ -104,9 +110,9 @@ export default function CvPage() {
         lang={lang}
       >
         {/* Name and contact sit in the document body, never in a <header> element. */}
-        <h1 className="text-[19px] font-bold leading-tight tracking-tight">{profile.name}</h1>
+        <h1 className="text-[22px] font-bold leading-tight tracking-tight">{profile.name}</h1>
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
-        <p className="mt-1 text-cv-xs leading-relaxed">
+        <p className="mt-1 text-cv-xs leading-snug">
           {(() => {
             const phone = privateContact().phone;
             const items: { text: string; href?: string }[] = [
@@ -160,14 +166,14 @@ export default function CvPage() {
         </Section>
 
         <Section title={t('cv.projects')}>
-          <div className="space-y-1">
+          <div className="space-y-[3px]">
             {cvProjects.map((p, i) => (
               <div key={p.id} className="cv-entry">
                 <p className="text-cv-base font-semibold leading-tight">
                   {pick(p.title)}
                   <span className="font-normal text-muted"> | {p.year}</span>
                 </p>
-                <p className="text-cv-xs italic text-muted">{p.tech.join(', ')}</p>
+                <p className="text-cv-xs italic text-muted">{p.tech.slice(0, 7).join(', ')}</p>
                 {p.repoUrl ? (
                   <p className="text-cv-xs">
                     <a href={p.repoUrl} className="underline decoration-dotted underline-offset-2">
@@ -184,7 +190,7 @@ export default function CvPage() {
         </Section>
 
         <Section title={t('cv.experience')}>
-          <div className="space-y-1">
+          <div className="space-y-[3px]">
             {groupByOrg(experience).map((group, gi) =>
               group.roles.length > 1 ? (
                 <div key={gi} className="cv-entry">
@@ -202,7 +208,9 @@ export default function CvPage() {
                         {pick(role.title)}
                         <span className="font-normal text-muted"> | {pick(role.period)}</span>
                       </p>
-                      <Bullets items={pick(role.points).slice(0, BULLETS_PER_ROLE)} />
+                      <Bullets
+                        items={pick(role.points).slice(0, BULLETS_PER_ROLE[experience.indexOf(role)] ?? 2)}
+                      />
                     </div>
                   ))}
                 </div>
@@ -227,7 +235,12 @@ export default function CvPage() {
                       ))}
                     </p>
                   ) : null}
-                  <Bullets items={pick(group.roles[0].points).slice(0, BULLETS_PER_ROLE)} />
+                  <Bullets
+                    items={pick(group.roles[0].points).slice(
+                      0,
+                      BULLETS_PER_ROLE[experience.indexOf(group.roles[0])] ?? 2,
+                    )}
+                  />
                 </div>
               ),
             )}

@@ -67,14 +67,14 @@ export const profile = {
   summary: {
     en:
       'I work best on the database side. Built a multi-tenant appointment booking platform on ' +
-      'PostgreSQL across 17 migrations, with the booking rules inside the database so a modified ' +
-      'client cannot get around them. Wrote a Laravel REST API with two teammates, and have done ' +
-      'paid freelance web and reporting work since 2023. Available full time in Belgrade.',
+      'PostgreSQL, with the scheduling rules enforced in the database rather than the app. Wrote a ' +
+      'Laravel REST API with two teammates, and have done paid freelance web and reporting work ' +
+      'since 2023. Available full time in Belgrade.',
     sr:
       'Najviše radim sa bazama podataka. Napravio sam multi-tenant platformu za zakazivanje termina ' +
-      'na PostgreSQL-u kroz 17 migracija, sa pravilima zakazivanja u samoj bazi, tako da izmenjen ' +
-      'klijent ne može da ih zaobiđe. Napisao sam Laravel REST API sa dve koleginice, a od 2023. ' +
-      'radim plaćene frilens poslove izrade sajtova i izveštaja. Dostupan sam puno radno vreme u Beogradu.',
+      'na PostgreSQL-u, sa pravilima zakazivanja sprovedenim u samoj bazi umesto u aplikaciji. ' +
+      'Napisao sam Laravel REST API sa dve koleginice, a od 2023. radim plaćene frilens poslove ' +
+      'izrade sajtova i izveštaja. Dostupan sam puno radno vreme u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */

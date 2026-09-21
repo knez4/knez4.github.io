@@ -32,15 +32,15 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Built a full-stack appointment booking web app covering four areas end to end: public booking page, staff scheduling, client management and an admin dashboard.',
-        'Designed a multi-tenant PostgreSQL database of 11 tables and wrote the booking logic so two people can never book the same time slot.',
-        'Set up role-based access for owners, managers and staff, so everyone sees only what their role needs.',
+        'Designed an 11-table multi-tenant PostgreSQL database and wrote the booking logic so two clients cannot take the same staff member’s slot.',
+        'Set up role-based access for owners, managers and staff using PostgreSQL Row Level Security.',
+        'Built a full-stack booking app end to end: public booking page, staff scheduling, client management and an admin dashboard.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
-        'Napravio kompletnu veb aplikaciju za zakazivanje termina u četiri oblasti: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
-        'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao logiku zakazivanja tako da dvoje ljudi nikad ne mogu da zauzmu isti termin.',
-        'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene, tako da svako vidi samo ono što mu je potrebno.',
+        'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao logiku zakazivanja tako da dva klijenta ne mogu da zauzmu isti termin kod istog zaposlenog.',
+        'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene kroz PostgreSQL Row Level Security.',
+        'Napravio kompletnu aplikaciju za zakazivanje: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
         'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
       ],
     },
@@ -212,8 +212,8 @@ export const projects: Project[] = [
     status: 'delivered',
     title: { en: 'Client websites', sr: 'Klijentski sajtovi' },
     subtitle: {
-      en: 'Two sites built from scratch for paying clients, one of them tuned hard for load time',
-      sr: 'Dva kompletno izrađena sajta za klijente koji plaćaju, jedan dodatno optimizovan za brzinu učitavanja',
+      en: 'Two sites built from scratch for clients, one of them tuned hard for load time',
+      sr: 'Dva kompletno izrađena sajta za klijente, jedan dodatno optimizovan za brzinu učitavanja',
     },
     context: {
       en: 'Freelance web work: two full builds, each from a written change list and a fixed deadline.',
@@ -252,11 +252,11 @@ export const projects: Project[] = [
     caseStudy: {
       problem: {
         en:
-          'Two paying clients, two sites built from nothing. The first was an interactive marketing site. ' +
+          'Two clients, two sites built from nothing. The first was an interactive marketing site. ' +
           'The second had to load fast on a phone, so the image pipeline and the scroll handling were part ' +
           'of the build rather than something bolted on afterwards.',
         sr:
-          'Dva klijenta koji plaćaju, dva sajta izrađena u celosti. Prvi je bio interaktivni marketinški ' +
+          'Dva klijenta, dva sajta izrađena u celosti. Prvi je bio interaktivni marketinški ' +
           'sajt. Drugi je morao brzo da se učitava na telefonu, pa su isporuka slika i rad sa skrolom bili ' +
           'deo izrade, a ne nešto naknadno dodato.',
       },

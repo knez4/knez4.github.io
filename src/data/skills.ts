@@ -36,18 +36,19 @@ export const skillGroups: SkillGroup[] = [
     items: [
       'SQL',
       'PostgreSQL',
+      'PL/pgSQL',
       'Row Level Security',
       { en: 'Data modelling', sr: 'Modelovanje podataka' },
       { en: 'Normalization', sr: 'Normalizacija' },
       'Oracle SQL',
       'MySQL',
-      'JDBC',
     ],
   },
   {
     label: { en: 'Languages', sr: 'Programski jezici' },
     kind: 'applied',
-    items: ['Java', 'C#', 'SQL', 'PHP', 'TypeScript', 'JavaScript', 'Python'],
+    /** No SQL here: it leads the Databases line, and repeating it read as padding. */
+    items: ['Java', 'C#', 'PHP', 'TypeScript', 'JavaScript', 'Python'],
   },
   {
     label: { en: 'Backend & APIs', sr: 'Backend i API' },
@@ -57,8 +58,17 @@ export const skillGroups: SkillGroup[] = [
      * is Deno, the chatbot is PHP, the report pipeline is Python, and the client
      * sites are static. Build tooling alone does not survive "have you written a
      * Node backend?", so it comes off for the same reason Eloquent ORM did.
+     *
+     * React, HTML and CSS used to sit here too, which is simply wrong and the
+     * kind of error a technical reader notices before anything else. They have
+     * their own group now.
      */
-    items: ['Laravel', 'REST API', 'JSON', 'React', 'HTML', 'CSS', 'Laravel Sanctum'],
+    items: ['Laravel', 'Laravel Sanctum', 'REST API', 'JSON'],
+  },
+  {
+    label: { en: 'Frontend', sr: 'Frontend' },
+    kind: 'applied',
+    items: ['React', 'TypeScript', 'HTML', 'CSS'],
   },
   {
     label: { en: 'Tools', sr: 'Alati' },
