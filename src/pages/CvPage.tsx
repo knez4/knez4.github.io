@@ -205,6 +205,18 @@ export default function CvPage() {
                       | {pick(group.roles[0].org)} | {pick(group.roles[0].location)} | {pick(group.roles[0].period)}
                     </span>
                   </p>
+                  {group.roles[0].repos ? (
+                    <p className="text-cv-xs">
+                      {group.roles[0].repos.map((repo, i) => (
+                        <span key={repo.url}>
+                          {i > 0 && ' | '}
+                          <a href={repo.url} className="underline decoration-dotted underline-offset-2">
+                            {repo.label}
+                          </a>
+                        </span>
+                      ))}
+                    </p>
+                  ) : null}
                   <Bullets items={pick(group.roles[0].points).slice(0, BULLETS_PER_ROLE)} />
                 </div>
               ),

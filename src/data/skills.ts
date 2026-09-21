@@ -63,7 +63,11 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Tools', sr: 'Alati' },
     kind: 'applied',
-    items: ['Git', 'GitHub', 'Postman', 'Oracle SQL Developer', 'Excel'],
+    /**
+     * No Excel. The reporting work already describes it in Experience, and on a
+     * line next to Git, Postman and Oracle SQL Developer it read as filler.
+     */
+    items: ['Git', 'GitHub', 'Postman', 'Oracle SQL Developer'],
   },
   {
     label: { en: 'Practices', sr: 'Metode rada' },

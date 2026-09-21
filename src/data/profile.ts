@@ -31,13 +31,17 @@ export const profile = {
   siteUrl: 'https://knez4.github.io',
 
   /**
-   * Status, not a job title. The same CV goes to backend, database and general
-   * IT internship openings, so claiming one position would narrow it for no gain
+   * Field of study, not a job title. The same CV goes to backend, database and
+   * general IT openings, so claiming one position would narrow it for no gain
    * and invite "what experience?" on a CV with no IT employment yet.
+   *
+   * It does have to name the field, though. Eye-tracking puts this line second
+   * in the six-second scan, and an earlier version ("Final-year student, Faculty
+   * of Organizational Sciences") spent that slot without once saying IT.
    */
   role: {
-    en: 'Final-year student, Faculty of Organizational Sciences',
-    sr: 'Apsolvent Fakulteta organizacionih nauka',
+    en: 'Final-year student, Information Systems and Technologies',
+    sr: 'Apsolvent, Informacioni sistemi i tehnologije',
   } as L,
 
   /** Site hero only. Names the field of work so it does not repeat `role`. */
@@ -62,17 +66,15 @@ export const profile = {
    */
   summary: {
     en:
-      'Final-year Information Systems and Technologies student at the University of Belgrade. Built a ' +
-      'multi-tenant appointment booking platform on PostgreSQL across 17 migrations, with the booking ' +
-      'rules enforced inside the database rather than in application code. Wrote a Laravel REST API ' +
-      'with two teammates, and take on paid freelance web and reporting work alongside studies. ' +
-      'Available full time in Belgrade.',
+      'I work best on the database side. Built a multi-tenant appointment booking platform on ' +
+      'PostgreSQL across 17 migrations, with the booking rules inside the database so a modified ' +
+      'client cannot get around them. Wrote a Laravel REST API with two teammates, and have done ' +
+      'paid freelance web and reporting work since 2023. Available full time in Belgrade.',
     sr:
-      'Student završne godine Informacionih sistema i tehnologija na Univerzitetu u Beogradu. Napravio ' +
-      'multi-tenant platformu za zakazivanje termina na PostgreSQL-u kroz 17 migracija, sa pravilima ' +
-      'zakazivanja u samoj bazi umesto u aplikaciji. Napisao Laravel REST API sa dve koleginice, a uz ' +
-      'studije radim plaćene frilens poslove izrade sajtova i izveštaja. Dostupan puno radno vreme ' +
-      'u Beogradu.',
+      'Najviše radim sa bazama podataka. Napravio sam multi-tenant platformu za zakazivanje termina ' +
+      'na PostgreSQL-u kroz 17 migracija, sa pravilima zakazivanja u samoj bazi, tako da izmenjen ' +
+      'klijent ne može da ih zaobiđe. Napisao sam Laravel REST API sa dve koleginice, a od 2023. ' +
+      'radim plaćene frilens poslove izrade sajtova i izveštaja. Dostupan sam puno radno vreme u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */

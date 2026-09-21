@@ -6,6 +6,13 @@ export type Role = {
   location: L;
   period: L;
   points: LL;
+  /**
+   * Public repos for work described in this role. Freelance claims are the one
+   * part of the sheet a reader cannot otherwise check: the projects carry their
+   * own links, but "built sites for paying clients" was asking to be taken on
+   * faith until these went in.
+   */
+  repos?: { label: string; url: string }[];
 };
 
 /**
@@ -27,7 +34,11 @@ export const experience: Role[] = [
     title: { en: 'Freelance web development and reporting', sr: 'Frilens razvoj sajtova i izveštaja' },
     org: { en: 'Independent, working with agency clients', sr: 'Samostalno, kroz saradnju sa agencijskim klijentima' },
     location: { en: 'Belgrade', sr: 'Beograd' },
-    period: { en: '2023 – present', sr: '2023 – danas' }, // TODO(veljko): confirm start year
+    period: { en: '2023 – present', sr: '2023 – danas' },
+    repos: [
+      { label: 'github.com/knez4/flekout', url: 'https://github.com/knez4/flekout' },
+      { label: 'github.com/knez4/Mystery-M', url: 'https://github.com/knez4/Mystery-M' },
+    ],
     points: {
       en: [
         'Turn monthly Excel scorecards into HTML and JSON reports for nine managers with a Python pipeline (pandas, openpyxl), replacing a manual copy-and-paste step.',

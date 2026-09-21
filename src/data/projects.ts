@@ -34,7 +34,7 @@ export const projects: Project[] = [
       en: [
         'Built a full-stack appointment booking web app covering four areas end to end: public booking page, staff scheduling, client management and an admin dashboard.',
         'Designed a multi-tenant PostgreSQL database of 11 tables and wrote the booking logic so two people can never book the same time slot.',
-        'Added role-based access for owners, managers and staff, so everyone sees only what their role needs.',
+        'Set up role-based access for owners, managers and staff, so everyone sees only what their role needs.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     highlights: {
       en: [
         'Modelled the database and wrote the migrations across five tables, including the relationships between them.',
-        'Built statistics endpoints for two dashboards, admin and moderator, aggregating usage data from the knowledge base.',
+        'Wrote statistics endpoints for two dashboards, admin and moderator, aggregating usage data from the knowledge base.',
         'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
         'Wrote factories and seeders so the team could work against realistic data.',
       ],
@@ -208,7 +208,7 @@ export const projects: Project[] = [
   {
     id: 'client-sites',
     rank: 4,
-    year: '2025–2026',
+    year: '2025',
     status: 'delivered',
     title: { en: 'Client websites', sr: 'Klijentski sajtovi' },
     subtitle: {
