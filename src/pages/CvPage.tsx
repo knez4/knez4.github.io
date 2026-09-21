@@ -14,13 +14,19 @@ import { privateContact } from '../lib/privateContact';
  * recruiter expects from "two roles, one employer" rather than two employers.
  */
 function groupByOrg(roles: Role[]) {
-  const groups: { org: Role['org']; location: Role['location']; roles: Role[] }[] = [];
+  const groups: {
+    org: Role['org'];
+    location: Role['location'];
+    orgPeriod?: Role['orgPeriod'];
+    roles: Role[];
+  }[] = [];
   for (const role of roles) {
     const last = groups[groups.length - 1];
     if (last && last.org.en === role.org.en) {
       last.roles.push(role);
+      last.orgPeriod ??= role.orgPeriod;
     } else {
-      groups.push({ org: role.org, location: role.location, roles: [role] });
+      groups.push({ org: role.org, location: role.location, orgPeriod: role.orgPeriod, roles: [role] });
     }
   }
   return groups;
@@ -184,7 +190,11 @@ export default function CvPage() {
                 <div key={gi} className="cv-entry">
                   <p className="text-cv-base font-semibold leading-tight">
                     {pick(group.org)}
-                    <span className="font-normal text-muted"> | {pick(group.location)}</span>
+                    <span className="font-normal text-muted">
+                      {' '}
+                      | {pick(group.location)}
+                      {group.orgPeriod ? ` | ${pick(group.orgPeriod)}` : ''}
+                    </span>
                   </p>
                   {group.roles.map((role, i) => (
                     <div key={i} className="mt-0.5">
