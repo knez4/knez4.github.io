@@ -317,6 +317,42 @@ export const projects: Project[] = [
         },
       },
     ],
+    caseStudy: {
+      problem: {
+        en:
+          'Two separate client asks, both worked from a written change list with a fixed monthly deadline: a ' +
+          'marketing site was slow to load on mobile, and a client’s monthly data arrived as one raw Excel ' +
+          'workbook that someone then copied by hand into a separate report for each manager.',
+        sr:
+          'Dva odvojena klijentska zahteva, oba rađena po pisanoj listi izmena sa fiksnim mesečnim rokom: ' +
+          'marketinški sajt se sporo učitavao na mobilnom, a klijentovi mesečni podaci su stizali kao jedna ' +
+          'sirova Excel radna sveska koju je neko ručno prepisivao u poseban izveštaj za svakog menadžera.',
+      },
+      approach: {
+        en: [
+          'Profiled the site and found oversized images were the main cost; added a responsive WebP srcset at three widths with a PNG fallback, plus an LCP preload hint on the hero image.',
+          'Traced a layout jank to a scroll handler reading layout properties on every event; coalesced it into a single requestAnimationFrame callback so it reads and writes at most once per frame.',
+          'Added Brotli compression and cache-control headers via .htaccess so a repeat visit skips the download.',
+          'Wrote a Python script (pandas, openpyxl) that reads the monthly workbook, splits it by manager, and renders each one as an HTML report from a Jinja2 template plus a machine-readable JSON copy.',
+        ],
+        sr: [
+          'Profilisao sajt i utvrdio da su prevelike slike glavni trošak; dodao responsive WebP srcset na tri širine sa PNG fallback-om, i LCP preload za hero sliku.',
+          'Pratio uzrok trzaja do scroll handler-a koji je čitao layout svojstva pri svakom događaju; objedinio ga u jedan requestAnimationFrame poziv koji čita i piše najviše jednom po frejmu.',
+          'Dodao Brotli kompresiju i cache-control header-e preko .htaccess-a, tako da ponovna poseta preskače preuzimanje.',
+          'Napisao Python skriptu (pandas, openpyxl) koja čita mesečnu radnu svesku, deli je po menadžeru, i za svakog generiše HTML izveštaj iz Jinja2 template-a plus mašinski čitljivu JSON kopiju.',
+        ],
+      },
+      limits: {
+        en:
+          'The site work was scoped to the client’s change list, not a full rebuild, so the freedom to ' +
+          'restructure anything beyond that list was limited. The reporting script assumes the source workbook ' +
+          'keeps the same layout every month; a structural change there would need a script update, not just new data.',
+        sr:
+          'Rad na sajtu bio je ograničen na klijentovu listu izmena, ne kompletnu izradu, pa je sloboda za ' +
+          'restruktuiranje van te liste bila ograničena. Skripta za izveštaje pretpostavlja da izvorna radna ' +
+          'sveska svaki mesec zadržava isti raspored; strukturna izmena bi tražila izmenu skripte, ne samo nove podatke.',
+      },
+    },
   },
 ];
 
