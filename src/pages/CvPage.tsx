@@ -202,7 +202,7 @@ export default function CvPage() {
                         {pick(role.title)}
                         <span className="font-normal text-muted"> | {pick(role.period)}</span>
                       </p>
-                      <Bullets items={pick(role.cvPoints ?? role.points).slice(0, BULLETS_PER_ROLE)} />
+                      <Bullets items={pick(role.points).slice(0, BULLETS_PER_ROLE)} />
                     </div>
                   ))}
                 </div>
@@ -227,7 +227,7 @@ export default function CvPage() {
                       ))}
                     </p>
                   ) : null}
-                  <Bullets items={pick(group.roles[0].cvPoints ?? group.roles[0].points).slice(0, BULLETS_PER_ROLE)} />
+                  <Bullets items={pick(group.roles[0].points).slice(0, BULLETS_PER_ROLE)} />
                 </div>
               ),
             )}
