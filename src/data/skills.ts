@@ -78,15 +78,15 @@ export const skillGroups: SkillGroup[] = [
      * linked lists, circular lists and binary trees against the faculty's LABIS
      * abstract classes. The framework was provided; the method bodies are his.
      *
-     * 'Three-tier architecture' now rests on the booking platform (React client,
-     * PostgreSQL functions as the logic tier, tables as the data tier), NOT on
-     * the Software Design NetBeans exercise, which was downloaded and has been
-     * removed from this site. Veljko needs to answer with the salon if asked.
+     * No 'Three-tier architecture'. It was here for the Software Design NetBeans
+     * exercise, which turned out to be downloaded. Reattaching it to the booking
+     * platform was a retrofit: Veljko never designed that app in those terms, so
+     * the phrase would have been one he defended with an argument I made for him.
+     * Do not add it back on the strength of the salon.
      */
     items: [
       { en: 'Object-oriented programming', sr: 'Objektno orijentisano programiranje' },
       { en: 'Data structures and algorithms', sr: 'Strukture podataka i algoritmi' },
-      { en: 'Three-tier architecture', sr: 'Troslojna arhitektura' },
       { en: 'Database migrations', sr: 'Migracije baze podataka' },
       'UML',
       { en: 'Technical documentation', sr: 'Tehnička dokumentacija' },
