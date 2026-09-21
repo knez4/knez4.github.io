@@ -153,7 +153,12 @@ export const projects: Project[] = [
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],
     },
-    tech: ['PHP', 'Laravel 9', 'MySQL', 'Laravel Sanctum', 'REST', 'PHPUnit', 'Postman', 'Git'],
+    /**
+     * No PHPUnit. Laravel installs it into every project whether or not anyone
+     * writes a test, and Veljko does not know whether the team wrote any. A
+     * dependency in composer.json is not experience with testing.
+     */
+    tech: ['PHP', 'Laravel 9', 'MySQL', 'Laravel Sanctum', 'REST', 'Postman', 'Git'],
     repoNote: {
       en: 'Private university team repository, available on request',
       sr: 'Privatni timski fakultetski repozitorijum, dostupan na zahtev',
