@@ -32,16 +32,16 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Designed an 11-table multi-tenant PostgreSQL database and wrote the booking logic so two clients cannot take the same staff member’s slot.',
+        'Designed an 11-table multi-tenant PostgreSQL database and wrote a booking function that locks the row and re-checks availability in the same transaction, so a slot cannot be taken twice.',
         'Set up role-based access for owners, managers and staff using Row Level Security policies.',
-        'Covered the scheduling rules with SQL tests that assert against a seeded database inside a transaction.',
+        'Wrote SQL tests for slot availability, staff time off and booking limits against seeded data.',
         'Built a full-stack booking app end to end: public booking page, staff scheduling, client management and an admin dashboard.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
-        'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao logiku zakazivanja tako da dva klijenta ne mogu da zauzmu isti termin kod istog zaposlenog.',
+        'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao funkciju zakazivanja koja zaključava red i ponovo proverava dostupnost u istoj transakciji, pa se termin ne može zauzeti dvaput.',
         'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene kroz PostgreSQL Row Level Security.',
-        'Pokrio pravila zakazivanja SQL testovima nad pripremljenom bazom, unutar transakcije.',
+        'Napisao SQL testove za dostupnost termina, odsustva zaposlenih i ograničenja rezervacije.',
         'Napravio kompletnu aplikaciju za zakazivanje: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
         'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
       ],

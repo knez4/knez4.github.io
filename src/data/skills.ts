@@ -54,7 +54,7 @@ export const skillGroups: SkillGroup[] = [
      * started generating all nine decks; C# moved to the end, where a language
      * with coursework behind it and no file on disk belongs.
      */
-    items: ['Java', 'PHP', 'Python', 'TypeScript', 'JavaScript', 'C#'],
+    items: ['PHP', 'Python', 'TypeScript', 'JavaScript', 'Java', 'C#'],
   },
   {
     label: { en: 'Backend & APIs', sr: 'Backend i API' },

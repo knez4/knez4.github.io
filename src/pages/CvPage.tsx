@@ -45,10 +45,10 @@ const BULLETS_PER_PROJECT = [4, 2];
 /**
  * Per role, in the order of `experience`. Freelance shows two: the client sites
  * and the reporting tool, which are the paid technical work and carry the page.
- * DigiCon shows none. Its bullet described assigning event visuals, certificates
- * and video content, which is the least technical line on the sheet, and the
- * title and dates already carry the fact that he led a team. Dropping it bought
- * the booking platform's SQL-tests bullet.
+ * DigiCon keeps its one bullet. It was dropped for a while to buy space, which
+ * left "IT Team Lead, DigiCon" standing alone: a title that reads like he led
+ * software development, with nothing under it to say he did not. A misleading
+ * line costs more than the space it saves.
  * Its third bullet, the Illustrator reporting engagement, is real and paid but
  * it is design work on a technical CV, and the tool that replaced it says more.
  * It still appears on the site, where there is room for it.
@@ -58,7 +58,7 @@ const BULLETS_PER_PROJECT = [4, 2];
  * rest of the sheet. One line in Experience is the same claim for a fifth of
  * the space, and Experience is where delivered client work belongs anyway.
  */
-const BULLETS_PER_ROLE = [2, 1, 0];
+const BULLETS_PER_ROLE = [2, 1, 1];
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

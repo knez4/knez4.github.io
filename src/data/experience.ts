@@ -57,13 +57,13 @@ export const experience: Role[] = [
        * It now generates all nine decks, so it belongs here.
        */
       en: [
-        'Build marketing sites from scratch for clients, with responsive WebP images at three widths and LCP preload tuning, to fixed deadlines.',
-        'Automated a monthly reporting step in Python and pandas: nine Excel workbooks to nine finished PDF reports in three seconds.',
+        'Built two client marketing sites from scratch, with responsive WebP images and LCP preload tuning.',
+        'Replaced an hour-per-report manual step with a Python and pandas tool: nine Excel workbooks to nine PDF reports in three seconds.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
-        'Kompletno izrađujem sajtove za klijente, sa WebP slikama prilagođenim za tri širine ekrana i podešenim LCP preload-om, u dogovorenim rokovima.',
-        'Automatizovao mesečno izveštavanje u Python-u i pandas-u: devet Excel svezaka pretvara u devet PDF izveštaja za tri sekunde.',
+        'Kompletno sam izradio dva klijentska sajta, sa responzivnim WebP slikama i podešenim LCP preload-om.',
+        'Zamenio ručni korak od oko sat vremena po izveštaju alatom u Python-u i pandas-u: devet Excel svezaka u devet PDF izveštaja za tri sekunde.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
     },
