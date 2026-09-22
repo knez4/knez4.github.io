@@ -41,7 +41,7 @@ function groupByOrg(roles: Role[]) {
  *
  * How many bullets each entry gets is tuned so the sheet stays on one page.
  */
-const BULLETS_PER_PROJECT = [4, 2];
+const BULLETS_PER_PROJECT = [4, 3];
 /**
  * Per role, in the order of `experience`. Freelance shows two: the client sites
  * and the reporting tool, which are the paid technical work and carry the page.

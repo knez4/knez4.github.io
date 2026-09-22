@@ -35,14 +35,14 @@ export const projects: Project[] = [
         'Designed an 11-table multi-tenant PostgreSQL database and wrote a booking function that locks the row and re-checks availability in the same transaction, so a slot cannot be taken twice.',
         'Set up role-based access for owners, managers and staff using Row Level Security policies.',
         'Wrote SQL tests for slot availability, staff time off and booking limits against seeded data.',
-        'Built a full-stack booking app end to end: public booking page, staff scheduling, client management and an admin dashboard.',
+        'Built the app end to end: booking page, staff scheduling, client management and admin dashboard.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
         'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao funkciju zakazivanja koja zaključava red i ponovo proverava dostupnost u istoj transakciji, pa se termin ne može zauzeti dvaput.',
         'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene kroz PostgreSQL Row Level Security.',
         'Napisao SQL testove za dostupnost termina, odsustva zaposlenih i ograničenja rezervacije.',
-        'Napravio kompletnu aplikaciju za zakazivanje: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
+        'Napravio celu aplikaciju: zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
         'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
       ],
     },
@@ -144,13 +144,13 @@ export const projects: Project[] = [
     highlights: {
       en: [
         'Modeled the database and wrote the migrations for five tables and the relationships between them.',
-        'Wrote statistics endpoints for two dashboards, admin and moderator, aggregating usage data from the knowledge base.',
+        'Wrote API endpoints for the admin and moderator dashboards, aggregating knowledge-base usage.',
         'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
         'Wrote factories and seeders so the team could work against realistic data.',
       ],
       sr: [
         'Modelovao bazu i napisao migracije za pet tabela, uključujući veze između njih.',
-        'Napravio API endpointe za statistiku admin i moderator panela, sa agregacijom podataka iz baze znanja.',
+        'Napisao API endpointe za admin i moderator panel, sa agregacijom podataka iz baze znanja.',
         'Dodao CSV izvoz baze znanja i keširanje najčešće traženih odgovora.',
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],
