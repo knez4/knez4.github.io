@@ -49,12 +49,18 @@ const BULLETS_PER_PROJECT = [3, 2];
  * the sheet but not four lines of it, and the space buys readable type.
  */
 /**
- * Per role, in the order of `experience`. Freelance shows the client sites only.
- * The Illustrator reporting engagement is real and paid, but it is design work on
- * a technical CV, and the space buys the booking platform's scope bullet instead.
+ * Per role, in the order of `experience`. Freelance shows two: the client sites
+ * and the reporting tool, which are the paid technical work and carry the page.
+ * Its third bullet, the Illustrator reporting engagement, is real and paid but
+ * it is design work on a technical CV, and the tool that replaced it says more.
  * It still appears on the site, where there is room for it.
+ *
+ * A third Projects entry for the reporting tool was measured and does not fit:
+ * the block costs 88px against a 21px margin, which is five bullets from the
+ * rest of the sheet. One line in Experience is the same claim for a fifth of
+ * the space, and Experience is where delivered client work belongs anyway.
  */
-const BULLETS_PER_ROLE = [1, 1, 1];
+const BULLETS_PER_ROLE = [2, 1, 1];
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

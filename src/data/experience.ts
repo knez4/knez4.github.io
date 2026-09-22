@@ -48,17 +48,22 @@ export const experience: Role[] = [
     ],
     points: {
       /**
-       * The Python reporting pipeline is deliberately not here. It was written
-       * for a client but is unfinished and has never been run, so it has replaced
-       * nothing and saved no one any time. It lives under Projects with an
-       * honest status instead. Experience is for work that was delivered.
+       * The reporting tool sits second, not first. It is the stronger line, but
+       * the client sites are the longer-running work and the one a reader can
+       * check against a public repo, so they lead.
+       *
+       * It was kept off this list entirely while it was unfinished and had never
+       * been run, because it had then replaced nothing and saved no one any time.
+       * It now generates all nine decks, so it belongs here.
        */
       en: [
         'Build marketing sites from scratch for clients, with responsive WebP images at three widths and LCP preload tuning, to fixed deadlines.',
+        'Built a Python tool that turns nine client Excel workbooks into nine finished PDF reports in three seconds, replacing a step done by hand every month.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
         'Kompletno izrađujem sajtove za klijente, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, u fiksnim rokovima.',
+        'Napravio sam Python alat koji devet klijentskih Excel svezaka pretvara u devet gotovih PDF izveštaja za tri sekunde, umesto ručnog mesečnog koraka.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
     },

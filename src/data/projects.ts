@@ -294,33 +294,41 @@ export const projects: Project[] = [
     id: 'report-automation',
     rank: 5,
     year: '2025–2026',
-    status: 'unfinished',
+    status: 'delivered',
     title: { en: 'Client reporting automation', sr: 'Automatizacija klijentskih izveštaja' },
     subtitle: {
-      en: 'An unfinished Python pipeline for splitting a monthly Excel workbook into per-manager reports',
-      sr: 'Nedovršen Python pipeline za deljenje mesečne Excel sveske na izveštaje po menadžeru',
+      en: 'Turns nine Excel workbooks into nine finished PDF report decks, on the client’s own design',
+      sr: 'Pretvara devet Excel svezaka u devet gotovih PDF izveštaja, na klijentovom dizajnu',
     },
     context: {
-      en: 'A separate freelance engagement, and the one piece of work here that never shipped. The client’s monthly data arrives as one Excel workbook that someone still copies by hand into a report per manager.',
-      sr: 'Zaseban frilens angažman, i jedini rad ovde koji nikada nije isporučen. Klijentovi mesečni podaci stižu kao jedna Excel radna sveska koju neko i dalje ručno prepisuje u izveštaj po menadžeru.',
+      en:
+        'A separate freelance engagement. Each regional manager’s monthly scores arrive as their own ' +
+        'Excel workbook, and the finished report is a seven-page deck that was typeset by hand, one per ' +
+        'manager, every month.',
+      sr:
+        'Zaseban frilens angažman. Mesečne ocene svakog regionalnog menadžera stižu kao zasebna Excel ' +
+        'sveska, a gotov izveštaj je deck od sedam strana koji se svakog meseca ručno slagao, jedan po ' +
+        'menadžeru.',
     },
     highlights: {
       en: [
-        'Writing a Python pipeline (pandas, openpyxl, Jinja2) that splits a client’s monthly Excel workbook into an HTML and JSON report per manager.',
-        'Reads the workbook with pandas and groups the rows by manager, so each manager’s data becomes its own table.',
-        'Not finished or run against the real workbook yet, so the manual step it targets is still done by hand.',
+        'Built a Python tool that turns nine client workbooks into nine finished PDF decks in three seconds, replacing a step that was done by hand once a month.',
+        'Finds each table by its section heading rather than by cell address, because the blocks sit at different rows in every workbook.',
+        'Redraws the three data pages of the client’s existing design as PDF, so tables and charts reflow for managers with one branch or with seventeen.',
+        'Reports what it finds wrong in the source: workbooks naming the wrong manager, and a month header repeated instead of advanced.',
       ],
       sr: [
-        'Pišem Python pipeline (pandas, openpyxl, Jinja2) koji deli klijentovu mesečnu Excel svesku na HTML i JSON izveštaj po menadžeru.',
-        'Čita svesku pomoću pandas-a i grupiše redove po menadžeru, tako da podaci svakog menadžera postaju sopstvena tabela.',
-        'Još nije dovršen ni pokrenut nad stvarnom sveskom, pa se ručni korak koji cilja i dalje radi rukom.',
+        'Napravio sam Python alat koji devet klijentskih svezaka pretvara u devet gotovih PDF izveštaja za tri sekunde, umesto koraka koji se jednom mesečno radio ručno.',
+        'Svaku tabelu pronalazi po naslovu sekcije umesto po adresi ćelije, jer blokovi stoje u različitim redovima u svakoj svesci.',
+        'Iscrtava tri strane sa podacima na klijentovom postojećem dizajnu, pa se tabele i grafikoni prilagođavaju i menadžeru sa jednim lokalom i onom sa sedamnaest.',
+        'Prijavljuje šta u izvoru ne valja: sveske koje nose pogrešno ime menadžera i zaglavlje meseca koje se ponavlja umesto da napreduje.',
       ],
     },
     repoNote: {
-      en: 'Private repository, work in progress',
-      sr: 'Privatni repozitorijum, u izradi',
+      en: 'Private client repository, available on request',
+      sr: 'Privatni klijentski repozitorijum, dostupan na zahtev',
     },
-    tech: ['Python', 'pandas', 'openpyxl', 'Jinja2'],
+    tech: ['Python', 'pandas', 'openpyxl', 'pypdf', 'fontTools', 'Jinja2'],
     media: [
       {
         src: '/screenshots/report-pipeline.svg',
@@ -329,43 +337,47 @@ export const projects: Project[] = [
           sr: 'Dijagram automatizacije od Excel tabele do izveštaja',
         },
         caption: {
-          en: 'One workbook in, one HTML report and one JSON file per manager out.',
-          sr: 'Jedna radna sveska na ulazu, jedan HTML izveštaj i jedan JSON fajl po menadžeru na izlazu.',
+          en: 'One workbook per manager in, one finished seven-page PDF deck out.',
+          sr: 'Jedna sveska po menadžeru na ulazu, jedan gotov PDF izveštaj od sedam strana na izlazu.',
         },
       },
     ],
     caseStudy: {
       problem: {
         en:
-          'A client’s monthly data arrives as one raw Excel workbook, all managers on one sheet, which ' +
-          'someone copies by hand into a separate report for each manager every month.',
+          'Every regional manager’s monthly scores arrive as a separate Excel workbook, and the report ' +
+          'the client expects is a seven-page deck built in Adobe Illustrator. Somebody retyped the ' +
+          'numbers into it, once per manager, every month.',
         sr:
-          'Klijentovi mesečni podaci stižu kao jedna sirova Excel radna sveska, svi menadžeri na jednom ' +
-          'listu, koju neko svakog meseca ručno prepisuje u poseban izveštaj za svakog menadžera.',
+          'Mesečne ocene svakog regionalnog menadžera stižu kao zasebna Excel sveska, a izveštaj koji ' +
+          'klijent očekuje je deck od sedam strana napravljen u Adobe Illustrator-u. Neko je brojeve ' +
+          'prekucavao u njega, jednom po menadžeru, svakog meseca.',
       },
       approach: {
         en: [
-          'Read the workbook with pandas and grouped the rows by manager, so each manager’s data becomes its own table.',
-          'Rendered each group through a Jinja2 template into a standalone HTML report with the same layout every month.',
-          'Wrote a JSON copy alongside each HTML report, so the same data can be read by another script later without re-parsing the workbook.',
+          'Parsed the workbooks by searching for the LOKALI and MENADŽERI headings and reading the table under each, because no two workbooks put them in the same rows.',
+          'Carried the deck’s photography pages across untouched and redrew only the three pages that hold data, since a manager can have one branch or seventeen and the tables have to reflow.',
+          'Took the coordinates for those pages out of the Illustrator file’s own content streams, so a generated page lands where the original did.',
+          'Embedded the full typeface rather than reusing the one in the template, whose subset is missing Q, W and X.',
         ],
         sr: [
-          'Učitao radnu svesku pomoću pandas-a i grupisao redove po menadžeru, tako da podaci svakog menadžera postaju sopstvena tabela.',
-          'Generisao svaku grupu kroz Jinja2 template u samostalan HTML izveštaj sa istim rasporedom svakog meseca.',
-          'Napisao JSON kopiju uz svaki HTML izveštaj, tako da isti podaci kasnije mogu da se čitaju drugom skriptom bez ponovnog parsiranja radne sveske.',
+          'Parsirao sam sveske tražeći naslove LOKALI i MENADŽERI i čitajući tabelu ispod svakog, jer nijedne dve sveske ih ne drže u istim redovima.',
+          'Strane sa fotografijama prenose se nepromenjene, a iscrtavaju se samo tri strane sa podacima, jer menadžer može imati jedan lokal ili sedamnaest pa tabele moraju da se prilagode.',
+          'Koordinate za te strane sam izvukao iz sadržaja samog Illustrator fajla, pa generisana strana pada na isto mesto gde i originalna.',
+          'Ugradio sam pun font umesto onog iz šablona, čiji podskup nema Q, W ni X.',
         ],
       },
       limits: {
         en:
-          'This one is not finished and has never been run against the client’s real workbook, so nothing ' +
-          'here is proven to work end to end and the manual step it targets is still being done by hand. ' +
-          'The script also assumes the workbook keeps the same layout every month; a structural change there ' +
-          'would need a code change, not just new data.',
+          'It needs the Illustrator deck to draw onto, so a redesign means new coordinates, not just new ' +
+          'data. The workbooks carry month names but no year, so the cover is dated with the current one ' +
+          'unless it is passed in. And it has only been run against one month’s nine workbooks: the ' +
+          'parser survives the mistakes those nine contain, not every mistake a workbook could contain.',
         sr:
-          'Ovaj rad nije dovršen i nikada nije pokrenut nad stvarnom klijentovom sveskom, pa ništa ovde nije ' +
-          'dokazano da radi od početka do kraja, a ručni korak koji cilja i dalje se radi rukom. Skripta ' +
-          'takođe pretpostavlja da sveska svaki mesec zadržava isti raspored; strukturna izmena bi tražila ' +
-          'izmenu koda, ne samo nove podatke.',
+          'Potreban mu je Illustrator deck na koji crta, pa redizajn znači nove koordinate, a ne samo nove ' +
+          'podatke. Sveske nose imena meseci ali ne i godinu, pa se korica datira tekućom godinom ako se ne ' +
+          'prosledi. I pokrenut je samo nad devet svezaka iz jednog meseca: parser preživljava greške koje ' +
+          'tih devet sadrži, ne svaku grešku koju sveska može da sadrži.',
       },
     },
   },

@@ -47,8 +47,14 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Languages', sr: 'Programski jezici' },
     kind: 'applied',
-    /** No SQL here: it leads the Databases line, and repeating it read as padding. */
-    items: ['Java', 'C#', 'PHP', 'TypeScript', 'JavaScript', 'Python'],
+    /**
+     * No SQL here: it leads the Databases line, and repeating it read as padding.
+     *
+     * Ordered by what there is to show. Python moved up when the reporting tool
+     * started generating all nine decks; C# moved to the end, where a language
+     * with coursework behind it and no file on disk belongs.
+     */
+    items: ['Java', 'PHP', 'Python', 'TypeScript', 'JavaScript', 'C#'],
   },
   {
     label: { en: 'Backend & APIs', sr: 'Backend i API' },
