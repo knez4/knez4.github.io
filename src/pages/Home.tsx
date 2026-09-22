@@ -11,7 +11,9 @@ export default function Home() {
   const { t, pick, lang } = useLang();
 
   useHead({
-    title: `${profile.name} — ${pick(profile.role)}`,
+    // `role` now carries its own em dash ("... student — databases and backend"),
+    // so joining with another one gave the tab and the search result two of them.
+    title: `${profile.name} · ${pick(profile.role)}`,
     description: pick(profile.summary).slice(0, 300),
     canonical: `${profile.siteUrl}/`,
   });

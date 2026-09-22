@@ -38,7 +38,7 @@ export const skillGroups: SkillGroup[] = [
       'PostgreSQL',
       'PL/pgSQL',
       'Row Level Security',
-      { en: 'Data modeling', sr: 'Modelovanje podataka' },
+      { en: 'Relational data modeling', sr: 'Modelovanje relacionih baza' },
       { en: 'Normalization', sr: 'Normalizacija' },
       'Oracle SQL',
       'MySQL',

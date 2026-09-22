@@ -34,12 +34,14 @@ export const projects: Project[] = [
       en: [
         'Designed an 11-table multi-tenant PostgreSQL database and wrote the booking logic so two clients cannot take the same staff member’s slot.',
         'Set up role-based access for owners, managers and staff using Row Level Security policies.',
+        'Covered the scheduling rules with SQL tests that assert against a seeded database inside a transaction.',
         'Built a full-stack booking app end to end: public booking page, staff scheduling, client management and an admin dashboard.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
         'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao logiku zakazivanja tako da dva klijenta ne mogu da zauzmu isti termin kod istog zaposlenog.',
         'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene kroz PostgreSQL Row Level Security.',
+        'Pokrio pravila zakazivanja SQL testovima nad pripremljenom bazom, unutar transakcije.',
         'Napravio kompletnu aplikaciju za zakazivanje: javna stranica za zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
         'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
       ],
@@ -141,14 +143,14 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Modeled the database and wrote the migrations across five tables, including the relationships between them.',
+        'Modeled the database and wrote the migrations for five tables and the relationships between them.',
         'Wrote statistics endpoints for two dashboards, admin and moderator, aggregating usage data from the knowledge base.',
         'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
         'Wrote factories and seeders so the team could work against realistic data.',
       ],
       sr: [
         'Modelovao bazu i napisao migracije za pet tabela, uključujući veze između njih.',
-        'Napravio statističke endpointe za dva panela, admin i moderator, sa agregiranim podacima iz baze znanja.',
+        'Napravio statističke endpointe za admin i moderator panel, sa agregacijom podataka iz baze znanja.',
         'Dodao CSV izvoz baze znanja i keširanje najčešće traženih odgovora.',
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],

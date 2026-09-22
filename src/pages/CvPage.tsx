@@ -41,16 +41,14 @@ function groupByOrg(roles: Role[]) {
  *
  * How many bullets each entry gets is tuned so the sheet stays on one page.
  */
-const BULLETS_PER_PROJECT = [3, 2];
-/**
- * Per role, in the order of `experience`. Freelance keeps two: the reporting
- * pipeline and the client sites are the paid technical work and carry the page.
- * The two FD posts get one each, because student leadership earns its place on
- * the sheet but not four lines of it, and the space buys readable type.
- */
+const BULLETS_PER_PROJECT = [4, 2];
 /**
  * Per role, in the order of `experience`. Freelance shows two: the client sites
  * and the reporting tool, which are the paid technical work and carry the page.
+ * DigiCon shows none. Its bullet described assigning event visuals, certificates
+ * and video content, which is the least technical line on the sheet, and the
+ * title and dates already carry the fact that he led a team. Dropping it bought
+ * the booking platform's SQL-tests bullet.
  * Its third bullet, the Illustrator reporting engagement, is real and paid but
  * it is design work on a technical CV, and the tool that replaced it says more.
  * It still appears on the site, where there is room for it.
@@ -60,7 +58,7 @@ const BULLETS_PER_PROJECT = [3, 2];
  * rest of the sheet. One line in Experience is the same claim for a fifth of
  * the space, and Experience is where delivered client work belongs anyway.
  */
-const BULLETS_PER_ROLE = [2, 1, 1];
+const BULLETS_PER_ROLE = [2, 1, 0];
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -124,18 +122,26 @@ export default function CvPage() {
         {/* Name and contact sit in the document body, never in a <header> element. */}
         <h1 className="text-[22px] font-bold leading-tight tracking-tight">{profile.name}</h1>
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
-        <p className="mt-1 text-cv-xs leading-snug">
-          {(() => {
-            const phone = privateContact().phone;
-            const items: { text: string; href?: string }[] = [
-              ...(phone ? [{ text: phone, href: `tel:${phone.replace(/[^\d+]/g, '')}` }] : []),
-              { text: profile.email, href: `mailto:${profile.email}` },
-              { text: pick(profile.location) },
-              { text: profile.linkedinHandle, href: profile.linkedin },
-              { text: 'github.com/knez4', href: profile.github },
-              { text: 'knez4.github.io', href: profile.siteUrl },
-            ];
-            return items.map((item, i) => (
+        {/*
+          Two deliberate lines: how to reach him, then where to read his code.
+          As one run it wrapped anyway and orphaned the last item on a line of
+          its own, behind a leading pipe, which reads as a broken document and
+          gives a parser a fragment it can misattribute. Same height, on purpose.
+        */}
+        {(() => {
+          const phone = privateContact().phone;
+          const reach: { text: string; href?: string }[] = [
+            ...(phone ? [{ text: phone, href: `tel:${phone.replace(/[^\d+]/g, '')}` }] : []),
+            { text: profile.email, href: `mailto:${profile.email}` },
+            { text: pick(profile.location) },
+          ];
+          const links: { text: string; href?: string }[] = [
+            { text: profile.linkedinHandle, href: profile.linkedin },
+            { text: 'github.com/knez4', href: profile.github },
+            { text: 'knez4.github.io', href: profile.siteUrl },
+          ];
+          const render = (items: { text: string; href?: string }[]) =>
+            items.map((item, i) => (
               <span key={item.text}>
                 {i > 0 && ' | '}
                 {item.href ? (
@@ -147,8 +153,13 @@ export default function CvPage() {
                 )}
               </span>
             ));
-          })()}
-        </p>
+          return (
+            <>
+              <p className="mt-1 text-cv-xs leading-snug">{render(reach)}</p>
+              <p className="text-cv-xs leading-snug">{render(links)}</p>
+            </>
+          );
+        })()}
 
         <Section title={t('cv.summary')}>
           <p className="text-cv-sm leading-[1.3]">{pick(profile.summary)}</p>
@@ -175,6 +186,14 @@ export default function CvPage() {
             </p>
             <p className="text-cv-sm leading-[1.3]">{pick(education.degree)}</p>
           </div>
+          {/* Secondary school gets one line, not the two the degree gets. */}
+          <p className="text-cv-sm leading-[1.3]">
+            {pick(education.secondary.institution)}, {pick(education.secondary.degree)}
+            <span className="text-muted">
+              {' '}
+              | {pick(education.secondary.location)} | {pick(education.secondary.period)}
+            </span>
+          </p>
         </Section>
 
         <Section title={t('cv.projects')}>

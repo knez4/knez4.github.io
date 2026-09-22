@@ -93,6 +93,16 @@ export function Education() {
         <p className="font-mono text-[11px] text-subtle">{pick(education.period)}</p>
         <h3 className="mt-1 text-base font-semibold">{pick(education.institution)}</h3>
         <p className="mt-1 text-sm text-muted">{pick(education.degree)}</p>
+
+        <div className="mt-4 border-t border-line pt-4">
+          <p className="font-mono text-[11px] text-subtle">
+            {pick(education.secondary.period)}
+          </p>
+          <h4 className="mt-1 text-sm font-semibold">
+            {pick(education.secondary.institution)}
+          </h4>
+          <p className="mt-1 text-sm text-muted">{pick(education.secondary.degree)}</p>
+        </div>
       </div>
 
       <div className="card h-fit p-5">

@@ -40,8 +40,8 @@ export const profile = {
    * of Organizational Sciences") spent that slot without once saying IT.
    */
   role: {
-    en: 'Final-year student, Information Systems and Technologies',
-    sr: 'Apsolvent, Informacioni sistemi i tehnologije',
+    en: 'Final-year Information Systems student — databases and backend',
+    sr: 'Apsolvent informacionih sistema — baze podataka i backend',
   } as L,
 
   /** Site hero only. Names the field of work so it does not repeat `role`. */
@@ -66,15 +66,15 @@ export const profile = {
    */
   summary: {
     en:
-      'I work best on the database side. Built a multi-tenant appointment booking platform on ' +
-      'PostgreSQL, with the scheduling rules enforced in the database rather than the app. Wrote a ' +
-      'Laravel REST API with two teammates, and have done paid freelance web and reporting work ' +
-      'since 2023. Available full time in Belgrade.',
+      'Built a multi-tenant appointment booking platform on PostgreSQL, with the scheduling rules ' +
+      'enforced in the database rather than the app. Wrote a Laravel REST API with two teammates, ' +
+      'and paid freelance web and reporting work since 2023. Looking for a database or backend ' +
+      'internship in Belgrade, full time.',
     sr:
-      'Najviše radim sa bazama podataka. Napravio sam multi-tenant platformu za zakazivanje termina ' +
-      'na PostgreSQL-u, sa pravilima zakazivanja sprovedenim u samoj bazi umesto u aplikaciji. ' +
-      'Napisao sam Laravel REST API sa dve koleginice, a od 2023. radim plaćene frilens poslove ' +
-      'izrade sajtova i izveštaja. Dostupan sam puno radno vreme u Beogradu.',
+      'Napravio sam multi-tenant platformu za zakazivanje termina na PostgreSQL-u, sa pravilima ' +
+      'zakazivanja u samoj bazi umesto u aplikaciji. Sa dve koleginice sam napisao Laravel REST ' +
+      'API, a od 2023. radim plaćene frilens poslove izrade sajtova i izveštaja. Tražim praksu ' +
+      'sa bazama podataka ili backend razvojem u Beogradu.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */
@@ -100,15 +100,17 @@ export const languages: { name: L; level: L }[] = [
   {
     name: { en: 'English', sr: 'Engleski' },
     /**
-     * CEFR levels, not a narrative. The previous wording ("speaking still
-     * developing") was accurate but handed a screener a reason to stop before
-     * anyone had heard him speak. B1 for speaking is his own calibration: asked
-     * whether he would be comfortable running a 30-minute interview entirely in
-     * English, he said no. Do not raise either level without asking him again.
+     * B2 as a single band, which is how a self-assessment is normally reported.
+     * It was split as "B2 reading and writing, B1 speaking" for a while. That
+     * was more precise and it cost him: no other candidate itemises a weaker
+     * sub-skill, so in a scannable field it reads as a disqualifier and filters
+     * him out before anyone has heard him speak. His own calibration of the
+     * speaking half is B1 and that has not changed, so do not describe him as
+     * fluent anywhere, and do not raise this to C1 without asking him.
      */
     level: {
-      en: 'B2 reading and writing, B1 speaking',
-      sr: 'B2 čitanje i pisanje, B1 govor',
+      en: 'B2',
+      sr: 'B2',
     },
   },
 ];
