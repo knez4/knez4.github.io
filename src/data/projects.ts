@@ -25,10 +25,10 @@ export const projects: Project[] = [
     context: {
       en:
         'My mother runs a hair salon and booked every appointment in a paper notebook. ' +
-        'I built this to replace it. Sole developer, 43 commits over four weeks.',
+        'I built this to replace it. Sole developer, 38 commits over four weeks.',
       sr:
         'Moja majka ima frizerski salon i termine je vodila u svesci. Ovo sam napravio da je zameni. ' +
-        'Radio sam sam, 43 commit-a tokom četiri nedelje.',
+        'Radio sam sam, 38 commit-a tokom četiri nedelje.',
     },
     highlights: {
       en: [
@@ -150,7 +150,7 @@ export const projects: Project[] = [
       ],
       sr: [
         'Modelovao bazu i napisao migracije za pet tabela, uključujući veze između njih.',
-        'Napravio statističke endpointe za admin i moderator panel, sa agregacijom podataka iz baze znanja.',
+        'Napravio API endpointe za statistiku admin i moderator panela, sa agregacijom podataka iz baze znanja.',
         'Dodao CSV izvoz baze znanja i keširanje najčešće traženih odgovora.',
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],

@@ -62,8 +62,8 @@ export const experience: Role[] = [
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
-        'Kompletno izrađujem sajtove za klijente, uključujući responzivnu WebP isporuku slika na tri širine i podešavanje LCP preload-a, u fiksnim rokovima.',
-        'Automatizovao mesečni korak izveštavanja u Python-u i pandas-u: devet Excel svezaka do devet gotovih PDF izveštaja za tri sekunde.',
+        'Kompletno izrađujem sajtove za klijente, sa WebP slikama prilagođenim za tri širine ekrana i podešenim LCP preload-om, u dogovorenim rokovima.',
+        'Automatizovao mesečno izveštavanje u Python-u i pandas-u: devet Excel svezaka pretvara u devet PDF izveštaja za tri sekunde.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
     },

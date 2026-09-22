@@ -74,7 +74,7 @@ export const skillGroups: SkillGroup[] = [
   {
     label: { en: 'Frontend', sr: 'Frontend' },
     kind: 'applied',
-    items: ['React', 'TypeScript', 'HTML', 'CSS'],
+    items: ['React', 'HTML', 'CSS'],
   },
   {
     label: { en: 'Tools', sr: 'Alati' },
