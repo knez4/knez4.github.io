@@ -41,7 +41,7 @@ export const experience: Role[] = [
     title: { en: 'Freelance web development and reporting', sr: 'Frilens razvoj sajtova i izveštaja' },
     org: { en: 'Independent, working with agency clients', sr: 'Samostalno, kroz saradnju sa agencijskim klijentima' },
     location: { en: 'Belgrade', sr: 'Beograd' },
-    period: { en: '2023 – present', sr: '2023 – danas' },
+    period: { en: 'Mar 2023 – present', sr: 'mart 2023 – danas' },
     repos: [
       { label: 'github.com/knez4/flekout', url: 'https://github.com/knez4/flekout' },
       { label: 'github.com/knez4/Mystery-M', url: 'https://github.com/knez4/Mystery-M' },
