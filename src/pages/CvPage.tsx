@@ -42,7 +42,7 @@ const BULLETS_PER_ROLE = [2, 1, 1];
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="cv-section mt-[10px]">
-      <h2 className="border-b border-line pb-[2px] text-cv-base font-bold uppercase tracking-[0.08em]">
+      <h2 className="border-b border-line pb-[2px] text-cv-base font-bold uppercase tracking-[0.13em] text-accent">
         {title}
       </h2>
       <div className="mt-[1px]">{children}</div>
@@ -112,7 +112,7 @@ export default function CvPage() {
         */}
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
-        <h1 className="text-[28px] font-bold leading-tight tracking-tight">{profile.name}</h1>
+        <h1 className="text-[26.5px] font-bold leading-tight tracking-tight">{profile.name}</h1>
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
         {/*
           Two deliberate lines: how to reach him, then where to read his code.
@@ -156,7 +156,7 @@ export default function CvPage() {
           <img
             src="/veljko.jpg"
             alt={profile.name}
-            className="h-[140px] w-[110px] shrink-0 rounded-sm object-cover"
+            className="h-[170px] w-[132px] shrink-0 rounded-sm object-cover"
           />
         </div>
 
@@ -168,7 +168,7 @@ export default function CvPage() {
           <div className="space-y-[2px]">
             {skillsAsLines(lang).map((line) => (
               <p key={line.label} className="text-cv-sm leading-[1.3]">
-                <span className="font-semibold">{line.label}:</span> {line.value}
+                <span className="font-semibold text-accent">{line.label}:</span> {line.value}
               </p>
             ))}
           </div>
@@ -234,7 +234,7 @@ export default function CvPage() {
 
         <Section title={t('cv.educationAndLanguages')}>
           <div className="cv-entry">
-            <p className="text-cv-base font-semibold leading-tight">
+            <p className="text-cv-sm font-semibold leading-[1.3]">
               {pick(education.institution)}
               <span className="font-normal text-muted">
                 {' '}
@@ -245,15 +245,18 @@ export default function CvPage() {
           </div>
           {/* Secondary school gets one line, not the two the degree gets. */}
           <p className="text-cv-sm leading-[1.3]">
-            {pick(education.secondary.institution)} {DOT} {pick(education.secondary.degree)}
+            <span className="font-semibold">{pick(education.secondary.institution)}</span>
             <span className="text-muted">
               {' '}
-              {DOT} {pick(education.secondary.location)} {DOT} {pick(education.secondary.period)}
+              {DOT} {pick(education.secondary.degree)} {DOT} {pick(education.secondary.location)}{' '}
+              {DOT} {pick(education.secondary.period)}
             </span>
           </p>
           <p className="text-cv-sm leading-[1.3]">
-            {t('cv.languages')}
-            {languages.map((l) => ` ${DOT} ${pick(l.name)} ${pick(l.level).toLowerCase()}`).join('')}
+            <span className="font-semibold">{t('cv.languages')}</span>
+            <span className="text-muted">
+              {languages.map((l) => ` ${DOT} ${pick(l.name)} ${pick(l.level)}`).join('')}
+            </span>
           </p>
         </Section>
 
@@ -268,11 +271,22 @@ export default function CvPage() {
                   {t('cv.studentOrg')} {DOT} {pick(student[0].location)}
                   {student[0].orgPeriod ? ` ${DOT} ${pick(student[0].orgPeriod)}` : ''}
                 </p>
-                {student.map((role, i) => (
-                  <p key={i} className="mt-[2px] text-cv-sm leading-[1.3]">
-                    {role.compact ? pick(role.compact) : pick(role.title)}
-                  </p>
-                ))}
+                {student.map((role, i) => {
+                  // Same rule as everywhere else on the sheet: the thing you
+                  // scan for is bold, the rest of the line is grey. Here that
+                  // is the programme name and its year.
+                  const [anchor, ...rest] = (
+                    role.compact ? pick(role.compact) : pick(role.title)
+                  ).split(` ${DOT} `);
+                  return (
+                    <p key={i} className="mt-[2px] text-cv-sm leading-[1.3]">
+                      <span className="font-semibold">{anchor}</span>
+                      {rest.length > 0 && (
+                        <span className="text-muted"> {DOT} {rest.join(` ${DOT} `)}</span>
+                      )}
+                    </p>
+                  );
+                })}
               </div>
             );
           })()}

@@ -36,9 +36,9 @@ export default {
        * content, not from shrinking the type below what a recruiter will read.
        */
       fontSize: {
-        'cv-xs': ['12.5px', '1.3'],
-        'cv-sm': ['13.5px', '1.35'],
-        'cv-base': ['14.5px', '1.3'],
+        'cv-xs': ['11.9px', '1.62'],
+        'cv-sm': ['12.4px', '1.72'],
+        'cv-base': ['13.6px', '1.3'],
         'cv-lg': ['16px', '1.35'],
         'cv-xl': ['18px', '1.3'],
       },

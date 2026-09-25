@@ -94,11 +94,11 @@ export const profile = {
 
 export const languages: { name: L; level: L }[] = [
   {
-    name: { en: 'Serbian', sr: 'Srpski' },
-    level: { en: 'Native', sr: 'Maternji' },
+    name: { en: 'Serbian', sr: 'srpski' },
+    level: { en: 'native', sr: 'maternji' },
   },
   {
-    name: { en: 'English', sr: 'Engleski' },
+    name: { en: 'English', sr: 'engleski' },
     /**
      * B2 as a single band, which is how a self-assessment is normally reported.
      * It was split as "B2 reading and writing, B1 speaking" for a while. That
