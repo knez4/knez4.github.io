@@ -38,14 +38,14 @@ export const skillGroups: SkillGroup[] = [
       'PostgreSQL',
       'PL/pgSQL',
       'Row Level Security',
-      { en: 'Relational data modeling', sr: 'Modelovanje relacionih baza' },
-      { en: 'Normalization', sr: 'Normalizacija' },
+      { en: 'relational data modeling', sr: 'Modelovanje relacionih baza' },
+      { en: 'normalization', sr: 'Normalizacija' },
       'Oracle SQL',
       'MySQL',
     ],
   },
   {
-    label: { en: 'Languages', sr: 'Programski jezici' },
+    label: { en: 'Programming languages', sr: 'Programski jezici' },
     kind: 'applied',
     /**
      * No SQL here: it leads the Databases line, and repeating it read as padding.
@@ -57,7 +57,7 @@ export const skillGroups: SkillGroup[] = [
     items: ['PHP', 'Python', 'TypeScript', 'JavaScript', 'Java', 'C#'],
   },
   {
-    label: { en: 'Backend & APIs', sr: 'Backend i API' },
+    label: { en: 'Backend and APIs', sr: 'Backend i API' },
     kind: 'applied',
     /**
      * No Node.js: it appeared in no project's stack. The Supabase edge function
@@ -101,11 +101,11 @@ export const skillGroups: SkillGroup[] = [
      * Do not add it back on the strength of the salon.
      */
     items: [
-      { en: 'Object-oriented programming', sr: 'Objektno orijentisano programiranje' },
-      { en: 'Data structures and algorithms', sr: 'Strukture podataka i algoritmi' },
-      { en: 'Database migrations', sr: 'Migracije baze podataka' },
+      { en: 'object-oriented programming', sr: 'Objektno orijentisano programiranje' },
+      { en: 'data structures and algorithms', sr: 'Strukture podataka i algoritmi' },
+      { en: 'database migrations', sr: 'Migracije baze podataka' },
       'UML',
-      { en: 'Technical documentation', sr: 'Tehnička dokumentacija' },
+      { en: 'technical documentation', sr: 'Tehnička dokumentacija' },
     ],
   },
   {

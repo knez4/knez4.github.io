@@ -6,10 +6,10 @@ export const education = {
     sr: 'Fakultet organizacionih nauka, Univerzitet u Beogradu',
   } as L,
   degree: {
-    en: 'BSc Information Systems and Technologies, module: E-Business Technologies',
-    sr: 'Informacioni sistemi i tehnologije, modul: Tehnologije elektronskog poslovanja',
+    en: 'Information Systems and Technologies, E-business Technologies track',
+    sr: 'Informacioni sistemi i tehnologije, modul Tehnologije elektronskog poslovanja',
   } as L,
-  period: { en: 'Oct 2022 – expected 2027', sr: 'okt. 2022 – očekivano 2027' } as L,
+  period: { en: 'October 2022 – expected 2027', sr: 'oktobar 2022 – očekivano 2027' } as L,
   index: '2022/0390', // TODO(veljko): confirm
   location: { en: 'Belgrade', sr: 'Beograd' } as L,
 
@@ -21,9 +21,9 @@ export const education = {
    * thing to cut.
    */
   secondary: {
-    institution: { en: 'Tehnička škola Užice', sr: 'Tehnička škola Užice' } as L,
-    degree: { en: 'Information technology', sr: 'Informacione tehnologije' } as L,
-    period: { en: '2018 – 2022', sr: '2018 – 2022.' } as L,
+    institution: { en: 'Užice Technical School', sr: 'Tehnička škola Užice' } as L,
+    degree: { en: 'information technology', sr: 'informacione tehnologije' } as L,
+    period: { en: '2018 – 2022', sr: '2018 – 2022' } as L,
     location: { en: 'Užice', sr: 'Užice' } as L,
   },
 };

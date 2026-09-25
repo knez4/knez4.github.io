@@ -1,36 +1,12 @@
 import { Download, Printer } from '../components/icons';
 import { cvProjects } from '../data/projects';
 import { education } from '../data/education';
-import { experience, type Role } from '../data/experience';
+import { experience } from '../data/experience';
 import { languages, profile } from '../data/profile';
 import { skillsAsLines } from '../data/skills';
 import { useHead } from '../lib/useHead';
 import { useLang } from '../lib/useLang';
 import { privateContact } from '../lib/privateContact';
-
-/**
- * Consecutive roles that share an org (FD Organization's two roles) print under
- * one header instead of repeating the org name once per role, which is what a
- * recruiter expects from "two roles, one employer" rather than two employers.
- */
-function groupByOrg(roles: Role[]) {
-  const groups: {
-    org: Role['org'];
-    location: Role['location'];
-    orgPeriod?: Role['orgPeriod'];
-    roles: Role[];
-  }[] = [];
-  for (const role of roles) {
-    const last = groups[groups.length - 1];
-    if (last && last.org.en === role.org.en) {
-      last.roles.push(role);
-      last.orgPeriod ??= role.orgPeriod;
-    } else {
-      groups.push({ org: role.org, location: role.location, orgPeriod: role.orgPeriod, roles: [role] });
-    }
-  }
-  return groups;
-}
 
 /**
  * One page, one column, no tables, no icons, no text boxes.
@@ -41,6 +17,9 @@ function groupByOrg(roles: Role[]) {
  *
  * How many bullets each entry gets is tuned so the sheet stays on one page.
  */
+/** The separator he uses throughout, instead of a pipe. */
+const DOT = '·';
+
 const BULLETS_PER_PROJECT = [4, 3];
 /**
  * Per role, in the order of `experience`. Freelance shows two: the client sites
@@ -153,7 +132,7 @@ export default function CvPage() {
           const render = (items: { text: string; href?: string }[]) =>
             items.map((item, i) => (
               <span key={item.text}>
-                {i > 0 && ' | '}
+                {i > 0 && ` ${DOT} `}
                 {item.href ? (
                   <a href={item.href} className="underline decoration-dotted underline-offset-2">
                     {item.text}
@@ -192,25 +171,37 @@ export default function CvPage() {
           </div>
         </Section>
 
-        <Section title={t('cv.education')}>
-          <div className="cv-entry">
-            <p className="text-cv-base font-semibold leading-tight">
-              {pick(education.institution)}
-              <span className="font-normal text-muted">
-                {' '}
-                | {pick(education.location)} | {pick(education.period)}
-              </span>
-            </p>
-            <p className="text-cv-sm leading-[1.3]">{pick(education.degree)}</p>
+        {/*
+          Section order is his: paid work before projects, education and
+          languages together, the student organization last under its own
+          heading so a reader looking for professional experience does not have
+          to sort it out of the Experience block.
+        */}
+        <Section title={t('cv.experience')}>
+          <div className="space-y-[3px]">
+            {experience
+              .filter((role) => role.kind !== 'student')
+              .map((role, i) => (
+                <div key={i} className="cv-entry">
+                  <p className="text-cv-base font-semibold leading-tight">{pick(role.title)}</p>
+                  <p className="text-cv-xs text-muted">
+                    {pick(role.org)} {DOT} {pick(role.location)} {DOT} {pick(role.period)}
+                  </p>
+                  <p className="text-cv-xs text-muted">
+                    {role.tech ? `${role.tech.join(', ')} ${DOT} ` : ''}
+                    {role.repos?.map((repo, j) => (
+                      <span key={repo.url}>
+                        {j > 0 && ` ${DOT} `}
+                        <a href={repo.url} className="underline decoration-dotted underline-offset-2">
+                          {repo.label}
+                        </a>
+                      </span>
+                    ))}
+                  </p>
+                  <Bullets items={pick(role.points).slice(0, BULLETS_PER_ROLE[i] ?? 2)} />
+                </div>
+              ))}
           </div>
-          {/* Secondary school gets one line, not the two the degree gets. */}
-          <p className="text-cv-sm leading-[1.3]">
-            {pick(education.secondary.institution)}, {pick(education.secondary.degree)}
-            <span className="text-muted">
-              {' '}
-              | {pick(education.secondary.location)} | {pick(education.secondary.period)}
-            </span>
-          </p>
         </Section>
 
         <Section title={t('cv.projects')}>
@@ -219,86 +210,69 @@ export default function CvPage() {
               <div key={p.id} className="cv-entry">
                 <p className="text-cv-base font-semibold leading-tight">
                   {pick(p.title)}
-                  <span className="font-normal text-muted"> | {p.year}</span>
+                  <span className="font-normal text-muted"> {DOT} {p.year}</span>
                 </p>
-                <p className="text-cv-xs italic text-muted">{p.tech.slice(0, 7).join(', ')}</p>
-                {p.repoUrl ? (
-                  <p className="text-cv-xs">
+                {/* Stack and repo share a line, the way he laid it out. */}
+                <p className="text-cv-xs text-muted">
+                  {p.tech.slice(0, 7).join(', ')} {DOT}{' '}
+                  {p.repoUrl ? (
                     <a href={p.repoUrl} className="underline decoration-dotted underline-offset-2">
                       {p.repoUrl.replace('https://', '')}
                     </a>
-                  </p>
-                ) : p.repoNote ? (
-                  <p className="text-cv-xs text-muted">{pick(p.repoNote)}</p>
-                ) : null}
+                  ) : p.repoNote ? (
+                    pick(p.repoNote)
+                  ) : null}
+                </p>
                 <Bullets items={pick(p.highlights).slice(0, BULLETS_PER_PROJECT[i] ?? 3)} />
               </div>
             ))}
           </div>
         </Section>
 
-        <Section title={t('cv.experience')}>
-          <div className="space-y-[3px]">
-            {groupByOrg(experience).map((group, gi) =>
-              group.roles.length > 1 ? (
-                <div key={gi} className="cv-entry">
-                  <p className="text-cv-base font-semibold leading-tight">
-                    {pick(group.org)}
-                    <span className="font-normal text-muted">
-                      {' '}
-                      | {pick(group.location)}
-                      {group.orgPeriod ? ` | ${pick(group.orgPeriod)}` : ''}
-                    </span>
-                  </p>
-                  {group.roles.map((role, i) => (
-                    <div key={i} className="mt-0.5">
-                      <p className="text-cv-sm font-semibold leading-tight">
-                        {pick(role.title)}
-                        <span className="font-normal text-muted"> | {pick(role.period)}</span>
-                      </p>
-                      <Bullets
-                        items={pick(role.points).slice(0, BULLETS_PER_ROLE[experience.indexOf(role)] ?? 2)}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div key={gi} className="cv-entry">
-                  <p className="text-cv-base font-semibold leading-tight">
-                    {pick(group.roles[0].title)}
-                    <span className="font-normal text-muted">
-                      {' '}
-                      | {pick(group.roles[0].org)} | {pick(group.roles[0].location)} | {pick(group.roles[0].period)}
-                    </span>
-                  </p>
-                  {group.roles[0].repos ? (
-                    <p className="text-cv-xs">
-                      {group.roles[0].repos.map((repo, i) => (
-                        <span key={repo.url}>
-                          {i > 0 && ' | '}
-                          <a href={repo.url} className="underline decoration-dotted underline-offset-2">
-                            {repo.label}
-                          </a>
-                        </span>
-                      ))}
-                    </p>
-                  ) : null}
-                  <Bullets
-                    items={pick(group.roles[0].points).slice(
-                      0,
-                      BULLETS_PER_ROLE[experience.indexOf(group.roles[0])] ?? 2,
-                    )}
-                  />
-                </div>
-              ),
-            )}
+        <Section title={t('cv.educationAndLanguages')}>
+          <div className="cv-entry">
+            <p className="text-cv-base font-semibold leading-tight">
+              {pick(education.institution)}
+              <span className="font-normal text-muted">
+                {' '}
+                {DOT} {pick(education.location)} {DOT} {pick(education.period)}
+              </span>
+            </p>
+            <p className="text-cv-sm leading-[1.3]">{pick(education.degree)}</p>
           </div>
+          {/* Secondary school gets one line, not the two the degree gets. */}
+          <p className="text-cv-sm leading-[1.3]">
+            {pick(education.secondary.institution)} {DOT} {pick(education.secondary.degree)}
+            <span className="text-muted">
+              {' '}
+              {DOT} {pick(education.secondary.location)} {DOT} {pick(education.secondary.period)}
+            </span>
+          </p>
+          <p className="text-cv-sm leading-[1.3]">
+            {t('cv.languages')}
+            {languages.map((l) => ` ${DOT} ${pick(l.name)} ${pick(l.level).toLowerCase()}`).join('')}
+          </p>
         </Section>
 
-        <Section title={t('cv.languages')}>
-          <p className="text-cv-sm leading-[1.3]">
-            {languages.map((l) => `${pick(l.name)}: ${pick(l.level)}`).join('. ')}.
-          </p>
+        <Section title={t('cv.studentActivities')}>
+          {(() => {
+            const student = experience.filter((role) => role.kind === 'student');
+            if (student.length === 0) return null;
+            return (
+              <div className="cv-entry">
+                <p className="text-cv-base font-semibold leading-tight">{pick(student[0].org)}</p>
+                <p className="text-cv-xs text-muted">
+                  {t('cv.studentOrg')} {DOT} {pick(student[0].location)}
+                  {student[0].orgPeriod ? ` ${DOT} ${pick(student[0].orgPeriod)}` : ''}
+                </p>
+                {student.map((role, i) => (
+                  <p key={i} className="mt-[2px] text-cv-sm leading-[1.3]">
+                    {role.compact ? pick(role.compact) : pick(role.title)}
+                  </p>
+                ))}
+              </div>
+            );
+          })()}
         </Section>
       </article>
     </div>

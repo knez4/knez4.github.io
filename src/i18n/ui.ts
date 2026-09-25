@@ -85,6 +85,9 @@ export const ui = {
   'cv.experience': { en: 'Experience', sr: 'Iskustvo' },
   'cv.education': { en: 'Education', sr: 'Obrazovanje' },
   'cv.languages': { en: 'Languages', sr: 'Jezici' },
+  'cv.educationAndLanguages': { en: 'Education and languages', sr: 'Obrazovanje i jezici' },
+  'cv.studentActivities': { en: 'Student activities', sr: 'Studentske aktivnosti' },
+  'cv.studentOrg': { en: 'Student organization', sr: 'Studentska organizacija' },
 
   'footer.builtWith': {
     en: 'Built with React, TypeScript and Tailwind. Source on GitHub.',

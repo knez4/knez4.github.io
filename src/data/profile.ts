@@ -40,8 +40,8 @@ export const profile = {
    * of Organizational Sciences") spent that slot without once saying IT.
    */
   role: {
-    en: 'Final-year Information Systems student — databases and backend',
-    sr: 'Apsolvent informacionih sistema — baze podataka i backend',
+    en: 'Final-year Information Systems student · databases and backend',
+    sr: 'Apsolvent informacionih sistema · baze podataka i backend',
   } as L,
 
   /** Site hero only. Names the field of work so it does not repeat `role`. */
@@ -66,15 +66,15 @@ export const profile = {
    */
   summary: {
     en:
-      'Built a multi-tenant appointment booking platform on PostgreSQL, with the scheduling rules ' +
-      'enforced in the database, not the app. Wrote a Laravel REST API with two teammates and have ' +
-      'done paid freelance web and reporting work since 2023. Looking for a database or backend ' +
-      'internship in Belgrade, full time.',
+      'Final-year Information Systems student focused on databases and backend. Three years of ' +
+      'freelance work building websites and reporting tools, alongside projects where booking rules ' +
+      'and access control are enforced in the database rather than in the application layer. ' +
+      'Looking for an internship or junior role in Belgrade, full time.',
     sr:
-      'Napravio sam multi-tenant platformu za zakazivanje termina na PostgreSQL-u, sa pravilima ' +
-      'zakazivanja u samoj bazi umesto u aplikaciji. Sa dve koleginice sam napisao Laravel REST ' +
-      'API, a od 2023. radim plaćene frilens poslove izrade sajtova i izveštaja. Tražim praksu ' +
-      'sa bazama podataka ili backend razvojem u Beogradu, puno radno vreme.',
+      'Apsolvent informacionih sistema, usmeren na baze podataka i backend. Tri godine freelance ' +
+      'rada na sajtovima i alatima za izveštavanje, uz projekte u kojima su pravila zakazivanja i ' +
+      'kontrola pristupa sprovedeni u bazi, umesto u aplikacionom sloju. Tražim praksu ili ' +
+      'juniorsku poziciju u Beogradu, puno radno vreme.',
   } as L,
 
   /** Short pitch for the contact section and for copy-to-clipboard. */

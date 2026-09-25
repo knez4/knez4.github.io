@@ -32,28 +32,30 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Designed an 11-table multi-tenant PostgreSQL database and wrote a booking function that locks the row and re-checks availability in the same transaction, so a slot cannot be taken twice.',
-        'Set up role-based access for owners, managers and staff using Row Level Security policies.',
-        'Wrote SQL tests for slot availability, staff time off and booking limits against seeded data.',
-        'Built the app end to end: booking page, staff scheduling, client management and admin dashboard.',
+        'Designed an 11-table multi-tenant schema and wrote a booking function that locks the row and re-checks availability inside the same transaction, so a slot cannot be double-booked.',
+        'Added role-based access for owners, managers and staff through PostgreSQL Row Level Security.',
+        'Wrote SQL tests covering slot availability, staff time off and booking constraints.',
+        'Built the full application: booking, staff scheduling, client records and an admin panel.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
-        'Projektovao multi-tenant PostgreSQL bazu od 11 tabela i napisao funkciju zakazivanja koja zaključava red i ponovo proverava dostupnost u istoj transakciji, pa se termin ne može zauzeti dvaput.',
-        'Dodao pristup po ulogama za vlasnike, menadžere i zaposlene kroz PostgreSQL Row Level Security.',
-        'Napisao SQL testove za dostupnost termina, odsustva zaposlenih i ograničenja rezervacije.',
-        'Napravio celu aplikaciju: zakazivanje, raspored zaposlenih, upravljanje klijentima i admin panel.',
+        'Projektovao multi-tenant bazu od 11 tabela i napisao funkciju zakazivanja koja zaključava red i ponovo proverava dostupnost u istoj transakciji, pa se termin ne može zauzeti dvaput.',
+        'Uveo pristup po ulogama za vlasnike, menadžere i zaposlene kroz PostgreSQL Row Level Security.',
+        'Napisao SQL testove za dostupnost termina, odsustva zaposlenih i ograničenja rezervacija.',
+        'Izradio celu aplikaciju: zakazivanje, raspored zaposlenih, klijente i admin panel.',
         'Automatizovao potvrde mejlom za nove termine kroz pozadinski red zadataka.',
       ],
     },
+    /** His order. The CV prints the first seven; Vite, Deno and Resend are
+     *  real but they are build and delivery plumbing, so they stay on the site. */
     tech: [
       'PostgreSQL',
-      'SQL',
-      'Supabase',
-      'Row Level Security',
       'PL/pgSQL',
+      'Row Level Security',
+      'Supabase',
       'React',
       'TypeScript',
+      'SQL',
       'Vite',
       'Deno',
       'Resend',
@@ -126,8 +128,8 @@ export const projects: Project[] = [
     year: '2026',
     status: 'coursework',
     title: {
-      en: 'Knowledge-base chatbot REST API',
-      sr: 'REST API chatbot-a nad bazom znanja',
+      en: 'Knowledge base REST API for a chatbot',
+      sr: 'REST API chatbota nad bazom znanja',
     },
     subtitle: {
       en: 'Laravel service answering student-services questions, built by a team of three',
@@ -143,14 +145,14 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Modeled the database and wrote the migrations for five tables and the relationships between them.',
-        'Wrote API endpoints for the admin and moderator dashboards, aggregating knowledge-base usage.',
-        'Added CSV export of the knowledge base and caching for the most frequently requested responses.',
+        'Modeled the database and wrote migrations for five tables, including the relations between them.',
+        'Wrote API endpoints for the admin and moderator panels, aggregating data from the knowledge base.',
+        'Added CSV export of the knowledge base and caching for the most requested answers.',
         'Wrote factories and seeders so the team could work against realistic data.',
       ],
       sr: [
         'Modelovao bazu i napisao migracije za pet tabela, uključujući veze između njih.',
-        'Napisao API endpointe za admin i moderator panel, sa agregacijom podataka iz baze znanja.',
+        'Napisao API endpointe za admin i moderatorski panel, sa agregacijom podataka iz baze znanja.',
         'Dodao CSV izvoz baze znanja i keširanje najčešće traženih odgovora.',
         'Napisao factories i seeders da tim radi nad realističnim podacima.',
       ],
@@ -162,8 +164,8 @@ export const projects: Project[] = [
      */
     tech: ['PHP', 'Laravel 9', 'MySQL', 'Laravel Sanctum', 'REST', 'Postman', 'Git'],
     repoNote: {
-      en: 'Private university team repository, available on request',
-      sr: 'Privatni timski fakultetski repozitorijum, dostupan na zahtev',
+      en: 'private team repository, available on request',
+      sr: 'privatni timski repozitorijum, dostupan na zahtev',
     },
     media: [
       {

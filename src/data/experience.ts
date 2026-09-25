@@ -20,6 +20,24 @@ export type Role = {
    * instead of as the whole of his time at FD.
    */
   orgPeriod?: L;
+  /**
+   * The stack this role was worked in, printed under the org line the way the
+   * project entries print theirs. Veljko added it; the list here is the one the
+   * repos actually contain.
+   */
+  tech?: string[];
+  /**
+   * 'work' prints under EXPERIENCE, 'student' under STUDENT ACTIVITIES. The
+   * split is his: a reader looking for professional experience should not have
+   * to sort a student organization out of it.
+   */
+  kind?: 'work' | 'student';
+  /**
+   * A student activity rendered as one line instead of a heading plus bullets,
+   * which is how he laid them out. The structured fields above stay, because
+   * the site still renders them in full.
+   */
+  compact?: L;
 };
 
 /**
@@ -38,10 +56,21 @@ export type Role = {
  */
 export const experience: Role[] = [
   {
-    title: { en: 'Freelance web development and reporting', sr: 'Frilens razvoj sajtova i izveštaja' },
-    org: { en: 'Independent, working with agency clients', sr: 'Samostalno, kroz saradnju sa agencijskim klijentima' },
+    title: {
+      en: 'Freelance developer, websites and reporting tools',
+      sr: 'Freelance razvoj sajtova i alata za izveštavanje',
+    },
+    org: { en: 'Self-employed, for agency clients', sr: 'Samostalno, za agencijske klijente' },
     location: { en: 'Belgrade', sr: 'Beograd' },
-    period: { en: 'Mar 2023 – present', sr: 'mart 2023 – danas' },
+    period: { en: 'March 2023 – present', sr: 'mart 2023 – danas' },
+    kind: 'work',
+    /**
+     * No PHP, Laravel or MySQL. Those belong to the chatbot, which is a faculty
+     * project, not freelance work. GitHub reports flekout as HTML, Python and
+     * JavaScript and Mystery-M as HTML, CSS and JavaScript, and a stack line
+     * sitting directly above two links to those repos is checked in one click.
+     */
+    tech: ['HTML', 'CSS', 'JavaScript', 'Python', 'pandas', 'Git'],
     repos: [
       { label: 'github.com/knez4/flekout', url: 'https://github.com/knez4/flekout' },
       { label: 'github.com/knez4/Mystery-M', url: 'https://github.com/knez4/Mystery-M' },
@@ -57,23 +86,28 @@ export const experience: Role[] = [
        * It now generates all nine decks, so it belongs here.
        */
       en: [
-        'Built two client marketing sites from scratch, with responsive WebP images and LCP preload tuning.',
-        'Replaced an hour-per-report manual step with a Python and pandas tool: nine Excel workbooks to nine PDF reports in three seconds.',
+        'Built two client websites from scratch, with responsive WebP images and a tuned LCP preload.',
+        'Replaced a manual reporting routine with a Python and pandas tool that turns nine Excel workbooks into nine PDF reports in three seconds instead of about an hour.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
-        'Kompletno sam izradio dva klijentska sajta, sa responzivnim WebP slikama i podešenim LCP preload-om.',
-        'Zamenio ručni korak od oko sat vremena po izveštaju alatom u Python-u i pandas-u: devet Excel svezaka u devet PDF izveštaja za tri sekunde.',
+        'Izradio dva klijentska sajta, sa responzivnim WebP slikama i podešenim LCP preload-om.',
+        'Zamenio ručno izveštavanje alatom u Python-u i pandas-u koji devet Excel svezaka pretvara u devet PDF izveštaja za tri sekunde, umesto za oko sat vremena.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
     },
   },
   {
     title: { en: 'Project Coordinator, Future Leader', sr: 'Koordinator projekta, Future Leader' },
-    org: { en: 'FD Organization (student organization)', sr: 'FD Organization (studentska organizacija)' },
+    org: { en: 'FON Digital Organization', sr: 'FON Digital Organization' },
     location: { en: 'Belgrade', sr: 'Beograd' },
-    orgPeriod: { en: '2023 – 2025', sr: '2023 – 2025.' },
+    orgPeriod: { en: '2023 – 2025', sr: '2023 – 2025' },
     period: { en: 'Feb – May 2024', sr: 'feb. – maj 2024.' },
+    kind: 'student',
+    compact: {
+      en: 'Future Leader (2024) · Project coordinator · coordinated around 50 members across four teams.',
+      sr: 'Future Leader (2024) · Koordinator projekta · koordinisao oko 50 članova u četiri tima.',
+    },
     points: {
       en: [
         'Coordinated around 50 members across the corporate relations, HR, PR and IT teams.',
@@ -89,9 +123,14 @@ export const experience: Role[] = [
   },
   {
     title: { en: 'IT Team Lead, DigiCon', sr: 'Vođa IT tima, DigiCon' },
-    org: { en: 'FD Organization (student organization)', sr: 'FD Organization (studentska organizacija)' },
+    org: { en: 'FON Digital Organization', sr: 'FON Digital Organization' },
     location: { en: 'Belgrade', sr: 'Beograd' },
     period: { en: 'Dec 2023 – Mar 2024', sr: 'dec. 2023 – mart 2024.' },
+    kind: 'student',
+    compact: {
+      en: 'DigiCon (2023 – 2024) · IT team lead · oversaw production of visuals, certificates and video content.',
+      sr: 'DigiCon (2023 – 2024) · Vođa IT tima · vodio izradu vizuala, sertifikata i video sadržaja.',
+    },
     points: {
       en: [
         'Led the IT team for DigiCon, assigning and reviewing event visuals, certificates and video content.',
