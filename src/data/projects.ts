@@ -32,14 +32,14 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Designed an 11-table multi-tenant schema and wrote a booking function that locks the row and re-checks availability inside the same transaction, so a slot cannot be double-booked.',
+        'Designed an 11-table multi-tenant schema and wrote a booking function that takes a transaction-level advisory lock and re-checks availability, so a slot cannot be double-booked.',
         'Added role-based access for owners, managers and staff through PostgreSQL Row Level Security.',
         'Wrote SQL tests covering slot availability, staff time off and booking constraints.',
         'Built the full application: booking, staff scheduling, client records and an admin panel.',
         'Automated email confirmations for new appointments through a background job queue.',
       ],
       sr: [
-        'Projektovao multi-tenant bazu od 11 tabela i napisao funkciju zakazivanja koja zaključava red i ponovo proverava dostupnost u istoj transakciji, pa se termin ne može zauzeti dvaput.',
+        'Projektovao multi-tenant bazu od 11 tabela i napisao funkciju zakazivanja koja uzima advisory lock na nivou transakcije i ponovo proverava dostupnost, pa se termin ne može zauzeti dvaput.',
         'Uveo pristup po ulogama za vlasnike, menadžere i zaposlene kroz PostgreSQL Row Level Security.',
         'Napisao SQL testove za dostupnost termina, odsustva zaposlenih i ograničenja rezervacija.',
         'Izradio celu aplikaciju: zakazivanje, raspored zaposlenih, klijente i admin panel.',
@@ -88,14 +88,14 @@ export const projects: Project[] = [
       approach: {
         en: [
           'Put the rules in the database, not in the client. Both available-slot computation and appointment creation are PostgreSQL functions called over RPC, so a modified frontend cannot bypass them.',
-          'create_appointment takes a row lock and re-reads availability inside the same transaction before inserting.',
+          'create_appointment takes an advisory lock on the salon and date, then re-reads availability inside the same transaction before inserting.',
           'Row Level Security gives three tiers: public sees only what a booking page needs, staff see their own work, owners and managers see the salon.',
           'Every schema change is a migration file in version control, so the database can be rebuilt from scratch and reviewed in a diff.',
           'Scheduling rules are covered by SQL tests in tests/scheduling_rules.sql.',
         ],
         sr: [
           'Pravila su u bazi, ne u klijentu. I računanje slobodnih termina i kreiranje termina su PostgreSQL funkcije pozvane preko RPC-a, pa izmenjeni frontend ne može da ih zaobiđe.',
-          'create_appointment zaključava red i ponovo čita dostupnost unutar iste transakcije pre upisa.',
+          'create_appointment uzima advisory lock za salon i datum, pa ponovo čita dostupnost unutar iste transakcije pre upisa.',
           'Row Level Security daje tri nivoa: javni pristup vidi samo ono što stranici za zakazivanje treba, zaposleni vide svoj rad, vlasnici i menadžeri ceo salon.',
           'Svaka promena šeme je fajl migracije pod verzionisanjem, pa se baza može ponovo izgraditi od nule i pregledati kroz diff.',
           'Pravila zakazivanja su pokrivena SQL testovima u tests/scheduling_rules.sql.',

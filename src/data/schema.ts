@@ -288,14 +288,14 @@ export const bookingFunction = {
   steps: {
     en: [
       'Resolve the salon from the public slug and check that online booking is enabled.',
-      'Take a row lock so two concurrent requests serialize instead of racing.',
+      'Take an advisory lock on the salon and date so two concurrent requests serialize instead of racing.',
       'Recompute availability inside the transaction: working hours, minus time off, minus existing appointments.',
       'Reject the request if the slot moved while the client was filling the form.',
       'Insert the appointment and queue a confirmation row in the outbox.',
     ],
     sr: [
       'Odredi salon na osnovu javnog slug-a i proveri da je online zakazivanje uključeno.',
-      'Zaključaj red da se dva istovremena zahteva serijalizuju umesto da se trkaju.',
+      'Uzmi advisory lock za salon i datum da se dva istovremena zahteva serijalizuju umesto da se trkaju.',
       'Ponovo izračunaj dostupnost unutar transakcije: radno vreme, minus odsustva, minus postojeći termini.',
       'Odbij zahtev ako je termin u međuvremenu zauzet dok je klijent popunjavao formu.',
       'Upiši termin i stavi red za potvrdu u outbox.',
