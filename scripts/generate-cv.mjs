@@ -15,8 +15,8 @@ const DIST = resolve(process.cwd(), 'dist');
 
 const mmToPx = (mm) => Math.round((mm / 25.4) * 96);
 // A4 at 96dpi, minus the @page margins declared in src/styles/index.css.
-const PRINT_WIDTH_PX = mmToPx(210 - 14 - 14);
-const PRINT_HEIGHT_PX = mmToPx(297 - 12 - 11);
+const PRINT_WIDTH_PX = mmToPx(210 - 12 - 12);
+const PRINT_HEIGHT_PX = mmToPx(297 - 10 - 9);
 /**
  * Two renderings from the same page.
  *

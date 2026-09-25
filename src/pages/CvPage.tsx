@@ -41,11 +41,11 @@ const BULLETS_PER_ROLE = [2, 1, 1];
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="cv-section mt-[7px]">
+    <section className="cv-section mt-[10px]">
       <h2 className="border-b border-line pb-[2px] text-cv-base font-bold uppercase tracking-[0.08em]">
         {title}
       </h2>
-      <div className="mt-1">{children}</div>
+      <div className="mt-[1px]">{children}</div>
     </section>
   );
 }
@@ -95,7 +95,7 @@ export default function CvPage() {
 
       <article
         className="cv-sheet mx-auto w-full max-w-[210mm] rounded-lg border border-line p-5 shadow-sm
-                   sm:p-[14mm] print:rounded-none print:border-0 print:p-0 print:shadow-none"
+                   sm:p-[12mm] print:rounded-none print:border-0 print:p-0 print:shadow-none"
         lang={lang}
       >
         {/* Name and contact sit in the document body, never in a <header> element. */}
@@ -112,7 +112,7 @@ export default function CvPage() {
         */}
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
-        <h1 className="text-[22px] font-bold leading-tight tracking-tight">{profile.name}</h1>
+        <h1 className="text-[28px] font-bold leading-tight tracking-tight">{profile.name}</h1>
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
         {/*
           Two deliberate lines: how to reach him, then where to read his code.
@@ -156,7 +156,7 @@ export default function CvPage() {
           <img
             src="/veljko.jpg"
             alt={profile.name}
-            className="h-[115px] w-[89px] shrink-0 rounded-sm object-cover"
+            className="h-[140px] w-[110px] shrink-0 rounded-sm object-cover"
           />
         </div>
 
