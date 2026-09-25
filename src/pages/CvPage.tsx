@@ -41,7 +41,7 @@ const BULLETS_PER_ROLE = [2, 1, 1];
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="cv-section mt-[10px]">
+    <section className="cv-section mt-[8px]">
       <h2 className="border-b border-line pb-[2px] text-cv-base font-bold uppercase tracking-[0.13em] text-accent">
         {title}
       </h2>
@@ -52,7 +52,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Bullets({ items }: { items: string[] }) {
   return (
-    <ul className="mt-[2px] space-y-[1px]">
+    <ul className="mt-[1px] space-y-0">
       {items.map((item) => (
         <li key={item} className="flex gap-1.5 text-cv-sm leading-[1.53]">
           <span aria-hidden="true">&bull;</span>
@@ -156,7 +156,7 @@ export default function CvPage() {
           <img
             src="/veljko.jpg"
             alt={profile.name}
-            className="h-[115px] w-[89px] shrink-0 rounded-sm object-cover"
+            className="h-[139px] w-[108px] shrink-0 rounded-sm object-cover"
           />
         </div>
 
@@ -181,7 +181,7 @@ export default function CvPage() {
           to sort it out of the Experience block.
         */}
         <Section title={t('cv.experience')}>
-          <div className="space-y-[3px]">
+          <div className="space-y-[2px]">
             {experience
               .filter((role) => role.kind !== 'student')
               .map((role, i) => (
@@ -208,7 +208,7 @@ export default function CvPage() {
         </Section>
 
         <Section title={t('cv.projects')}>
-          <div className="space-y-[3px]">
+          <div className="space-y-[2px]">
             {cvProjects.map((p, i) => (
               <div key={p.id} className="cv-entry">
                 <p className="text-cv-base font-semibold leading-tight">

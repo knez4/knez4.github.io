@@ -162,14 +162,24 @@ try {
     // the sheet size and its margins. Passing margins here as well would stack on
     // top of the CSS ones (and omitting them falls back to Chrome's 1cm default).
     const buffer = await page.pdf({ printBackground: true, preferCSSPageSize: true });
-    await writeFile(file, buffer);
+
+    // A reader's tab shows the PDF's /Title, which Chrome takes from the page's
+    // <title>: "Curriculum vitae — Veljko Knežević". That is right for the site
+    // and wrong for an attachment, where the tab should read the same as the
+    // file the recruiter saved. pdf-lib is already loaded to count pages, so the
+    // title is set on the same parse.
+    const doc = await PDFDocument.load(buffer);
+    doc.setTitle(name.replace(/\.pdf$/, ''));
+    doc.setAuthor('Veljko Knežević');
+    const titled = Buffer.from(await doc.save());
+    await writeFile(file, titled);
     // The public copy also goes to dist/, so the deploy that just built the site
     // serves the freshly rendered file. The private one never touches dist/.
-    if (!PRIVATE) await writeFile(join(DIST, name), buffer);
+    if (!PRIVATE) await writeFile(join(DIST, name), titled);
 
     // Chrome writes compressed object streams, so the page count has to be read
     // from a parsed document rather than grepped out of the raw bytes.
-    const pages = (await PDFDocument.load(buffer)).getPageCount();
+    const pages = doc.getPageCount();
 
     results.push({ lang, file, pages, bytes: buffer.length, measured });
     await page.close();
