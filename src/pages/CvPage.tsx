@@ -54,7 +54,7 @@ function Bullets({ items }: { items: string[] }) {
   return (
     <ul className="mt-[2px] space-y-[1px]">
       {items.map((item) => (
-        <li key={item} className="flex gap-1.5 text-cv-sm leading-[1.3]">
+        <li key={item} className="flex gap-1.5 text-cv-sm leading-[1.53]">
           <span aria-hidden="true">&bull;</span>
           <span>{item}</span>
         </li>
@@ -147,8 +147,8 @@ export default function CvPage() {
             ));
           return (
             <>
-              <p className="mt-1 text-cv-xs leading-snug">{render(reach)}</p>
-              <p className="text-cv-xs leading-snug">{render(links)}</p>
+              <p className="mt-1 text-cv-xs leading-[1.60]">{render(reach)}</p>
+              <p className="text-cv-xs leading-[1.60]">{render(links)}</p>
             </>
           );
         })()}
@@ -156,18 +156,18 @@ export default function CvPage() {
           <img
             src="/veljko.jpg"
             alt={profile.name}
-            className="h-[170px] w-[132px] shrink-0 rounded-sm object-cover"
+            className="h-[115px] w-[89px] shrink-0 rounded-sm object-cover"
           />
         </div>
 
         <Section title={t('cv.summary')}>
-          <p className="text-cv-sm leading-[1.3]">{pick(profile.summary)}</p>
+          <p className="text-cv-sm leading-[1.53]">{pick(profile.summary)}</p>
         </Section>
 
         <Section title={t('cv.skills')}>
           <div className="space-y-[2px]">
             {skillsAsLines(lang).map((line) => (
-              <p key={line.label} className="text-cv-sm leading-[1.3]">
+              <p key={line.label} className="text-cv-sm leading-[1.53]">
                 <span className="font-semibold text-accent">{line.label}:</span> {line.value}
               </p>
             ))}
@@ -234,17 +234,17 @@ export default function CvPage() {
 
         <Section title={t('cv.educationAndLanguages')}>
           <div className="cv-entry">
-            <p className="text-cv-sm font-semibold leading-[1.3]">
+            <p className="text-cv-sm font-semibold leading-[1.53]">
               {pick(education.institution)}
               <span className="font-normal text-muted">
                 {' '}
                 {DOT} {pick(education.location)} {DOT} {pick(education.period)}
               </span>
             </p>
-            <p className="text-cv-sm leading-[1.3]">{pick(education.degree)}</p>
+            <p className="text-cv-sm leading-[1.53]">{pick(education.degree)}</p>
           </div>
           {/* Secondary school gets one line, not the two the degree gets. */}
-          <p className="text-cv-sm leading-[1.3]">
+          <p className="text-cv-sm leading-[1.53]">
             <span className="font-semibold">{pick(education.secondary.institution)}</span>
             <span className="text-muted">
               {' '}
@@ -252,7 +252,7 @@ export default function CvPage() {
               {DOT} {pick(education.secondary.period)}
             </span>
           </p>
-          <p className="text-cv-sm leading-[1.3]">
+          <p className="text-cv-sm leading-[1.53]">
             <span className="font-semibold">{t('cv.languages')}</span>
             <span className="text-muted">
               {languages.map((l) => ` ${DOT} ${pick(l.name)} ${pick(l.level)}`).join('')}
@@ -279,7 +279,7 @@ export default function CvPage() {
                     role.compact ? pick(role.compact) : pick(role.title)
                   ).split(` ${DOT} `);
                   return (
-                    <p key={i} className="mt-[2px] text-cv-sm leading-[1.3]">
+                    <p key={i} className="mt-[2px] text-cv-sm leading-[1.53]">
                       <span className="font-semibold">{anchor}</span>
                       {rest.length > 0 && (
                         <span className="text-muted"> {DOT} {rest.join(` ${DOT} `)}</span>
