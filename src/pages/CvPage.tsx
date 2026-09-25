@@ -120,6 +120,16 @@ export default function CvPage() {
         lang={lang}
       >
         {/* Name and contact sit in the document body, never in a <header> element. */}
+        {/*
+          The portrait sits beside the header rather than above it, sized to the
+          height the name, role and two contact lines already occupy. That way it
+          costs no vertical space on a sheet with about one line to spare, and the
+          text still runs top to bottom in one column for anything reading the
+          text layer. Serbian employers expect a photo; international ones often
+          ask for none, which is the one reason to take it back out.
+        */}
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 flex-1">
         <h1 className="text-[22px] font-bold leading-tight tracking-tight">{profile.name}</h1>
         <p className="mt-0.5 text-cv-base text-muted">{pick(profile.role)}</p>
         {/*
@@ -160,6 +170,13 @@ export default function CvPage() {
             </>
           );
         })()}
+          </div>
+          <img
+            src="/veljko.jpg"
+            alt={profile.name}
+            className="h-[84px] w-[84px] shrink-0 rounded-sm object-cover"
+          />
+        </div>
 
         <Section title={t('cv.summary')}>
           <p className="text-cv-sm leading-[1.3]">{pick(profile.summary)}</p>
