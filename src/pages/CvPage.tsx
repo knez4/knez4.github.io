@@ -100,12 +100,15 @@ export default function CvPage() {
       >
         {/* Name and contact sit in the document body, never in a <header> element. */}
         {/*
-          The portrait sits beside the header rather than above it, sized to the
-          height the name, role and two contact lines already occupy. That way it
-          costs no vertical space on a sheet with about one line to spare, and the
-          text still runs top to bottom in one column for anything reading the
-          text layer. Serbian employers expect a photo; international ones often
-          ask for none, which is the one reason to take it back out.
+          The portrait sits beside the header rather than above it, so the text
+          still runs top to bottom in one column for anything reading the text
+          layer. 89x115px is 23.5 x 30.5 mm at print scale, in the 35:45 ratio a
+          CV photo conventionally uses. It is short of the 35 x 45 mm standard,
+          which is a passport convention carried into Europass rather than a
+          hiring rule; the full size would cost two or three lines of content and
+          buys nothing a reader can use. It runs about 28px past the header, which
+          the sheet has room for. Serbian employers expect a photo; international
+          ones often ask for none, which is the one reason to take it back out.
         */}
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
@@ -153,7 +156,7 @@ export default function CvPage() {
           <img
             src="/veljko.jpg"
             alt={profile.name}
-            className="h-[84px] w-[84px] shrink-0 rounded-sm object-cover"
+            className="h-[115px] w-[89px] shrink-0 rounded-sm object-cover"
           />
         </div>
 
