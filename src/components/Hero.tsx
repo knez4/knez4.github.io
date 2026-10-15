@@ -5,6 +5,7 @@ import { gsap, motionOK } from '../lib/motion';
 import { useLang } from '../lib/useLang';
 import { ArrowRight, Download } from './icons';
 import { Ball } from './Logo';
+import { drawSignature, hideSignature, Signature } from './Signature';
 import { SqlTerminal } from './SqlTerminal';
 
 const SURNAME = 'KNEŽEVIĆ';
@@ -23,9 +24,7 @@ export function Hero({ ready }: { ready: boolean }) {
     const ctx = gsap.context(() => {
       gsap.set('[data-a="char"]', { yPercent: 110 });
       gsap.set('[data-a="portrait"]', { clipPath: 'inset(100% 0 0 0)', scale: 1.08 });
-      // The script face draws the V's lead-in stroke outside the text box, so the mask runs
-      // 60% past every edge; with plain inset(0) the finished signature kept its V clipped.
-      gsap.set('[data-a="sig"]', { clipPath: 'inset(-60% 160% -60% -60%)' });
+      hideSignature(root.current!);
       gsap.set('[data-a="fade"]', { autoAlpha: 0, y: 24 });
       gsap.set('[data-a="term"]', { autoAlpha: 0, y: 40, rotateX: 8 });
     }, root);
@@ -38,7 +37,8 @@ export function Hero({ ready }: { ready: boolean }) {
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
       tl.to('[data-a="char"]', { yPercent: 0, duration: 1.3, stagger: 0.045 })
         .to('[data-a="portrait"]', { clipPath: 'inset(0% 0 0 0)', scale: 1, duration: 1.5 }, 0.15)
-        .to('[data-a="sig"]', { clipPath: 'inset(-60% -60% -60% -60%)', duration: 1.6, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.7)
+        // The signature writes itself letter by letter (see Signature.tsx).
+        .add(drawSignature(root.current!), 0.7)
         .to('[data-a="fade"]', { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08 }, 0.5)
         .to('[data-a="term"]', { autoAlpha: 1, y: 0, rotateX: 0, duration: 1.2 }, 0.8);
 
@@ -118,16 +118,13 @@ export function Hero({ ready }: { ready: boolean }) {
 
         <div
           data-p="sig"
-          className="pointer-events-none absolute left-[2%] top-[30%] z-20 sm:left-[14%] will-change-transform [text-shadow:0_6px_30px_rgba(124,77,255,0.55)]
+          className="pointer-events-none absolute left-[2%] top-[30%] z-20 sm:left-[14%] will-change-transform [filter:drop-shadow(0_6px_26px_rgba(124,77,255,0.5))]
                      lg:-left-[44%] lg:top-[42%]"
           aria-hidden="true"
         >
-          <span
-            data-a="sig"
-            className="font-script block -rotate-[9deg] whitespace-nowrap px-[0.2em] text-[24vw] leading-[1.1] text-accent sm:text-[18vw]
-                       lg:text-[19vw]"
-          >
-            Veljko
+          {/* Drawn letters, not text: the font size here only sets the SVG's em scale. */}
+          <span data-a="sig" className="block -rotate-[9deg] px-[0.2em] text-[24vw] leading-none text-accent sm:text-[18vw] lg:text-[19vw]">
+            <Signature className="block" />
           </span>
         </div>
       </div>
