@@ -39,9 +39,15 @@ export const profile = {
    * in the six-second scan, and an earlier version ("Final-year student, Faculty
    * of Organizational Sciences") spent that slot without once saying IT.
    */
+  /*
+   * 15 October 2026: "backend" came out of the field at his request. It is the
+   * part he knows least, and a CV line he could not defend is worse than a
+   * narrower one. The three fields are the ones his work actually shows: the
+   * client sites, the report automation, and the booking schema.
+   */
   role: {
-    en: 'Final-year Information Systems student · databases and backend',
-    sr: 'Apsolvent informacionih sistema · baze podataka i backend',
+    en: 'Final-year Information Systems student · web design, automation, databases',
+    sr: 'Apsolvent informacionih sistema · web dizajn, automatizacija, baze podataka',
   } as L,
 
   /** Site hero only. Names the field of work so it does not repeat `role`. */
@@ -66,12 +72,12 @@ export const profile = {
    */
   summary: {
     en:
-      'Final-year Information Systems student focused on databases and backend. Three years of ' +
+      'Final-year Information Systems student working in web design, automation and databases. Three years of ' +
       'freelance work building websites and reporting tools, alongside projects where booking rules ' +
       'and access control are enforced in the database rather than in the application layer. ' +
       'Looking for an internship or junior role in Belgrade, full time.',
     sr:
-      'Apsolvent informacionih sistema, usmeren na baze podataka i backend. Tri godine freelance ' +
+      'Apsolvent informacionih sistema, usmeren na web dizajn, automatizaciju i baze podataka. Tri godine freelance ' +
       'rada na sajtovima i alatima za izveštavanje, uz projekte u kojima su pravila zakazivanja i ' +
       'kontrola pristupa sprovedeni u bazi, umesto u aplikacionom sloju. Tražim praksu ili ' +
       'juniorsku poziciju u Beogradu, puno radno vreme.',

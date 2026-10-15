@@ -221,8 +221,10 @@ export const projects: Project[] = [
     status: 'delivered',
     title: { en: 'Client websites', sr: 'Klijentski sajtovi' },
     subtitle: {
-      en: 'Two sites built from scratch for clients, one of them tuned hard for load time',
-      sr: 'Dva kompletno izrađena sajta za klijente, jedan dodatno optimizovan za brzinu učitavanja',
+      // Both were built start to finish and optimized at the end as a normal part of the job.
+      // He does not want the optimization singled out (14 October 2026).
+      en: 'Two sites for clients, each built from scratch',
+      sr: 'Dva sajta za klijente, oba napravljena od nule',
     },
     context: {
       en: 'Freelance web work: two full builds, each from a written change list and a fixed deadline.',
@@ -246,6 +248,20 @@ export const projects: Project[] = [
       { label: 'Mystery M', url: 'https://github.com/knez4/Mystery-M' },
     ],
     media: [
+      // The real site leads: a screenshot says "client sites" faster than a diagram does.
+      {
+        src: '/img/work/flekout-desktop.webp',
+        alt: {
+          en: 'The Flekout home page: the logo cut out over a cleaning video',
+          sr: 'Početna strana sajta Flekout: logotip kao maska preko videa čišćenja',
+        },
+        caption: { en: 'Flekout, the first build.', sr: 'Flekout, prva izrada.' },
+      },
+      {
+        src: '/img/work/mysterym-desktop.webp',
+        alt: { en: 'The Mystery M home page', sr: 'Početna strana sajta Mystery M' },
+        caption: { en: 'Mystery M, the second build.', sr: 'Mystery M, druga izrada.' },
+      },
       {
         src: '/screenshots/client-performance.svg',
         alt: {
@@ -261,13 +277,13 @@ export const projects: Project[] = [
     caseStudy: {
       problem: {
         en:
-          'Two clients, two sites built from nothing. The first was an interactive marketing site. ' +
-          'The second had to load fast on a phone, so the image pipeline and the scroll handling were part ' +
-          'of the build rather than something bolted on afterwards.',
+          'Two clients, two sites built from nothing, from the first page to launch. The first was an ' +
+          'interactive marketing site. Before launch both went through the usual pass on load time and ' +
+          'smoothness, the way any finished site should.',
         sr:
-          'Dva klijenta, dva sajta izrađena u celosti. Prvi je bio interaktivni marketinški ' +
-          'sajt. Drugi je morao brzo da se učitava na telefonu, pa su isporuka slika i rad sa skrolom bili ' +
-          'deo izrade, a ne nešto naknadno dodato.',
+          'Dva klijenta, dva sajta izrađena u celosti, od prve stranice do objave. Prvi je bio ' +
+          'interaktivni marketinški sajt. Pred objavu su oba prošla uobičajenu proveru brzine i ' +
+          'glatkoće, kao i svaki završen sajt.',
       },
       approach: {
         en: [

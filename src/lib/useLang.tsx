@@ -21,8 +21,8 @@ function initialLang(): Lang {
   } catch {
     // ignore
   }
-  // Serbian visitors get Serbian; everyone else gets English.
-  return navigator.language?.toLowerCase().startsWith('sr') ? 'sr' : 'en';
+  // Serbian is the default; English is one click away in the nav.
+  return 'sr';
 }
 
 export function LangProvider({ children }: { children: ReactNode }) {

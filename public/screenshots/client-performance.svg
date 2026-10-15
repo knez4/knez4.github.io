@@ -2,29 +2,29 @@
   <title>Load-time work on the client site</title>
   <defs>
     <style>
-      .bgc { fill: #f1f5f9; }
-      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
-      .box-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; }
-      .h { font: 600 15px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
-      .t { font: 400 12px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
-      .lbl { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #0e7490; }
-      .bad { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
-      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #64748b; }
-      .sec { font: 600 12px Inter, system-ui, sans-serif; fill: #0f172a; letter-spacing: .1em; }
-      .arr { stroke: #0e7490; stroke-width: 2; fill: none; marker-end: url(#a2); }
-      .arrg { stroke: #94a3b8; stroke-width: 1.6; fill: none; marker-end: url(#a3); }
+      .bgc { fill: #110e1b; }
+      .box { fill: #191527; stroke: #342c4d; stroke-width: 1.5; }
+      .box-key { fill: #191527; stroke: #a07cff; stroke-width: 2; }
+      .h { font: 600 15px "JetBrains Mono", ui-monospace, monospace; fill: #f4f1fa; }
+      .t { font: 400 12px "JetBrains Mono", ui-monospace, monospace; fill: #b3abc8; }
+      .lbl { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #a07cff; }
+      .bad { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #fbbf24; }
+      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #8d84a6; }
+      .sec { font: 600 12px Inter, system-ui, sans-serif; fill: #f4f1fa; letter-spacing: .1em; }
+      .arr { stroke: #a07cff; stroke-width: 2; fill: none; marker-end: url(#a2); }
+      .arrg { stroke: #5f5482; stroke-width: 1.6; fill: none; marker-end: url(#a3); }
     </style>
     <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0e7490"/>
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a07cff"/>
     </marker>
     <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f5482"/>
     </marker>
   </defs>
   <rect class="bgc" width="1200" height="675" rx="12"/>
 
   <text class="sec" x="70" y="62">IMAGE DELIVERY</text>
-  <line x1="70" y1="74" x2="1130" y2="74" stroke="#cbd5e1"/>
+  <line x1="70" y1="74" x2="1130" y2="74" stroke="#342c4d"/>
 
   <g>
     <rect class="box" x="70" y="100" width="190" height="90" rx="10"/>
@@ -68,7 +68,7 @@
   </g>
 
   <text class="sec" x="70" y="360">SCROLL REDRAW</text>
-  <line x1="70" y1="372" x2="1130" y2="372" stroke="#cbd5e1"/>
+  <line x1="70" y1="372" x2="1130" y2="372" stroke="#342c4d"/>
 
   <g>
     <rect class="box" x="70" y="400" width="470" height="180" rx="10"/>

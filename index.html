@@ -1,16 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="sr" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#0e7490" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#090b10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#08060e" />
 
-    <title>Veljko Knežević — Final-Year IT Student</title>
+    <title>Veljko Knežević · Web design, automation, databases</title>
     <meta
       name="description"
-      content="Veljko Knezevic (Veljko Knežević) is a final-year Information Systems and Technologies student at the Faculty of Organizational Sciences, University of Belgrade. Built a full-stack booking web app, a team REST API, and a Java desktop application. Looking for an internship in Belgrade."
+      content="Veljko Knezevic (Veljko Knežević) is a final-year Information Systems and Technologies student at the Faculty of Organizational Sciences, University of Belgrade, working in web design, automation and databases. Built a multi-tenant PostgreSQL booking platform, a team REST API, client websites and a reporting pipeline. Looking for an internship or junior role in Belgrade."
     />
     <meta name="author" content="Veljko Knežević" />
     <link rel="canonical" href="https://knez4.github.io/" />
@@ -18,22 +17,22 @@
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Veljko Knežević" />
     <meta property="og:url" content="https://knez4.github.io/" />
-    <meta property="og:title" content="Veljko Knežević — Final-Year IT Student" />
+    <meta property="og:title" content="Veljko Knežević · Web design, automation, databases" />
     <meta
       property="og:description"
-      content="Final-year FON student who has built a full-stack web app, a team REST API, and a Java desktop application. Looking for an internship in Belgrade."
+      content="Final-year FON student working in web design, automation and databases: client websites, a reporting pipeline, a multi-tenant PostgreSQL booking platform. Looking for an internship or junior role in Belgrade."
     />
     <meta property="og:image" content="https://knez4.github.io/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Veljko Knežević — Final-Year IT Student" />
+    <meta name="twitter:title" content="Veljko Knežević · Web design, automation, databases" />
     <meta
       name="twitter:description"
-      content="Final-year FON student who has built a full-stack web app, a team REST API, and a Java desktop application. Looking for an internship in Belgrade."
+      content="Final-year FON student working in web design, automation and databases: client websites, a reporting pipeline, a multi-tenant PostgreSQL booking platform. Looking for an internship or junior role in Belgrade."
     />
     <meta name="twitter:image" content="https://knez4.github.io/og-image.png" />
 
+    <link rel="preload" href="/fonts/archivo-wdth-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin />
 
     <script type="application/ld+json">
       {
@@ -54,7 +53,7 @@
         },
         "sameAs": [
           "https://github.com/knez4",
-          "https://www.linkedin.com/in/veljkokne%C5%BEevi%C4%87/"
+          "https://www.linkedin.com/in/knezevicveljko/"
         ],
         "knowsAbout": [
           "SQL",
@@ -65,7 +64,6 @@
           "Laravel",
           "PHP",
           "Java",
-          "JDBC",
           "REST API",
           "React",
           "TypeScript"
@@ -73,20 +71,8 @@
       }
     </script>
 
-    <script>
-      // Applies the stored theme before first paint so the page never flashes light then dark.
-      (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-          if (dark) document.documentElement.classList.add('dark');
-        } catch (e) {
-          /* private mode: fall through to the light default */
-        }
-      })();
-    </script>
   </head>
-  <body>
+  <body class="grain">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

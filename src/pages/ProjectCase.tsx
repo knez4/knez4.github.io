@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, GitHub } from '../components/icons';
+import { SplitText } from '../components/Reveal';
 import { projectById } from '../data/projects';
 import { profile } from '../data/profile';
 import { useHead } from '../lib/useHead';
@@ -30,37 +31,39 @@ export default function ProjectCase() {
   const cs = project.caseStudy;
 
   return (
-    <article className="container-page py-12 sm:py-16">
-      <Link to="/#projects" className="inline-flex items-center gap-2 text-sm text-muted hover:text-fg">
+    <article className="container-page py-14 sm:py-20">
+      <Link to="/#projects" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted hover:text-fg">
         <ArrowLeft className="h-3.5 w-3.5" />
         {t('projects.back')}
       </Link>
 
-      <header className="mt-8 border-b border-line pb-8">
-        <p className="flex flex-wrap items-center gap-2 font-mono text-[11px] text-subtle">
+      <header className="mt-10 border-b border-fg/10 pb-12">
+        <p className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
           <span>{project.year}</span>
           <span aria-hidden="true">&middot;</span>
           <span>{t(statusKey[project.status])}</span>
         </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{pick(project.title)}</h1>
-        <p className="mt-3 max-w-2xl text-lg text-muted">{pick(project.subtitle)}</p>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">{pick(project.context)}</p>
+        <h1 className="font-display mt-6 text-[clamp(3rem,9vw,8rem)] text-fg">
+          <SplitText text={pick(project.title)} />
+        </h1>
+        <p className="mt-8 max-w-3xl text-xl leading-snug text-fg/90 sm:text-2xl">{pick(project.subtitle)}</p>
+        <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted">{pick(project.context)}</p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           {project.repoUrl ? (
-            <a href={project.repoUrl} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
+            <a href={project.repoUrl} target="_blank" rel="noreferrer noopener" className="btn-pill btn-pill--ghost">
               <GitHub className="h-3.5 w-3.5" />
               {t('projects.viewRepo')}
             </a>
           ) : null}
           {project.repos?.map((repo) => (
-            <a key={repo.url} href={repo.url} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
+            <a key={repo.url} href={repo.url} target="_blank" rel="noreferrer noopener" className="btn-pill btn-pill--ghost">
               <GitHub className="h-3.5 w-3.5" />
               {repo.label}
             </a>
           ))}
           {project.liveUrl ? (
-            <a href={project.liveUrl} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">
+            <a href={project.liveUrl} target="_blank" rel="noreferrer noopener" className="btn-pill btn-pill--ghost">
               {t('projects.viewLive')}
             </a>
           ) : null}
@@ -76,7 +79,7 @@ export default function ProjectCase() {
             height={675}
             loading="lazy"
             decoding="async"
-            className="w-full rounded-xl border border-line bg-surface-2"
+            className="w-full rounded-2xl border border-fg/10 bg-surface"
           />
           {m.caption ? (
             <figcaption className="mt-2 text-[12px] text-subtle">{pick(m.caption)}</figcaption>
@@ -84,7 +87,7 @@ export default function ProjectCase() {
         </figure>
       ))}
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_16rem]">
+      <div className="mt-16 grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div className="space-y-10">
           {cs ? (
             <>
@@ -124,7 +127,7 @@ export default function ProjectCase() {
                 </section>
               ) : null}
 
-              <section className="rounded-xl border border-line bg-surface-2 p-5">
+              <section className="panel p-6 sm:p-7">
                 <h2 className="eyebrow">{t('case.limits')}</h2>
                 <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">{pick(cs.limits)}</p>
               </section>
@@ -144,7 +147,7 @@ export default function ProjectCase() {
           )}
         </div>
 
-        <aside className="h-fit lg:sticky lg:top-24">
+        <aside className="panel h-fit p-6 lg:sticky lg:top-24">
           <h2 className="eyebrow">{t('case.stack')}</h2>
           <ul className="mt-3 flex flex-wrap gap-1.5">
             {project.tech.map((tech) => (

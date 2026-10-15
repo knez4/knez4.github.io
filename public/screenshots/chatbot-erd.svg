@@ -2,17 +2,17 @@
   <title>Chatbot knowledge base model</title>
   <defs>
     <style>
-      .bgc { fill: #f1f5f9; }
-      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
-      .box-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; }
-      .hdr { fill: #e2e8f0; }
-      .hdr-key { fill: #cffafe; }
-      .tname { font: 600 14px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
-      .col { font: 400 12px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
-      .pk { font: 600 12px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
-      .rel { stroke: #94a3b8; stroke-width: 1.5; fill: none; }
-      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #64748b; }
-      .note { font: 400 12px Inter, system-ui, sans-serif; fill: #0e7490; }
+      .bgc { fill: #110e1b; }
+      .box { fill: #191527; stroke: #342c4d; stroke-width: 1.5; }
+      .box-key { fill: #191527; stroke: #a07cff; stroke-width: 2; }
+      .hdr { fill: #241d37; }
+      .hdr-key { fill: #33245f; }
+      .tname { font: 600 14px "JetBrains Mono", ui-monospace, monospace; fill: #f4f1fa; }
+      .col { font: 400 12px "JetBrains Mono", ui-monospace, monospace; fill: #b3abc8; }
+      .pk { font: 600 12px "JetBrains Mono", ui-monospace, monospace; fill: #fbbf24; }
+      .rel { stroke: #5f5482; stroke-width: 1.5; fill: none; }
+      .cap { font: 500 13px Inter, system-ui, sans-serif; fill: #8d84a6; }
+      .note { font: 400 12px Inter, system-ui, sans-serif; fill: #a07cff; }
     </style>
   </defs>
   <rect class="bgc" width="1200" height="675" rx="12"/>
@@ -75,7 +75,7 @@
   </g>
 
   <g>
-    <rect x="760" y="380" width="340" height="190" rx="10" fill="#ffffff" stroke="#0e7490" stroke-dasharray="4 3"/>
+    <rect x="760" y="380" width="340" height="190" rx="10" fill="#191527" stroke="#a07cff" stroke-dasharray="4 3"/>
     <text class="tname" x="780" y="410">statistics endpoints</text>
     <text class="note" x="780" y="440">JOIN chat_messages to knowledge_items</text>
     <text class="note" x="780" y="462">GROUP BY category</text>

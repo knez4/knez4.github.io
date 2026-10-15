@@ -2,18 +2,18 @@
   <title>Booking platform data model</title>
   <defs>
     <style>
-      .bgc { fill: #f1f5f9; }
-      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 8; }
-      .box-key { fill: #ffffff; stroke: #0e7490; stroke-width: 2; rx: 8; }
-      .hdr { fill: #e2e8f0; }
-      .hdr-key { fill: #cffafe; }
-      .tname { font: 600 13px "JetBrains Mono", ui-monospace, monospace; fill: #0f172a; }
-      .col { font: 400 11px "JetBrains Mono", ui-monospace, monospace; fill: #475569; }
-      .pk { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #b45309; }
-      .rel { stroke: #94a3b8; stroke-width: 1.4; fill: none; }
-      .rel-key { stroke: #0e7490; stroke-width: 2; fill: none; }
-      .cap { font: 500 12px Inter, system-ui, sans-serif; fill: #64748b; }
-      .badge { font: 600 10px "JetBrains Mono", ui-monospace, monospace; fill: #0e7490; }
+      .bgc { fill: #110e1b; }
+      .box { fill: #191527; stroke: #342c4d; stroke-width: 1.5; rx: 8; }
+      .box-key { fill: #191527; stroke: #a07cff; stroke-width: 2; rx: 8; }
+      .hdr { fill: #241d37; }
+      .hdr-key { fill: #33245f; }
+      .tname { font: 600 13px "JetBrains Mono", ui-monospace, monospace; fill: #f4f1fa; }
+      .col { font: 400 11px "JetBrains Mono", ui-monospace, monospace; fill: #b3abc8; }
+      .pk { font: 600 11px "JetBrains Mono", ui-monospace, monospace; fill: #fbbf24; }
+      .rel { stroke: #5f5482; stroke-width: 1.4; fill: none; }
+      .rel-key { stroke: #a07cff; stroke-width: 2; fill: none; }
+      .cap { font: 500 12px Inter, system-ui, sans-serif; fill: #8d84a6; }
+      .badge { font: 600 10px "JetBrains Mono", ui-monospace, monospace; fill: #a07cff; }
     </style>
   </defs>
 
@@ -154,7 +154,7 @@
 
   <!-- annotation -->
   <g>
-    <rect x="1060" y="90" width="110" height="100" rx="8" fill="#ffffff" stroke="#0e7490" stroke-dasharray="4 3"/>
+    <rect x="1060" y="90" width="110" height="100" rx="8" fill="#191527" stroke="#a07cff" stroke-dasharray="4 3"/>
     <text class="badge" x="1072" y="112">WRITTEN BY</text>
     <text class="badge" x="1072" y="128">create_</text>
     <text class="badge" x="1072" y="144">appointment()</text>

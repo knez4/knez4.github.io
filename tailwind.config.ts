@@ -16,6 +16,7 @@ export default {
         subtle: withVar('--subtle'),
         line: withVar('--line'),
         accent: withVar('--accent'),
+        'accent-strong': withVar('--accent-strong'),
         'accent-fg': withVar('--accent-fg'),
         'accent-soft': withVar('--accent-soft'),
         key: withVar('--key'),
@@ -23,6 +24,8 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['Archivo', '"Arial Narrow"', 'system-ui', 'sans-serif'],
+        script: ['"Mrs Saint Delafield"', 'cursive'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
       },
       maxWidth: { content: '70rem' },
@@ -44,11 +47,11 @@ export default {
       },
       keyframes: {
         'fade-up': {
-          from: { opacity: '0', transform: 'translateY(10px)' },
+          from: { opacity: '0', transform: 'translateY(36px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
       },
-      animation: { 'fade-up': 'fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both' },
+      animation: { 'fade-up': 'fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) both' },
     },
   },
   plugins: [],

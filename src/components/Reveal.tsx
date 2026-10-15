@@ -1,47 +1,68 @@
-import { useEffect, useRef, useState } from 'react';
-import type { ReactNode } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import type { ReactNode, RefObject } from 'react';
+import { motionOK } from '../lib/motion';
 
 /**
- * Fade-up on first scroll into view.
- * An IntersectionObserver plus a CSS keyframe does this in a few lines, so the
- * site does not carry an animation library for one effect.
+ * True once the element has scrolled into view (and stays true). Starts true
+ * when motion is off, so reduced-motion visitors and the prerender snapshot get
+ * the final state with nothing hidden.
  */
-export function Reveal({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
+export function useInView<T extends HTMLElement>(margin = '0px 0px -12% 0px'): [RefObject<T>, boolean] {
+  const ref = useRef<T>(null);
+  const [shown, setShown] = useState(() => !motionOK());
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced || typeof IntersectionObserver === 'undefined') {
+    if (!el || shown) return;
+    if (typeof IntersectionObserver === 'undefined') {
       setShown(true);
       return;
     }
-
     const io = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            setShown(true);
-            io.disconnect();
-          }
+        if (entries.some((e) => e.isIntersecting)) {
+          setShown(true);
+          io.disconnect();
         }
       },
-      { rootMargin: '0px 0px -60px 0px' },
+      { rootMargin: margin },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [margin, shown]);
 
+  return [ref, shown];
+}
+
+/** Fade-up on first scroll into view. */
+export function Reveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
+  const [ref, shown] = useInView<HTMLDivElement>('0px 0px -60px 0px');
   return (
     <div
       ref={ref}
-      className={shown ? 'animate-fade-up' : 'opacity-0'}
+      className={(shown ? 'animate-fade-up ' : 'opacity-0 ') + className}
       style={shown && delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}
     </div>
+  );
+}
+
+/** Text split into words that rise out of their own clip boxes, one after another. */
+export function SplitText({ text, className = '', step = 70 }: { text: string; className?: string; step?: number }) {
+  const [ref, shown] = useInView<HTMLSpanElement>();
+  return (
+    <span ref={ref} className={(shown ? 'is-in ' : '') + className} aria-label={text}>
+      {/* The space sits between the clip boxes, not inside one: inside, a tight line
+          wrapped it onto a second line of its own and left an empty row. */}
+      {text.split(' ').map((w, i, all) => (
+        <Fragment key={i}>
+          <span className="split-word whitespace-nowrap" aria-hidden="true">
+            <span style={{ ['--d' as string]: `${i * step}ms` }}>{w}</span>
+          </span>
+          {i < all.length - 1 ? ' ' : null}
+        </Fragment>
+      ))}
+    </span>
   );
 }

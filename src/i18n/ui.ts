@@ -23,6 +23,12 @@ export const ui = {
   'hero.viewProjects': { en: 'See the work', sr: 'Pogledaj radove' },
   'hero.downloadCv': { en: 'Download CV', sr: 'Preuzmi CV' },
   'hero.emailMe': { en: 'Send an email', sr: 'Pošalji mejl' },
+  /** The field, not a job title: he has no IT employment yet (see profile.role). */
+  'hero.role': { en: 'Web design, automation and databases', sr: 'Web dizajn, automatizacija i baze podataka' },
+  'hero.sub': { en: 'Final-year student at FON · Belgrade', sr: 'Student završne godine FON-a · Beograd' },
+  'hero.scroll': { en: 'Scroll', sr: 'Skroluj' },
+  'hero.terminalHint': { en: 'Ask my database', sr: 'Pitaj moju bazu' },
+  'nav.talk': { en: "Let's talk", sr: 'Javi se' },
 
   'projects.title': { en: 'Selected work', sr: 'Izabrani radovi' },
   'projects.eyebrow': { en: 'Projects', sr: 'Projekti' },
@@ -72,8 +78,58 @@ export const ui = {
   'education.title': { en: 'Studies', sr: 'Studije' },
   'education.languages': { en: 'Languages', sr: 'Jezici' },
 
+  'freelance.eyebrow': { en: 'For clients', sr: 'Za klijente' },
+  'freelance.title': { en: 'Need a site or automation?', sr: 'Treba ti sajt ili automatizacija?' },
+  'freelance.lead': {
+    en: 'Alongside my studies I build websites and automate work for clients. Tell me what you need and we will find the way.',
+    sr: 'Pored studija radim sajtove i automatizaciju za klijente. Napiši šta ti treba i naći ćemo rešenje.',
+  },
+  'freelance.sites': { en: 'Website development', sr: 'Izrada sajtova' },
+  'freelance.automation': { en: 'Automation', sr: 'Automatizacija' },
+  /** Offers are open-ended; the examples are only what he has actually shipped. */
+  'freelance.sitesBody': {
+    en: 'From the first sketch to launch. A site that looks like your brand and works just as well on a phone as on a laptop.',
+    sr: 'Od prve skice do objave. Sajt koji liči na tvoj brend i radi jednako dobro na telefonu kao i na računaru.',
+  },
+  'freelance.automationBody': {
+    en: 'If you do something by hand and it keeps repeating (copying between spreadsheets, the same report every month, processing data), a program can do it for you.',
+    sr: 'Ako nešto radiš ručno i to se ponavlja (prepisivanje iz tabela, isti izveštaj svakog meseca, obrada podataka), to može da radi program umesto tebe.',
+  },
+  'freelance.sitesCaption': { en: 'Flekout and Mystery M, two sites I built', sr: 'Flekout i Mystery M, sajtovi koje sam napravio' },
+  'freelance.flekoutAlt': { en: 'The Flekout website on a laptop', sr: 'Sajt Flekout na računaru' },
+  'freelance.mysteryAlt': { en: 'The Mystery M website on a phone', sr: 'Sajt Mystery M na telefonu' },
+  'freelance.before': { en: 'Before', sr: 'Ranije' },
+  'freelance.after': { en: 'Now', sr: 'Sada' },
+  /** About six hours by hand for the nine reports, his figure (15 October 2026); it was wrongly ~1 h before. */
+  'freelance.beforeVal': { en: '~6 h', sr: '~6 h' },
+  'freelance.afterVal': { en: '3 s', sr: '3 s' },
+  'freelance.beforeNote': { en: 'of manual work, every month', sr: 'ručnog rada, svakog meseca' },
+  'freelance.afterNote': { en: 'and all nine reports are ready', sr: 'i svih devet izveštaja je gotovo' },
+  'freelance.mailSubject': { en: 'Project enquiry', sr: 'Upit za saradnju' },
+  'freelance.cta': { en: "Have an idea? Let's talk.", sr: 'Imaš ideju? Javi se.' },
+  'freelance.direct': { en: 'You work with me directly.', sr: 'Radiš direktno sa mnom.' },
+  'freelance.ask': { en: 'Send an enquiry', sr: 'Pošalji upit' },
+  'freelance.mailBody': {
+    en: 'Hi Veljko,\n\nWhat I need (a website / an automation / something else):\n\nA few words about the business:\n\nDeadline:\n\nThanks!',
+    sr: 'Zdravo Veljko,\n\nTreba mi (sajt / automatizacija / nešto treće):\n\nUkratko o poslu:\n\nRok:\n\nHvala!',
+  },
+  'freelance.autoCaption': {
+    en: 'A real case: monthly client reports, nine spreadsheets into nine finished PDFs',
+    sr: 'Stvaran primer: mesečni izveštaji za klijenta, devet tabela u devet gotovih PDF-ova',
+  },
+  'nav.freelance': { en: 'For clients', sr: 'Za klijente' },
+
   'contact.eyebrow': { en: 'Contact', sr: 'Kontakt' },
   'contact.title': { en: 'Get in touch', sr: 'Javi se' },
+  'contact.big': { en: 'Pass me the ball.', sr: 'Dodaj loptu.' },
+  /** He agreed to promise a 24-hour reply (15 October 2026). Keep it only while that holds. */
+  'contact.reply': { en: 'I reply within 24 hours', sr: 'Odgovaram u roku od 24 sata' },
+  'contact.invite': { en: 'Invite me to an interview', sr: 'Pozovi me na razgovor' },
+  'contact.inviteSubject': { en: 'Interview invitation', sr: 'Poziv na razgovor' },
+  'contact.inviteBody': {
+    en: 'Hi Veljko,\n\nCompany:\n\nPosition:\n\nWhen would suit you for a conversation?\n\nBest,',
+    sr: 'Zdravo Veljko,\n\nFirma:\n\nPozicija:\n\nKada ti odgovara razgovor?\n\nPozdrav,',
+  },
   'contact.copyPitch': { en: 'Copy short intro', sr: 'Kopiraj kratak opis' },
   'contact.copied': { en: 'Copied', sr: 'Kopirano' },
 
@@ -89,14 +145,15 @@ export const ui = {
   'cv.studentActivities': { en: 'Student activities', sr: 'Studentske aktivnosti' },
   'cv.studentOrg': { en: 'Student organization', sr: 'Studentska organizacija' },
 
-  'footer.builtWith': {
-    en: 'Built with React, TypeScript and Tailwind. Source on GitHub.',
-    sr: 'Napravljeno u React-u, TypeScript-u i Tailwind-u. Izvorni kod na GitHub-u.',
-  },
+  'footer.top': { en: 'Back to top', sr: 'Nazad na vrh' },
   'footer.lastUpdated': { en: 'Last updated', sr: 'Poslednja izmena' },
 
   'notFound.title': { en: 'Page not found', sr: 'Stranica nije pronađena' },
   'notFound.back': { en: 'Go to the home page', sr: 'Idi na početnu' },
+  'notFound.lead': {
+    en: 'This page does not exist. The shot missed everything: rim, board, and the net.',
+    sr: 'Ova stranica ne postoji. Šut je promašio sve: obruč, tablu i mrežicu.',
+  },
 } as const;
 
 export type UiKey = keyof typeof ui;

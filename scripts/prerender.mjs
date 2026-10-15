@@ -76,8 +76,9 @@ const browser = await puppeteer.launch({ headless: true, executablePath: await f
 try {
   for (const route of routes) {
     const page = await browser.newPage();
-    // Render in the light theme with no stored preference, so the markup that
-    // ships carries no theme of its own and the inline boot script decides.
+    // No stored preference, so the snapshot is in the default language (Serbian).
+    // The site has one theme now, so there is nothing else to reset. Motion is
+    // skipped under automation (see motionOK), so nothing ships half-faded.
     await page.evaluateOnNewDocument(() => {
       try {
         localStorage.clear();
@@ -88,10 +89,7 @@ try {
     await page.goto(`${origin}${route}`, { waitUntil: 'networkidle0' });
     await page.waitForSelector('main');
 
-    const html = await page.evaluate(() => {
-      document.documentElement.classList.remove('dark');
-      return `<!doctype html>\n${document.documentElement.outerHTML}`;
-    });
+    const html = await page.evaluate(() => `<!doctype html>\n${document.documentElement.outerHTML}`);
 
     const dir = join(DIST, route);
     await mkdir(dir, { recursive: true });

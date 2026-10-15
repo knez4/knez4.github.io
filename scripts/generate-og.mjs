@@ -30,60 +30,71 @@ async function findChrome() {
   return undefined;
 }
 
-const fontPath = resolve(process.cwd(), 'public/fonts/inter-700.woff2');
-const fontRegular = resolve(process.cwd(), 'public/fonts/inter-400.woff2');
-const monoPath = resolve(process.cwd(), 'public/fonts/jetbrains-mono-400.woff2');
-
-const [bold, regular, mono] = await Promise.all([
-  readFile(fontPath, 'base64'),
-  readFile(fontRegular, 'base64'),
-  readFile(monoPath, 'base64'),
+/**
+ * The card follows the site: dark stage, one violet accent, the surname in the
+ * display face, the signature, and the cut-out portrait on the right.
+ */
+const read64 = (p) => readFile(resolve(process.cwd(), p), 'base64');
+const [regular, mono, archivo, archivoExt, script, portrait] = await Promise.all([
+  read64('public/fonts/inter-400.woff2'),
+  read64('public/fonts/jetbrains-mono-400.woff2'),
+  read64('public/fonts/archivo-wdth-latin.woff2'),
+  read64('public/fonts/archivo-wdth-latin-ext.woff2'),
+  read64('public/fonts/mrs-saint-delafield.woff2'),
+  read64('public/img/portrait-800.webp'),
 ]);
 
 const html = `<!doctype html>
 <html><head><meta charset="utf-8" />
 <style>
-  @font-face { font-family: Inter; font-weight: 700; src: url(data:font/woff2;base64,${bold}) format('woff2'); }
   @font-face { font-family: Inter; font-weight: 400; src: url(data:font/woff2;base64,${regular}) format('woff2'); }
   @font-face { font-family: JB; font-weight: 400; src: url(data:font/woff2;base64,${mono}) format('woff2'); }
+  @font-face { font-family: Archivo; font-weight: 100 900; font-stretch: 62% 125%;
+    src: url(data:font/woff2;base64,${archivo}) format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+  @font-face { font-family: Archivo; font-weight: 100 900; font-stretch: 62% 125%;
+    src: url(data:font/woff2;base64,${archivoExt}) format('woff2'); unicode-range: U+0100-02BA; }
+  @font-face { font-family: Sig; src: url(data:font/woff2;base64,${script}) format('woff2'); }
   * { margin: 0; box-sizing: border-box; }
   body {
-    width: 1200px; height: 630px; background: #090b10; color: #edf2f7;
-    font-family: Inter, sans-serif; padding: 72px 80px;
-    display: flex; flex-direction: column; justify-content: space-between;
+    width: 1200px; height: 630px; background: #08060e; color: #f4f1fa;
+    font-family: Inter, sans-serif; position: relative; overflow: hidden;
     background-image:
-      linear-gradient(rgba(38,44,56,.7) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(38,44,56,.7) 1px, transparent 1px);
+      linear-gradient(rgba(42,36,60,.55) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(42,36,60,.55) 1px, transparent 1px);
     background-size: 48px 48px;
-    position: relative; overflow: hidden;
   }
-  .glow { position: absolute; top: -220px; right: -160px; width: 620px; height: 620px;
-          border-radius: 50%; background: rgba(34,211,238,.14); filter: blur(90px); }
-  .tag { font-family: JB; font-size: 20px; letter-spacing: .18em; text-transform: uppercase; color: #22d3ee; }
-  h1 { font-size: 78px; font-weight: 700; letter-spacing: -.02em; line-height: 1.05; }
-  .role { font-size: 34px; color: #22d3ee; margin-top: 14px; }
-  .sub { font-size: 24px; color: #a0aec0; margin-top: 18px; max-width: 880px; line-height: 1.45; }
-  .foot { font-family: JB; font-size: 21px; color: #7a8a9e; display: flex; gap: 28px; }
-  .rule { height: 3px; width: 92px; background: #22d3ee; margin: 26px 0 0; }
+  .glow { position: absolute; right: 80px; top: 60px; width: 560px; height: 560px; border-radius: 50%;
+          background: rgba(124,77,255,.45); filter: blur(110px); }
+  .portrait { position: absolute; right: 70px; bottom: -40px; height: 640px;
+              -webkit-mask-image: linear-gradient(to top, transparent, black 20%); }
+  .tag { position: absolute; left: 72px; top: 64px; font-family: JB; font-size: 20px; letter-spacing: .2em;
+         text-transform: uppercase; color: #a07cff; }
+  .name { position: absolute; left: 60px; bottom: 120px; font-family: Archivo; font-stretch: 68%; font-weight: 850;
+          font-size: 196px; line-height: .82; text-transform: uppercase; letter-spacing: -.01em; }
+  .sig { position: absolute; left: 230px; bottom: 250px; font-family: Sig; font-size: 150px; color: #a07cff;
+         transform: rotate(-9deg); text-shadow: 0 6px 30px rgba(124,77,255,.6); }
+  .foot { position: absolute; left: 72px; bottom: 56px; font-family: JB; font-size: 20px; color: #aca4c0;
+          display: flex; gap: 28px; letter-spacing: .06em; }
+  .logo { position: absolute; right: 64px; top: 52px; width: 64px; height: 64px; }
 </style></head>
 <body>
   <div class="glow"></div>
-  <div>
-    <div class="tag">Fakultet organizacionih nauka &middot; Belgrade</div>
-    <div class="rule"></div>
-  </div>
-  <div>
-    <h1>Veljko Knežević</h1>
-    <div class="role">Databases and backend web development</div>
-    <div class="sub">PostgreSQL, Oracle SQL, Laravel and Java. Multi-tenant schema design, row-level security, REST APIs.</div>
-  </div>
+  <img class="portrait" src="data:image/webp;base64,${portrait}" />
+  <div class="tag">Web dizajn &middot; Automatizacija &middot; Baze podataka</div>
+  <div class="name">Knežević</div>
+  <div class="sig">Veljko</div>
   <div class="foot"><span>knez4.github.io</span><span>github.com/knez4</span></div>
+  <svg class="logo" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#7C4DFF"/>
+    <g fill="none" stroke="#08060E" stroke-opacity=".38" stroke-width="1.6"><path d="M2 32H62"/><path d="M12 9C22 20 22 44 12 55"/><path d="M52 9C42 20 42 44 52 55"/></g>
+    <polygon points="13,20 19.5,20 23,35 26.5,20 33,20 26,44 20,44" fill="#fff"/>
+    <polygon points="35,20 40.5,20 40.5,29.5 45,20 51,20 44.6,32 51.5,44 45.5,44 40.5,34.5 40.5,44 35,44" fill="#fff"/></svg>
 </body></html>`;
 
 const browser = await puppeteer.launch({ headless: true, executablePath: await findChrome() });
 const page = await browser.newPage();
 await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
 await page.setContent(html, { waitUntil: 'load' });
+await page.evaluate(() => Promise.all([...document.images].map((i) => i.decode())));
 await page.evaluate(() => document.fonts.ready);
 
 const out = resolve(process.cwd(), 'public/og-image.png');

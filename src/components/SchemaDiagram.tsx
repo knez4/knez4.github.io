@@ -226,11 +226,11 @@ export function SchemaDiagram() {
         <p className="eyebrow">{t('schema.functionTitle')}</p>
         <h3 className="mt-2 font-mono text-base font-semibold">{bookingFunction.name}()</h3>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted">{pick(bookingFunction.summary)}</p>
-        <ol className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        <ol className="mt-4 grid gap-2.5 sm:grid-cols-2 sm:gap-3 xl:grid-cols-5">
           {pick(bookingFunction.steps).map((step, i) => (
-            <li key={step} className="rounded-lg border border-line bg-surface-2 p-3">
-              <span className="font-mono text-[11px] text-accent">{String(i + 1).padStart(2, '0')}</span>
-              <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{step}</p>
+            <li key={step} className="flex gap-3 sm:block sm:rounded-lg sm:border sm:border-line sm:bg-surface-2 sm:p-3">
+              <span className="shrink-0 font-mono text-[11px] leading-[1.6rem] text-accent sm:leading-normal">{String(i + 1).padStart(2, '0')}</span>
+              <p className="text-[13px] leading-relaxed text-muted sm:mt-1.5">{step}</p>
             </li>
           ))}
         </ol>

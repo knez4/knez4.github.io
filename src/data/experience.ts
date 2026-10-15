@@ -87,12 +87,12 @@ export const experience: Role[] = [
        */
       en: [
         'Built two client websites from scratch, with responsive WebP images and a tuned LCP preload.',
-        'Replaced a manual reporting routine with a Python and pandas tool that turns nine Excel workbooks into nine PDF reports in three seconds instead of about an hour.',
+        'Replaced a manual reporting routine with a Python and pandas tool that turns nine Excel workbooks into nine PDF reports in three seconds instead of about six hours.',
         'Produce monthly mystery-shopping reports in Adobe Illustrator, a three-year agency engagement with a betting-industry client.',
       ],
       sr: [
         'Izradio dva klijentska sajta, sa responzivnim WebP slikama i podešenim LCP preload-om.',
-        'Zamenio ručno izveštavanje alatom u Python-u i pandas-u koji devet Excel svezaka pretvara u devet PDF izveštaja za tri sekunde, umesto za oko sat vremena.',
+        'Zamenio ručno izveštavanje alatom u Python-u i pandas-u koji devet Excel svezaka pretvara u devet PDF izveštaja za tri sekunde, umesto za oko šest sati.',
         'Pripremam mesečne mystery shopping izveštaje u Adobe Illustrator-u, u okviru trogodišnje saradnje sa klijentom iz kladioničarske industrije, preko agencije.',
       ],
     },
