@@ -23,7 +23,9 @@ export function Hero({ ready }: { ready: boolean }) {
     const ctx = gsap.context(() => {
       gsap.set('[data-a="char"]', { yPercent: 110 });
       gsap.set('[data-a="portrait"]', { clipPath: 'inset(100% 0 0 0)', scale: 1.08 });
-      gsap.set('[data-a="sig"]', { clipPath: 'inset(0 100% 0 0)' });
+      // The script face draws the V's lead-in stroke outside the text box, so the mask runs
+      // 60% past every edge; with plain inset(0) the finished signature kept its V clipped.
+      gsap.set('[data-a="sig"]', { clipPath: 'inset(-60% 160% -60% -60%)' });
       gsap.set('[data-a="fade"]', { autoAlpha: 0, y: 24 });
       gsap.set('[data-a="term"]', { autoAlpha: 0, y: 40, rotateX: 8 });
     }, root);
@@ -36,7 +38,7 @@ export function Hero({ ready }: { ready: boolean }) {
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
       tl.to('[data-a="char"]', { yPercent: 0, duration: 1.3, stagger: 0.045 })
         .to('[data-a="portrait"]', { clipPath: 'inset(0% 0 0 0)', scale: 1, duration: 1.5 }, 0.15)
-        .to('[data-a="sig"]', { clipPath: 'inset(0 0% 0 0)', duration: 1.6, ease: 'power2.inOut' }, 0.7)
+        .to('[data-a="sig"]', { clipPath: 'inset(-60% -60% -60% -60%)', duration: 1.6, ease: 'power2.inOut', clearProps: 'clipPath' }, 0.7)
         .to('[data-a="fade"]', { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08 }, 0.5)
         .to('[data-a="term"]', { autoAlpha: 1, y: 0, rotateX: 0, duration: 1.2 }, 0.8);
 

@@ -249,18 +249,20 @@ export const projects: Project[] = [
     ],
     media: [
       // The real site leads: a screenshot says "client sites" faster than a diagram does.
+      // Flekout's redesign (taken from his artifact, 15 October 2026); the Mystery M shot was
+      // dropped at his request, the repo link stays.
       {
         src: '/img/work/flekout-desktop.webp',
         alt: {
-          en: 'The Flekout home page: the logo cut out over a cleaning video',
-          sr: 'Početna strana sajta Flekout: logotip kao maska preko videa čišćenja',
+          en: 'The Flekout home page: "Bez fleke." next to a cleaning video in a slanted frame',
+          sr: 'Početna strana sajta Flekout: „Bez fleke." pored videa čišćenja u kosom kadru',
         },
-        caption: { en: 'Flekout, the first build.', sr: 'Flekout, prva izrada.' },
+        caption: { en: 'Flekout, the home page.', sr: 'Flekout, početna strana.' },
       },
       {
-        src: '/img/work/mysterym-desktop.webp',
-        alt: { en: 'The Mystery M home page', sr: 'Početna strana sajta Mystery M' },
-        caption: { en: 'Mystery M, the second build.', sr: 'Mystery M, druga izrada.' },
+        src: '/img/work/flekout-mobile.webp',
+        alt: { en: 'The Flekout home page on a phone', sr: 'Početna strana sajta Flekout na telefonu' },
+        caption: { en: 'The same page on a phone.', sr: 'Ista strana na telefonu.' },
       },
       {
         src: '/screenshots/client-performance.svg',

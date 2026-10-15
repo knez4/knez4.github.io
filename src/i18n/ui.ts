@@ -95,9 +95,9 @@ export const ui = {
     en: 'If you do something by hand and it keeps repeating (copying between spreadsheets, the same report every month, processing data), a program can do it for you.',
     sr: 'Ako nešto radiš ručno i to se ponavlja (prepisivanje iz tabela, isti izveštaj svakog meseca, obrada podataka), to može da radi program umesto tebe.',
   },
-  'freelance.sitesCaption': { en: 'Flekout and Mystery M, two sites I built', sr: 'Flekout i Mystery M, sajtovi koje sam napravio' },
+  'freelance.sitesCaption': { en: 'Flekout, a site I built', sr: 'Flekout, sajt koji sam napravio' },
   'freelance.flekoutAlt': { en: 'The Flekout website on a laptop', sr: 'Sajt Flekout na računaru' },
-  'freelance.mysteryAlt': { en: 'The Mystery M website on a phone', sr: 'Sajt Mystery M na telefonu' },
+  'freelance.flekoutMobileAlt': { en: 'The Flekout website on a phone', sr: 'Sajt Flekout na telefonu' },
   'freelance.before': { en: 'Before', sr: 'Ranije' },
   'freelance.after': { en: 'Now', sr: 'Sada' },
   /** About six hours by hand for the nine reports, his figure (15 October 2026); it was wrongly ~1 h before. */

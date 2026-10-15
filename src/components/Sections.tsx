@@ -196,8 +196,8 @@ function SitesVisual() {
                      group-hover:-translate-y-2 group-hover:rotate-[3deg]"
         >
           <img
-            src="/img/work/mysterym-mobile.webp"
-            alt={t('freelance.mysteryAlt')}
+            src="/img/work/flekout-mobile.webp"
+            alt={t('freelance.flekoutMobileAlt')}
             width={390}
             height={844}
             loading="lazy"
