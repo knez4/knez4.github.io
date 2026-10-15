@@ -1,8 +1,7 @@
 import { createContext, useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 import { finePointer, gsap, motionOK, ScrollTrigger, scroller } from '../lib/motion';
-import { useLang } from '../lib/useLang';
-import { Ball } from './Logo';
+import { Ball, Logo } from './Logo';
 
 /** True once the intro has finished (or was skipped), so the hero knows when to play. */
 export const IntroReady = createContext(true);
@@ -130,47 +129,79 @@ export function Cursor() {
 }
 
 /**
- * First-visit intro as a basketball shot clock: 24 runs down to 0, the buzzer
- * sounds (visually), and the panel lifts off the hero. Once per session, about
- * 1.4 s, skipped entirely when motion is off.
+ * Intro screen, the same on every visit. The ball monogram turns once, a violet line
+ * fills to 100 with a counter beside it, and the screen lifts like a curtain with a
+ * violet layer trailing it. The line only reaches 100 once the fonts and the portrait
+ * are ready (at least 1.4 s, never more than about 3 s), so the hero never opens on a
+ * blank photo. Skipped when motion is off, and under automation (the prerender).
  */
 export function Preloader({ onDone }: { onDone: () => void }) {
-  const { lang } = useLang();
   const root = useRef<HTMLDivElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
+  const veil = useRef<HTMLDivElement>(null);
+  const logo = useRef<HTMLDivElement>(null);
+  const bar = useRef<HTMLSpanElement>(null);
   const num = useRef<HTMLSpanElement>(null);
-  const [show] = useState(() => {
-    if (!motionOK()) return false;
-    try {
-      return sessionStorage.getItem('intro') !== '1';
-    } catch {
-      return true;
-    }
-  });
+  const meta = useRef<HTMLDivElement>(null);
+  const [show] = useState(() => motionOK());
 
   useEffect(() => {
     if (!show) {
       onDone();
       return;
     }
-    try {
-      sessionStorage.setItem('intro', '1');
-    } catch {
-      // private mode: the intro just plays again next time
-    }
-    const clock = { v: 24 };
-    const tl = gsap.timeline({ onComplete: onDone });
-    tl.to(clock, {
-      v: 0,
-      duration: 1.05,
-      ease: 'power1.in',
-      onUpdate: () => {
-        if (num.current) num.current.textContent = String(Math.ceil(clock.v)).padStart(2, '0');
-      },
-    })
-      .to(num.current, { color: 'rgb(124 77 255)', scale: 1.08, duration: 0.12, yoyo: true, repeat: 1 })
-      .to(root.current, { clipPath: 'inset(0 0 100% 0)', duration: 0.75, ease: 'expo.inOut' }, '+=0.05');
+    const html = document.documentElement;
+    html.style.overflow = 'hidden';
+    scroller.lenis?.stop();
+
+    // Ready = fonts loaded and the portrait decoded, capped so a slow network never holds the page.
+    const assets = new Promise<void>((resolve) => {
+      const img = document.querySelector<HTMLImageElement>('[data-a="portrait"]');
+      const decoded = img ? img.decode().catch(() => undefined) : Promise.resolve();
+      Promise.all([document.fonts?.ready, decoded]).then(() => resolve());
+      window.setTimeout(resolve, 2600);
+    });
+
+    const count = { v: 0 };
+    const render = () => {
+      if (num.current) num.current.textContent = String(Math.round(count.v)).padStart(3, '0');
+    };
+
+    // Phase 1: logo in, line runs to 80 while assets load.
+    const intro = gsap.timeline();
+    intro
+      .fromTo(logo.current, { scale: 0.6, autoAlpha: 0, rotation: -120 }, { scale: 1, autoAlpha: 1, rotation: 0, duration: 0.9, ease: 'back.out(1.6)' })
+      .fromTo(meta.current, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.2)
+      .to(count, { v: 80, duration: 1.2, ease: 'power2.out', onUpdate: render }, 0.25)
+      .fromTo(bar.current, { scaleX: 0 }, { scaleX: 0.8, duration: 1.2, ease: 'power2.out' }, 0.25);
+
+    let outro: gsap.core.Timeline | null = null;
+    let cancelled = false;
+    Promise.all([assets, new Promise((r) => window.setTimeout(r, 1400))]).then(() => {
+      if (cancelled) return;
+      // Phase 2: finish the line, a full turn of the ball, then lift the curtain.
+      outro = gsap.timeline({
+        onComplete: () => {
+          html.style.overflow = '';
+          scroller.lenis?.start();
+        },
+      });
+      outro
+        .to(count, { v: 100, duration: 0.45, ease: 'power2.inOut', onUpdate: render })
+        .to(bar.current, { scaleX: 1, duration: 0.45, ease: 'power2.inOut' }, '<')
+        .to(logo.current, { rotation: 360, duration: 0.7, ease: 'power3.inOut' }, '<')
+        .to([logo.current, meta.current], { y: -24, autoAlpha: 0, duration: 0.45, ease: 'power3.in', stagger: 0.05 }, '+=0.05')
+        .to(panel.current, { clipPath: 'inset(0 0 100% 0)', duration: 0.85, ease: 'expo.inOut' }, '-=0.15')
+        .add(onDone, '-=0.55')
+        .to(veil.current, { clipPath: 'inset(0 0 100% 0)', duration: 0.85, ease: 'expo.inOut' }, '-=0.72')
+        .set(root.current, { display: 'none' });
+    });
+
     return () => {
-      tl.kill();
+      cancelled = true;
+      intro.kill();
+      outro?.kill();
+      html.style.overflow = '';
     };
     // onDone is stable for the lifetime of the page
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -178,19 +209,26 @@ export function Preloader({ onDone }: { onDone: () => void }) {
 
   if (!show) return null;
   return (
-    <div
-      ref={root}
-      className="fixed inset-0 z-[80] grid place-items-center bg-bg"
-      style={{ clipPath: 'inset(0 0 0 0)' }}
-      aria-hidden="true"
-    >
-      <div className="text-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-subtle">
-          {lang === 'sr' ? 'Napad počinje' : 'Shot clock'}
-        </p>
-        <span ref={num} className="font-display mt-3 block text-[34vw] leading-none text-fg sm:text-[22vw]">
-          24
-        </span>
+    <div ref={root} className="fixed inset-0 z-[80]" aria-hidden="true">
+      {/* trails the panel on the way out, so the lift shows a violet edge */}
+      <div ref={veil} className="absolute inset-0 bg-accent-strong" style={{ clipPath: 'inset(0 0 0 0)' }} />
+      <div ref={panel} className="absolute inset-0 grid place-items-center bg-bg" style={{ clipPath: 'inset(0 0 0 0)' }}>
+        <div className="flex w-[min(280px,64vw)] flex-col items-center">
+          <div ref={logo} className="opacity-0">
+            <Logo className="h-16 w-16 sm:h-20 sm:w-20" />
+          </div>
+          <div ref={meta} className="mt-10 w-full opacity-0">
+            <span className="relative block h-px w-full overflow-hidden bg-fg/15">
+              <span ref={bar} className="absolute inset-0 origin-left scale-x-0 bg-accent" />
+            </span>
+            <div className="mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.28em] text-subtle">
+              <span>Veljko Knežević</span>
+              <span ref={num} className="tabular-nums text-fg">
+                000
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
