@@ -59,8 +59,8 @@ export default function Home() {
         reverse
         items={
           lang === 'sr'
-            ? ['Pozitivan', 'Timski igrač', 'Uvek nasmejan', 'Košarka', 'Rado pomažem']
-            : ['Positive', 'Team player', 'Always smiling', 'Basketball', 'Happy to help']
+            ? ['Pozitivan', 'Timski igrač', 'Košarka', 'Rado pomažem']
+            : ['Positive', 'Team player', 'Basketball', 'Happy to help']
         }
       />
 

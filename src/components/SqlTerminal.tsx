@@ -83,7 +83,7 @@ function useQueries() {
                   [sr ? 'grad' : 'city', pick(profile.location)],
                   [sr ? 'studije' : 'studies', sr ? 'FON, završna godina' : 'FON, final year'],
                   [sr ? 'fokus' : 'focus', sr ? 'web dizajn, automatizacija, baze' : 'web design, automation, databases'],
-                  [sr ? 'karakter' : 'temper', sr ? 'pozitivan, uvek nasmejan' : 'positive, always smiling'],
+                  [sr ? 'karakter' : 'temper', sr ? 'pozitivan, društven' : 'positive, sociable'],
                   ['status', pick(profile.status)],
                 ],
               },
