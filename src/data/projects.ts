@@ -243,6 +243,8 @@ export const projects: Project[] = [
       ],
     },
     tech: ['HTML', 'CSS', 'JavaScript', 'WebP', 'Apache'],
+    // Flekout went live on 16 October 2026. Mystery M has no live site and never will.
+    liveUrl: 'https://flekoutclean.com',
     repos: [
       { label: 'Flekout', url: 'https://github.com/knez4/flekout' },
       { label: 'Mystery M', url: 'https://github.com/knez4/Mystery-M' },

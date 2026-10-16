@@ -37,6 +37,18 @@ function RepoLinks({ project }: { project: Project }) {
   }
   return (
     <span className="flex flex-wrap gap-x-6 gap-y-2 lg:justify-end">
+      {/* A live site outranks the source: it is what a visitor actually wants to open. */}
+      {project.liveUrl ? (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+          className={item + ' pointer-events-auto relative z-10 text-accent transition-colors hover:text-fg'}
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-[#7ee2a8]" aria-hidden="true" />
+          {project.liveUrl.replace(/^https?:\/\//, '')} ↗
+        </a>
+      ) : null}
       {links.map((l) => (
         <a
           key={l.url}

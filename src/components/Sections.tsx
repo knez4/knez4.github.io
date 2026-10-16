@@ -206,7 +206,18 @@ function SitesVisual() {
           />
         </div>
       </div>
-      <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{t('freelance.sitesCaption')}</figcaption>
+      <figcaption className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+        {t('freelance.sitesCaption')}
+        <a
+          href="https://flekoutclean.com"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="relative z-10 inline-flex items-center gap-2 text-accent transition-colors hover:text-fg"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-[#7ee2a8]" aria-hidden="true" />
+          flekoutclean.com ↗
+        </a>
+      </figcaption>
     </figure>
   );
 }
