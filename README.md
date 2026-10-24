@@ -73,3 +73,21 @@ deploy, so a two-page CV or an unreadable one stops the release.
 This is a user site (`knez4.github.io`), so it serves from the domain root and
 `vite.config.ts` needs no `base`. Routing uses real paths; `dist/404.html` is a copy
 of `index.html`, which is how GitHub Pages serves a deep link on a cold load.
+
+## The chat
+
+Plain-language questions typed into the hero terminal go to a Cloudflare Worker in
+`chat/`, deployed separately at `https://veljko-chat.knez4.workers.dev` on the free
+Workers AI allowance. It is not deployed by the GitHub workflow.
+
+- Everything it knows is in `chat/src/knowledge.ts`. When a fact changes on the site or
+  CV, change it there too, then run `npx wrangler deploy` from `chat/`.
+- Model: Gemma 4 26B A4B with thinking off. The knowledge base is the same prefix on
+  every request, so it is served from the prompt cache: about 9 neurons a question
+  (17 uncached) against 10,000 free a day. Repeated first questions come from the
+  edge cache for a day and cost nothing.
+- Limits: 6 questions a minute per visitor, 300 characters a question, two earlier
+  turns of history, short answers. Only the site's origins are answered.
+- When the daily allowance runs out the terminal says so and SQL keeps working.
+- Watch usage with `npx wrangler tail` from `chat/` (each answer logs its token counts).
+- Type definitions for the Worker are generated, not committed: run `npx wrangler types` in `chat/`.

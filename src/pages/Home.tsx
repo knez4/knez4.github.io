@@ -1,23 +1,26 @@
-import { Contact, Education, Experience, Freelance, Skills } from '../components/Sections';
 import { useContext } from 'react';
 import { Hero, Marquee } from '../components/Hero';
-import { IntroReady } from '../components/Stage';
-import { Projects } from '../components/Projects';
-import { SchemaDiagram } from '../components/SchemaDiagram';
+import { About, Process, Services, TechDetails, Work } from '../components/Plain';
+import { Contact } from '../components/Sections';
 import { SectionHeading } from '../components/SectionHeading';
+import { IntroReady } from '../components/Stage';
 import { profile } from '../data/profile';
 import { useHead } from '../lib/useHead';
 import { useLang } from '../lib/useLang';
 
+/**
+ * Order follows a visitor who is not from IT (20 October 2026): who he is, what he
+ * can do for them, how working together goes, who he is as a person, proof, and
+ * then, folded, the technical depth for employers and developers. One action
+ * throughout: "Javi se".
+ */
 export default function Home() {
-  const { t, pick, lang } = useLang();
+  const { t, lang } = useLang();
   const ready = useContext(IntroReady);
 
   useHead({
-    // `role` now carries its own em dash ("... student — databases and backend"),
-    // so joining with another one gave the tab and the search result two of them.
-    title: `${profile.name} · ${pick(profile.role)}`,
-    description: pick(profile.summary).slice(0, 300),
+    title: t('seo.title'),
+    description: t('seo.description'),
     canonical: `${profile.siteUrl}/`,
   });
 
@@ -27,31 +30,30 @@ export default function Home() {
       <Marquee
         items={
           lang === 'sr'
-            ? ['Web dizajn', 'Automatizacija', 'Baze podataka', 'PostgreSQL', 'Python']
-            : ['Web design', 'Automation', 'Databases', 'PostgreSQL', 'Python']
+            ? ['Sajtovi', 'Automatizacija', 'Baze podataka', 'Beograd']
+            : ['Websites', 'Automation', 'Databases', 'Belgrade']
         }
       />
 
-      <section id="projects" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
+      <section id="services" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
         <div className="container-page">
-          <SectionHeading index="01" eyebrow={t('projects.eyebrow')} title={t('projects.title')} />
-          <Projects />
+          <SectionHeading index="01" eyebrow={t('services.eyebrow')} title={t('services.title')} />
+          <Services />
         </div>
       </section>
 
-      <section id="schema" className="relative scroll-mt-20 overflow-hidden py-16 sm:py-24 lg:py-32">
-        <div className="pointer-events-none absolute inset-0 grid-texture opacity-60" aria-hidden="true" />
-        <div className="pointer-events-none absolute -left-60 top-0 h-[56rem] w-[56rem] bg-[radial-gradient(closest-side,rgb(124_77_255/0.12),transparent)]" aria-hidden="true" />
+      <section id="process" className="relative scroll-mt-20 overflow-hidden border-t border-fg/10 py-16 sm:py-24 lg:py-32">
+        <div className="pointer-events-none absolute -left-60 top-0 h-[56rem] w-[56rem] bg-[radial-gradient(closest-side,rgb(124_77_255/0.1),transparent)]" aria-hidden="true" />
         <div className="container-page relative">
-          <SectionHeading index="02" eyebrow={t('schema.eyebrow')} title={t('schema.title')} lead={t('schema.lead')} />
-          <SchemaDiagram />
+          <SectionHeading index="02" eyebrow={t('process.eyebrow')} title={t('process.title')} />
+          <Process />
         </div>
       </section>
 
-      <section id="skills" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
+      <section id="about" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
         <div className="container-page">
-          <SectionHeading index="03" eyebrow={t('skills.eyebrow')} title={t('skills.title')} />
-          <Skills />
+          <SectionHeading index="03" eyebrow={t('about.eyebrow')} title={t('about.title')} />
+          <About />
         </div>
       </section>
 
@@ -64,24 +66,17 @@ export default function Home() {
         }
       />
 
-      <section id="experience" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
+      <section id="projects" className="scroll-mt-20 py-16 sm:py-24 lg:py-32">
         <div className="container-page">
-          <SectionHeading index="04" eyebrow={t('experience.eyebrow')} title={t('experience.title')} />
-          <Experience />
+          <SectionHeading index="04" eyebrow={t('work.eyebrow')} title={t('work.title')} />
+          <Work />
         </div>
       </section>
 
-      <section id="education" className="scroll-mt-20 pb-16 sm:pb-24 lg:pb-32">
+      <section id="tech" className="scroll-mt-20 border-t border-fg/10 py-16 sm:py-24 lg:py-32">
         <div className="container-page">
-          <SectionHeading index="05" eyebrow={t('education.eyebrow')} title={t('education.title')} />
-          <Education />
-        </div>
-      </section>
-
-      <section id="freelance" className="scroll-mt-20 border-t border-fg/10 py-16 sm:py-24 lg:py-32">
-        <div className="container-page">
-          <SectionHeading index="06" eyebrow={t('freelance.eyebrow')} title={t('freelance.title')} lead={t('freelance.lead')} />
-          <Freelance />
+          <SectionHeading index="05" eyebrow={t('tech.eyebrow')} title={t('tech.title')} lead={t('tech.lead')} />
+          <TechDetails />
         </div>
       </section>
 

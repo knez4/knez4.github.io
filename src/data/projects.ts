@@ -11,6 +11,13 @@ import type { Project } from './types';
 export const projects: Project[] = [
   {
     id: 'booking-platform',
+    plain: {
+      title: { en: 'Online booking system', sr: 'Sistem za online zakazivanje' },
+      text: {
+        en: 'An app where clients book a hair appointment themselves, and the system makes sure two bookings never land on the same slot. A working prototype.',
+        sr: 'Aplikacija u kojoj klijenti sami zakazuju termin kod frizera, a sistem pazi da se dva termina nikad ne poklope. Funkcionalan prototip.',
+      },
+    },
     rank: 1,
     year: '2026',
     status: 'prototype',
@@ -63,7 +70,7 @@ export const projects: Project[] = [
     repoUrl: 'https://github.com/knez4/frizerski-salon',
     media: [
       {
-        src: '/screenshots/booking-schema.svg',
+        src: '/screenshots/booking-schema.webp',
         alt: {
           en: 'Entity relationship diagram of the eleven booking tables',
           sr: 'Dijagram veza između jedanaest tabela sistema za zakazivanje',
@@ -124,6 +131,13 @@ export const projects: Project[] = [
 
   {
     id: 'chatbot-api',
+    plain: {
+      title: { en: 'Knowledge base for a student chatbot', sr: 'Baza znanja za studentskog chatbota' },
+      text: {
+        en: 'With two classmates, the part that stores answers to students’ questions and hands them to the chatbot. A university project.',
+        sr: 'Sa dve koleginice deo koji čuva odgovore na pitanja studenata i vraća ih chatbotu. Fakultetski projekat.',
+      },
+    },
     rank: 3,
     year: '2026',
     status: 'coursework',
@@ -169,7 +183,7 @@ export const projects: Project[] = [
     },
     media: [
       {
-        src: '/screenshots/chatbot-erd.svg',
+        src: '/screenshots/chatbot-erd.webp',
         alt: {
           en: 'Entity relationship diagram of the chatbot knowledge base tables',
           sr: 'Dijagram veza između tabela baze znanja chatbot-a',
@@ -216,6 +230,13 @@ export const projects: Project[] = [
 
   {
     id: 'client-sites',
+    plain: {
+      title: { en: 'Websites for clients', sr: 'Sajtovi za klijente' },
+      text: {
+        en: 'Flekout, a cleaning company in Belgrade, and Mystery M. Both built from scratch, from the first sketch to launch.',
+        sr: 'Flekout, firma za čišćenje iz Beograda, i Mystery M. Oba napravljena od nule, od prve skice do objave.',
+      },
+    },
     rank: 4,
     year: '2025',
     status: 'delivered',
@@ -267,7 +288,7 @@ export const projects: Project[] = [
         caption: { en: 'The same page on a phone.', sr: 'Ista strana na telefonu.' },
       },
       {
-        src: '/screenshots/client-performance.svg',
+        src: '/screenshots/client-performance.webp',
         alt: {
           en: 'Diagram of the image delivery pipeline and the scroll redraw fix',
           sr: 'Dijagram isporuke slika i ispravke iscrtavanja pri skrolovanju',
@@ -316,6 +337,13 @@ export const projects: Project[] = [
 
   {
     id: 'report-automation',
+    plain: {
+      title: { en: 'Automatic reports', sr: 'Automatski izveštaji' },
+      text: {
+        en: 'A program that turns nine Excel sheets into nine finished PDF reports in 3 seconds. By hand it took about 6 hours.',
+        sr: 'Program koji od devet Excel tabela za 3 sekunde napravi devet gotovih PDF izveštaja. Ručno je to trajalo oko 6 sati.',
+      },
+    },
     rank: 5,
     year: '2025–2026',
     status: 'delivered',
@@ -355,7 +383,7 @@ export const projects: Project[] = [
     tech: ['Python', 'pandas', 'openpyxl', 'pypdf', 'fontTools', 'Jinja2'],
     media: [
       {
-        src: '/screenshots/report-pipeline.svg',
+        src: '/screenshots/report-pipeline.webp',
         alt: {
           en: 'Diagram of the Excel-to-report automation pipeline',
           sr: 'Dijagram automatizacije od Excel tabele do izveštaja',

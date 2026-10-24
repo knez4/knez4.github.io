@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { education } from '../data/education';
 import { experience } from '../data/experience';
 import { languages, profile } from '../data/profile';
 import { pickItem, skillGroups } from '../data/skills';
 import { useLang } from '../lib/useLang';
-import { Check, Download, GitHub, LinkedIn, Mail } from './icons';
+import { GitHub, LinkedIn, Mail } from './icons';
 import { Ball } from './Logo';
 import { Reveal, SplitText } from './Reveal';
 
@@ -92,8 +90,12 @@ export function Experience() {
       {experience.map((role, i) => {
         const current = /present|danas/.test(role.period.en + role.period.sr);
         return (
-          <Reveal key={`${role.title.en}-${i}`} delay={i * 60}>
-            <li className="group grid gap-3 border-t border-fg/10 py-7 last:border-b sm:gap-4 sm:py-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10">
+          <Reveal
+            as="li"
+            key={`${role.title.en}-${i}`}
+            delay={i * 60}
+            className="group grid gap-3 border-t border-fg/10 py-7 last:border-b sm:gap-4 sm:py-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"
+          >
               <div>
                 <p className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-subtle">
                   {current ? (
@@ -123,7 +125,6 @@ export function Experience() {
                   ))}
                 </ul>
               </div>
-            </li>
           </Reveal>
         );
       })}
@@ -169,7 +170,7 @@ export function Education() {
  * what a site looks like and what automation saves, not how either works.
  * Real screenshots of his two sites, and the one real before/after he has.
  */
-function SitesVisual() {
+export function SitesVisual() {
   const { t } = useLang();
   return (
     <figure>
@@ -182,6 +183,8 @@ function SitesVisual() {
           </div>
           <img
             src="/img/work/flekout-desktop.webp"
+            srcSet="/img/work/flekout-desktop-600.webp 600w, /img/work/flekout-desktop.webp 1200w"
+            sizes="(min-width: 1024px) 40vw, 85vw"
             alt={t('freelance.flekoutAlt')}
             width={1200}
             height={750}
@@ -197,6 +200,8 @@ function SitesVisual() {
         >
           <img
             src="/img/work/flekout-mobile.webp"
+            srcSet="/img/work/flekout-mobile-200.webp 200w, /img/work/flekout-mobile.webp 390w"
+            sizes="(min-width: 1024px) 12vw, 28vw"
             alt={t('freelance.flekoutMobileAlt')}
             width={390}
             height={844}
@@ -307,7 +312,7 @@ export function Freelance() {
               <Mail />
               {t('freelance.ask')}
             </a>
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/75">{t('contact.reply')}</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white">{t('contact.reply')}</p>
           </div>
         </div>
       </Reveal>
@@ -317,17 +322,6 @@ export function Freelance() {
 
 export function Contact() {
   const { t, pick, lang } = useLang();
-  const [copied, setCopied] = useState(false);
-
-  const copyPitch = async () => {
-    try {
-      await navigator.clipboard.writeText(pick(profile.pitch));
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Clipboard can be blocked; the email link below still works.
-    }
-  };
 
   return (
     <div className="relative">
@@ -344,8 +338,9 @@ export function Contact() {
 
       {/* The address never wraps: it is sized to fit on one line at every width, and the
           buttons sit on their own row below rather than squeezing it from the side. */}
+      {/* One action, the same one as everywhere else on the page. */}
       <div className="mt-12">
-        <p className="max-w-xl text-[17px] leading-relaxed text-muted">{pick(profile.status)}.</p>
+        <p className="max-w-xl text-[17px] leading-relaxed text-muted sm:text-[19px]">{t('contact.plainLead')}</p>
         <a
           href={`mailto:${profile.email}`}
           className="draw-line mt-6 inline-block whitespace-nowrap font-display text-[clamp(1.5rem,7.6vw,6.2rem)] text-accent"
@@ -353,22 +348,13 @@ export function Contact() {
         >
           {profile.email}
         </a>
-        {/* The primary action names the next step for an employer; CV and the pitch support it. */}
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a href={mailto(t('contact.inviteSubject'), t('contact.inviteBody'))} className="btn-pill btn-pill--solid" data-magnetic>
+        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a href={mailto(t('freelance.mailSubject'), t('freelance.mailBody'))} className="btn-pill btn-pill--solid" data-magnetic>
             <Mail />
-            {t('contact.invite')}
+            {t('cta.talk')}
           </a>
-          <Link to="/cv" className="btn-pill btn-pill--ghost" data-magnetic>
-            <Download />
-            {t('hero.downloadCv')}
-          </Link>
-          <button type="button" onClick={copyPitch} className="btn-pill btn-pill--ghost" data-magnetic>
-            {copied ? <Check /> : null}
-            {copied ? t('contact.copied') : t('contact.copyPitch')}
-          </button>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{t('contact.reply')}</p>
         </div>
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{t('contact.reply')}</p>
       </div>
 
       <ul className="mt-14 flex flex-wrap gap-x-10 gap-y-3 border-t border-fg/10 pt-8 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">

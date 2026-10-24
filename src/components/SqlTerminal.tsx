@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import { profile } from '../data/profile';
+import { askChat, isTerminalInput, MAX_QUESTION } from '../lib/chat';
+import type { ChatError, ChatTurn } from '../lib/chat';
 import { projects } from '../data/projects';
 import { skillGroups } from '../data/skills';
 import type { L } from '../data/types';
@@ -13,11 +15,16 @@ import { Ball } from './Logo';
  * A pretend psql session over the site's own data. Nothing here touches a real
  * database: queries are matched against a small fixed set and answered from
  * src/data, so every row it prints is the same fact the rest of the site states.
+ *
+ * Anything typed that is not SQL or a command goes to the chat (src/lib/chat.ts),
+ * which answers questions about Veljko in plain words.
  */
 
 type Table = { cols: string[]; rows: (string | ReactNode)[][] };
 type Entry =
-  | { kind: 'query'; text: string }
+  | { kind: 'query'; text: string; chat?: boolean }
+  | { kind: 'answer'; text: string }
+  | { kind: 'thinking' }
   | { kind: 'table'; table: Table }
   | { kind: 'text'; text: string; tone?: 'error' | 'ok' | 'muted' };
 
@@ -25,13 +32,26 @@ const s = (en: string, sr: string): L => ({ en, sr });
 
 const COPY = {
   title: s('psql: veljko@portfolio', 'psql: veljko@portfolio'),
-  inputLabel: s('Type an SQL query', 'Ukucaj SQL upit'),
+  inputLabel: s('Type an SQL query or a question', 'Ukucaj SQL upit ili pitanje'),
+  welcome: s(
+    'Welcome. Type SQL, or just ask anything about Veljko.',
+    'Dobrodošao. Ukucaj SQL ili samo pitaj bilo šta o Veljku.',
+  ),
+  quota: s(
+    'The chat is resting until tomorrow (daily limit reached). SQL still works, or write to veljkoknez11@gmail.com.',
+    'Chat se odmara do sutra (potrošen dnevni limit). SQL i dalje radi, a možeš i da pišeš na veljkoknez11@gmail.com.',
+  ),
+  rate: s('Easy there, too many questions in a minute. Try again shortly.', 'Polako, previše pitanja u minuti. Probaj ponovo za koji trenutak.'),
+  offline: s(
+    'The chat is not answering right now. Write to veljkoknez11@gmail.com instead.',
+    'Chat trenutno ne odgovara. Piši na veljkoknez11@gmail.com.',
+  ),
   try: s('Try', 'Probaj'),
   rows: s('rows', 'redova'),
   row: s('row', 'red'),
   help: s(
-    'Tables: me, projects, skills, hobbies, contact. Commands: \\dt, \\shoot, clear.',
-    'Tabele: me, projects, skills, hobbies, contact. Komande: \\dt, \\shoot, clear.',
+    'Tables: me, projects, skills, hobbies, contact. Commands: \\dt, \\shoot, clear. Or ask in plain words, e.g. "What does Veljko do?"',
+    'Tabele: me, projects, skills, hobbies, contact. Komande: \\dt, \\shoot, clear. Ili pitaj običnim rečima, npr. „Šta Veljko radi?"',
   ),
   denied: s(
     'ERROR: permission denied. Row Level Security is on, and so am I.',
@@ -44,7 +64,11 @@ const COPY = {
   shooting: s('Shooting from the terminal…', 'Šutiram iz terminala…'),
 };
 
-const SUGGESTIONS = ['SELECT * FROM me;', 'SELECT * FROM projects;', 'SELECT * FROM hobbies;', '\\shoot'];
+const SUGGESTIONS: Record<'en' | 'sr', string[]> = {
+  sr: ['SELECT * FROM me;', 'SELECT * FROM projects;', 'Šta Veljko radi?', '\\shoot'],
+  en: ['SELECT * FROM me;', 'SELECT * FROM projects;', 'What does Veljko do?', '\\shoot'],
+};
+const CHAT_ERRORS: Record<ChatError, L> = { quota: COPY.quota, rate: COPY.rate, network: COPY.offline };
 
 function useQueries() {
   const { lang, t, pick } = useLang();
@@ -161,16 +185,50 @@ export function SqlTerminal({ autoplay = true, className = '' }: { autoplay?: bo
   const outRef = useRef<HTMLDivElement>(null);
   const started = useRef(false);
   const score = useRef({ made: 0, att: 0 });
+  const history = useRef<ChatTurn[]>([]);
 
-  useEffect(() => {
-    outRef.current?.scrollTo({ top: outRef.current.scrollHeight, behavior: 'smooth' });
-  }, [entries]);
+  /** Send a plain-language question to the chat and print the answer a few words at a time. */
+  const ask = useCallback(
+    async (text: string) => {
+      setEntries((e) => [...e, { kind: 'query', text, chat: true }, { kind: 'thinking' }]);
+      let answer: string;
+      try {
+        answer = await askChat(text, history.current, lang);
+        history.current = [...history.current, { q: text, a: answer }].slice(-2);
+      } catch (err) {
+        const msg = pick(CHAT_ERRORS[err as ChatError] ?? COPY.offline);
+        setEntries((e) => [...e.filter((x) => x.kind !== 'thinking'), { kind: 'text', text: msg, tone: 'error' }]);
+        return;
+      }
+      const words = answer.split(' ');
+      const step = motionOK() ? 3 : words.length;
+      for (let i = step; i < words.length + step; i += step) {
+        const shown = words.slice(0, i).join(' ');
+        setEntries((e) => {
+          const rest = e.filter((x) => x.kind !== 'thinking');
+          const last = rest[rest.length - 1];
+          return last?.kind === 'answer' && i > step
+            ? [...rest.slice(0, -1), { kind: 'answer', text: shown }]
+            : [...rest, { kind: 'answer', text: shown }];
+        });
+        if (i < words.length) await new Promise((r) => setTimeout(r, 45));
+      }
+    },
+    [lang, pick],
+  );
 
   const execute = useCallback(
     async (text: string) => {
       const q = text.trim().toLowerCase().replace(/;+$/, '');
       if (q === 'clear' || q === '\\! clear') {
         setEntries([]);
+        history.current = [];
+        return;
+      }
+      if (!isTerminalInput(text)) {
+        setBusy(true);
+        await ask(text.trim());
+        setBusy(false);
         return;
       }
       setEntries((e) => [...e, { kind: 'query', text }]);
@@ -194,7 +252,7 @@ export function SqlTerminal({ autoplay = true, className = '' }: { autoplay?: bo
       }
       setEntries((e) => [...e, ...run(text)]);
     },
-    [lang, pick, run],
+    [ask, lang, pick, run],
   );
 
   /** Type a query into the prompt one character at a time, then run it. */
@@ -229,9 +287,16 @@ export function SqlTerminal({ autoplay = true, className = '' }: { autoplay?: bo
   useEffect(() => {
     if (lastLang.current === lang) return;
     lastLang.current = lang;
+    // Chat answers are kept as they were: asking again would spend tokens on the same answer.
     setEntries((prev) => {
       const next: Entry[] = [];
-      for (const e of prev) if (e.kind === 'query') next.push(e, ...(e.text.includes('shoot') ? [] : run(e.text)));
+      let keep = false;
+      for (const e of prev) {
+        if (e.kind === 'query') {
+          keep = !!e.chat;
+          next.push(e, ...(keep || e.text.includes('shoot') ? [] : run(e.text)));
+        } else if (keep) next.push(e);
+      }
       return next;
     });
   }, [lang, run]);
@@ -258,13 +323,16 @@ export function SqlTerminal({ autoplay = true, className = '' }: { autoplay?: bo
 
       <div
         ref={outRef}
-        className="term-scroll h-[260px] overflow-y-auto px-4 py-3 font-mono text-[12.5px] leading-relaxed sm:h-[300px] lg:h-[185px] xl:h-[250px]"
+        // column-reverse keeps the view pinned to the newest line with no scrolling code: a
+        // programmatic scroll here made Chrome discard the page's LCP measurement.
+        className="term-scroll flex h-[260px] flex-col-reverse overflow-y-auto px-4 py-3 font-mono text-[12.5px] leading-relaxed sm:h-[300px] lg:h-[185px] xl:h-[250px]"
         aria-live="polite"
         onClick={() => inputRef.current?.focus({ preventScroll: true })}
         data-lenis-prevent
       >
+        <div>
         <p className="text-subtle">
-          {lang === 'sr' ? 'Dobrodošao. Ukucaj \\? za pomoć.' : 'Welcome. Type \\? for help.'}
+          {pick(COPY.welcome)}
         </p>
         {entries.map((e, i) => (
           <TermEntry key={i} entry={e} rowsWord={[pick(COPY.row), pick(COPY.rows)]} />
@@ -282,6 +350,8 @@ export function SqlTerminal({ autoplay = true, className = '' }: { autoplay?: bo
               value={input}
               onChange={(e) => setInput(e.target.value)}
               readOnly={busy}
+              maxLength={MAX_QUESTION}
+              enterKeyHint="send"
               autoComplete="off"
               autoCapitalize="off"
               spellCheck={false}
@@ -297,11 +367,12 @@ export function SqlTerminal({ autoplay = true, className = '' }: { autoplay?: bo
             </span>
           </div>
         </form>
+        </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-2 border-t border-fg/10 px-4 py-3">
         <span className="font-mono text-[10px] uppercase tracking-widest text-subtle">{pick(COPY.try)}</span>
-        {SUGGESTIONS.map((q) => (
+        {SUGGESTIONS[lang === 'en' ? 'en' : 'sr'].map((q) => (
           <button
             key={q}
             type="button"
@@ -325,6 +396,23 @@ function TermEntry({ entry, rowsWord }: { entry: Entry; rowsWord: [string, strin
       <p className="mt-3 break-words">
         <span className="text-accent">veljko=# </span>
         <span className="text-fg">{entry.text}</span>
+      </p>
+    );
+  }
+  if (entry.kind === 'thinking') {
+    return (
+      <p className="mt-1 text-subtle" aria-label="…">
+        <span className="term-dots" />
+      </p>
+    );
+  }
+  if (entry.kind === 'answer') {
+    return (
+      <p className="mt-1 break-words font-sans text-[13.5px] leading-relaxed text-fg">
+        <span className="mr-1.5 font-mono text-[11px] text-accent" aria-hidden="true">
+          ›
+        </span>
+        {entry.text}
       </p>
     );
   }

@@ -35,16 +35,28 @@ export function useInView<T extends HTMLElement>(margin = '0px 0px -12% 0px'): [
 }
 
 /** Fade-up on first scroll into view. */
-export function Reveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
-  const [ref, shown] = useInView<HTMLDivElement>('0px 0px -60px 0px');
+export function Reveal({
+  children,
+  delay = 0,
+  className = '',
+  as = 'div',
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+  /** 'li' when the revealed element is itself a list item: a div between <ol> and <li> is invalid. */
+  as?: 'div' | 'li';
+}) {
+  const [ref, shown] = useInView<HTMLElement>('0px 0px -60px 0px');
+  const Tag = as;
   return (
-    <div
-      ref={ref}
+    <Tag
+      ref={ref as never}
       className={(shown ? 'animate-fade-up ' : 'opacity-0 ') + className}
       style={shown && delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}
-    </div>
+    </Tag>
   );
 }
 
@@ -52,12 +64,12 @@ export function Reveal({ children, delay = 0, className = '' }: { children: Reac
 export function SplitText({ text, className = '', step = 70 }: { text: string; className?: string; step?: number }) {
   const [ref, shown] = useInView<HTMLSpanElement>();
   return (
-    <span ref={ref} className={(shown ? 'is-in ' : '') + className} aria-label={text}>
+    <span ref={ref} className={(shown ? 'is-in ' : '') + className}>
       {/* The space sits between the clip boxes, not inside one: inside, a tight line
           wrapped it onto a second line of its own and left an empty row. */}
       {text.split(' ').map((w, i, all) => (
         <Fragment key={i}>
-          <span className="split-word whitespace-nowrap" aria-hidden="true">
+          <span className="split-word whitespace-nowrap">
             <span style={{ ['--d' as string]: `${i * step}ms` }}>{w}</span>
           </span>
           {i < all.length - 1 ? ' ' : null}

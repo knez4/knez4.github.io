@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { projectsByRank } from '../data/projects';
 import type { Project } from '../data/types';
 import { finePointer, gsap, motionOK } from '../lib/motion';
+import { srcSetFor } from '../lib/images';
 import { useLang } from '../lib/useLang';
 import { ArrowRight, GitHub, Lock } from './icons';
 import { Reveal } from './Reveal';
@@ -89,7 +90,7 @@ function ProjectRow({ project, index, onHover }: { project: Project; index: numb
         <div className="min-w-0">
           {/* Inline cover for touch and narrow screens */}
           <div className="mb-5 overflow-hidden rounded-xl border border-fg/10 bg-surface lg:hidden">
-            <img src={cover.src} alt="" width={1200} height={675} loading="lazy" decoding="async" className="aspect-[16/9] w-full object-cover" />
+            <img src={cover.src} srcSet={srcSetFor(cover.src)} sizes="92vw" alt="" width={1200} height={675} loading="lazy" decoding="async" className="aspect-[16/9] w-full object-cover" />
           </div>
 
           <h3
@@ -181,6 +182,8 @@ export function Projects() {
               <img
                 key={p.id}
                 src={p.media[0].src}
+                srcSet={srcSetFor(p.media[0].src)}
+                sizes="420px"
                 alt=""
                 width={1200}
                 height={675}

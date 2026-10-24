@@ -53,7 +53,10 @@ async function findChrome() {
   return undefined;
 }
 
-const routes = ['/cv', ...projects.map((p) => `/projekti/${p.id}`)];
+// The home page too: most AI crawlers (GPTBot, ClaudeBot, PerplexityBot) do not run
+// JavaScript, so without this the page they fetch is an empty <div id="root">.
+// 404.html is copied from the bare shell in postbuild, before this overwrites index.html.
+const routes = ['/', '/cv', ...projects.map((p) => `/projekti/${p.id}`)];
 
 const server = createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');

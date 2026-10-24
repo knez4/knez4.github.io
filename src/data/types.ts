@@ -43,6 +43,12 @@ export type Project = {
    */
   repoNote?: L;
   liveUrl?: string;
+  /**
+   * The project in plain words, for visitors outside IT (the home page's work
+   * cards). No stack names, no jargon. The technical copy stays in title,
+   * subtitle and caseStudy, behind the "details" link.
+   */
+  plain?: { title: L; text: L };
   /** Required: a project without a screenshot does not ship. Enforced by tests. */
   media: MediaItem[];
   /** Rendered on the case-study page only. */

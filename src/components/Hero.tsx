@@ -1,18 +1,18 @@
 import { useLayoutEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { profile } from '../data/profile';
 import { gsap, motionOK } from '../lib/motion';
 import { useLang } from '../lib/useLang';
-import { ArrowRight, Download } from './icons';
+import { ArrowRight } from './icons';
 import { Ball } from './Logo';
 import { drawSignature, hideSignature, Signature } from './Signature';
+import { TalkButton } from './Plain';
 import { SqlTerminal } from './SqlTerminal';
 
 const SURNAME = 'KNEŽEVIĆ';
 
 /**
  * The stage: a surname wider than the screen, the portrait standing in front of
- * it, the signature across both, and a live terminal on the right. Below lg the
+ * it, the signature across both, and a plain line saying what he does. Below lg the
  * same pieces stack in reading order.
  */
 export function Hero({ ready }: { ready: boolean }) {
@@ -23,9 +23,13 @@ export function Hero({ ready }: { ready: boolean }) {
     if (!motionOK() || !root.current) return;
     const ctx = gsap.context(() => {
       gsap.set('[data-a="char"]', { yPercent: 110 });
-      gsap.set('[data-a="portrait"]', { clipPath: 'inset(100% 0 0 0)', scale: 1.08 });
+      // Painted from the start (it is the page's largest image, so its first paint is the LCP);
+      // under the intro cover it just settles from a slight zoom.
+      gsap.set('[data-a="portrait"]', { scale: 1.08, yPercent: 4 });
       hideSignature(root.current!);
-      gsap.set('[data-a="fade"]', { autoAlpha: 0, y: 24 });
+      // Text is moved, never hidden: it sits under the intro cover anyway, and keeping it painted
+      // lets the browser record the hero line as the largest paint (LCP) as soon as it renders.
+      gsap.set('[data-a="fade"]', { y: 24 });
       gsap.set('[data-a="term"]', { autoAlpha: 0, y: 40, rotateX: 8 });
     }, root);
     return () => ctx.revert();
@@ -36,11 +40,11 @@ export function Hero({ ready }: { ready: boolean }) {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
       tl.to('[data-a="char"]', { yPercent: 0, duration: 1.3, stagger: 0.045 })
-        .to('[data-a="portrait"]', { clipPath: 'inset(0% 0 0 0)', scale: 1, duration: 1.5 }, 0.15)
+        .to('[data-a="portrait"]', { scale: 1, yPercent: 0, duration: 1.5 }, 0.15)
         // The signature writes itself letter by letter (see Signature.tsx).
         .add(drawSignature(root.current!), 0.7)
-        .to('[data-a="fade"]', { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08 }, 0.5)
-        .to('[data-a="term"]', { autoAlpha: 1, y: 0, rotateX: 0, duration: 1.2 }, 0.8);
+        .to('[data-a="fade"]', { y: 0, duration: 1, stagger: 0.08 }, 0.5)
+        .to('[data-a="term"]', { autoAlpha: 1, y: 0, rotateX: 0, duration: 1.2 }, 0.8)
 
       // Scroll: the surname drifts sideways, the portrait sinks, the signature lifts.
       const st = { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true };
@@ -64,14 +68,14 @@ export function Hero({ ready }: { ready: boolean }) {
       </div>
 
       <h1 id="hero-title" className="sr-only">
-        {profile.name}, {pick(profile.role)}
+        {profile.name}: {t('hero.plainRole')}
       </h1>
 
       {/*
         Phones: name, portrait and the intro block share exactly one screen (100svh,
         the height left by the browser's own bars). The portrait takes whatever room
-        the rest leaves, so "Preuzmi CV" is on screen on every phone and the terminal
-        starts below the fold. The surname shares the portrait's cell, set in front of
+        the rest leaves, so both buttons are on screen on every phone and the next
+        section starts below the fold. The surname shares the portrait's cell, set in front of
         him across the lower body: behind him it was hidden, since on a phone the
         photo is nearly as wide as the name. On desktop it stays behind. On desktop the wrapper is display:contents and the
         pieces keep their absolute positions.
@@ -106,7 +110,7 @@ export function Hero({ ready }: { ready: boolean }) {
             data-a="portrait"
             src="/img/portrait-800.webp"
             srcSet="/img/portrait-480.webp 480w, /img/portrait-800.webp 800w, /img/portrait-1200.webp 1200w"
-            sizes="(min-width: 1024px) 52vh, 70vw"
+            sizes="(min-width: 1024px) 52vh, 62vw"
             width={1410}
             height={2259}
             alt={pick({ en: 'Veljko Knežević, arms crossed', sr: 'Veljko Knežević, prekrštenih ruku' })}
@@ -141,38 +145,36 @@ export function Hero({ ready }: { ready: boolean }) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7ee2a8] opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#7ee2a8]" />
             </span>
-            {pick(profile.status)}
+            {t('hero.available')}
           </p>
 
-          {/* What he does, large enough to answer "who is this?" before the photo does.
-              His three fields, in his words; backend is deliberately not one of them. */}
-          <p data-a="fade" className="font-display mt-4 text-[clamp(1.9rem,8.4vw,3.2rem)] text-fg lg:text-[clamp(2.1rem,2.9vw,3rem)]">
-            {t('hero.role')}
+          {/* What he does, in a sentence anyone understands (20 October 2026). Set in the
+              text face rather than the condensed display caps: it is a sentence, not a label. */}
+          <p data-a="fade" className="mt-4 text-[clamp(1.45rem,6.2vw,2.3rem)] font-semibold leading-[1.15] tracking-tight text-fg">
+            {t('hero.plainRole')}
           </p>
           <p data-a="fade" className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
-            {t('hero.sub')}
+            {t('hero.plainSub')}
           </p>
 
           {/* Compact on phones so both buttons share one row. */}
           <div data-a="fade" className="mt-6 flex flex-wrap gap-2 sm:mt-7 sm:gap-3">
-            <a href="#projects" className="btn-pill btn-pill--solid max-sm:!gap-2 max-sm:!px-4 max-sm:!py-3 max-sm:!text-[11px]" data-magnetic>
-              {t('hero.viewProjects')}
+            <TalkButton className="max-sm:!gap-2 max-sm:!px-4 max-sm:!py-3 max-sm:!text-[11px]" />
+            <a href="#services" className="btn-pill btn-pill--ghost max-sm:!gap-2 max-sm:!px-4 max-sm:!py-3 max-sm:!text-[11px]" data-magnetic>
+              {t('nav.services')}
               <ArrowRight />
             </a>
-            <Link to="/cv" className="btn-pill btn-pill--ghost max-sm:!gap-2 max-sm:!px-4 max-sm:!py-3 max-sm:!text-[11px]" data-magnetic>
-              <Download />
-              {t('hero.downloadCv')}
-            </Link>
           </div>
         </div>
       </div>
 
       </div>
 
-      {/* Right column: the terminal */}
+      {/* "Pitaj moju bazu": he wanted it kept on the landing page (20 October 2026). Desktop: right of
+          the portrait. Phones: right after the first screen, so the hero still fits to its buttons. */}
       <div
-        className="container-page relative z-30 mt-10 [perspective:1200px] lg:absolute lg:right-0 lg:top-[12vh] lg:mt-0
-                   lg:w-[min(440px,31vw)] lg:px-0 lg:pr-8"
+        className="container-page relative z-30 mt-4 pb-12 [perspective:1200px] lg:absolute lg:right-0 lg:top-[12vh] lg:mt-0
+                   lg:w-[min(440px,31vw)] lg:px-0 lg:pb-0 lg:pr-8"
       >
         <div data-a="term">
           <p className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-subtle">
@@ -181,19 +183,6 @@ export function Hero({ ready }: { ready: boolean }) {
           </p>
           <SqlTerminal autoplay={ready} />
         </div>
-      </div>
-
-      {/* Scroll cue */}
-      <div
-        data-a="fade"
-        className="absolute bottom-6 left-8 z-20 hidden items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em]
-                   text-subtle lg:flex"
-        aria-hidden="true"
-      >
-        <span className="relative h-10 w-px overflow-hidden bg-fg/15">
-          <span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_1.8s_ease-in-out_infinite] bg-accent" />
-        </span>
-        {t('hero.scroll')}
       </div>
     </section>
   );

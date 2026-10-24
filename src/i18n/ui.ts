@@ -20,6 +20,116 @@ export const ui = {
   'lang.en': { en: 'English', sr: 'Engleski' },
   'lang.sr': { en: 'Serbian', sr: 'Srpski' },
 
+  /*
+   * Plain-language home page (20 October 2026). Written for someone outside IT:
+   * what he does, for whom, how working with him goes. Technical copy lives in
+   * the collapsed section further down.
+   */
+  /** Search title and description for the home page. Under 60 and 160 characters. */
+  'seo.title': { en: 'Veljko Knežević · Websites and automation, Belgrade', sr: 'Veljko Knežević · Izrada sajtova i automatizacija, Beograd' },
+  'seo.description': {
+    en: 'Veljko Knežević builds websites, automates repetitive work and works with databases. Final-year student at FON in Belgrade. Example: flekoutclean.com.',
+    sr: 'Veljko Knežević pravi sajtove, automatizuje posao koji se ponavlja i radi sa bazama podataka. Student završne godine FON-a, Beograd. Primer: flekoutclean.com.',
+  },
+  'hero.plainRole': {
+    en: 'I build websites and automate the work that keeps repeating.',
+    sr: 'Pravim sajtove i automatizujem posao koji se stalno ponavlja.',
+  },
+  'hero.plainSub': { en: 'Final-year student at FON · Belgrade', sr: 'Student završne godine FON-a · Beograd' },
+  'hero.available': { en: 'Available for new projects and internships', sr: 'Dostupan za nove projekte i praksu' },
+  'cta.talk': { en: 'Get in touch', sr: 'Javi se' },
+
+  'nav.services': { en: 'Services', sr: 'Usluge' },
+  'nav.process': { en: 'How I work', sr: 'Kako radim' },
+  'nav.about': { en: 'About', sr: 'O meni' },
+  'nav.work': { en: 'Work', sr: 'Radovi' },
+  'nav.tech': { en: 'For professionals', sr: 'Za stručnjake' },
+
+  'services.eyebrow': { en: 'Services', sr: 'Usluge' },
+  'services.title': { en: 'What I can do for you', sr: 'Šta mogu da uradim za tebe' },
+  'services.sites': { en: 'Websites', sr: 'Sajtovi' },
+  'services.sitesBody': {
+    en: 'A site that looks like your business and works as well on a phone as on a laptop. From the first sketch to launch.',
+    sr: 'Sajt koji liči na tvoj posao i radi jednako dobro na telefonu kao na računaru. Od prve skice do objave.',
+  },
+  'services.auto': { en: 'Automation', sr: 'Automatizacija' },
+  'services.autoBody': {
+    en: 'If you do the same thing by hand every week or every month, a program can do it for you, in seconds.',
+    sr: 'Ako isti posao radiš ručno svake nedelje ili svakog meseca, program može da ga uradi umesto tebe, za par sekundi.',
+  },
+  'services.apps': { en: 'Apps and databases', sr: 'Aplikacije i baze podataka' },
+  'services.appsBody': {
+    en: 'Apps that keep your data in order, for example online booking where two clients can never take the same slot.',
+    sr: 'Aplikacije koje drže tvoje podatke u redu, na primer online zakazivanje u kome dva klijenta nikad ne mogu da dobiju isti termin.',
+  },
+  'services.example': { en: 'Example', sr: 'Primer' },
+  'services.illustration': { en: 'illustration', sr: 'ilustracija' },
+
+  'ba.drag': { en: 'Drag', sr: 'Prevuci' },
+  'ba.before': { en: 'Before: by hand', sr: 'Ranije: ručno' },
+  'ba.after': { en: 'Now: automatic', sr: 'Sada: automatski' },
+  'ba.b1': { en: 'copying from 9 Excel sheets', sr: 'prepisivanje iz 9 Excel tabela' },
+  'ba.b2': { en: '9 reports, typeset by hand', sr: '9 izveštaja, ručno slaganje' },
+  'ba.b3': { en: 'every month, again', sr: 'svakog meseca, ispočetka' },
+  'ba.a1': { en: '9 finished PDF reports', sr: '9 gotovih PDF izveštaja' },
+  'ba.a2': { en: 'the same design as before', sr: 'isti dizajn kao ranije' },
+  'ba.a3': { en: 'mistakes in the sheets get flagged', sr: 'greške u tabelama se same prijave' },
+  'ba.caption': {
+    en: 'A real case: monthly reports for a client.',
+    sr: 'Stvaran primer: mesečni izveštaji za klijenta.',
+  },
+  'ba.label': { en: 'Compare before and after', sr: 'Uporedi pre i posle' },
+
+  'process.eyebrow': { en: 'How I work', sr: 'Kako radim' },
+  'process.title': { en: 'Working together, in four steps', sr: 'Saradnja u četiri koraka' },
+  'process.s1': { en: 'You get in touch', sr: 'Javiš se' },
+  'process.s1b': { en: 'Write in a few sentences what you need. No technical words required.', sr: 'Napišeš u par rečenica šta ti treba. Stručne reči nisu potrebne.' },
+  'process.s2': { en: 'We talk it through', sr: 'Dogovorimo se' },
+  'process.s2b': { en: 'What exactly gets built, how it should look, and by when.', sr: 'Šta tačno pravimo, kako treba da izgleda i do kada.' },
+  'process.s3': { en: 'I build and show you', sr: 'Pravim i pokazujem ti' },
+  'process.s3b': { en: 'You see progress along the way and say what to change.', sr: 'Usput vidiš kako napreduje i kažeš šta da se promeni.' },
+  'process.s4': { en: 'It goes live', sr: 'Puštamo u rad' },
+  'process.s4b': { en: 'The site or the tool starts working for you.', sr: 'Sajt ili alat počinje da radi za tebe.' },
+
+  'about.eyebrow': { en: 'About', sr: 'O meni' },
+  'about.title': { en: 'Who you would be working with', sr: 'Sa kim bi radio' },
+  'about.p1': {
+    en: 'I’m Veljko, a final-year student at the Faculty of Organizational Sciences in Belgrade. For three years I have been freelancing: building websites and tools that save people time.',
+    sr: 'Ja sam Veljko, student završne godine Fakulteta organizacionih nauka u Beogradu. Već tri godine radim kao frilenser: pravim sajtove i alate koji ljudima štede vreme.',
+  },
+  'about.p2': {
+    en: 'At university I led an IT team and coordinated a project with around 50 people, so I know how to work with others and keep a deadline.',
+    sr: 'Na fakultetu sam vodio IT tim i koordinisao projekat sa oko 50 ljudi, pa znam da radim sa drugima i da ispoštujem rok.',
+  },
+  'about.f1': { en: 'years of freelance work', sr: 'godine frilens rada' },
+  'about.f2': { en: 'people on the project I coordinated', sr: 'ljudi na projektu koji sam vodio' },
+  'about.f3': { en: 'Belgrade', sr: 'Beograd' },
+  'about.f3b': { en: 'where I live and work', sr: 'gde živim i radim' },
+
+  'work.eyebrow': { en: 'Work', sr: 'Radovi' },
+  'work.title': { en: 'What I have made', sr: 'Šta sam napravio' },
+  'work.details': { en: 'Details', sr: 'Detalji' },
+  'work.visit': { en: 'Visit the site', sr: 'Poseti sajt' },
+
+  'tech.eyebrow': { en: 'For professionals', sr: 'Za stručnjake' },
+  'tech.title': { en: 'For employers and developers', sr: 'Za poslodavce i programere' },
+  'tech.lead': {
+    en: 'The technical detail, for whoever wants it. Open only what you need.',
+    sr: 'Tehnički detalji, za one koje zanimaju. Otvori samo ono što ti treba.',
+  },
+  'tech.terminal': { en: 'Ask my database (a live SQL terminal)', sr: 'Pitaj moju bazu (SQL terminal uživo)' },
+  'tech.projects': { en: 'Projects in technical detail', sr: 'Projekti, tehnički detaljno' },
+  'tech.schema': { en: 'Data model of the booking system', sr: 'Model podataka sistema za zakazivanje' },
+  'tech.skills': { en: 'Skills', sr: 'Veštine' },
+  'tech.experience': { en: 'Experience', sr: 'Iskustvo' },
+  'tech.education': { en: 'Education and languages', sr: 'Obrazovanje i jezici' },
+  'tech.cv': { en: 'Download CV (PDF)', sr: 'Preuzmi CV (PDF)' },
+
+  'contact.plainLead': {
+    en: 'Have an idea for a site, or work you would like to automate? Write to me.',
+    sr: 'Imaš ideju za sajt ili posao koji bi da automatizuješ? Piši mi.',
+  },
+
   'hero.viewProjects': { en: 'See the work', sr: 'Pogledaj radove' },
   'hero.downloadCv': { en: 'Download CV', sr: 'Preuzmi CV' },
   'hero.emailMe': { en: 'Send an email', sr: 'Pošalji mejl' },

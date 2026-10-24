@@ -5,11 +5,11 @@ import { useLang } from '../lib/useLang';
 import { Logo } from './Logo';
 
 const sections = [
-  { id: 'projects', key: 'nav.projects' },
-  { id: 'schema', key: 'nav.schema' },
-  { id: 'skills', key: 'nav.skills' },
-  { id: 'experience', key: 'nav.experience' },
-  { id: 'freelance', key: 'nav.freelance' },
+  { id: 'services', key: 'nav.services' },
+  { id: 'process', key: 'nav.process' },
+  { id: 'about', key: 'nav.about' },
+  { id: 'projects', key: 'nav.work' },
+  { id: 'tech', key: 'nav.tech' },
 ] as const;
 
 function LangSwitch() {
@@ -87,12 +87,6 @@ export function Nav() {
               </span>
             </a>
           ))}
-          <Link
-            to="/cv"
-            className="px-3 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-fg"
-          >
-            {t('nav.cv')}
-          </Link>
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-2">

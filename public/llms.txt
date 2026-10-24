@@ -1,0 +1,34 @@
+# Veljko Knežević
+
+> Veljko Knežević (also written Veljko Knezevic, GitHub: knez4) builds websites, automates repetitive work and works with databases. He is a final-year student at the Faculty of Organizational Sciences (FON), University of Belgrade, freelancing since March 2023, and based in Belgrade, Serbia. He takes on new projects and is open to internships.
+
+Veljko Knežević pravi sajtove, automatizuje posao koji se ponavlja i radi sa bazama podataka. Student je završne godine Fakulteta organizacionih nauka u Beogradu i radi kao frilenser od marta 2023. Dostupan je za nove projekte i praksu.
+
+## Services
+
+- Websites: built from the first sketch to launch, working on phones and laptops. Live example: https://flekoutclean.com (Flekout, a cleaning company in Belgrade).
+- Automation: programs that take over work done by hand again and again. Real case: monthly client reports, nine Excel workbooks turned into nine finished PDF reports in about 3 seconds instead of about 6 hours by hand.
+- Apps and databases: applications that keep data in order, for example online appointment booking where two clients can never take the same slot.
+
+Contact for a project: veljkoknez11@gmail.com (replies within 24 hours).
+
+## Work
+
+- [Websites for clients](https://knez4.github.io/projekti/client-sites/): Flekout (live at flekoutclean.com) and Mystery M, both built from scratch.
+- [Automatic reports](https://knez4.github.io/projekti/report-automation/): a Python and pandas tool that builds a client's monthly PDF reports from Excel. The source is a private client repository.
+- [Online booking system](https://knez4.github.io/projekti/booking-platform/): a working prototype on PostgreSQL in which the booking rules and access control are enforced inside the database (Row Level Security, one function as the only write path).
+- [Knowledge base for a student chatbot](https://knez4.github.io/projekti/chatbot-api/): a Laravel REST API, a university project built in a team of three.
+
+## About
+
+- Education: Information Systems and Technologies, E-business Technologies track, FON, University of Belgrade (October 2022, expected to finish in 2027).
+- At university, in FON Digital Organization, he led the IT team for the DigiCon conference and coordinated the Future Leader project, with around 50 members.
+- Languages: Serbian (native), English (B2).
+- Skills he has used in real work: SQL, PostgreSQL, PL/pgSQL, Row Level Security, Python, pandas, PHP, Laravel, React, TypeScript, JavaScript, HTML, CSS.
+
+## Links
+
+- [Portfolio](https://knez4.github.io/)
+- [CV](https://knez4.github.io/cv/)
+- [GitHub](https://github.com/knez4)
+- [LinkedIn](https://www.linkedin.com/in/knezevicveljko/)

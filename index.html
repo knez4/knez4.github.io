@@ -6,73 +6,231 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="theme-color" content="#08060e" />
 
-    <title>Veljko Knežević · Web design, automation, databases</title>
-    <meta
-      name="description"
-      content="Veljko Knezevic (Veljko Knežević) is a final-year Information Systems and Technologies student at the Faculty of Organizational Sciences, University of Belgrade, working in web design, automation and databases. Built a multi-tenant PostgreSQL booking platform, a team REST API, client websites and a reporting pipeline. Looking for an internship or junior role in Belgrade."
-    />
+    <title>Veljko Knežević · Izrada sajtova i automatizacija, Beograd</title>
+    <meta name="description" content="Veljko Knežević pravi sajtove, automatizuje posao koji se ponavlja i radi sa bazama podataka. Student završne godine FON-a, Beograd. Primer: flekoutclean.com." />
     <meta name="author" content="Veljko Knežević" />
     <link rel="canonical" href="https://knez4.github.io/" />
+    <!-- Identity links: the same person on GitHub and LinkedIn. Search engines and AI
+         assistants use these to connect the profiles into one entity. -->
+    <link rel="me" href="https://github.com/knez4" />
+    <link rel="me" href="https://www.linkedin.com/in/knezevicveljko/" />
 
     <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:site_name" content="Veljko Knežević" />
     <meta property="og:url" content="https://knez4.github.io/" />
-    <meta property="og:title" content="Veljko Knežević · Web design, automation, databases" />
-    <meta
-      property="og:description"
-      content="Final-year FON student working in web design, automation and databases: client websites, a reporting pipeline, a multi-tenant PostgreSQL booking platform. Looking for an internship or junior role in Belgrade."
-    />
+    <meta property="og:title" content="Veljko Knežević · Izrada sajtova i automatizacija, Beograd" />
+    <meta property="og:description" content="Veljko Knežević pravi sajtove, automatizuje posao koji se ponavlja i radi sa bazama podataka. Student završne godine FON-a, Beograd. Primer: flekoutclean.com." />
     <meta property="og:image" content="https://knez4.github.io/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Veljko Knežević, portret sa potpisom" />
+    <meta property="profile:first_name" content="Veljko" />
+    <meta property="profile:last_name" content="Knežević" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Veljko Knežević · Web design, automation, databases" />
-    <meta
-      name="twitter:description"
-      content="Final-year FON student working in web design, automation and databases: client websites, a reporting pipeline, a multi-tenant PostgreSQL booking platform. Looking for an internship or junior role in Belgrade."
-    />
+    <meta name="twitter:title" content="Veljko Knežević · Izrada sajtova i automatizacija, Beograd" />
+    <meta name="twitter:description" content="Veljko Knežević pravi sajtove, automatizuje posao koji se ponavlja i radi sa bazama podataka. Student završne godine FON-a, Beograd. Primer: flekoutclean.com." />
     <meta name="twitter:image" content="https://knez4.github.io/og-image.png" />
 
-    <link rel="preload" href="/fonts/archivo-wdth-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- The home page ships prerendered (for crawlers), but visitors who get the intro
+         should see the intro first, not the page and then the intro over it. This covers
+         the prerendered content only for them, until the intro mounts and lifts it. -->
+    <script>
+      (function () {
+        try {
+          if (!navigator.webdriver && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('intro-pending');
+            // safety net: if the app never loads, never leave a blank page
+            window.__bootTimer = setTimeout(function () {
+              document.documentElement.classList.remove('intro-pending');
+            }, 4000);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      /*
+       * The intro, in plain HTML and CSS so it is on screen before any script loads (first
+       * paint no longer waits for the JavaScript bundle). Shown only when the inline script
+       * above sets .intro-pending; the app then drives the counter and lifts it.
+       */
+      #boot { display: none; }
+      html.intro-pending #boot { display: block; position: fixed; inset: 0; z-index: 80; }
+      html.intro-pending { overflow: hidden; }
+      #boot .veil, #boot .panel { position: absolute; inset: 0; clip-path: inset(0 0 0 0); }
+      #boot .veil { background: #7c4dff; }
+      #boot .panel { display: grid; place-items: center; background: #08060e; }
+      #boot .inner { display: flex; width: min(280px, 64vw); flex-direction: column; align-items: center; }
+      #boot .logo { width: 64px; height: 64px; animation: boot-logo 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+      #boot .meta { margin-top: 40px; width: 100%; animation: boot-meta 0.5s ease-out 0.2s both; }
+      #boot .track { position: relative; display: block; height: 1px; overflow: hidden; background: rgba(244, 241, 250, 0.15); }
+      #boot .bar { position: absolute; inset: 0; transform: scaleX(0); transform-origin: left; background: #a07cff; }
+      #boot .row { margin-top: 12px; display: flex; justify-content: space-between; align-items: center;
+        font: 400 10px/1.4 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.28em; text-transform: uppercase; color: #867e9c; }
+      #boot .num { color: #f4f1fa; font-variant-numeric: tabular-nums; }
+      @media (min-width: 640px) { #boot .logo { width: 80px; height: 80px; } }
+      @keyframes boot-logo { from { opacity: 0; transform: scale(0.6) rotate(-120deg); } to { opacity: 1; transform: none; } }
+      @keyframes boot-meta { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    </style>
+
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Veljko Knežević",
-        "alternateName": "Veljko Knezevic",
-        "jobTitle": "Information Systems and Technologies student",
-        "url": "https://knez4.github.io/",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Belgrade",
-          "addressCountry": "RS"
-        },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Faculty of Organizational Sciences, University of Belgrade"
-        },
-        "sameAs": [
-          "https://github.com/knez4",
-          "https://www.linkedin.com/in/knezevicveljko/"
-        ],
-        "knowsAbout": [
-          "SQL",
-          "PostgreSQL",
-          "Oracle Database",
-          "MySQL",
-          "Relational database design",
-          "Laravel",
-          "PHP",
-          "Java",
-          "REST API",
-          "React",
-          "TypeScript"
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://knez4.github.io/#website",
+      "url": "https://knez4.github.io/",
+      "name": "Veljko Knežević",
+      "inLanguage": [
+        "sr",
+        "en"
+      ],
+      "author": {
+        "@id": "https://knez4.github.io/#person"
       }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://knez4.github.io/#profile",
+      "url": "https://knez4.github.io/",
+      "name": "Veljko Knežević · Izrada sajtova i automatizacija, Beograd",
+      "inLanguage": "sr",
+      "isPartOf": {
+        "@id": "https://knez4.github.io/#website"
+      },
+      "mainEntity": {
+        "@id": "https://knez4.github.io/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://knez4.github.io/#person",
+      "name": "Veljko Knežević",
+      "alternateName": [
+        "Veljko Knezevic",
+        "knez4"
+      ],
+      "givenName": "Veljko",
+      "familyName": "Knežević",
+      "url": "https://knez4.github.io/",
+      "image": "https://knez4.github.io/img/portrait-800.webp",
+      "email": "mailto:veljkoknez11@gmail.com",
+      "description": "Pravi sajtove, automatizuje posao koji se ponavlja i radi sa bazama podataka. Student završne godine Fakulteta organizacionih nauka u Beogradu, frilenser od 2023. Builds websites, automates repetitive work and works with databases; final-year student in Belgrade, freelancing since 2023.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Beograd",
+        "addressCountry": "RS"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Fakultet organizacionih nauka, Univerzitet u Beogradu",
+        "alternateName": "Faculty of Organizational Sciences, University of Belgrade",
+        "url": "https://fon.bg.ac.rs/"
+      },
+      "knowsLanguage": [
+        "sr",
+        "en"
+      ],
+      "knowsAbout": [
+        "Izrada sajtova",
+        "Web dizajn",
+        "Automatizacija poslovnih procesa",
+        "Baze podataka",
+        "Website development",
+        "Process automation",
+        "Python",
+        "pandas",
+        "SQL",
+        "PostgreSQL",
+        "Row Level Security",
+        "Database design",
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Laravel"
+      ],
+      "sameAs": [
+        "https://github.com/knez4",
+        "https://www.linkedin.com/in/knezevicveljko/"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Izrada sajtova",
+            "description": "Sajtovi od prve skice do objave, koji rade na telefonu i računaru.",
+            "areaServed": {
+              "@type": "City",
+              "name": "Beograd"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Automatizacija posla",
+            "description": "Program koji radi posao koji se ponavlja, npr. izveštaje iz Excel tabela.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Srbija"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Aplikacije i baze podataka",
+            "description": "Aplikacije koje drže podatke u redu, npr. online zakazivanje termina.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Srbija"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://flekoutclean.com/#site",
+      "url": "https://flekoutclean.com/",
+      "name": "Flekout Clean",
+      "description": "Sajt firme za mašinsko pranje i dubinsko čišćenje u Beogradu.",
+      "creator": {
+        "@id": "https://knez4.github.io/#person"
+      }
+    }
+  ]
+}
     </script>
 
   </head>
   <body class="grain">
+    <div id="boot" aria-hidden="true">
+      <div class="veil"></div>
+      <div class="panel">
+        <div class="inner">
+          <svg class="logo" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="30" fill="#7C4DFF" />
+            <g fill="none" stroke="#08060E" stroke-opacity="0.38" stroke-width="1.6">
+              <path d="M2 32H62" /><path d="M12 9C22 20 22 44 12 55" /><path d="M52 9C42 20 42 44 52 55" />
+            </g>
+            <polygon points="13,20 19.5,20 23,35 26.5,20 33,20 26,44 20,44" fill="#fff" />
+            <polygon points="35,20 40.5,20 40.5,29.5 45,20 51,20 44.6,32 51.5,44 45.5,44 40.5,34.5 40.5,44 35,44" fill="#fff" />
+          </svg>
+          <div class="meta">
+            <span class="track"><span class="bar"></span></span>
+            <div class="row"><span>Veljko Knežević</span><span class="num">000</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

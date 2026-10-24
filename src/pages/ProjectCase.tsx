@@ -4,6 +4,7 @@ import { SplitText } from '../components/Reveal';
 import { projectById } from '../data/projects';
 import { profile } from '../data/profile';
 import { useHead } from '../lib/useHead';
+import { srcSetFor } from '../lib/images';
 import { useLang } from '../lib/useLang';
 import NotFound from './NotFound';
 
@@ -74,6 +75,8 @@ export default function ProjectCase() {
         <figure key={m.src} className="mt-10">
           <img
             src={m.src}
+            srcSet={srcSetFor(m.src)}
+            sizes="(min-width: 1120px) 1056px, 92vw"
             alt={pick(m.alt)}
             width={1200}
             height={675}

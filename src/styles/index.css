@@ -449,6 +449,23 @@ html.has-cursor button {
 @keyframes blink {
   50% { opacity: 0; }
 }
+/* Three dots while the chat is thinking. */
+.term-dots::after {
+  content: '...';
+  display: inline-block;
+  width: 3ch;
+  overflow: hidden;
+  vertical-align: bottom;
+  color: rgb(var(--accent));
+  animation: dots 1.2s steps(4) infinite;
+}
+@keyframes dots {
+  from { width: 0; }
+  to { width: 4ch; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .term-dots::after { animation: none; }
+}
 .term-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgb(var(--line)) transparent;

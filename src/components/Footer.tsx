@@ -24,13 +24,13 @@ export function Footer() {
         </button>
       </div>
 
-      {/* The name once more, cut off by the bottom edge. */}
-      <p
-        className="font-display pointer-events-none mt-12 select-none whitespace-nowrap text-center text-[12.2vw] leading-[0.75] text-fg/[0.06]"
+      {/* The name once more, cut off by the bottom edge. Pure decoration, so it is drawn as
+          generated content: it is not text, and contrast checks rightly skip it. */}
+      <div
+        data-text="VELJKO KNEŽEVIĆ"
+        className="font-display pointer-events-none mt-12 select-none whitespace-nowrap text-center text-[12.2vw] leading-[0.75] text-fg/[0.06] before:content-[attr(data-text)]"
         aria-hidden="true"
-      >
-        VELJKO KNEŽEVIĆ
-      </p>
+      />
     </footer>
   );
 }
