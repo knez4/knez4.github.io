@@ -130,10 +130,10 @@ export function Cursor() {
 
 /**
  * Intro screen, the same on every visit. Its markup and entrance live in index.html
- * (#boot), so the ball, the line and the name are on screen before any JavaScript
- * arrives. This takes over once the app loads: it runs the counter and the line to
- * 100 once the fonts and the portrait are ready (at least 1.4 s from navigation,
- * capped near 3 s), turns the ball once, and lifts the screen like a curtain with a
+ * (#boot), so the dim "vk" mark and the name are on screen before any JavaScript
+ * arrives. This takes over once the app loads: it runs the counter to 100 and fills
+ * the mark from the bottom up with it, once the fonts and the portrait are ready (at
+ * least 1.4 s from navigation, capped near 3 s), then lifts the screen like a curtain with a
  * violet layer trailing it. Visitors with motion off, and the prerender, never get it.
  */
 export function Preloader({ onDone }: { onDone: () => void }) {
@@ -154,7 +154,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
     const q = (sel: string) => boot.querySelector<HTMLElement>(sel)!;
     const logo = q('.logo');
     const meta = q('.meta');
-    const bar = q('.bar');
+    const fill = q('.logo .fill');
     const num = q('.num');
     const panel = q('.panel');
     const veil = q('.veil');
@@ -169,17 +169,17 @@ export function Preloader({ onDone }: { onDone: () => void }) {
     const minWait = Math.max(0, 1400 - performance.now());
 
     const count = { v: 0 };
+    // The counter and the mark move together: at 57 the logo is 57% full, from the bottom up.
     const render = () => {
       num.textContent = String(Math.round(count.v)).padStart(3, '0');
+      fill.style.clipPath = `inset(${(100 - count.v).toFixed(2)}% 0 0 0)`;
     };
     // The CSS entrance has run; hand its end state to GSAP so the two never fight.
     logo.style.animation = 'none';
     meta.style.animation = 'none';
 
     const intro = gsap.timeline();
-    intro
-      .to(count, { v: 80, duration: 1, ease: 'power2.out', onUpdate: render })
-      .to(bar, { scaleX: 0.8, duration: 1, ease: 'power2.out' }, 0);
+    intro.to(count, { v: 80, duration: 1, ease: 'power2.out', onUpdate: render });
 
     let outro: gsap.core.Timeline | null = null;
     let cancelled = false;
@@ -194,9 +194,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
       });
       outro
         .to(count, { v: 100, duration: 0.45, ease: 'power2.inOut', onUpdate: render })
-        .to(bar, { scaleX: 1, duration: 0.45, ease: 'power2.inOut' }, '<')
-        .to(logo, { rotation: 360, duration: 0.7, ease: 'power3.inOut' }, '<')
-        .to([logo, meta], { y: -24, autoAlpha: 0, duration: 0.45, ease: 'power3.in', stagger: 0.05 }, '+=0.05')
+        .to([logo, meta], { y: -24, autoAlpha: 0, duration: 0.45, ease: 'power3.in', stagger: 0.05 }, '+=0.25')
         .to(panel, { clipPath: 'inset(0 0 100% 0)', duration: 0.85, ease: 'expo.inOut' }, '-=0.15')
         .add(onDone, '-=0.55')
         .to(veil, { clipPath: 'inset(0 0 100% 0)', duration: 0.85, ease: 'expo.inOut' }, '-=0.72');

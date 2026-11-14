@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
     <meta name="theme-color" content="#08060e" />
 
     <title>Veljko Knežević · Izrada sajtova i automatizacija, Beograd</title>
@@ -64,15 +64,17 @@
       #boot .veil { background: #7c4dff; }
       #boot .panel { display: grid; place-items: center; background: #08060e; }
       #boot .inner { display: flex; width: min(280px, 64vw); flex-direction: column; align-items: center; }
-      #boot .logo { width: 64px; height: 64px; animation: boot-logo 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
-      #boot .meta { margin-top: 40px; width: 100%; animation: boot-meta 0.5s ease-out 0.2s both; }
-      #boot .track { position: relative; display: block; height: 1px; overflow: hidden; background: rgba(244, 241, 250, 0.15); }
-      #boot .bar { position: absolute; inset: 0; transform: scaleX(0); transform-origin: left; background: #a07cff; }
+      /* The mark fills from the bottom as the page loads: a dim copy underneath, the coloured
+         one on top, uncovered by the app as the counter runs. */
+      #boot .logo { position: relative; width: 132px; aspect-ratio: 1570 / 725; animation: boot-logo 0.6s ease-out both; }
+      #boot .logo svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: rgba(244, 241, 250, 0.13); }
+      #boot .logo .fill { clip-path: inset(100% 0 0 0); }
+      #boot .meta { margin-top: 28px; width: 100%; animation: boot-meta 0.5s ease-out 0.2s both; }
       #boot .row { margin-top: 12px; display: flex; justify-content: space-between; align-items: center;
         font: 400 10px/1.4 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.28em; text-transform: uppercase; color: #867e9c; }
       #boot .num { color: #f4f1fa; font-variant-numeric: tabular-nums; }
-      @media (min-width: 640px) { #boot .logo { width: 80px; height: 80px; } }
-      @keyframes boot-logo { from { opacity: 0; transform: scale(0.6) rotate(-120deg); } to { opacity: 1; transform: none; } }
+      @media (min-width: 640px) { #boot .logo { width: 168px; } }
+      @keyframes boot-logo { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
       @keyframes boot-meta { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
     </style>
 
@@ -216,14 +218,11 @@
       <div class="veil"></div>
       <div class="panel">
         <div class="inner">
-          <svg class="logo" viewBox="0 0 64 64">
-  <rect x="2" y="2" width="60" height="60" rx="17" fill="#7C4DFF"/>
-  <polygon points="10,20 21.5,20 32,43 42.5,20 54,20 37.5,53 26.5,53" fill="#fff"/>
-  <circle cx="32" cy="17.5" r="7.5" fill="#F07A2A"/>
-  <path d="M24.5 17.5h15M32 10v15M26.9 12q3.4 5.5 0 11M37.1 12q-3.4 5.5 0 11" fill="none" stroke="#2A1206" stroke-width="1.1"/>
-</svg>
+          <div class="logo">
+            <svg viewBox="0 0 1570 725"><path d="M253.1 724.8 0 197H222.3L317.5 427.5Q323.7 442.5 331.8 465Q339.8 487.4 348.4 510.1Q357 532.8 362.7 550.5H372.2Q378.7 532 387 509Q395.4 485.9 404.1 463.4Q412.8 441 419 426L511.1 197H725.6L472.5 724.8Z"/><path d="M754.4 724.8 935.1 0H1139.4L1039.2 402L1315.1 197H1565L1291.7 408.3L1439.1 724.8H1199.5L1109.4 518.3L992.8 588L958.7 724.8Z"/></svg>
+            <svg class="fill" viewBox="0 0 1570 725"><path d="M253.1 724.8 0 197H222.3L317.5 427.5Q323.7 442.5 331.8 465Q339.8 487.4 348.4 510.1Q357 532.8 362.7 550.5H372.2Q378.7 532 387 509Q395.4 485.9 404.1 463.4Q412.8 441 419 426L511.1 197H725.6L472.5 724.8Z" fill="#f4f1fa"/><path d="M754.4 724.8 935.1 0H1139.4L1039.2 402L1315.1 197H1565L1291.7 408.3L1439.1 724.8H1199.5L1109.4 518.3L992.8 588L958.7 724.8Z" fill="#a07cff"/></svg>
+          </div>
           <div class="meta">
-            <span class="track"><span class="bar"></span></span>
             <div class="row"><span>Veljko Knežević</span><span class="num">000</span></div>
           </div>
         </div>
