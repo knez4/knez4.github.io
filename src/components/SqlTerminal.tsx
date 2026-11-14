@@ -245,7 +245,7 @@ export function SqlTerminal({ autoplay = true, className = '' }: { autoplay?: bo
           .replace('{a}', String(sc.att));
         setEntries((e) => [
           ...e,
-          { kind: 'text', text: `${pick(made ? COPY.swish : COPY.miss)} · ${tally}`, tone: made ? 'ok' : 'error' },
+          { kind: 'text', text: `${pick(made ? COPY.swish : COPY.miss)} ${tally}`, tone: made ? 'ok' : 'error' },
         ]);
         setBusy(false);
         return;

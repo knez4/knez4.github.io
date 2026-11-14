@@ -34,30 +34,26 @@ export function useInView<T extends HTMLElement>(margin = '0px 0px -12% 0px'): [
   return [ref, shown];
 }
 
-/** Fade-up on first scroll into view. */
+/**
+ * A plain wrapper. It used to fade each block up as it scrolled into view; that was
+ * taken out in November 2026, because an entrance on every block is what a generated
+ * page does, and it made the two moments that matter (the intro, the four steps)
+ * compete with twenty small ones. The props stay so call sites did not have to change.
+ */
 export function Reveal({
   children,
-  delay = 0,
   className = '',
   as = 'div',
 }: {
   children: ReactNode;
+  /** Unused; kept so existing call sites compile. */
   delay?: number;
   className?: string;
-  /** 'li' when the revealed element is itself a list item: a div between <ol> and <li> is invalid. */
+  /** 'li' when the wrapped element is itself a list item: a div between <ol> and <li> is invalid. */
   as?: 'div' | 'li';
 }) {
-  const [ref, shown] = useInView<HTMLElement>('0px 0px -60px 0px');
   const Tag = as;
-  return (
-    <Tag
-      ref={ref as never}
-      className={(shown ? 'animate-fade-up ' : 'opacity-0 ') + className}
-      style={shown && delay ? { animationDelay: `${delay}ms` } : undefined}
-    >
-      {children}
-    </Tag>
-  );
+  return <Tag className={className || undefined}>{children}</Tag>;
 }
 
 /** Text split into words that rise out of their own clip boxes, one after another. */

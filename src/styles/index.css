@@ -129,6 +129,14 @@
     @apply bg-bg text-fg font-sans antialiased;
   }
 
+  /* No double-tap zoom delay on anything tappable, and a tap flash in the site's own colour. */
+  a,
+  button,
+  input,
+  summary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgb(124 77 255 / 0.18);
+  }
   /* One visible focus style for the whole site. */
   :focus-visible {
     outline: 2px solid rgb(var(--accent));
@@ -160,7 +168,7 @@
   }
 
   .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-accent;
+    @apply text-[17px] font-semibold text-fg;
   }
 
   .card {
@@ -178,7 +186,7 @@
 
   .chip {
     @apply inline-flex items-center rounded-md border border-line bg-surface-2 px-2 py-[3px]
-           font-mono text-[11px] text-muted;
+           text-[13px] text-muted;
   }
 
   .btn {
@@ -321,11 +329,9 @@
   gap: 0.6rem;
   border-radius: 999px;
   padding: 0.9rem 1.5rem;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
   transition: color 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s;
 }
 .btn-pill::before {
@@ -623,5 +629,152 @@ html.has-cursor button {
   /* Links are printed as plain text: the URL is already written out in the contact line. */
   a[href]::after {
     content: '';
+  }
+}
+
+/*
+ * The four steps (src/components/Process.tsx). --p runs 0 to 1 with the scroll:
+ * the line fills, the ball rolls along it, and each step lights when the ball
+ * reaches its stop. Down the left edge on phones, across the top on wide screens.
+ */
+.proc {
+  --p: 0;
+  position: relative;
+  padding-left: 2.5rem;
+  padding-bottom: 3.5rem;
+}
+.proc.is-static {
+  --p: 1;
+  padding-bottom: 0;
+}
+.proc-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 3.5rem;
+  width: 1px;
+  background: rgb(var(--fg) / 0.15);
+}
+.proc.is-static .proc-track {
+  bottom: 0;
+}
+.proc-fill {
+  position: absolute;
+  left: -0.5px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgb(var(--accent));
+  transform-origin: top;
+  transform: scaleY(var(--p));
+}
+.proc-ball {
+  position: absolute;
+  left: -14px;
+  top: calc(var(--p) * (100% - 28px));
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 6px 14px rgb(0 0 0 / 0.6));
+  transition: transform 0.75s cubic-bezier(0.45, 0, 0.8, 0.35), opacity 0.3s 0.5s;
+}
+.proc-ball > svg {
+  transform: rotate(calc(var(--p) * 1080deg));
+}
+.proc.is-scored .proc-ball {
+  transform: translateY(40px) scale(0.78);
+  opacity: 0;
+}
+.proc-hoop {
+  position: absolute;
+  left: -22px;
+  bottom: -42px;
+  width: 44px;
+  height: 40px;
+  overflow: visible;
+}
+.proc-rim {
+  stroke: rgb(var(--fg) / 0.55);
+  transition: stroke 0.3s;
+}
+.proc-net {
+  stroke: rgb(var(--fg) / 0.28);
+  transform-origin: 50% 15%;
+}
+.proc.is-scored .proc-rim {
+  stroke: rgb(var(--accent));
+}
+.proc.is-scored .proc-net {
+  animation: swish 0.7s 0.35s ease-out;
+}
+@keyframes swish {
+  30% { transform: scaleY(1.28) scaleX(0.9); }
+  60% { transform: scaleY(0.92); }
+  100% { transform: none; }
+}
+.proc-step {
+  position: relative;
+}
+.proc-step > :not(.proc-dot) {
+  opacity: 0.32;
+  transition: opacity 0.5s, color 0.5s;
+}
+.proc-step.is-on > :not(.proc-dot) {
+  opacity: 1;
+}
+.proc-num {
+  display: block;
+  color: rgb(var(--fg));
+}
+.proc-step.is-on .proc-num {
+  color: rgb(var(--accent));
+}
+.proc-dot {
+  position: absolute;
+  left: calc(-2.5rem - 5px);
+  top: 0.6rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgb(var(--bg));
+  border: 1px solid rgb(var(--fg) / 0.35);
+  transition: background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+.proc-step.is-on .proc-dot {
+  background: rgb(var(--accent));
+  border-color: rgb(var(--accent));
+  box-shadow: 0 0 0 5px rgb(var(--accent) / 0.18);
+}
+@media (min-width: 1024px) {
+  .proc {
+    padding: 3.25rem 0 0;
+  }
+  .proc-track {
+    left: 0;
+    right: 22px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .proc-fill {
+    left: 0;
+    top: -0.5px;
+    width: 100%;
+    height: 2px;
+    transform-origin: left;
+    transform: scaleX(var(--p));
+  }
+  .proc-ball {
+    top: -14px;
+    left: calc(var(--p) * (100% - 28px));
+  }
+  .proc-hoop {
+    left: auto;
+    right: -8px;
+    bottom: auto;
+    top: -2px;
+  }
+  .proc-dot {
+    left: 0;
+    top: calc(-3.25rem - 5px);
   }
 }

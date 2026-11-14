@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="no-print relative overflow-hidden border-t border-fg/10 pt-16">
       <div className="container-page flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <Logo className="h-10 w-10" />
+          <Logo className="h-6 w-auto" />
           <p className="text-[13px] text-muted">
             &copy; {new Date().getFullYear()} {profile.name}
           </p>

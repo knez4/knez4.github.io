@@ -26,7 +26,7 @@ export const ui = {
    * the collapsed section further down.
    */
   /** Search title and description for the home page. Under 60 and 160 characters. */
-  'seo.title': { en: 'Veljko Knežević · Websites and automation, Belgrade', sr: 'Veljko Knežević · Izrada sajtova i automatizacija, Beograd' },
+  'seo.title': { en: 'Veljko Knežević | Websites and automation, Belgrade', sr: 'Veljko Knežević | Izrada sajtova i automatizacija, Beograd' },
   'seo.description': {
     en: 'Veljko Knežević builds websites, automates repetitive work and works with databases. Final-year student at FON in Belgrade. Example: flekoutclean.com.',
     sr: 'Veljko Knežević pravi sajtove, automatizuje posao koji se ponavlja i radi sa bazama podataka. Student završne godine FON-a, Beograd. Primer: flekoutclean.com.',
@@ -35,7 +35,7 @@ export const ui = {
     en: 'I build websites and automate the work that keeps repeating.',
     sr: 'Pravim sajtove i automatizujem posao koji se stalno ponavlja.',
   },
-  'hero.plainSub': { en: 'Final-year student at FON · Belgrade', sr: 'Student završne godine FON-a · Beograd' },
+  'hero.plainSub': { en: 'Final-year student at FON, Belgrade', sr: 'Student završne godine FON-a, Beograd' },
   'hero.available': { en: 'Available for new projects and internships', sr: 'Dostupan za nove projekte i praksu' },
   'cta.talk': { en: 'Get in touch', sr: 'Javi se' },
 
@@ -62,7 +62,7 @@ export const ui = {
     en: 'Apps that keep your data in order, for example online booking where two clients can never take the same slot.',
     sr: 'Aplikacije koje drže tvoje podatke u redu, na primer online zakazivanje u kome dva klijenta nikad ne mogu da dobiju isti termin.',
   },
-  'services.example': { en: 'Example', sr: 'Primer' },
+  'services.how': { en: 'How it was built', sr: 'Kako je napravljeno' },
   'services.illustration': { en: 'illustration', sr: 'ilustracija' },
 
   'ba.drag': { en: 'Drag', sr: 'Prevuci' },
@@ -93,18 +93,59 @@ export const ui = {
 
   'about.eyebrow': { en: 'About', sr: 'O meni' },
   'about.title': { en: 'Who you would be working with', sr: 'Sa kim bi radio' },
+  /*
+   * About, rewritten in November 2026 with facts he gave directly: born in Užice, in
+   * Belgrade since 2022, why FON, how he works. Concrete things only; nothing here
+   * should be a sentence that could describe anyone else.
+   */
   'about.p1': {
-    en: 'I’m Veljko, a final-year student at the Faculty of Organizational Sciences in Belgrade. For three years I have been freelancing: building websites and tools that save people time.',
-    sr: 'Ja sam Veljko, student završne godine Fakulteta organizacionih nauka u Beogradu. Već tri godine radim kao frilenser: pravim sajtove i alate koji ljudima štede vreme.',
+    en: 'I’m Veljko. I was born in Užice and have lived in Belgrade since 2022, where I am finishing the Faculty of Organizational Sciences. I have freelanced since March 2023: two client websites, and a tool that builds nine monthly reports in 3 seconds instead of about 6 hours.',
+    sr: 'Ja sam Veljko. Rođen sam u Užicu, a od 2022. živim u Beogradu, gde završavam Fakultet organizacionih nauka. Od marta 2023. radim kao frilenser: napravio sam dva sajta za klijente i alat koji devet mesečnih izveštaja složi za 3 sekunde umesto za oko 6 sati.',
   },
   'about.p2': {
-    en: 'At university I led an IT team and coordinated a project with around 50 people, so I know how to work with others and keep a deadline.',
-    sr: 'Na fakultetu sam vodio IT tim i koordinisao projekat sa oko 50 ljudi, pa znam da radim sa drugima i da ispoštujem rok.',
+    en: 'At university I led the IT team for the DigiCon conference and coordinated Future Leader, a project with around 50 members. That is where I learned to work with people and to keep a deadline.',
+    sr: 'Na fakultetu sam vodio IT tim konferencije DigiCon i koordinisao projekat Future Leader sa oko 50 članova. Tu sam naučio da radim sa ljudima i da držim rok.',
   },
-  'about.f1': { en: 'years of freelance work', sr: 'godine frilens rada' },
-  'about.f2': { en: 'people on the project I coordinated', sr: 'ljudi na projektu koji sam vodio' },
-  'about.f3': { en: 'Belgrade', sr: 'Beograd' },
-  'about.f3b': { en: 'where I live and work', sr: 'gde živim i radim' },
+  'about.p3': {
+    en: 'I chose FON because it mixes programming with management, and I wanted to see which one suited me. It turned out to be IT.',
+    sr: 'FON sam upisao jer spaja programiranje i menadžment, pa sam hteo da vidim šta mi više leži. Leži mi IT.',
+  },
+  'about.k1': { en: 'From', sr: 'Odakle' },
+  'about.v1': { en: 'Užice. In Belgrade since 2022.', sr: 'Užice. U Beogradu od 2022.' },
+  'about.k2': { en: 'Studies', sr: 'Studije' },
+  'about.v2': { en: 'FON, Information Systems and Technologies, final year', sr: 'FON, Informacioni sistemi i tehnologije, završna godina' },
+  'about.k3': { en: 'Work', sr: 'Rad' },
+  'about.v3': {
+    en: 'Remote for companies anywhere, on site in Belgrade and Novi Sad',
+    sr: 'Na daljinu za firme bilo gde, uživo u Beogradu i Novom Sadu',
+  },
+  'about.k4': { en: 'Interests', sr: 'Zanima me' },
+  'about.v4': { en: 'AI language models (LLMs), databases, automation', sr: 'Veštačka inteligencija (LLM), baze podataka, automatizacija' },
+  'about.k5': { en: 'Languages', sr: 'Jezici' },
+  'about.v5': { en: 'Serbian, English (B2)', sr: 'srpski, engleski (B2)' },
+
+  /* The questions people ask before writing. Each answer is something he confirmed (November 2026). */
+  'faq.title': { en: 'Common questions', sr: 'Česta pitanja' },
+  'faq.q1': { en: 'How much does a website or an automation cost?', sr: 'Koliko košta sajt ili automatizacija?' },
+  'faq.a1': {
+    en: 'It depends on what you need, so the price is agreed for each project. Write a few sentences about what you want and I will reply within 24 hours.',
+    sr: 'Zavisi od toga šta ti treba, pa cenu dogovaramo za svaki projekat posebno. Napiši u par rečenica šta želiš i odgovoriću ti u roku od 24 sata.',
+  },
+  'faq.q2': { en: 'Do you work with clients outside Belgrade?', sr: 'Da li radiš sa klijentima van Beograda?' },
+  'faq.a2': {
+    en: 'Yes. I work remotely with clients anywhere in the world. In person, I can come to you in Belgrade and Novi Sad.',
+    sr: 'Da. Na daljinu radim sa klijentima bilo gde u svetu. Uživo mogu da dođem u Beogradu i Novom Sadu.',
+  },
+  'faq.q3': { en: 'I am not sure what exactly I need. Can I still write?', sr: 'Ne znam tačno šta mi treba. Mogu li ipak da se javim?' },
+  'faq.a3': {
+    en: 'You can. Describe in your own words what bothers you or what you would like to have, and we will work out what to build when we talk.',
+    sr: 'Možeš. Opiši svojim rečima šta te muči ili šta bi voleo da imaš, a šta tačno pravimo dogovorićemo u razgovoru.',
+  },
+  'faq.q4': { en: 'Are you also looking for a full-time job?', sr: 'Tražiš li i stalan posao?' },
+  'faq.a4': {
+    en: 'Yes. I am looking for an internship or a junior position, full time, and I can start right away. My CV is in the section for employers, further down the page.',
+    sr: 'Da. Tražim stručnu praksu ili juniorsku poziciju sa punim radnim vremenom i mogu da počnem odmah. CV je u delu za poslodavce, niže na strani.',
+  },
 
   'work.eyebrow': { en: 'Work', sr: 'Radovi' },
   'work.title': { en: 'What I have made', sr: 'Šta sam napravio' },
@@ -116,6 +157,10 @@ export const ui = {
   'tech.lead': {
     en: 'The technical detail, for whoever wants it. Open only what you need.',
     sr: 'Tehnički detalji, za one koje zanimaju. Otvori samo ono što ti treba.',
+  },
+  'tech.status': {
+    en: 'I am looking for an internship or a junior position, full time. I can start right away: remote, hybrid, or in an office in Belgrade or Novi Sad.',
+    sr: 'Tražim stručnu praksu ili juniorsku poziciju, puno radno vreme. Mogu da počnem odmah: na daljinu, hibridno ili u kancelariji u Beogradu i Novom Sadu.',
   },
   'tech.terminal': { en: 'Ask my database (a live SQL terminal)', sr: 'Pitaj moju bazu (SQL terminal uživo)' },
   'tech.projects': { en: 'Projects in technical detail', sr: 'Projekti, tehnički detaljno' },
@@ -135,7 +180,6 @@ export const ui = {
   'hero.emailMe': { en: 'Send an email', sr: 'Pošalji mejl' },
   /** The field, not a job title: he has no IT employment yet (see profile.role). */
   'hero.role': { en: 'Web design, automation and databases', sr: 'Web dizajn, automatizacija i baze podataka' },
-  'hero.sub': { en: 'Final-year student at FON · Belgrade', sr: 'Student završne godine FON-a · Beograd' },
   'hero.scroll': { en: 'Scroll', sr: 'Skroluj' },
   'hero.terminalHint': { en: 'Ask my database', sr: 'Pitaj moju bazu' },
   'nav.talk': { en: "Let's talk", sr: 'Javi se' },
@@ -216,7 +260,7 @@ export const ui = {
   'freelance.beforeNote': { en: 'of manual work, every month', sr: 'ručnog rada, svakog meseca' },
   'freelance.afterNote': { en: 'and all nine reports are ready', sr: 'i svih devet izveštaja je gotovo' },
   'freelance.mailSubject': { en: 'Project enquiry', sr: 'Upit za saradnju' },
-  'freelance.cta': { en: "Have an idea? Let's talk.", sr: 'Imaš ideju? Javi se.' },
+  'freelance.cta': { en: 'Tell me what you need.', sr: 'Napiši šta ti treba.' },
   'freelance.direct': { en: 'You work with me directly.', sr: 'Radiš direktno sa mnom.' },
   'freelance.ask': { en: 'Send an enquiry', sr: 'Pošalji upit' },
   'freelance.mailBody': {

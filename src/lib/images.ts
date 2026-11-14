@@ -11,6 +11,9 @@ export function srcSetFor(src: string): string | undefined {
   if (src === '/img/work/flekout-desktop.webp') {
     return '/img/work/flekout-desktop-600.webp 600w, /img/work/flekout-desktop.webp 1200w';
   }
+  // Flekout gallery: phone shots are 480 wide with a 240 copy, wide shots 1440 with a 720 copy.
+  if (/^\/img\/work\/flekout-m-[a-z]+\.webp$/.test(src)) return `${src.replace(/\.webp$/, '-240.webp')} 240w, ${src} 480w`;
+  if (/^\/img\/work\/flekout-(hero|services|process|form)\.webp$/.test(src)) return `${src.replace(/\.webp$/, '-720.webp')} 720w, ${src} 1440w`;
   return undefined;
 }
 

@@ -114,7 +114,7 @@ export function Hero({ ready }: { ready: boolean }) {
             width={1410}
             height={2259}
             alt={pick({ en: 'Veljko Knežević, arms crossed', sr: 'Veljko Knežević, prekrštenih ruku' })}
-            fetchPriority="high"
+            {...{ fetchpriority: 'high' }}
             className="block h-full w-auto max-w-[86vw] origin-bottom object-contain object-bottom
                        [mask-image:linear-gradient(to_top,transparent,black_22%)] lg:h-[min(86svh,900px)] lg:max-w-none"
           />
@@ -138,8 +138,8 @@ export function Hero({ ready }: { ready: boolean }) {
         <div className="max-w-[24rem] xl:max-w-[26rem]">
           <p
             data-a="fade"
-            className="inline-flex items-center gap-2 rounded-full border border-fg/12 bg-bg/60 px-3 py-1.5 font-mono
-                       text-[11px] text-muted"
+            className="inline-flex items-center gap-2 rounded-full border border-fg/12 bg-bg/60 px-3 py-1.5
+                       text-[13px] text-muted"
           >
             <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7ee2a8] opacity-60" />
@@ -153,7 +153,7 @@ export function Hero({ ready }: { ready: boolean }) {
           <p data-a="fade" className="mt-4 text-[clamp(1.45rem,6.2vw,2.3rem)] font-semibold leading-[1.15] tracking-tight text-fg">
             {t('hero.plainRole')}
           </p>
-          <p data-a="fade" className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
+          <p data-a="fade" className="mt-3 text-[13px] text-accent">
             {t('hero.plainSub')}
           </p>
 

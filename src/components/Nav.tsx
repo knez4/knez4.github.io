@@ -6,16 +6,16 @@ import { Logo } from './Logo';
 
 const sections = [
   { id: 'services', key: 'nav.services' },
+  { id: 'projects', key: 'nav.work' },
   { id: 'process', key: 'nav.process' },
   { id: 'about', key: 'nav.about' },
-  { id: 'projects', key: 'nav.work' },
   { id: 'tech', key: 'nav.tech' },
 ] as const;
 
 function LangSwitch() {
   const { lang, setLang, t } = useLang();
   return (
-    <div className="flex items-center rounded-full border border-fg/12 p-0.5 font-mono text-[11px]" role="group" aria-label={t('lang.toggle')}>
+    <div className="flex items-center rounded-full border border-fg/12 p-0.5 text-[13px]" role="group" aria-label={t('lang.toggle')}>
       {(['sr', 'en'] as const).map((l) => (
         <button
           key={l}
@@ -64,7 +64,7 @@ export function Nav() {
     >
       <nav className="container-page flex h-[72px] items-center justify-between gap-4" aria-label="Main">
         <Link to="/" className="group flex items-center gap-3 rounded-full" aria-label={profile.name}>
-          <Logo className="h-10 w-10" spin />
+          <Logo className="h-6 w-auto" spin />
           <span className="hidden text-[14px] font-semibold tracking-tight sm:inline">{profile.name}</span>
         </Link>
 
@@ -73,7 +73,7 @@ export function Nav() {
             <a
               key={s.id}
               href={href(s.id)}
-              className="group px-3 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted"
+              className="group px-3 py-2 text-[13px] text-muted"
             >
               {/* The clip box is the line itself, not the padded link, so the outgoing copy fully leaves. */}
               <span className="relative block overflow-hidden">
@@ -123,7 +123,7 @@ export function Nav() {
       >
         <div className="container-page flex h-full flex-col justify-between pb-10 pt-6">
           <div className="flex flex-col">
-            {[...sections, { id: 'contact', key: 'nav.contact' } as const].map((s, i) => (
+            {[...sections, { id: 'contact', key: 'nav.contact' } as const].map((s) => (
               <a
                 key={s.id}
                 href={href(s.id)}
@@ -131,14 +131,13 @@ export function Nav() {
                 onClick={() => setOpen(false)}
                 className="font-display flex items-baseline gap-3 border-b border-fg/10 py-3 text-[clamp(2.6rem,12vw,5rem)] text-fg"
               >
-                <span className="font-mono text-[11px] tracking-widest text-accent">0{i + 1}</span>
                 {t(s.key)}
               </a>
             ))}
           </div>
-          <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-muted">
+          <div className="flex items-center justify-between text-[13px] text-muted">
             <Link to="/cv" tabIndex={open ? 0 : -1} className="text-fg">
-              {t('nav.cv')} ↗
+              {t('nav.cv')}
             </Link>
             <a href={profile.github} tabIndex={open ? 0 : -1}>GitHub</a>
             <a href={profile.linkedin} tabIndex={open ? 0 : -1}>LinkedIn</a>

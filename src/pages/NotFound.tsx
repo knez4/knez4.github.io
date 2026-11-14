@@ -7,7 +7,7 @@ export default function NotFound() {
   const { t } = useLang();
   return (
     <div className="container-page relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden py-20 text-center">
-      <p className="font-mono text-[12px] uppercase tracking-[0.3em] text-accent">404 · {t('notFound.title')}</p>
+      <p className="text-[13px] text-accent">404, {t('notFound.title')}</p>
       <h1 className="font-display mt-6 text-[clamp(4.5rem,22vw,18rem)] text-fg">Airball.</h1>
       <p className="mt-6 max-w-md text-[16px] leading-relaxed text-muted">{t('notFound.lead')}</p>
       <Link to="/" className="btn-pill btn-pill--solid mt-10" data-magnetic>

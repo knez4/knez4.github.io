@@ -10,7 +10,7 @@ Veljko Knežević pravi sajtove, automatizuje posao koji se ponavlja i radi sa b
 - Automation: programs that take over work done by hand again and again. Real case: monthly client reports, nine Excel workbooks turned into nine finished PDF reports in about 3 seconds instead of about 6 hours by hand.
 - Apps and databases: applications that keep data in order, for example online appointment booking where two clients can never take the same slot.
 
-Contact for a project: veljkoknez11@gmail.com (replies within 24 hours).
+Prices are agreed per project. Contact for a project: veljkoknez11@gmail.com (replies within 24 hours).
 
 ## Work
 
@@ -23,6 +23,9 @@ Contact for a project: veljkoknez11@gmail.com (replies within 24 hours).
 
 - Education: Information Systems and Technologies, E-business Technologies track, FON, University of Belgrade (October 2022, expected to finish in 2027).
 - At university, in FON Digital Organization, he led the IT team for the DigiCon conference and coordinated the Future Leader project, with around 50 members.
+- Born in Užice, Serbia; has lived in Belgrade since 2022.
+- Availability: can start right away. Works remote for companies anywhere, hybrid, or on site in Belgrade and Novi Sad.
+- Interests: large language models (LLMs), databases and automation.
 - Languages: Serbian (native), English (B2).
 - Skills he has used in real work: SQL, PostgreSQL, PL/pgSQL, Row Level Security, Python, pandas, PHP, Laravel, React, TypeScript, JavaScript, HTML, CSS.
 

@@ -12,7 +12,7 @@ export const projects: Project[] = [
   {
     id: 'booking-platform',
     plain: {
-      title: { en: 'Online booking system', sr: 'Sistem za online zakazivanje' },
+      title: { en: 'Booking with no double-booked slots', sr: 'Zakazivanje bez duplih termina' },
       text: {
         en: 'An app where clients book a hair appointment themselves, and the system makes sure two bookings never land on the same slot. A working prototype.',
         sr: 'Aplikacija u kojoj klijenti sami zakazuju termin kod frizera, a sistem pazi da se dva termina nikad ne poklope. Funkcionalan prototip.',
@@ -85,11 +85,11 @@ export const projects: Project[] = [
       problem: {
         en:
           'Appointments were written in a notebook. Double bookings happened, nobody could see the schedule ' +
-          'remotely, and there was no record of which client came back. The hard part is not the form, it is ' +
-          'making sure two people cannot take the same slot when both submit at the same moment.',
+          'remotely, and there was no record of which client came back. The hard part is making sure ' +
+          'two people cannot take the same slot when both submit at the same moment.',
         sr:
           'Termini su se pisali u svesku. Dešavali su se dupli termini, raspored se nije mogao videti sa strane, ' +
-          'i nije postojala evidencija koji se klijent vraća. Teško nije napraviti formu, nego obezbediti da dva ' +
+          'i nije postojala evidencija koji se klijent vraća. Najteže je obezbediti da dva ' +
           'klijenta ne uzmu isti termin kada oboje pošalju zahtev u istom trenutku.',
       },
       approach: {
@@ -253,17 +253,19 @@ export const projects: Project[] = [
     },
     highlights: {
       en: [
-        'Built an interactive marketing site from scratch: a scroll-driven video-mask reveal and a service catalog navigated by section, tested down to a 320px screen with reduced-motion and no-JavaScript fallbacks.',
-        'Built a second client site from scratch and tuned its load time with responsive WebP images at three widths, an LCP preload hint, and Brotli plus cache headers.',
+        'Built the Flekout site from scratch in plain HTML, CSS and JavaScript: a hero with a looping video of the work, a service catalog by type of space with starting prices, a four-step process and an enquiry form that takes photos.',
+        'Put a small Cloudflare Worker in front of the static files, so the video is served in byte ranges (Safari on iPhone will not play it otherwise) and every address redirects to one.',
+        'Built a second client site, Mystery M, from scratch and tuned its load time with responsive WebP images at three widths, an LCP preload hint, and Brotli plus cache headers.',
         'Removed a forced reflow on that site by coalescing a scroll-driven redraw into a single requestAnimationFrame.',
       ],
       sr: [
-        'Samostalno izradio interaktivni marketinški sajt: otkrivanje kroz video masku vezano za skrol i katalog usluga po sekcijama, testiran do širine od 320px sa reduced-motion i no-JavaScript fallback-ovima.',
-        'Izradio i drugi klijentski sajt u celosti i skratio mu vreme učitavanja kroz responzivne WebP slike na tri širine, preload za LCP i Brotli sa cache header-ima.',
+        'Izradio sajt Flekout od nule u čistom HTML-u, CSS-u i JavaScript-u: hero sa videom čišćenja koji se ponavlja, katalog usluga po vrsti prostora sa početnim cenama, proces u četiri koraka i formu za upit koja prima fotografije.',
+        'Ispred statičnih fajlova postavio mali Cloudflare Worker, pa se video isporučuje u delovima (Safari na iPhone-u ga inače ne pušta), a sve adrese vode na jednu.',
+        'Izradio i drugi klijentski sajt, Mystery M, od nule i skratio mu vreme učitavanja kroz responzivne WebP slike na tri širine, preload za LCP i Brotli sa cache header-ima.',
         'Uklonio forced reflow na tom sajtu objedinjavanjem iscrtavanja na skrol u jedan requestAnimationFrame.',
       ],
     },
-    tech: ['HTML', 'CSS', 'JavaScript', 'WebP', 'Apache'],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Cloudflare Workers', 'WebP', 'Apache'],
     // Flekout went live on 16 October 2026. Mystery M has no live site and never will.
     liveUrl: 'https://flekoutclean.com',
     repos: [
@@ -272,8 +274,8 @@ export const projects: Project[] = [
     ],
     media: [
       // The real site leads: a screenshot says "client sites" faster than a diagram does.
-      // Flekout's redesign (taken from his artifact, 15 October 2026); the Mystery M shot was
-      // dropped at his request, the repo link stays.
+      // Taken from the live flekoutclean.com on 13 November 2026. The Mystery M shot was
+      // dropped at his request; its repo link stays.
       {
         src: '/img/work/flekout-desktop.webp',
         alt: {
@@ -283,54 +285,124 @@ export const projects: Project[] = [
         caption: { en: 'Flekout, the home page.', sr: 'Flekout, početna strana.' },
       },
       {
-        src: '/img/work/flekout-mobile.webp',
-        alt: { en: 'The Flekout home page on a phone', sr: 'Početna strana sajta Flekout na telefonu' },
-        caption: { en: 'The same page on a phone.', sr: 'Ista strana na telefonu.' },
-      },
-      {
         src: '/screenshots/client-performance.webp',
         alt: {
           en: 'Diagram of the image delivery pipeline and the scroll redraw fix',
           sr: 'Dijagram isporuke slika i ispravke iscrtavanja pri skrolovanju',
         },
         caption: {
-          en: 'Three widths, one fallback, and a redraw that runs once per frame instead of once per event.',
-          sr: 'Tri širine, jedan fallback, i iscrtavanje koje se izvršava jednom po frejmu umesto po događaju.',
+          en: 'Mystery M: three image widths, one fallback, and a redraw that runs once per frame instead of once per event.',
+          sr: 'Mystery M: tri širine slika, jedan fallback, i iscrtavanje koje se izvršava jednom po frejmu umesto po događaju.',
         },
       },
     ],
+    gallery: {
+      site: 'flekoutclean.com',
+      shots: [
+        {
+          src: '/img/work/flekout-hero.webp',
+          alt: {
+            en: 'The Flekout home page: "Bez fleke." next to a cleaning video in a slanted frame',
+            sr: 'Početna strana sajta Flekout: „Bez fleke." pored videa čišćenja u kosom kadru',
+          },
+          caption: {
+            en: 'The first screen: two words, a video of the work, the enquiry button and the lowest price.',
+            sr: 'Prvi ekran: dve reči, video samog posla, dugme za upit i najniža cena.',
+          },
+        },
+        {
+          src: '/img/work/flekout-services.webp',
+          alt: {
+            en: 'The service catalog: tabs for house, building and office, and a dark slide for machine floor washing with its starting price',
+            sr: 'Katalog usluga: kartice za kuću, zgradu i kancelariju, i tamni slajd za mašinsko pranje podova sa početnom cenom',
+          },
+          caption: {
+            en: 'The visitor picks a space, then scrolls through its services. Each one shows its starting price.',
+            sr: 'Posetilac izabere prostor, pa skroluje kroz usluge za njega. Svaka pokazuje početnu cenu.',
+          },
+        },
+        {
+          src: '/img/work/flekout-process.webp',
+          alt: {
+            en: 'The four steps from the first call to a clean space, on a vertical line',
+            sr: 'Četiri koraka od prvog poziva do čistog prostora, na vertikalnoj liniji',
+          },
+          caption: {
+            en: 'Four steps from the first call to a clean space, so the client knows what happens next.',
+            sr: 'Četiri koraka od prvog poziva do čistog prostora, da klijent zna šta sledi.',
+          },
+        },
+        {
+          src: '/img/work/flekout-form.webp',
+          alt: {
+            en: 'The enquiry form: space, location, description, photo upload and preferred way of contact',
+            sr: 'Forma za upit: prostor, lokacija, opis, dodavanje fotografija i način kontakta',
+          },
+          caption: {
+            en: 'The enquiry form takes up to five photos and asks how the client wants to be contacted.',
+            sr: 'Forma za upit prima do pet fotografija i pita kako klijent želi da ga kontaktiraju.',
+          },
+        },
+      ],
+      phones: [
+        {
+          src: '/img/work/flekout-m-hero.webp',
+          alt: { en: 'The Flekout home page on a phone', sr: 'Početna strana sajta Flekout na telefonu' },
+        },
+        {
+          src: '/img/work/flekout-m-services.webp',
+          alt: { en: 'The service catalog on a phone', sr: 'Katalog usluga na telefonu' },
+        },
+        {
+          src: '/img/work/flekout-m-process.webp',
+          alt: { en: 'The four steps on a phone, with a call button', sr: 'Četiri koraka na telefonu, sa dugmetom za poziv' },
+        },
+        {
+          src: '/img/work/flekout-m-form.webp',
+          alt: { en: 'The enquiry form on a phone', sr: 'Forma za upit na telefonu' },
+        },
+      ],
+    },
     caseStudy: {
       problem: {
         en:
-          'Two clients, two sites built from nothing, from the first page to launch. The first was an ' +
-          'interactive marketing site. Before launch both went through the usual pass on load time and ' +
-          'smoothness, the way any finished site should.',
+          'Two clients, two sites built from nothing, from the first page to launch. Flekout is a cleaning ' +
+          'company in Belgrade: its site lets a visitor pick the type of space, see the services and starting ' +
+          'prices for it, and send an enquiry with photos. Mystery M is the second site. Before launch both ' +
+          'went through the usual pass on load time and smoothness.',
         sr:
-          'Dva klijenta, dva sajta izrađena u celosti, od prve stranice do objave. Prvi je bio ' +
-          'interaktivni marketinški sajt. Pred objavu su oba prošla uobičajenu proveru brzine i ' +
-          'glatkoće, kao i svaki završen sajt.',
+          'Dva klijenta, dva sajta izrađena u celosti, od prve stranice do objave. Flekout je firma za ' +
+          'čišćenje iz Beograda: na sajtu posetilac bira vrstu prostora, vidi usluge i početne cene za njega ' +
+          'i šalje upit sa fotografijama. Mystery M je drugi sajt. Pred objavu su oba prošla uobičajenu ' +
+          'proveru brzine i glatkoće.',
       },
       approach: {
         en: [
-          'For the new build: a hero section reveals through a video mask tied to scroll position, and a service catalog lets a visitor pick a space and scroll through the matching services in a dark rail.',
-          'Checked the new build on desktop, tablet, 390px and 320px, plus reduced-motion and no-JavaScript, so the layout and the reveal both still work without the animation.',
-          'On the second build, images were the main cost, so they ship as a responsive WebP srcset at three widths with a PNG fallback, and the hero image carries an LCP preload hint.',
-          'A scroll handler on that site was reading layout properties on every event and causing jank; coalesced it into a single requestAnimationFrame callback, and served the site with Brotli compression and cache-control headers via .htaccess.',
+          'Flekout opens with two words and a looping video of the work in a slanted frame, with the enquiry button and the lowest price beside it.',
+          'The service catalog is split by space: house or flat, building, office. Each service is one dark slide with its starting price, the slides advance as the visitor scrolls, and a counter shows where they are.',
+          'The enquiry form asks for the space, the location and a short description, takes up to five photos, and lets the visitor choose a call, a message or an email as the reply.',
+          'A Cloudflare Worker sits in front of the static files. It serves the video in byte ranges, which Safari on iPhone requires, and redirects http and www to a single address.',
+          'Animations switch off for visitors who have reduced motion turned on.',
+          'On Mystery M, images were the main cost, so they ship as a responsive WebP srcset at three widths with a PNG fallback, and the hero image carries an LCP preload hint.',
+          'A scroll handler on Mystery M was reading layout properties on every event and causing jank; I coalesced it into a single requestAnimationFrame callback, and the site is served with Brotli compression and cache-control headers through .htaccess.',
         ],
         sr: [
-          'Za novu izradu: hero sekcija se otkriva kroz video masku vezanu za poziciju skrola, a katalog usluga omogućava posetiocu da izabere prostor i skroluje kroz odgovarajuće usluge u tamnoj traci.',
-          'Proverio novu izradu na desktop, tablet, 390px i 320px ekranima, kao i reduced-motion i no-JavaScript, tako da raspored i otkrivanje sadržaja rade i bez animacije.',
-          'Na drugoj izradi slike su bile glavni trošak, pa se isporučuju kao responzivan WebP srcset na tri širine sa PNG fallback-om, a hero slika nosi LCP preload.',
-          'Scroll handler na tom sajtu je čitao layout svojstva pri svakom događaju i pravio trzaje; objedinio sam ga u jedan requestAnimationFrame poziv, a sajt se servira uz Brotli kompresiju i cache-control header-e preko .htaccess-a.',
+          'Flekout se otvara sa dve reči i videom samog posla u kosom kadru, a pored su dugme za upit i najniža cena.',
+          'Katalog usluga je podeljen po prostoru: kuća ili stan, zgrada, kancelarija. Svaka usluga je jedan tamni slajd sa početnom cenom, slajdovi se smenjuju dok posetilac skroluje, a brojač pokazuje dokle je stigao.',
+          'Forma za upit traži prostor, lokaciju i kratak opis, prima do pet fotografija i pušta posetioca da izabere da li želi poziv, poruku ili mejl.',
+          'Ispred statičnih fajlova stoji Cloudflare Worker. Video isporučuje u delovima, što Safari na iPhone-u zahteva, i preusmerava http i www na jednu adresu.',
+          'Animacije se isključuju posetiocima koji su u sistemu smanjili kretanje.',
+          'Na sajtu Mystery M slike su bile glavni trošak, pa se isporučuju kao responzivan WebP srcset na tri širine sa PNG fallback-om, a hero slika nosi LCP preload.',
+          'Scroll handler na sajtu Mystery M je čitao layout svojstva pri svakom događaju i pravio trzaje; objedinio sam ga u jedan requestAnimationFrame poziv, a sajt se servira uz Brotli kompresiju i cache-control header-e preko .htaccess-a.',
         ],
       },
       limits: {
         en:
-          'Both are marketing sites: static pages, with no backend and no data layer behind them. The first ' +
-          'build’s services section (services.js) is written but not yet wired into the live page.',
+          'Both are marketing sites: static pages with no database behind them. Flekout’s form is delivered ' +
+          'by a form service, not by code of mine on a server. Mystery M is not online; its code is on GitHub.',
         sr:
-          'Oba su marketinški sajtovi: statične stranice, bez backend-a i sloja podataka iza njih. Sekcija ' +
-          'usluga prve izrade (services.js) je napisana ali još nije uključena u živu stranicu.',
+          'Oba su marketinški sajtovi: statične stranice, bez baze podataka iza njih. Upite sa Flekout forme ' +
+          'isporučuje servis za forme, a ne moj kod na serveru. Mystery M nije na internetu; kod je na GitHub-u.',
       },
     },
   },
@@ -338,7 +410,7 @@ export const projects: Project[] = [
   {
     id: 'report-automation',
     plain: {
-      title: { en: 'Automatic reports', sr: 'Automatski izveštaji' },
+      title: { en: 'Nine reports in 3 seconds', sr: 'Devet izveštaja za 3 sekunde' },
       text: {
         en: 'A program that turns nine Excel sheets into nine finished PDF reports in 3 seconds. By hand it took about 6 hours.',
         sr: 'Program koji od devet Excel tabela za 3 sekunde napravi devet gotovih PDF izveštaja. Ručno je to trajalo oko 6 sati.',

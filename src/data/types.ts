@@ -49,6 +49,12 @@ export type Project = {
    * subtitle and caseStudy, behind the "details" link.
    */
   plain?: { title: L; text: L };
+  /**
+   * A fuller set of real screenshots for the case-study page: wide ones shown in a
+   * browser frame, and phone ones shown side by side. When present, the page shows
+   * this instead of the plain `media` list.
+   */
+  gallery?: { site: string; shots: MediaItem[]; phones: MediaItem[] };
   /** Required: a project without a screenshot does not ship. Enforced by tests. */
   media: MediaItem[];
   /** Rendered on the case-study page only. */

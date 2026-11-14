@@ -26,7 +26,7 @@ function RepoLinks({ project }: { project: Project }) {
     ...(project.repoUrl ? [{ label: t('projects.viewRepo'), url: project.repoUrl }] : []),
     ...(project.repos ?? []),
   ];
-  const item = 'inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em]';
+  const item = 'inline-flex items-center gap-2 text-[13px]';
 
   if (!links.length) {
     return project.repoNote ? (
@@ -47,7 +47,7 @@ function RepoLinks({ project }: { project: Project }) {
           className={item + ' pointer-events-auto relative z-10 text-accent transition-colors hover:text-fg'}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#7ee2a8]" aria-hidden="true" />
-          {project.liveUrl.replace(/^https?:\/\//, '')} ↗
+          {project.liveUrl.replace(/^https?:\/\//, '')}
         </a>
       ) : null}
       {links.map((l) => (
@@ -85,7 +85,7 @@ function ProjectRow({ project, index, onHover }: { project: Project; index: numb
       <Link to={href} className="absolute inset-0 z-0" aria-label={`${pick(project.title)}: ${t('projects.readCase')}`} />
 
       <div className="pointer-events-none grid gap-4 sm:gap-6 lg:grid-cols-[5rem_minmax(0,1fr)_16rem] lg:items-start">
-        <span className="font-mono text-[12px] text-accent">{String(index + 1).padStart(2, '0')}</span>
+        <span aria-hidden="true" />
 
         <div className="min-w-0">
           {/* Inline cover for touch and narrow screens */}
@@ -110,13 +110,13 @@ function ProjectRow({ project, index, onHover }: { project: Project; index: numb
         </div>
 
         <div className="flex flex-col items-start gap-3 sm:gap-4 lg:items-end lg:text-right">
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">
-            {project.year} · {t(statusKey[project.status])}
+          <p className="text-[13px] text-subtle">
+            {t(statusKey[project.status])}, {project.year}
           </p>
-          <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-fg">
+          <span className="inline-flex items-center gap-2 text-[13px] text-fg">
             {t('projects.readCase')}
             <span
-              className="grid h-9 w-9 place-items-center rounded-full border border-fg/15 transition-all duration-500
+              className="grid h-9 w-9 place-items-center rounded-full border border-fg/15 transition-[transform,border-color,background-color] duration-500
                          group-hover:rotate-[-45deg] group-hover:border-accent-strong group-hover:bg-accent-strong"
             >
               <ArrowRight className="h-3.5 w-3.5" />
@@ -205,11 +205,11 @@ export function Projects() {
                   (active === i ? 'opacity-100' : 'opacity-0')
                 }
               >
-                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
-                  {String(i + 1).padStart(2, '0')} · {p.year}
+                <span className="text-[13px] text-accent">
+                  {p.year}
                 </span>
-                <span className="truncate font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
-                  {p.tech.slice(0, 3).join(' · ')}
+                <span className="truncate text-[13px] text-muted">
+                  {p.tech.slice(0, 3).join(', ')}
                 </span>
               </div>
             ))}

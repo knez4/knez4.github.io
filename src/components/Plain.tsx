@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 import { profile } from '../data/profile';
 import { projectsByRank } from '../data/projects';
 import type { Project } from '../data/types';
-import { srcSetFor, isDiagram } from '../lib/images';
 import { gsap, motionOK } from '../lib/motion';
 import { useLang } from '../lib/useLang';
-import { ArrowRight, Download, Mail } from './icons';
-import { Projects } from './Projects';
+import { ArrowRight, Download, GitHub, Mail } from './icons';
+import { Projects, statusKey } from './Projects';
 import { Reveal, useInView } from './Reveal';
 import { SchemaDiagram } from './SchemaDiagram';
 import { Education, Experience, mailto, SitesVisual, Skills } from './Sections';
@@ -61,7 +60,7 @@ function BeforeAfter() {
       <div ref={ref} className="relative aspect-[4/3] select-none overflow-hidden rounded-2xl border border-fg/10 [container-type:inline-size] sm:aspect-[16/10]">
         {/* After: the whole card */}
         <div className="absolute inset-0 flex flex-col items-end justify-between bg-accent-strong/25 p-4 text-right sm:p-7">
-          <p className="w-1/2 font-mono text-[10px] uppercase tracking-[0.16em] text-accent sm:text-[11px]">{t('ba.after')}</p>
+          <p className="w-1/2 text-[13px] text-accent sm:text-[14px]">{t('ba.after')}</p>
           <div className="w-[42%]">
             <p className="font-display text-[17cqw] text-fg">3 s</p>
             <ul className="mt-3 space-y-1.5 text-fg/85">
@@ -80,7 +79,7 @@ function BeforeAfter() {
           style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           aria-hidden="true"
         >
-          <p className="w-1/2 font-mono text-[10px] uppercase tracking-[0.16em] text-subtle sm:text-[11px]">{t('ba.before')}</p>
+          <p className="w-1/2 text-[13px] text-subtle sm:text-[14px]">{t('ba.before')}</p>
           <div className="w-[42%]">
             <p className="font-display whitespace-nowrap text-[17cqw] text-fg/40">~6 h</p>
             <ul className="mt-3 space-y-1.5 text-muted">
@@ -96,7 +95,7 @@ function BeforeAfter() {
         {/* Divider and handle */}
         <div className="pointer-events-none absolute inset-y-0 w-px bg-white/80" style={{ left: `${pos}%` }} aria-hidden="true">
           <span className="absolute left-1/2 top-1/2 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-[#12091f] shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-            <span className="font-mono text-[11px] font-semibold">⟷</span>
+            <span className="text-[13px] font-semibold">⟷</span>
           </span>
         </div>
         <input
@@ -109,7 +108,7 @@ function BeforeAfter() {
           className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
         />
       </div>
-      <figcaption className="mt-3 flex items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+      <figcaption className="mt-3 flex items-center justify-between gap-4 text-[13px] text-subtle">
         <span>{t('ba.caption')}</span>
         <span className="shrink-0 whitespace-nowrap text-accent">← {t('ba.drag')} →</span>
       </figcaption>
@@ -128,7 +127,7 @@ function AppsVisual() {
       <div className="rounded-2xl border border-fg/10 bg-[#0f0c18] p-5 sm:p-7">
         <div className="grid grid-cols-5 gap-2">
           {days.map((d) => (
-            <span key={d} className="text-center font-mono text-[11px] uppercase tracking-widest text-subtle">
+            <span key={d} className="text-center text-[13px] text-subtle">
               {d}
             </span>
           ))}
@@ -140,7 +139,7 @@ function AppsVisual() {
                 <span
                   key={`${c}-${r}`}
                   className={
-                    'rounded-lg border py-2.5 text-center font-mono text-[11px] sm:text-[12px] ' +
+                    'rounded-lg border py-2.5 text-center text-[13px] sm:text-[14px] ' +
                     (picked
                       ? 'border-accent bg-accent-strong text-white'
                       : busy
@@ -155,7 +154,7 @@ function AppsVisual() {
           )}
         </div>
       </div>
-      <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{t('services.illustration')}</figcaption>
+      <figcaption className="mt-3 text-[13px] text-subtle">{t('services.illustration')}</figcaption>
     </figure>
   );
 }
@@ -163,10 +162,11 @@ function AppsVisual() {
 /** Three services as alternating scenes: visual on one side, plain words on the other. */
 export function Services() {
   const { t } = useLang();
-  const rows: { title: string; body: string; visual: ReactNode; extra?: ReactNode }[] = [
-    { title: t('services.sites'), body: t('services.sitesBody'), visual: <SitesVisual /> },
-    { title: t('services.auto'), body: t('services.autoBody'), visual: <BeforeAfter /> },
-    { title: t('services.apps'), body: t('services.appsBody'), visual: <AppsVisual /> },
+  // Each service points at the project that proves it.
+  const rows: { title: string; body: string; visual: ReactNode; to: string }[] = [
+    { title: t('services.sites'), body: t('services.sitesBody'), visual: <SitesVisual />, to: 'client-sites' },
+    { title: t('services.auto'), body: t('services.autoBody'), visual: <BeforeAfter />, to: 'report-automation' },
+    { title: t('services.apps'), body: t('services.appsBody'), visual: <AppsVisual />, to: 'booking-platform' },
   ];
   return (
     <div className="space-y-16 sm:space-y-24">
@@ -175,9 +175,15 @@ export function Services() {
           <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
             <div className={i % 2 === 1 ? 'lg:order-2' : ''}>{r.visual}</div>
             <div className={i % 2 === 1 ? 'lg:order-1' : ''}>
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">0{i + 1}</p>
-              <h3 className="font-display mt-3 text-[clamp(2.4rem,5vw,4.2rem)] text-fg">{r.title}</h3>
+              <h3 className="font-display text-[clamp(2.2rem,4.4vw,3.6rem)] text-fg">{r.title}</h3>
               <p className="mt-4 max-w-lg text-[16px] leading-relaxed text-muted sm:text-[17px]">{r.body}</p>
+              <Link
+                to={`/projekti/${r.to}`}
+                className="draw-line mt-5 inline-flex items-center gap-2 pb-1 text-[15px] font-medium text-fg transition-colors hover:text-accent"
+              >
+                {t('services.how')}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </div>
           </article>
         </Reveal>
@@ -194,7 +200,7 @@ export function Services() {
               <Mail />
               {t('cta.talk')}
             </a>
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white">{t('contact.reply')}</p>
+            <p className="text-[13px] text-white">{t('contact.reply')}</p>
           </div>
         </div>
       </Reveal>
@@ -202,47 +208,27 @@ export function Services() {
   );
 }
 
-/* ------------------------------------------------------------------- process */
-
-export function Process() {
-  const { t } = useLang();
-  const steps = [1, 2, 3, 4].map((n) => ({ title: t(`process.s${n}` as 'process.s1'), body: t(`process.s${n}b` as 'process.s1b') }));
-  return (
-    <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {steps.map((s, i) => (
-        <Reveal as="li" key={s.title} delay={i * 80} className="panel spot h-full p-6 sm:p-7">
-            <span className="font-display text-[3rem] leading-none text-accent">{i + 1}</span>
-            <h3 className="mt-5 text-[19px] font-semibold text-fg">{s.title}</h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.body}</p>
-        </Reveal>
-      ))}
-    </ol>
-  );
-}
-
 /* --------------------------------------------------------------------- about */
 
 export function About() {
   const { t } = useLang();
-  const facts = [
-    { big: '3', small: t('about.f1') },
-    { big: '50', small: t('about.f2') },
-    { big: t('about.f3'), small: t('about.f3b') },
-  ];
+  // Plain facts a client or an employer asks first, as a list rather than big-number tiles.
+  const facts = [1, 2, 3, 4, 5].map((n) => ({ k: t(`about.k${n}` as 'about.k1'), v: t(`about.v${n}` as 'about.v1') }));
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-16">
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-20">
       <Reveal>
-        <div className="space-y-5 text-[17px] leading-relaxed text-fg/85 sm:text-[19px]">
+        <div className="max-w-[62ch] space-y-5 text-[17px] leading-relaxed text-fg/85 sm:text-[19px]">
           <p>{t('about.p1')}</p>
           <p>{t('about.p2')}</p>
+          <p>{t('about.p3')}</p>
         </div>
       </Reveal>
       <Reveal delay={100}>
-        <dl className="grid grid-cols-3 gap-3 lg:grid-cols-1">
+        <dl className="border-t border-fg/10">
           {facts.map((f) => (
-            <div key={f.small} className="panel p-4 sm:p-6">
-              <dt className="font-display whitespace-nowrap text-[clamp(1.1rem,5.2vw,3.4rem)] leading-none text-fg">{f.big}</dt>
-              <dd className="mt-2 text-[12px] leading-snug text-muted sm:text-[14px]">{f.small}</dd>
+            <div key={f.k} className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-4 border-b border-fg/10 py-4 sm:grid-cols-[8rem_minmax(0,1fr)]">
+              <dt className="pt-0.5 text-[13px] text-subtle sm:text-[14px]">{f.k}</dt>
+              <dd className="text-[15px] leading-snug text-fg sm:text-[16px]">{f.v}</dd>
             </div>
           ))}
         </dl>
@@ -253,76 +239,69 @@ export function About() {
 
 /* ---------------------------------------------------------------------- work */
 
-/** A cover for projects without a real screenshot: the plain title, set large on the accent. */
-function WordCover({ text }: { text: string }) {
-  return (
-    <div className="flex aspect-[16/10] items-end bg-[linear-gradient(135deg,rgb(124_77_255/0.55),rgb(124_77_255/0.12))] p-5 sm:p-7">
-      <span className="font-display text-[clamp(2.6rem,7vw,4.6rem)] text-white">{text}</span>
-    </div>
-  );
-}
-
-/** One or two words for the cover of a project that has no real screenshot. */
-const COVER: Record<string, { en: string; sr: string }> = {
-  'booking-platform': { en: 'Booking', sr: 'Zakazivanje' },
-  'chatbot-api': { en: 'Chatbot', sr: 'Chatbot' },
-  'report-automation': { en: '6 h → 3 s', sr: '6 h → 3 s' },
-};
-
-function WorkCard({ project }: { project: Project }) {
+/**
+ * The work as an index: one row per project, the result in the title, what kind of
+ * work it was and when on the right. The pictures live in the services above (the
+ * live site, the before/after, the booking week), so this list does not repeat them.
+ */
+function WorkRow({ project }: { project: Project }) {
   const { t, pick } = useLang();
   const plain = project.plain;
   const title = plain ? pick(plain.title) : pick(project.title);
-  const cover = project.media[0];
-  const photo = cover && !isDiagram(cover.src);
   return (
-    <article className="panel spot group flex h-full flex-col overflow-hidden">
-      <div className="overflow-hidden border-b border-fg/10">
-        {photo ? (
-          <img
-            src={cover.src}
-            srcSet={srcSetFor(cover.src)}
-            sizes="(min-width: 640px) 45vw, 92vw"
-            alt=""
-            width={1200}
-            height={750}
-            loading="lazy"
-            decoding="async"
-            className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-        ) : (
-          <WordCover text={COVER[project.id] ? pick(COVER[project.id]) : title} />
-        )}
-      </div>
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-[20px] font-semibold leading-snug text-fg">{title}</h3>
-        <p className="mt-2 text-[15px] leading-relaxed text-muted">{plain ? pick(plain.text) : pick(project.subtitle)}</p>
-        <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 pt-6 font-mono text-[11px] uppercase tracking-[0.14em]">
-          <Link to={`/projekti/${project.id}`} className="inline-flex items-center gap-2 text-fg transition-colors hover:text-accent">
-            {t('work.details')}
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+    <li className="group relative border-t border-fg/10 last:border-b">
+      <Link to={`/projekti/${project.id}`} className="absolute inset-0 z-0" aria-label={`${title}: ${t('work.details')}`} />
+      <div className="pointer-events-none grid gap-3 py-7 sm:py-9 lg:grid-cols-[minmax(0,1fr)_15rem] lg:items-start lg:gap-12">
+        <div className="min-w-0">
+          <h3
+            className="font-display text-balance text-[clamp(1.75rem,3.6vw,3rem)] text-fg transition-[color,transform] duration-500
+                       ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2 group-hover:text-accent"
+          >
+            {title}
+          </h3>
+          <p className="mt-3 max-w-[60ch] text-[15px] leading-relaxed text-muted sm:text-[16px]">
+            {plain ? pick(plain.text) : pick(project.subtitle)}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] lg:flex-col lg:items-end lg:gap-2 lg:pt-2 lg:text-right">
+          <p className="text-subtle">
+            {t(statusKey[project.status])}, {project.year}
+          </p>
           {project.liveUrl ? (
-            <a href={project.liveUrl} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 text-accent hover:text-fg">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="pointer-events-auto relative z-10 inline-flex items-center gap-2 text-accent transition-colors hover:text-fg"
+            >
               <span className="h-1.5 w-1.5 rounded-full bg-[#7ee2a8]" aria-hidden="true" />
-              {t('work.visit')} ↗
+              {project.liveUrl.replace(/^https?:\/\//, '')}
             </a>
           ) : null}
+          <span className="inline-flex items-center gap-2 text-fg">
+            {t('work.details')}
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-1" />
+          </span>
         </div>
       </div>
-    </article>
+    </li>
   );
 }
 
+/**
+ * Home-page order, which is not the CV's: what a client can check comes first (the
+ * live site, the delivered tool), then the prototype, then the university project.
+ */
+const HOME_ORDER = ['client-sites', 'report-automation', 'booking-platform', 'chatbot-api'];
+
 export function Work() {
+  const ordered = [...projectsByRank].sort((a, b) => HOME_ORDER.indexOf(a.id) - HOME_ORDER.indexOf(b.id));
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      {projectsByRank.map((p, i) => (
-        <Reveal key={p.id} delay={(i % 2) * 90}>
-          <WorkCard project={p} />
-        </Reveal>
+    <ul>
+      {ordered.map((p) => (
+        <WorkRow key={p.id} project={p} />
       ))}
-    </div>
+    </ul>
   );
 }
 
@@ -333,7 +312,7 @@ export function Work() {
  * engines and AI crawlers read it, and the prerender captures it); while closed it
  * is collapsed and inert, so it is out of the tab order and the reading flow.
  */
-function Fold({ title, children }: { title: string; children: ReactNode }) {
+export function Fold({ title, children }: { title: string; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const body = useRef<HTMLDivElement>(null);
@@ -383,10 +362,61 @@ function Fold({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
+/* ----------------------------------------------------------------------- faq */
+
+/** The questions people ask before they write. Every answer is something he has confirmed. */
+export function Faq() {
+  const { t } = useLang();
+  return (
+    <div className="max-w-4xl">
+      {[1, 2, 3, 4].map((n) => (
+        <Fold key={n} title={t(`faq.q${n}` as 'faq.q1')}>
+          <p className="max-w-[62ch] text-[16px] leading-relaxed text-muted sm:text-[17px]">{t(`faq.a${n}` as 'faq.a1')}</p>
+        </Fold>
+      ))}
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------- tech */
+
+/** The stack he has shipped real work with, shown before anything is unfolded. */
+const CORE_STACK = ['SQL', 'PostgreSQL', 'Python', 'pandas', 'React', 'TypeScript', 'PHP', 'Laravel'];
+
 export function TechDetails() {
-  const { t, pick } = useLang();
+  const { t } = useLang();
   return (
     <div>
+      {/* What a recruiter needs in ten seconds: what he wants, what he works in, and the CV. */}
+      <Reveal>
+        <div className="panel mb-10 grid gap-7 p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12">
+          <div>
+            <p className="max-w-[58ch] text-[17px] leading-relaxed text-fg sm:text-[19px]">{t('tech.status')}</p>
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label={t('case.stack')}>
+              {CORE_STACK.map((s) => (
+                <li key={s} className="rounded-full border border-fg/15 px-3 py-1 text-[13px] text-fg/90">
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 lg:flex-col lg:items-stretch">
+            <Link to="/cv" className="btn-pill btn-pill--ghost" data-magnetic>
+              <Download className="h-4 w-4" />
+              {t('tech.cv')}
+            </Link>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center justify-center gap-2 text-[14px] text-muted transition-colors hover:text-fg"
+            >
+              <GitHub className="h-4 w-4" />
+              {profile.githubHandle}
+            </a>
+          </div>
+        </div>
+      </Reveal>
       <Fold title={t('tech.projects')}>
         <Projects />
       </Fold>
@@ -403,13 +433,6 @@ export function TechDetails() {
       <Fold title={t('tech.education')}>
         <Education />
       </Fold>
-      <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
-        <Link to="/cv" className="inline-flex items-center gap-2 hover:text-fg">
-          <Download className="h-4 w-4" />
-          {t('tech.cv')}
-        </Link>
-        <span className="normal-case tracking-normal">{pick(profile.status)}</span>
-      </div>
     </div>
   );
 }

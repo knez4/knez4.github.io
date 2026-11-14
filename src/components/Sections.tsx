@@ -38,10 +38,7 @@ export function Skills() {
           >
             <div className="panel spot flex h-full flex-col p-4 sm:p-7">
               <div className="flex items-start justify-between gap-4">
-                <h3 className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent sm:text-[11px] sm:tracking-[0.2em]">{pick(g.label)}</h3>
-                <span className="font-display text-[2rem] leading-none text-fg/10 sm:text-[3.5rem] sm:leading-[0.82]" aria-hidden="true">
-                  {String(g.items.length).padStart(2, '0')}
-                </span>
+                <h3 className="text-[13px] text-accent sm:text-[14px]">{pick(g.label)}</h3>
               </div>
               <ul className={'mt-auto flex flex-wrap gap-1.5 pt-4 sm:gap-2 sm:pt-6 ' + (i === 0 ? 'lg:gap-2.5' : '')}>
                 {g.items.map((item) => (
@@ -67,7 +64,7 @@ export function Skills() {
         <div className="space-y-5">
           {academic.map((g) => (
             <div key={g.label.en}>
-              <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle">{pick(g.label)}</h3>
+              <h3 className="text-[13px] text-subtle">{pick(g.label)}</h3>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {g.items.map((item) => (
                   <li key={pickItem(item, 'en')} className="rounded-full border border-dashed border-fg/15 px-3 py-1 text-[13px] text-muted">
@@ -97,7 +94,7 @@ export function Experience() {
             className="group grid gap-3 border-t border-fg/10 py-7 last:border-b sm:gap-4 sm:py-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"
           >
               <div>
-                <p className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-subtle">
+                <p className="inline-flex items-center gap-2 text-[13px] text-subtle">
                   {current ? (
                     <span className="relative flex h-2 w-2" aria-hidden="true">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
@@ -138,11 +135,11 @@ export function Education() {
     <div className="grid gap-4 lg:grid-cols-3">
       <Reveal className="lg:col-span-2">
         <div className="panel spot h-full p-5 sm:p-9">
-          <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-accent">{pick(education.period)}</p>
+          <p className="text-[13px] text-accent">{pick(education.period)}</p>
           <h3 className="font-display mt-4 text-[clamp(2rem,4vw,3.4rem)] text-fg">{pick(education.institution)}</h3>
           <p className="mt-3 text-[15px] text-muted">{pick(education.degree)}</p>
           <div className="mt-8 border-t border-fg/10 pt-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{pick(education.secondary.period)}</p>
+            <p className="text-[13px] text-subtle">{pick(education.secondary.period)}</p>
             <p className="mt-2 font-semibold text-fg">{pick(education.secondary.institution)}</p>
             <p className="text-sm text-muted">{pick(education.secondary.degree)}</p>
           </div>
@@ -150,7 +147,7 @@ export function Education() {
       </Reveal>
       <Reveal delay={80}>
         <div className="panel spot h-full p-5 sm:p-7">
-          <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">{t('education.languages')}</h3>
+          <h3 className="text-[13px] text-accent">{t('education.languages')}</h3>
           <dl className="mt-6 space-y-5">
             {languages.map((l) => (
               <div key={l.name.en} className="flex items-baseline justify-between gap-4 border-b border-fg/10 pb-4 last:border-0">
@@ -211,7 +208,7 @@ export function SitesVisual() {
           />
         </div>
       </div>
-      <figcaption className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">
+      <figcaption className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-subtle">
         {t('freelance.sitesCaption')}
         <a
           href="https://flekoutclean.com"
@@ -220,118 +217,19 @@ export function SitesVisual() {
           className="relative z-10 inline-flex items-center gap-2 text-accent transition-colors hover:text-fg"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#7ee2a8]" aria-hidden="true" />
-          flekoutclean.com ↗
+          flekoutclean.com
         </a>
       </figcaption>
     </figure>
   );
 }
 
-function AutomationVisual() {
-  const { t } = useLang();
-  return (
-    <figure>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-3 sm:gap-4">
-        <div className="rounded-xl border border-fg/10 bg-fg/[0.02] p-5">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">{t('freelance.before')}</p>
-          <p className="font-display mt-4 text-[clamp(2.6rem,6vw,4.6rem)] text-fg/35 line-through decoration-[#ff8a8a]/70 decoration-[3px]">
-            {t('freelance.beforeVal')}
-          </p>
-          <p className="mt-2 text-[13px] leading-snug text-subtle">{t('freelance.beforeNote')}</p>
-        </div>
-        <span className="self-center font-display text-[2rem] text-accent" aria-hidden="true">
-          →
-        </span>
-        <div className="rounded-xl border border-accent/40 bg-accent-strong/15 p-5 shadow-[0_0_60px_-24px_rgba(124,77,255,0.9)]">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{t('freelance.after')}</p>
-          <p className="font-display mt-4 text-[clamp(2.6rem,6vw,4.6rem)] text-fg">{t('freelance.afterVal')}</p>
-          <p className="mt-2 text-[13px] leading-snug text-muted">{t('freelance.afterNote')}</p>
-        </div>
-      </div>
-      <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{t('freelance.autoCaption')}</figcaption>
-    </figure>
-  );
-}
-
-/** The secondary audience: people who need a site or an automation. No prices, by his choice. */
-export function Freelance() {
-  const { t } = useLang();
-  const services = [
-    { key: 'sites', title: t('freelance.sites'), body: t('freelance.sitesBody'), visual: <SitesVisual /> },
-    { key: 'automation', title: t('freelance.automation'), body: t('freelance.automationBody'), visual: <AutomationVisual /> },
-  ];
-
-  return (
-    <div>
-      {/* Both cards share the parent's two rows (visual, then text) through subgrid,
-          so the headings line up however tall either visual is. */}
-      <div className="grid gap-4 lg:grid-cols-2 lg:grid-rows-[auto_auto]">
-        {services.map((s, i) => (
-          <Reveal key={s.key} delay={i * 90} className="lg:row-span-2 lg:grid lg:grid-rows-subgrid">
-            <article className="panel spot group flex h-full flex-col gap-7 p-5 sm:gap-10 sm:p-9 lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:gap-10">
-              <div className="lg:self-center">{s.visual}</div>
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">0{i + 1}</p>
-                <h3 className="font-display mt-3 text-[clamp(2rem,3.6vw,3rem)] text-fg">{s.title}</h3>
-                <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-muted">{s.body}</p>
-              </div>
-            </article>
-          </Reveal>
-        ))}
-      </div>
-
-      {/* A face next to the offer (clients want to know who does the work), and a
-          button that says exactly what happens next. */}
-      <Reveal>
-        <div className="mt-4 flex flex-col items-start justify-between gap-6 rounded-[1.25rem] bg-accent-strong p-6 sm:p-9 lg:flex-row lg:items-center">
-          <div className="flex items-center gap-4 sm:gap-5">
-            {/* The full-length cut-out, zoomed to head and shoulders inside the circle. The head
-                centre sits at 57% across and 15% down the cut-out, hence the offsets. */}
-            <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-white/70 bg-[#12091f] sm:h-20 sm:w-20">
-              <img
-                src="/img/portrait-480.webp"
-                alt=""
-                width={480}
-                height={769}
-                loading="lazy"
-                decoding="async"
-                className="absolute left-[-46%] top-[1%] w-[181%] max-w-none"
-              />
-            </span>
-            <div>
-              <p className="font-display text-[clamp(1.7rem,3.4vw,2.8rem)] text-white">{t('freelance.cta')}</p>
-              <p className="mt-1 text-[14px] text-white/80">{t('freelance.direct')}</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-start gap-2 lg:items-end">
-            <a
-              href={mailto(t('freelance.mailSubject'), t('freelance.mailBody'))}
-              className="btn-pill shrink-0 bg-white text-[#12091f] before:bg-[#12091f] hover:text-white"
-              data-magnetic
-            >
-              <Mail />
-              {t('freelance.ask')}
-            </a>
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white">{t('contact.reply')}</p>
-          </div>
-        </div>
-      </Reveal>
-    </div>
-  );
-}
-
 export function Contact() {
-  const { t, pick, lang } = useLang();
+  const { t, pick } = useLang();
 
   return (
     <div className="relative">
-      <p className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-subtle">
-        <span className="text-accent">({lang === 'sr' ? 'kraj' : 'end'})</span>
-        <span>{t('contact.eyebrow')}</span>
-        <span className="h-px flex-1 bg-fg/10" aria-hidden="true" />
-      </p>
-
-      <h2 className="font-display mt-10 text-[clamp(3.6rem,15vw,15rem)] text-fg" data-cursor="ball">
+      <h2 className="font-display text-[clamp(3.6rem,15vw,15rem)] text-fg" data-cursor="ball">
         <SplitText text={t('contact.big')} step={90} />
         <Ball className="ml-[0.06em] inline-block h-[0.62em] w-[0.62em] align-baseline" />
       </h2>
@@ -353,19 +251,19 @@ export function Contact() {
             <Mail />
             {t('cta.talk')}
           </a>
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{t('contact.reply')}</p>
+          <p className="text-[13px] text-subtle">{t('contact.reply')}</p>
         </div>
       </div>
 
-      <ul className="mt-14 flex flex-wrap gap-x-10 gap-y-3 border-t border-fg/10 pt-8 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+      <ul className="mt-14 flex flex-wrap gap-x-10 gap-y-3 border-t border-fg/10 pt-8 text-[13px] text-muted">
         <li>
           <a href={profile.linkedin} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 hover:text-fg">
-            <LinkedIn className="h-4 w-4" /> LinkedIn ↗
+            <LinkedIn className="h-4 w-4" /> LinkedIn
           </a>
         </li>
         <li>
           <a href={profile.github} target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 hover:text-fg">
-            <GitHub className="h-4 w-4" /> GitHub ↗
+            <GitHub className="h-4 w-4" /> GitHub
           </a>
         </li>
         <li className="ml-auto">{pick(profile.location)}</li>
