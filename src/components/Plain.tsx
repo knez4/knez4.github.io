@@ -36,6 +36,95 @@ export function TalkButton({ className = '' }: { className?: string }) {
  * seconds. It nudges itself once when it scrolls into view so it reads as
  * draggable; a real range input underneath keeps it usable by keyboard and touch.
  */
+/**
+ * What fills the half of each layer that the divider usually hides, so dragging all
+ * the way shows a picture of the work instead of an empty panel. Illustrations with
+ * made-up numbers: the real reports are confidential.
+ */
+function SpreadsheetMess() {
+  const cols = ['A', 'B', 'C', 'D', 'E'];
+  const rows = [
+    ['Lokal', 'Jan', 'Feb', 'Mar', 'Σ'],
+    ['Centar', '84', '79', '91', '254'],
+    ['Novi Bgd', '72', '88', '?', '160'],
+    ['Zemun', '95', '93', '90', '278'],
+    ['Vračar', '61', '70', '68', '199'],
+    ['Čukarica', '88', '#REF!', '85', '173'],
+    ['Zvezdara', '77', '81', '79', '237'],
+  ];
+  return (
+    <div className="absolute bottom-[6cqw] left-[53%] right-[5cqw] top-[6cqw] rotate-[2deg] overflow-hidden rounded-[1.2cqw] border border-white/10 bg-[#1c1a22] text-[clamp(7px,1.8cqw,11px)] text-[#c9c6d4] shadow-[0_2cqw_5cqw_rgba(0,0,0,0.5)]">
+      <div className="flex items-center gap-[1cqw] border-b border-white/10 bg-[#1f6b3a] px-[1.5cqw] py-[0.8cqw] text-white/90">
+        <span className="font-semibold">X</span>
+        <span className="truncate">tabela_mart.xlsx</span>
+      </div>
+      <div className="grid grid-cols-[1.6fr_repeat(4,1fr)]">
+        {cols.map((c) => (
+          <span key={c} className="border-b border-r border-white/10 bg-white/[0.04] py-[0.4cqw] text-center text-white/40">
+            {c}
+          </span>
+        ))}
+        {rows.flatMap((r, i) =>
+          r.map((cell, j) => (
+            <span
+              key={`${i}-${j}`}
+              className={
+                'truncate border-b border-r border-white/10 px-[0.8cqw] py-[0.55cqw] ' +
+                (i === 0 ? 'font-semibold text-white/80 ' : '') +
+                (cell === '#REF!' || cell === '?' ? 'bg-[#ff8a8a]/20 text-[#ff8a8a] ' : '') +
+                (i === 3 && j === 2 ? 'bg-[#f5d76e]/25 outline outline-1 outline-[#f5d76e] ' : '') +
+                (j > 0 ? 'text-right' : '')
+              }
+            >
+              {cell}
+            </span>
+          )),
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ReportStack() {
+  const page = (rot: string, extra = '') => (
+    <div
+      className={
+        'absolute left-0 top-0 aspect-[1/1.414] w-[62%] overflow-hidden rounded-[0.8cqw] bg-white p-[1.6cqw] shadow-[0_2cqw_4cqw_rgba(0,0,0,0.45)] ' +
+        rot +
+        ' ' +
+        extra
+      }
+    >
+      <div className="h-[1.2cqw] w-[45%] rounded-sm bg-[#7c4dff]" />
+      <div className="mt-[1cqw] h-[0.7cqw] w-[70%] rounded-sm bg-[#d9d6e3]" />
+      <div className="mt-[0.6cqw] h-[0.7cqw] w-[55%] rounded-sm bg-[#d9d6e3]" />
+      <div className="mt-[2cqw] flex h-[34%] items-end gap-[1cqw]">
+        {[62, 85, 48, 92, 74].map((h, i) => (
+          <span key={i} className="flex-1 rounded-t-sm bg-[#7c4dff]" style={{ height: `${h}%`, opacity: 0.45 + i * 0.1 }} />
+        ))}
+      </div>
+      <div className="mt-[2cqw] space-y-[0.7cqw]">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="flex gap-[1cqw]">
+            <span className="h-[0.7cqw] flex-1 rounded-sm bg-[#e6e3ee]" />
+            <span className="h-[0.7cqw] w-[20%] rounded-sm bg-[#cfc9e0]" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+  return (
+    <div className="absolute bottom-[6cqw] left-[6cqw] right-[53%] top-[8cqw]">
+      {page('translate-x-[6%] translate-y-[8%] rotate-[-9deg]', 'opacity-70')}
+      {page('translate-x-[22%] translate-y-[4%] rotate-[-3deg]', 'opacity-85')}
+      {page('translate-x-[40%] rotate-[4deg]')}
+      <span className="absolute bottom-[2%] left-[4%] rounded-full bg-[#7ee2a8] px-[1.4cqw] py-[0.4cqw] text-[clamp(8px,1.8cqw,12px)] font-semibold text-[#0d2a19]">
+        9 × PDF
+      </span>
+    </div>
+  );
+}
+
 function BeforeAfter() {
   const { t } = useLang();
   const [pos, setPos] = useState(50);
@@ -62,7 +151,8 @@ function BeforeAfter() {
     <figure>
       <div ref={ref} className="relative aspect-[4/3] select-none overflow-hidden rounded-2xl border border-fg/10 [container-type:inline-size] sm:aspect-[16/10]">
         {/* After: the whole card. Mirrors the "before" half exactly: same padding, same rows. */}
-        <div className="absolute inset-0 grid grid-rows-[auto_auto_1fr] justify-items-end bg-accent-strong/25 p-[6cqw] text-right">
+        <div className="absolute inset-0 grid grid-rows-[auto_auto_1fr] justify-items-end bg-[#291b52] p-[6cqw] text-right">
+          <ReportStack />
           <p className="text-[clamp(11px,2.6cqw,14px)] text-accent">{t('ba.after')}</p>
           <p className="font-display mt-[3cqw] whitespace-nowrap text-[15cqw] leading-none text-fg">3 s</p>
           <ul className="mt-[4cqw] w-[44%] space-y-[1.2cqw] self-start text-fg/85">
@@ -82,6 +172,7 @@ function BeforeAfter() {
           style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           aria-hidden="true"
         >
+          <SpreadsheetMess />
           <p className="text-[clamp(11px,2.6cqw,14px)] text-subtle">{t('ba.before')}</p>
           <p className="font-display mt-[3cqw] whitespace-nowrap text-[15cqw] leading-none text-fg/40">~6 h</p>
           <ul className="mt-[4cqw] w-[44%] space-y-[1.2cqw] self-start text-muted">

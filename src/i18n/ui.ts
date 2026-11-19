@@ -82,6 +82,16 @@ export const ui = {
 
   'process.eyebrow': { en: 'How I work', sr: 'Kako radim' },
   'process.title': { en: 'Working together, in four steps', sr: 'Saradnja u četiri koraka' },
+  /* The browser beside the four steps (Process.tsx). An illustration on the Flekout example. */
+  'process.bar1': { en: 'New message', sr: 'Nova poruka' },
+  'process.bar2': { en: 'Sketch', sr: 'Skica' },
+  'process.bar3': { en: 'Preview', sr: 'Pregled' },
+  'process.msg1': {
+    en: 'Hi Veljko, I need a website for my cleaning company. Can we talk?',
+    sr: 'Zdravo Veljko, treba mi sajt za firmu za čišćenje. Možemo li da se čujemo?',
+  },
+  'process.msg2': { en: 'Sure. I’ll call you today.', sr: 'Može. Zovem te danas.' },
+  'process.caption': { en: 'Illustration, on the example of the Flekout site.', sr: 'Ilustracija, na primeru sajta Flekout.' },
   'process.s1': { en: 'You get in touch', sr: 'Javiš se' },
   'process.s1b': { en: 'Write in a few sentences what you need. No technical words required.', sr: 'Napišeš u par rečenica šta ti treba. Stručne reči nisu potrebne.' },
   'process.s2': { en: 'We talk it through', sr: 'Dogovorimo se' },
