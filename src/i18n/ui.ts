@@ -113,23 +113,24 @@ export const ui = {
   'process.s4b': { en: 'The site or the tool starts working for you.', sr: 'Sajt ili alat počinje da radi za tebe.' },
 
   'about.eyebrow': { en: 'About', sr: 'O meni' },
-  'about.title': { en: 'Who you would be working with', sr: 'Sa kim bi radio' },
+  'about.title': { en: 'About me', sr: 'O meni' },
   /*
-   * About, rewritten in November 2026 with facts he gave directly: born in Užice, in
-   * Belgrade since 2022, why FON, how he works. Concrete things only; nothing here
-   * should be a sentence that could describe anyone else.
+   * Rewritten 19 November 2026 at his request: the previous version read like a game
+   * character's bio ("Leži mi IT", "tu sam naučio da radim sa ljudima"). Short, plain,
+   * in his own register. No explaining or justifying, no basketball in the prose (he
+   * cut that as cringe in October), no "always smiling".
    */
   'about.p1': {
-    en: 'I’m Veljko. I was born in Užice and have lived in Belgrade since 2022, where I am finishing the Faculty of Organizational Sciences. I have freelanced since March 2023: two client websites, and a tool that builds nine monthly reports in 3 seconds instead of about 6 hours.',
-    sr: 'Ja sam Veljko. Rođen sam u Užicu, a od 2022. živim u Beogradu, gde završavam Fakultet organizacionih nauka. Od marta 2023. radim kao frilenser: napravio sam dva sajta za klijente i alat koji devet mesečnih izveštaja složi za 3 sekunde umesto za oko 6 sati.',
+    en: 'I’m Veljko. I’m from Užice, I’ve lived in Belgrade since 2022, and I’m finishing my degree at FON.',
+    sr: 'Ja sam Veljko. Iz Užica sam, u Beogradu živim od 2022. i završavam FON.',
   },
   'about.p2': {
-    en: 'At university I led the IT team for the DigiCon conference and coordinated Future Leader, a project with around 50 members. That is where I learned to work with people and to keep a deadline.',
-    sr: 'Na fakultetu sam vodio IT tim konferencije DigiCon i koordinisao projekat Future Leader sa oko 50 članova. Tu sam naučio da radim sa ljudima i da držim rok.',
+    en: 'I like it when work that takes hours by hand starts doing itself. For one client I built a tool that puts together nine monthly reports in 3 seconds; it used to take about 6 hours. I also build websites, from the first sketch to launch.',
+    sr: 'Volim kad posao koji se satima radi ručno počne da radi sam. Za jednog klijenta sam napravio alat koji devet mesečnih izveštaja složi za 3 sekunde, a to je ranije trajalo oko 6 sati. Pravim i sajtove, od prve skice do objave.',
   },
   'about.p3': {
-    en: 'I chose FON because it mixes programming with management, and I wanted to see which one suited me. It turned out to be IT.',
-    sr: 'FON sam upisao jer spaja programiranje i menadžment, pa sam hteo da vidim šta mi više leži. Leži mi IT.',
+    en: 'Right now I’m most into databases and AI language models, and how to plug them into work people do every day. I’m direct, I like a joke, and I answer fast.',
+    sr: 'Trenutno me najviše zanimaju baze podataka i AI jezički modeli, i kako da ih uvežem u posao koji ljudi rade svaki dan. Direktan sam, volim šalu i brzo odgovaram.',
   },
   'about.k1': { en: 'From', sr: 'Odakle' },
   'about.v1': { en: 'Užice. In Belgrade since 2022.', sr: 'Užice. U Beogradu od 2022.' },
