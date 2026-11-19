@@ -12,10 +12,10 @@ export const projects: Project[] = [
   {
     id: 'booking-platform',
     plain: {
-      title: { en: 'Booking with no double-booked slots', sr: 'Zakazivanje bez duplih termina' },
+      title: { en: 'Internal booking system', sr: 'Interni sistem za zakazivanje' },
       text: {
-        en: 'An app where clients book a hair appointment themselves, and the system makes sure two bookings never land on the same slot. A working prototype.',
-        sr: 'Aplikacija u kojoj klijenti sami zakazuju termin kod frizera, a sistem pazi da se dva termina nikad ne poklope. Funkcionalan prototip.',
+        en: 'A working prototype for a hair salon: staff, services, working hours and appointments in one place, and two bookings can never land on the same slot.',
+        sr: 'Funkcionalan prototip za frizerski salon: zaposleni, usluge, radno vreme i termini na jednom mestu, a dva termina nikad ne mogu da se poklope.',
       },
     },
     rank: 1,
