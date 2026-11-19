@@ -54,43 +54,46 @@ function BeforeAfter() {
   }, [shown]);
 
   // sized off the slider's own width (container units), so it reads the same on any screen
-  const row = 'flex items-start gap-2 text-[clamp(11px,3cqw,15px)] leading-snug';
+  // Both lists mirror each other: every row is two lines tall whatever its text, and the
+  // cross and the tick are the same drawn icon size, one on the outer left, one on the outer right.
+  const row = 'flex min-h-[2.75em] items-start gap-[1.4cqw] text-[clamp(11px,3cqw,15px)] leading-snug';
+  const icon = 'mt-[0.15em] h-[1.05em] w-[1.05em] shrink-0';
   return (
     <figure>
       <div ref={ref} className="relative aspect-[4/3] select-none overflow-hidden rounded-2xl border border-fg/10 [container-type:inline-size] sm:aspect-[16/10]">
-        {/* After: the whole card */}
-        <div className="absolute inset-0 flex flex-col items-end justify-between bg-accent-strong/25 p-4 text-right sm:p-7">
-          <p className="w-1/2 text-[13px] text-accent sm:text-[14px]">{t('ba.after')}</p>
-          <div className="w-[42%]">
-            <p className="font-display text-[17cqw] text-fg">3 s</p>
-            <ul className="mt-3 space-y-1.5 text-fg/85">
-              {['ba.a1', 'ba.a2', 'ba.a3'].map((k) => (
-                <li key={k} className={row + ' justify-end'}>
-                  {t(k as 'ba.a1')}
-                  <span className="text-[#7ee2a8]" aria-hidden="true">✓</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* After: the whole card. Mirrors the "before" half exactly: same padding, same rows. */}
+        <div className="absolute inset-0 grid grid-rows-[auto_auto_1fr] justify-items-end bg-accent-strong/25 p-[6cqw] text-right">
+          <p className="text-[clamp(11px,2.6cqw,14px)] text-accent">{t('ba.after')}</p>
+          <p className="font-display mt-[3cqw] whitespace-nowrap text-[15cqw] leading-none text-fg">3 s</p>
+          <ul className="mt-[4cqw] w-[44%] space-y-[1.2cqw] self-start text-fg/85">
+            {['ba.a1', 'ba.a2', 'ba.a3'].map((k) => (
+              <li key={k} className={row + ' justify-end'}>
+                {t(k as 'ba.a1')}
+                <svg viewBox="0 0 16 16" className={icon + ' text-[#7ee2a8]'} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M3 8.5l3.2 3.2L13 4.8" />
+                </svg>
+              </li>
+            ))}
+          </ul>
         </div>
         {/* Before: clipped to the left of the divider */}
         <div
-          className="absolute inset-0 flex flex-col justify-between bg-[#14101f] p-5 sm:p-7"
+          className="absolute inset-0 grid grid-rows-[auto_auto_1fr] justify-items-start bg-[#14101f] p-[6cqw]"
           style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           aria-hidden="true"
         >
-          <p className="w-1/2 text-[13px] text-subtle sm:text-[14px]">{t('ba.before')}</p>
-          <div className="w-[42%]">
-            <p className="font-display whitespace-nowrap text-[17cqw] text-fg/40">~6 h</p>
-            <ul className="mt-3 space-y-1.5 text-muted">
-              {['ba.b1', 'ba.b2', 'ba.b3'].map((k) => (
-                <li key={k} className={row}>
-                  <span className="text-[#ff8a8a]" aria-hidden="true">✕</span>
-                  {t(k as 'ba.b1')}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <p className="text-[clamp(11px,2.6cqw,14px)] text-subtle">{t('ba.before')}</p>
+          <p className="font-display mt-[3cqw] whitespace-nowrap text-[15cqw] leading-none text-fg/40">~6 h</p>
+          <ul className="mt-[4cqw] w-[44%] space-y-[1.2cqw] self-start text-muted">
+            {['ba.b1', 'ba.b2', 'ba.b3'].map((k) => (
+              <li key={k} className={row}>
+                <svg viewBox="0 0 16 16" className={icon + ' text-[#ff8a8a]'} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+                  <path d="M4 4l8 8M12 4l-8 8" />
+                </svg>
+                {t(k as 'ba.b1')}
+              </li>
+            ))}
+          </ul>
         </div>
         {/* Divider and handle */}
         <div className="pointer-events-none absolute inset-y-0 w-px bg-white/80" style={{ left: `${pos}%` }} aria-hidden="true">

@@ -51,8 +51,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="process" className="relative scroll-mt-20 overflow-hidden py-16 sm:py-24 lg:py-28">
-        <div className="pointer-events-none absolute -left-60 top-0 h-[56rem] w-[56rem] bg-[radial-gradient(closest-side,rgb(124_77_255/0.1),transparent)]" aria-hidden="true" />
+      <section id="process" className="relative scroll-mt-20 py-16 sm:py-24 lg:py-28">
         <div className="container-page relative">
           <SectionHeading title={t('process.title')} />
           <Process />
@@ -81,7 +80,7 @@ export default function Home() {
       </section>
 
       <section id="contact" className="relative scroll-mt-20 overflow-hidden py-16 sm:py-24 lg:py-32" lang={lang}>
-        <div className="pointer-events-none absolute -right-60 -bottom-40 h-[60rem] w-[60rem] bg-[radial-gradient(closest-side,rgb(124_77_255/0.18),transparent)]" aria-hidden="true" />
+        <div className="pointer-events-none absolute -right-60 -bottom-40 h-[60rem] w-[60rem] bg-[radial-gradient(closest-side,rgb(124_77_255/0.07),transparent)]" aria-hidden="true" />
         <div className="container-page relative">
           <Contact />
         </div>

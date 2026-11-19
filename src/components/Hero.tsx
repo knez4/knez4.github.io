@@ -64,7 +64,7 @@ export function Hero({ ready }: { ready: boolean }) {
       {/* Light */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute inset-0 grid-texture opacity-40" />
-        <div className="absolute left-1/2 top-[10%] h-[90vmin] w-[90vmin] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(124_77_255/0.28),transparent)]" />
+        <div className="absolute left-1/2 top-[10%] h-[90vmin] w-[90vmin] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(124_77_255/0.1),transparent)]" />
       </div>
 
       <h1 id="hero-title" className="sr-only">
@@ -122,7 +122,7 @@ export function Hero({ ready }: { ready: boolean }) {
 
         <div
           data-p="sig"
-          className="pointer-events-none absolute left-[2%] top-[30%] z-20 sm:left-[14%] will-change-transform [filter:drop-shadow(0_6px_26px_rgba(124,77,255,0.5))]
+          className="pointer-events-none absolute left-[2%] top-[30%] z-20 sm:left-[14%] will-change-transform [filter:drop-shadow(0_2px_6px_rgba(8,6,14,0.55))]
                      lg:-left-[44%] lg:top-[42%]"
           aria-hidden="true"
         >

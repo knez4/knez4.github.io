@@ -172,7 +172,7 @@ export function Projects() {
         <div
           ref={box}
           className="pointer-events-none fixed left-0 top-0 z-40 hidden w-[420px] overflow-hidden rounded-2xl border border-accent/30
-                     bg-surface opacity-0 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.85),0_0_80px_-30px_rgba(124,77,255,0.7)] lg:block"
+                     bg-surface opacity-0 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.85)] lg:block"
           aria-hidden="true"
         >
           {/* Covers are stacked and cross-faded by opacity, and decoded up front, so

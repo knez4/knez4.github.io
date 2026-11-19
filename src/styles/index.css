@@ -440,8 +440,7 @@ html.has-cursor button {
 .term {
   background: linear-gradient(180deg, rgb(var(--surface) / 0.97), rgb(var(--bg) / 0.98));
   border: 1px solid rgb(var(--fg) / 0.1);
-  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.8), 0 0 0 1px rgb(var(--accent) / 0.08),
-    0 0 120px -40px rgb(var(--accent-strong) / 0.55);
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.8);
 }
 .term-caret {
   display: inline-block;
@@ -513,7 +512,7 @@ html.has-cursor button {
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.4s;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--accent-strong) / 0.16), transparent 45%);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--fg) / 0.05), transparent 45%);
 }
 .spot:hover::before {
   opacity: 1;
@@ -551,7 +550,7 @@ html.has-cursor button {
 
 /* Glow behind the portrait */
 .portrait-glow {
-  background: radial-gradient(closest-side, rgb(var(--accent-strong) / 0.5), rgb(var(--accent-strong) / 0.12) 55%, transparent 78%);
+  background: radial-gradient(closest-side, rgb(var(--accent-strong) / 0.2), rgb(var(--accent-strong) / 0.05) 55%, transparent 78%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -633,148 +632,79 @@ html.has-cursor button {
 }
 
 /*
- * The four steps (src/components/Process.tsx). --p runs 0 to 1 with the scroll:
- * the line fills, the ball rolls along it, and each step lights when the ball
- * reaches its stop. Down the left edge on phones, across the top on wide screens.
+ * The four steps (src/components/Process.tsx): one line that fills with the scroll
+ * (--p, 0 to 1), with a dot per step that lights as the fill reaches it.
  */
-.proc {
+.line-steps {
   --p: 0;
   position: relative;
-  padding-left: 2.5rem;
-  padding-bottom: 3.5rem;
+  padding-left: 2.25rem;
 }
-.proc.is-static {
+.line-steps.is-static {
   --p: 1;
-  padding-bottom: 0;
 }
-.proc-track {
+.line-steps__track {
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 3.5rem;
+  top: 0.6rem;
+  bottom: 0;
   width: 1px;
   background: rgb(var(--fg) / 0.15);
 }
-.proc.is-static .proc-track {
-  bottom: 0;
-}
-.proc-fill {
+.line-steps__fill {
   position: absolute;
-  left: -0.5px;
-  top: 0;
-  width: 2px;
-  height: 100%;
+  inset: 0;
   background: rgb(var(--accent));
   transform-origin: top;
   transform: scaleY(var(--p));
 }
-.proc-ball {
-  position: absolute;
-  left: -14px;
-  top: calc(var(--p) * (100% - 28px));
-  width: 28px;
-  height: 28px;
-  filter: drop-shadow(0 6px 14px rgb(0 0 0 / 0.6));
-  transition: transform 0.75s cubic-bezier(0.45, 0, 0.8, 0.35), opacity 0.3s 0.5s;
-}
-.proc-ball > svg {
-  transform: rotate(calc(var(--p) * 1080deg));
-}
-.proc.is-scored .proc-ball {
-  transform: translateY(40px) scale(0.78);
-  opacity: 0;
-}
-.proc-hoop {
-  position: absolute;
-  left: -22px;
-  bottom: -42px;
-  width: 44px;
-  height: 40px;
-  overflow: visible;
-}
-.proc-rim {
-  stroke: rgb(var(--fg) / 0.55);
-  transition: stroke 0.3s;
-}
-.proc-net {
-  stroke: rgb(var(--fg) / 0.28);
-  transform-origin: 50% 15%;
-}
-.proc.is-scored .proc-rim {
-  stroke: rgb(var(--accent));
-}
-.proc.is-scored .proc-net {
-  animation: swish 0.7s 0.35s ease-out;
-}
-@keyframes swish {
-  30% { transform: scaleY(1.28) scaleX(0.9); }
-  60% { transform: scaleY(0.92); }
-  100% { transform: none; }
-}
-.proc-step {
+.line-steps__step {
   position: relative;
 }
-.proc-step > :not(.proc-dot) {
-  opacity: 0.32;
-  transition: opacity 0.5s, color 0.5s;
+.line-steps__step > :not(.line-steps__dot) {
+  opacity: 0.35;
+  transition: opacity 0.5s;
 }
-.proc-step.is-on > :not(.proc-dot) {
+.line-steps__step.is-on > :not(.line-steps__dot) {
   opacity: 1;
 }
-.proc-num {
+.line-steps__num {
   display: block;
-  color: rgb(var(--fg));
-}
-.proc-step.is-on .proc-num {
   color: rgb(var(--accent));
 }
-.proc-dot {
+.line-steps__dot {
   position: absolute;
-  left: calc(-2.5rem - 5px);
+  left: calc(-2.25rem - 5px);
   top: 0.6rem;
   width: 11px;
   height: 11px;
   border-radius: 50%;
   background: rgb(var(--bg));
   border: 1px solid rgb(var(--fg) / 0.35);
-  transition: background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+  transition: background-color 0.4s, border-color 0.4s;
 }
-.proc-step.is-on .proc-dot {
+.line-steps__step.is-on .line-steps__dot {
   background: rgb(var(--accent));
   border-color: rgb(var(--accent));
-  box-shadow: 0 0 0 5px rgb(var(--accent) / 0.18);
 }
 @media (min-width: 1024px) {
-  .proc {
-    padding: 3.25rem 0 0;
+  .line-steps {
+    padding: 2.75rem 0 0;
   }
-  .proc-track {
+  .line-steps__track {
     left: 0;
-    right: 22px;
+    right: 0;
+    top: 0;
     bottom: auto;
     width: auto;
     height: 1px;
   }
-  .proc-fill {
-    left: 0;
-    top: -0.5px;
-    width: 100%;
-    height: 2px;
+  .line-steps__fill {
     transform-origin: left;
     transform: scaleX(var(--p));
   }
-  .proc-ball {
-    top: -14px;
-    left: calc(var(--p) * (100% - 28px));
-  }
-  .proc-hoop {
-    left: auto;
-    right: -8px;
-    bottom: auto;
-    top: -2px;
-  }
-  .proc-dot {
+  .line-steps__dot {
     left: 0;
-    top: calc(-3.25rem - 5px);
+    top: calc(-2.75rem - 5px);
   }
 }
