@@ -68,7 +68,7 @@ export function Hero({ ready }: { ready: boolean }) {
       </div>
 
       <h1 id="hero-title" className="sr-only">
-        {profile.name}: {t('hero.plainRole')}
+        {profile.name}: {t('hero.fields')}
       </h1>
 
       {/*
@@ -136,24 +136,14 @@ export function Hero({ ready }: { ready: boolean }) {
       {/* Left column: who, why, what next */}
       <div className="container-page relative z-20 row-start-2 -mt-12 lg:absolute lg:inset-x-0 lg:top-[15vh] lg:mt-0">
         <div className="max-w-[24rem] xl:max-w-[26rem]">
-          <p
-            data-a="fade"
-            className="inline-flex items-center gap-2 rounded-full border border-fg/12 bg-bg/60 px-3 py-1.5
-                       text-[13px] text-muted"
-          >
-            <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7ee2a8] opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#7ee2a8]" />
-            </span>
-            {t('hero.available')}
-          </p>
 
-          {/* What he does, in a sentence anyone understands (20 October 2026). Set in the
-              text face rather than the condensed display caps: it is a sentence, not a label. */}
-          <p data-a="fade" className="mt-4 text-[clamp(1.45rem,6.2vw,2.3rem)] font-semibold leading-[1.15] tracking-tight text-fg">
-            {t('hero.plainRole')}
+          {/* What he does: the three fields by their usual names, as one quiet line of text
+              (one line on wide screens, wrapping like a sentence on phones). The surname is the
+              headline; this only has to say what he works on. */}
+          <p data-a="fade" className="text-balance text-[14px] leading-relaxed text-fg/75 sm:text-[15px] lg:w-max">
+            {t('hero.fields')}
           </p>
-          <p data-a="fade" className="mt-3 text-[13px] text-accent">
+          <p data-a="fade" className="mt-2 text-[13px] text-subtle">
             {t('hero.plainSub')}
           </p>
 

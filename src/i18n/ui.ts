@@ -35,6 +35,17 @@ export const ui = {
     en: 'I build websites and automate the work that keeps repeating.',
     sr: 'Pravim sajtove i automatizujem posao koji se stalno ponavlja.',
   },
+  /*
+   * The three fields, set small in the hero in place of the sentence above (November 2026,
+   * his call). The standard terms, the way a job ad or a client would search for them.
+   */
+  'hero.f1': { en: 'Web design', sr: 'Web dizajn' },
+  'hero.f2': { en: 'Web app development', sr: 'Razvoj veb aplikacija' },
+  'hero.f3': { en: 'Process automation', sr: 'Automatizacija procesa' },
+  'hero.fields': {
+    en: 'Web design, web app development and process automation',
+    sr: 'Web dizajn, razvoj veb aplikacija i automatizacija procesa',
+  },
   'hero.plainSub': { en: 'Final-year student at FON, Belgrade', sr: 'Student završne godine FON-a, Beograd' },
   'hero.available': { en: 'Available for new projects and internships', sr: 'Dostupan za nove projekte i praksu' },
   'cta.talk': { en: 'Get in touch', sr: 'Javi se' },
