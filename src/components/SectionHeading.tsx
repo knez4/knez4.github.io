@@ -14,7 +14,7 @@ import { SplitText } from './Reveal';
 export function SectionHeading({ title, lead, children }: { title: string; lead?: string; children?: ReactNode }) {
   return (
     <div className="mb-8 flex flex-col gap-4 sm:mb-12 sm:gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between">
-      <h2 className="font-display max-w-4xl text-balance text-[clamp(2.5rem,8.5vw,5.5rem)] text-accent lg:text-fg">
+      <h2 className="font-display max-w-4xl text-balance text-[clamp(2.5rem,8.5vw,5.5rem)] !leading-[1.06] text-accent lg:text-fg">
         <SplitText text={title} />
       </h2>
       {lead || children ? (

@@ -483,9 +483,12 @@ html.has-cursor button {
 .split-word {
   display: inline-block;
   overflow: hidden;
-  padding-top: 0.2em;
-  margin-top: -0.2em;
-  padding-bottom: 0.06em;
+  /* Room above for the carons on Č, Ć, Š, Ž and below for the bottom of the letters:
+     the display face sits on a line-height under 1, so a tight clip box cut both. */
+  padding-top: 0.3em;
+  margin-top: -0.3em;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
   vertical-align: bottom;
 }
 .split-word > span {
